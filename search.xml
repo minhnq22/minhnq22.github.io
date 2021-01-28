@@ -1610,4 +1610,37 @@ uid&#x3D;0(root) gid&#x3D;0(root) groups&#x3D;0(root)<span aria-hidden="true" cl
         <tag>difficult</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[HackTheBox] Writeup</title>
+    <url>/2021/01/28/writeup-hackthebox/</url>
+    <content><![CDATA[<p>Writing…</p>
+<a id="more"></a>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -p 22,80 -A 10.10.10.138          
+Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-01-28 09:58 +07
+Nmap scan report for 10.10.10.138
+Host is up (0.088s latency).
+
+PORT   STATE  SERVICE VERSION
+22&#x2F;tcp open   ssh     OpenSSH 7.4p1 Debian 10+deb9u6 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 dd:53:10:70:0b:d0:47:0a:e2:7e:4a:b6:42:98:23:c7 (RSA)
+|   256 37:2e:14:68:ae:b9:c2:34:2b:6e:d9:92:bc:bf:bd:28 (ECDSA)
+|_  256 93:ea:a8:40:42:c1:a8:33:85:b3:56:00:62:1c:a0:ab (ED25519)
+80&#x2F;tcp closed http
+Service Info: OS: Linux; CPE: cpe:&#x2F;o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https:&#x2F;&#x2F;nmap.org&#x2F;submit&#x2F; .
+Nmap done: 1 IP address (1 host up) scanned in 4.56 seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>[+] Salt for password found: 5a599ef579066807<br>[+] Username found: jkr<br>[+] Email found: <a href="mailto:&#x6a;&#x6b;&#x72;&#x40;&#x77;&#x72;&#x69;&#116;&#x65;&#117;&#x70;&#46;&#x68;&#x74;&#98;">&#x6a;&#x6b;&#x72;&#x40;&#x77;&#x72;&#x69;&#116;&#x65;&#117;&#x70;&#46;&#x68;&#x74;&#98;</a><br>[+] Password found: 62def4866937f08cc13bab43bb14e6f7</p>
+<p>5a599ef579066807<br>raykayjay9</p>
+]]></content>
+      <categories>
+        <category>HackTheBox</category>
+      </categories>
+      <tags>
+        <tag>easy</tag>
+        <tag>hackthebox</tag>
+        <tag>htb</tag>
+      </tags>
+  </entry>
 </search>

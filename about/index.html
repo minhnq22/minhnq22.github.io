@@ -32,7 +32,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/about/about.jpg">
 <meta property="article:published_time" content="2020-12-24T09:47:26.000Z">
-<meta property="article:modified_time" content="2021-01-28T02:43:46.473Z">
+<meta property="article:modified_time" content="2021-01-28T10:00:59.333Z">
 <meta property="article:author" content="minhnq22">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/about/about.jpg">
@@ -53,13 +53,13 @@
 <title>About | TARS
 </title>
   
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188253032-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188223675"></script>
     <script>
       if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'UA-188253032-1');
+        gtag('config', 'UA-188223675');
       }
     </script>
 
@@ -233,7 +233,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -307,7 +307,7 @@
       
       <div class="post-body">
           <p><img src="about.jpg"><br>Chào, tôi là Minh =)) đéo phải là con chó trong ảnh đâu.<br>Tôi lạc mất nó vào một buổi tối mưa to vãi cả nồi, vì quên mất rằng con chó nhà mình sợ sấm chớp đến cụp cả đuôi, chạy loăng quăng khắp nơi để tìm chỗ trú, chứ không chịu trú trong nhà ?? :D ??.<br>Thế rồi nó trốn kỹ quá, tôi chả còn tìm thấy nó nữa.</p>
-<p>Blog này được viết ra như một cách để ghi chép lại những gì tôi học được sau mỗi bài lab hay ho. Nó chưa hoàn thiện cho lắm, vì tôi lười, hoặc vì chơi game thì bao giờ cũng thú vị hơn là ngồi viết blog. Nhưng tóm lại thì, tôi lười :) Nếu chả may bạn lướt qua đây và đéo hiểu tôi đang viết về cái củ lìn gì thì cũng không sao đâu, điều đó chứng tỏ bạn không bị điên (như tôi).<br><em>Hoặc nếu bạn thấy cái văn hoá viết của tôi thiếu văn hoá và tồi tệ thì thực sự xin lỗi nhé :(</em></p>
+<p>Blog này được viết ra như một cách để ghi chép lại những gì tôi học được sau mỗi bài lab hay ho. Nó chưa hoàn thiện cho lắm, vì tôi lười, hoặc vì chơi game thì bao giờ cũng thú vị hơn là ngồi viết blog. Nhưng tóm lại thì, tôi lười :) Nếu chả may bạn lướt qua đây và đéo hiểu tôi đang viết về cái củ lìn gì thì cũng không sao đâu, điều đó chứng tỏ bạn không bị điên (như tôi).<br><em>Hoặc nếu bạn thấy cái lối viết của tôi nó thiếu văn hoá hay tồi tệ thì thực sự xin lỗi nhé :(</em></p>
 <p>Cái tên TARS được ăn trộm từ tên một con robot trong phim Interstellar, chưa xem thì xem thử đi, ảo ảo chứ cũng hay phết :D</p>
 <p>Btw, chúc một ngày thật trong lành!</p>
 <p><em>QM_</em><br><em>RedTeam / CMC Cyber Security</em></p>
@@ -359,6 +359,20 @@
   </span>
   <span class="author" itemprop="copyrightHolder">minhnq22</span>
 </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Symbols count total">84k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">1:16</span>
+  </span>
+</div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
 
@@ -381,70 +395,6 @@
   
 
 
-  <script src="//cdn.jsdelivr.net/npm/firebase@8.1.1/firebase-app.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/firebase@8.1.1/firebase-firestore.js"></script>
-  <script>
-    firebase.initializeApp({
-      apiKey   : 'AIzaSyAuEvcKhmzaqNPpTmExsWwxrEykHOCNZIY',
-      projectId: 'bus-chatbot-ugbwji'
-    });
-
-    function getCount(doc, increaseCount) {
-      // IncreaseCount will be false when not in article page
-      return doc.get().then(d => {
-        // Has no data, initialize count
-        let count = d.exists ? d.data().count : 0;
-        // If first view this article
-        if (increaseCount) {
-          // Increase count
-          count++;
-          doc.set({
-            count
-          });
-        }
-        return count;
-      });
-    }
-
-    function appendCountTo(el) {
-      return count => {
-        el.innerText = count;
-      };
-    }
-  </script>
-  <script>
-    (function() {
-      const db = firebase.firestore();
-      const articles = db.collection('articles');
-
-      if (CONFIG.page.isPost) {
-        // Fix issue #118
-        // https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
-        const title = document.querySelector('.post-title').textContent.trim();
-        const doc = articles.doc(title);
-        let increaseCount = CONFIG.hostname === location.hostname;
-        if (localStorage.getItem(title)) {
-          increaseCount = false;
-        } else {
-          // Mark as visited
-          localStorage.setItem(title, true);
-        }
-        getCount(doc, increaseCount).then(appendCountTo(document.querySelector('.firestore-visitors-count')));
-      } else if (CONFIG.page.isHome) {
-        const promises = [...document.querySelectorAll('.post-title')].map(element => {
-          const title = element.textContent.trim();
-          const doc = articles.doc(title);
-          return getCount(doc);
-        });
-        Promise.all(promises).then(counts => {
-          const metas = document.querySelectorAll('.firestore-visitors-count');
-          counts.forEach((val, idx) => {
-            appendCountTo(metas[idx])(val);
-          });
-        });
-      }
-    })();
-  </script>
 
 
 

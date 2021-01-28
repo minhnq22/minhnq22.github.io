@@ -51,13 +51,13 @@
 <title>Tag | TARS
 </title>
   
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188253032-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188223675"></script>
     <script>
       if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'UA-188253032-1');
+        gtag('config', 'UA-188223675');
       }
     </script>
 
@@ -231,7 +231,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -308,7 +308,7 @@
     8 tags in total
   </div>
   <div class="tag-cloud-tags">
-    <a href="/tags/attackdefense/" style="font-size: 12px;" class="tag-cloud-0">attackdefense</a> <a href="/tags/difficult/" style="font-size: 12px;" class="tag-cloud-0">difficult</a> <a href="/tags/easy/" style="font-size: 24px;" class="tag-cloud-7">easy</a> <a href="/tags/hackthebox/" style="font-size: 18px;" class="tag-cloud-3">hackthebox</a> <a href="/tags/htb/" style="font-size: 18px;" class="tag-cloud-3">htb</a> <a href="/tags/medium/" style="font-size: 30px;" class="tag-cloud-10">medium</a> <a href="/tags/tryhackme/" style="font-size: 12px;" class="tag-cloud-0">tryhackme</a> <a href="/tags/vulnhub/" style="font-size: 30px;" class="tag-cloud-10">vulnhub</a>
+    <a href="/tags/attackdefense/" style="font-size: 12px;" class="tag-cloud-0">attackdefense</a> <a href="/tags/difficult/" style="font-size: 12px;" class="tag-cloud-0">difficult</a> <a href="/tags/easy/" style="font-size: 30px;" class="tag-cloud-10">easy</a> <a href="/tags/hackthebox/" style="font-size: 21px;" class="tag-cloud-5">hackthebox</a> <a href="/tags/htb/" style="font-size: 21px;" class="tag-cloud-5">htb</a> <a href="/tags/medium/" style="font-size: 30px;" class="tag-cloud-10">medium</a> <a href="/tags/tryhackme/" style="font-size: 12px;" class="tag-cloud-0">tryhackme</a> <a href="/tags/vulnhub/" style="font-size: 30px;" class="tag-cloud-10">vulnhub</a>
   </div>
 </div>
 
@@ -359,6 +359,20 @@
   </span>
   <span class="author" itemprop="copyrightHolder">minhnq22</span>
 </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Symbols count total">84k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">1:16</span>
+  </span>
+</div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
 
@@ -381,70 +395,6 @@
   
 
 
-  <script src="//cdn.jsdelivr.net/npm/firebase@8.1.1/firebase-app.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/firebase@8.1.1/firebase-firestore.js"></script>
-  <script>
-    firebase.initializeApp({
-      apiKey   : 'AIzaSyAuEvcKhmzaqNPpTmExsWwxrEykHOCNZIY',
-      projectId: 'bus-chatbot-ugbwji'
-    });
-
-    function getCount(doc, increaseCount) {
-      // IncreaseCount will be false when not in article page
-      return doc.get().then(d => {
-        // Has no data, initialize count
-        let count = d.exists ? d.data().count : 0;
-        // If first view this article
-        if (increaseCount) {
-          // Increase count
-          count++;
-          doc.set({
-            count
-          });
-        }
-        return count;
-      });
-    }
-
-    function appendCountTo(el) {
-      return count => {
-        el.innerText = count;
-      };
-    }
-  </script>
-  <script>
-    (function() {
-      const db = firebase.firestore();
-      const articles = db.collection('articles');
-
-      if (CONFIG.page.isPost) {
-        // Fix issue #118
-        // https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
-        const title = document.querySelector('.post-title').textContent.trim();
-        const doc = articles.doc(title);
-        let increaseCount = CONFIG.hostname === location.hostname;
-        if (localStorage.getItem(title)) {
-          increaseCount = false;
-        } else {
-          // Mark as visited
-          localStorage.setItem(title, true);
-        }
-        getCount(doc, increaseCount).then(appendCountTo(document.querySelector('.firestore-visitors-count')));
-      } else if (CONFIG.page.isHome) {
-        const promises = [...document.querySelectorAll('.post-title')].map(element => {
-          const title = element.textContent.trim();
-          const doc = articles.doc(title);
-          return getCount(doc);
-        });
-        Promise.all(promises).then(counts => {
-          const metas = document.querySelectorAll('.firestore-visitors-count');
-          counts.forEach((val, idx) => {
-            appendCountTo(metas[idx])(val);
-          });
-        });
-      }
-    })();
-  </script>
 
 
 

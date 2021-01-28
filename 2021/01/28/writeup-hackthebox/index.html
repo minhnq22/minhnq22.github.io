@@ -23,20 +23,23 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="#####">
-<meta property="og:type" content="website">
-<meta property="og:title" content="TARS">
-<meta property="og:url" content="http://example.com/categories/index.html">
+<meta name="description" content="Writing…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[HackTheBox] Writeup">
+<meta property="og:url" content="http://example.com/2021/01/28/writeup-hackthebox/index.html">
 <meta property="og:site_name" content="TARS">
-<meta property="og:description" content="#####">
+<meta property="og:description" content="Writing…">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-01-26T04:03:54.529Z">
-<meta property="article:modified_time" content="2020-12-25T17:32:38.094Z">
+<meta property="article:published_time" content="2021-01-28T02:59:23.000Z">
+<meta property="article:modified_time" content="2021-01-28T10:01:02.953Z">
 <meta property="article:author" content="minhnq22">
+<meta property="article:tag" content="easy">
+<meta property="article:tag" content="hackthebox">
+<meta property="article:tag" content="htb">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/categories/">
+<link rel="canonical" href="http://example.com/2021/01/28/writeup-hackthebox/">
 
 
 <script class="page-configurations">
@@ -44,12 +47,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
-<title>Category | TARS
-</title>
+<title>[HackTheBox] Writeup | TARS</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188223675"></script>
     <script>
@@ -283,43 +285,129 @@
 </noscript>
 
 
-    <div class="main-inner page posts-expand">
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
   
   
 
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/28/writeup-hackthebox/">
 
-    
-    
-    
-    <div class="post-block" lang="en"><header class="post-header">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="minhnq22">
+      <meta itemprop="description" content="#####">
+    </span>
 
-<h1 class="post-title" itemprop="name headline">
-</h1>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TARS">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [HackTheBox] Writeup
+        </h1>
 
-<div class="post-meta-container">
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-01-28 09:59:23" itemprop="dateCreated datePublished" datetime="2021-01-28T09:59:23+07:00">2021-01-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/HackTheBox/" itemprop="url" rel="index"><span itemprop="name">HackTheBox</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>885</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>1 mins.</span>
+    </span>
 </div>
 
-</header>
+        </div>
+      </header>
 
-      
-      
-      <div class="post-body"><div class="category-all-page">
-  <div class="category-all-title">
-    4 categories in total
-  </div>
-  <div class="category-all">
-    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AttackDefense/">AttackDefense</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HackTheBox/">HackTheBox</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/TryHackMe/">TryHackMe</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VulnHub/">VulnHub</a><span class="category-list-count">4</span></li></ul>
-  </div>
-</div>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Writing…</p>
+<a id="more"></a>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -p 22,80 -A 10.10.10.138          
+Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-01-28 09:58 +07
+Nmap scan report for 10.10.10.138
+Host is up (0.088s latency).
 
-      </div>
-      
-      
-      
+PORT   STATE  SERVICE VERSION
+22&#x2F;tcp open   ssh     OpenSSH 7.4p1 Debian 10+deb9u6 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 dd:53:10:70:0b:d0:47:0a:e2:7e:4a:b6:42:98:23:c7 (RSA)
+|   256 37:2e:14:68:ae:b9:c2:34:2b:6e:d9:92:bc:bf:bd:28 (ECDSA)
+|_  256 93:ea:a8:40:42:c1:a8:33:85:b3:56:00:62:1c:a0:ab (ED25519)
+80&#x2F;tcp closed http
+Service Info: OS: Linux; CPE: cpe:&#x2F;o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https:&#x2F;&#x2F;nmap.org&#x2F;submit&#x2F; .
+Nmap done: 1 IP address (1 host up) scanned in 4.56 seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>[+] Salt for password found: 5a599ef579066807<br>[+] Username found: jkr<br>[+] Email found: <a href="mailto:&#x6a;&#x6b;&#x72;&#x40;&#x77;&#x72;&#x69;&#116;&#x65;&#117;&#x70;&#46;&#x68;&#x74;&#98;">&#x6a;&#x6b;&#x72;&#x40;&#x77;&#x72;&#x69;&#116;&#x65;&#117;&#x70;&#46;&#x68;&#x74;&#98;</a><br>[+] Password found: 62def4866937f08cc13bab43bb14e6f7</p>
+<p>5a599ef579066807<br>raykayjay9</p>
+
     </div>
 
     
     
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/easy/" rel="tag"># easy</a>
+              <a href="/tags/hackthebox/" rel="tag"># hackthebox</a>
+              <a href="/tags/htb/" rel="tag"># htb</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/01/26/Privilege-Escalation-CTF-Oct16-20-Attack-Defense/" rel="prev" title="[AttackDefense] Privilege Escalation: CTF [Oct 16-20]">
+                  <i class="fa fa-chevron-left"></i> [AttackDefense] Privilege Escalation: CTF [Oct 16-20]
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
 
 
 
