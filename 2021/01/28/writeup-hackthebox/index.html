@@ -333,6 +333,13 @@
     </span>
 
   
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
@@ -384,11 +391,6 @@ Nmap done: 1 IP address (1 host up) scanned in 4.56 seconds<span aria-hidden="tr
           </div>
 
         
-  <div class="post-widgets">
-    <div class="wp_rating">
-      <div id="wpac-rating"></div>
-    </div>
-  </div>
 
           <div class="post-nav">
             <div class="post-nav-item">
@@ -460,26 +462,6 @@ Nmap done: 1 IP address (1 host up) scanned in 4.56 seconds<span aria-hidden="tr
 
   
 
-  <script>
-  if (CONFIG.page.isPost) {
-    wpac_init = window.wpac_init || [];
-    wpac_init.push({
-      widget: 'Rating',
-      id    : 29122,
-      el    : 'wpac-rating',
-      color : '#fc6423'
-    });
-    (function() {
-      if ('WIDGETPACK_LOADED' in window) return;
-      WIDGETPACK_LOADED = true;
-      var mc = document.createElement('script');
-      mc.type = 'text/javascript';
-      mc.async = true;
-      mc.src = '//embed.widgetpack.com/widget.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-    })();
-  }
-  </script>
 <script src="/js/local-search.js"></script>
 
 
@@ -490,6 +472,70 @@ Nmap done: 1 IP address (1 host up) scanned in 4.56 seconds<span aria-hidden="tr
   
 
 
+  <script src="//cdn.jsdelivr.net/npm/firebase@8.1.1/firebase-app.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/firebase@8.1.1/firebase-firestore.js"></script>
+  <script>
+    firebase.initializeApp({
+      apiKey   : 'AIzaSyAuEvcKhmzaqNPpTmExsWwxrEykHOCNZIY',
+      projectId: 'bus-chatbot-ugbwji'
+    });
+
+    function getCount(doc, increaseCount) {
+      // IncreaseCount will be false when not in article page
+      return doc.get().then(d => {
+        // Has no data, initialize count
+        let count = d.exists ? d.data().count : 0;
+        // If first view this article
+        if (increaseCount) {
+          // Increase count
+          count++;
+          doc.set({
+            count
+          });
+        }
+        return count;
+      });
+    }
+
+    function appendCountTo(el) {
+      return count => {
+        el.innerText = count;
+      };
+    }
+  </script>
+  <script>
+    (function() {
+      const db = firebase.firestore();
+      const articles = db.collection('bus-chatbot-ugbwji');
+
+      if (CONFIG.page.isPost) {
+        // Fix issue #118
+        // https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
+        const title = document.querySelector('.post-title').textContent.trim();
+        const doc = articles.doc(title);
+        let increaseCount = CONFIG.hostname === location.hostname;
+        if (localStorage.getItem(title)) {
+          increaseCount = false;
+        } else {
+          // Mark as visited
+          localStorage.setItem(title, true);
+        }
+        getCount(doc, increaseCount).then(appendCountTo(document.querySelector('.firestore-visitors-count')));
+      } else if (CONFIG.page.isHome) {
+        const promises = [...document.querySelectorAll('.post-title')].map(element => {
+          const title = element.textContent.trim();
+          const doc = articles.doc(title);
+          return getCount(doc);
+        });
+        Promise.all(promises).then(counts => {
+          const metas = document.querySelectorAll('.firestore-visitors-count');
+          counts.forEach((val, idx) => {
+            appendCountTo(metas[idx])(val);
+          });
+        });
+      }
+    })();
+  </script>
 
 
 
