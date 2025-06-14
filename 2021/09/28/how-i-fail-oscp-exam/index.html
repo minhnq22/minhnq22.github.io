@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <meta name="google-site-verification" content="Txr_ZAJ6seUhm2Y9s8eRpRy2qOSdUO9A_9jfLLn_bPw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"guyintheclouds.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Đây có lẽ là trải nghiệm thi cử mà tôi sẽ rất nhớ trong cuộc đời mình… vì nó đắt vl, cả về giá, và cả về những gì tôi đã học được.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Talk] Tôi đã tạch OSCP như thế nào?">
+<meta property="og:url" content="https://guyintheclouds.com/2021/09/28/how-i-fail-oscp-exam/index.html">
+<meta property="og:site_name" content="Guy_in_the_clouds">
+<meta property="og:description" content="Đây có lẽ là trải nghiệm thi cử mà tôi sẽ rất nhớ trong cuộc đời mình… vì nó đắt vl, cả về giá, và cả về những gì tôi đã học được.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://guyintheclouds.com/banner/fail-oscp.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/09/28/how-i-fail-oscp-exam/IMG_2402.jpg">
+<meta property="article:published_time" content="2021-09-28T16:05:54.000Z">
+<meta property="article:modified_time" content="2025-06-14T14:58:22.550Z">
+<meta property="article:author" content="minhnq22">
+<meta property="article:tag" content="talk">
+<meta property="article:tag" content="oscp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://guyintheclouds.com/banner/fail-oscp.png">
+
+
+<link rel="canonical" href="https://guyintheclouds.com/2021/09/28/how-i-fail-oscp-exam/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://guyintheclouds.com/2021/09/28/how-i-fail-oscp-exam/","path":"2021/09/28/how-i-fail-oscp-exam/","title":"[Talk] Tôi đã tạch OSCP như thế nào?"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[Talk] Tôi đã tạch OSCP như thế nào? | Guy_in_the_clouds</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-app-compat.js" integrity="sha256-k2eD8Bl04gp35v4S01cNbO+3UeLK6mVqpOyUJz4aXzY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-firestore-compat.js" integrity="sha256-r1EpenNle+MZs+KB73PFJnrmIF3k29t5XGrSqfZ9PPw=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyDP3hkyO3EkkJ4jY-xQFQ7J2HKYiNu6ay0","projectId":"guyintheclouds-a8920"}</script>
+  <script src="/js/third-party/statistics/firestore.js" defer></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Guy_in_the_clouds</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"># cat knowledge >> /dev/brain 2> /proc/mind</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ve-OSCP-Offsec-va-%E2%80%9CTry-harder-%E2%80%9D"><span class="nav-number">1.</span> <span class="nav-text">Về OSCP, Offsec và “Try harder!”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#On-luyen-cac-kieu"><span class="nav-number">2.</span> <span class="nav-text">Ôn luyện các kiểu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lan-thi-dan-tien-2-5-may-Tach"><span class="nav-number">3.</span> <span class="nav-text">Lần thi đần tiên. 2&#x2F;5 máy. Tạch!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chay-da-lan-hai"><span class="nav-number">4.</span> <span class="nav-text">Chạy đà lần hai</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thi-lan-hai-4-5-5-may-He"><span class="nav-number">5.</span> <span class="nav-text">Thi lần hai. 4,5&#x2F;5 máy. Hê!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chung-chi-va-nhung-gi-nhan-duoc"><span class="nav-number">6.</span> <span class="nav-text">Chứng chỉ, và những gì nhận được</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chia-se-chut"><span class="nav-number">7.</span> <span class="nav-text">Chia sẻ chút</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="minhnq22"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">minhnq22</p>
+  <div class="site-description" itemprop="description"><i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:quangminhnguyen2201@gmail.com" title="E-Mail → mailto:quangminhnguyen2201@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/minhnq22" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/minhnq22" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.topcv.vn/xem-cv/BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" title="CV → https:&#x2F;&#x2F;www.topcv.vn&#x2F;xem-cv&#x2F;BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" rel="noopener me" target="_blank"><i class="fa fa-bed fa-fw"></i>CV</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://guyintheclouds.com/2021/09/28/how-i-fail-oscp-exam/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="minhnq22">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guy_in_the_clouds">
+      <meta itemprop="description" content="<i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i>">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[Talk] Tôi đã tạch OSCP như thế nào? | Guy_in_the_clouds">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Talk] Tôi đã tạch OSCP như thế nào?
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-09-28 23:05:54" itemprop="dateCreated datePublished" datetime="2021-09-28T23:05:54+07:00">2021-09-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Talk/" itemprop="url" rel="index"><span itemprop="name">Talk</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>7 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img src="/banner/fail-oscp.png"><br><em>Đây có lẽ là trải nghiệm thi cử mà tôi sẽ rất nhớ trong cuộc đời mình… vì nó đắt vl, cả về giá, và cả về những gì tôi đã học được.</em></p>
+<span id="more"></span>
+<p><img src="/2021/09/28/how-i-fail-oscp-exam/IMG_2402.jpg"><br>Tròn 2 tháng kể từ khi tôi nhận được chiếc bằng “cứng”, khá lâu, vì tính tới thời điểm đó, tôi đã hoàn thành bài thi của mình được khoảng 7 tuần và cũng nhận được email thông báo đã đạt chứng chỉ sau đúng 2 ngày.<br>Đó là lần thi thứ hai của tôi, sau trải nghiệm lần đầu với kết quả khá tệ.</p>
+<h2 id="Ve-OSCP-Offsec-va-“Try-harder-”"><a href="#Ve-OSCP-Offsec-va-“Try-harder-”" class="headerlink" title="Về OSCP, Offsec và “Try harder!”"></a>Về OSCP, Offsec và “Try harder!”</h2><p><a target="_blank" rel="noopener" href="https://www.offensive-security.com/offsec/what-it-means-to-try-harder/">https://www.offensive-security.com/offsec/what-it-means-to-try-harder/</a></p>
+<p>Bạn có thể nhìn vào logo của Offsec, nó lạ và dị dị, lần đầu tôi thấy thì cảm giác cũng y vậy.<br>Nó vẽ một người đàn ông và cái bóng của anh ta trải dài ở phía dưới.<br>Tôi từng đọc ở đâu đó, về hình ảnh này, lấy ẩn dụ đằng sau cánh cửa là những kiến thức, và cái bóng của anh ta thì lớn hơn con người anh ta khi đứng trước ngưỡng cửa.<br>Trước đó thì tôi chưa bao giờ nghĩ mình sẽ thi OSCP, dễ hiểu vì tôi có đếch kiến thức đâu mà thi, và cũng chả có tiền. Thế rồi…</p>
+<h2 id="On-luyen-cac-kieu"><a href="#On-luyen-cac-kieu" class="headerlink" title="Ôn luyện các kiểu"></a>Ôn luyện các kiểu</h2><p>Tôi đăng ký OSCP trước Tết Nguyên Đán 2021, vì không muốn ăn Tết năm đó theo cách bình thường. Nhưng rồi thì tôi vẫn ăn Tết bình thường và bỏ phí mất 1 tuần không đụng gì vào lab.</p>
+<p>Đem in 800 trang tài liệu mà Offsec cung cấp cho khoá học, đọc được 5 chương đầu, chủ yếu là về các công cụ và kỹ thuật khai thác tràn bộ đệm… Cuối cùng thì tôi quyết định làm bài Alpha trong OSCP Lab, khi kỳ nghỉ Tết còn 2 ngày và cái đầu thì đầy bánh chưng.</p>
+<p>Bài Alpha này như một bài mở đầu, có bài viết rất rất chi tiết trên diễn đàn Offsec (tài khoản để vào được diễn đàn này có giá tương đương với giá khoá học, đùa đấy, chỉ những sinh viên của Offsec mới có tài khoản này). Tôi đã đọc rất kỹ bài viết, lạy hồn, nó hay, chi tiết, và viết nhiều cách. Dẫn dắt tư duy từ những bước tìm kiếm thông tin, nêu ra các hướng tấn công có thể và loại trừ các khả năng, tránh bẫy (rabbit hole), thu hẹp phạm vi đánh giá, tìm điểm yếu và khai thác điểm yếu… đó là những gì mà bài viết mang lại, nhìn chung, đó cũng là những gì mà khoá học OSCP mạng lại.</p>
+<p>Kể từ ngày hôm đó, tôi chuyển hẳn sang làm lab và không còn động đến tài liệu nữa &#x3D;)) lười vl. Sau khoảng 30 ngày, tôi hoàn thành 30 máy trong đó, có những máy rất dễ, chỉ cần tìm đúng exploit và chạy là xong. Nhưng có những máy cực khó, thú nhận là lắm khi tôi đã phải mò vào forum để tìm kiếm câu trả lời, điều đó là không nên, hãy hạn chế. Có những máy cần thông tin từ những máy khác (nếu chả may bạn đang tắc tịt ở một máy nào đó trong dải mạng Public thì có thể lắm là bạn đã húc phải những máy này, đây là điều tôi ghét ở OSCP Lab vì nó làm tốn thời gian của tôi).</p>
+<p>Trong lab có 3 dải mạng, bạn có thể tấn công trực tiếp vào các máy trong dải mạng Public, hoàn thành được khoảng 80% trên tổng số các máy này, bạn sẽ có đủ tự tin để tham gia thi. Nếu vẫn còn thời gian, hãy thử chiến thêm các máy trong dải mạng Dev và Admin, để vào được hai dải mạng này, bạn sẽ phải “root” được 2 máy trong dải Public và dùng nó để làm bàn đạp tấn công vào sâu hơn (pivot). Hệ thống OSCP Lab được thiết kế mô phỏng một mạng doanh nghiệp.</p>
+<p>Tổng kết OSCP Lab, tôi hoàn thành 41&#x2F;6x máy. Hừng hực rồi đấy, đăng ký lịch thi!</p>
+<h2 id="Lan-thi-dan-tien-2-5-may-Tach"><a href="#Lan-thi-dan-tien-2-5-may-Tach" class="headerlink" title="Lần thi đần tiên. 2&#x2F;5 máy. Tạch!"></a>Lần thi đần tiên. 2&#x2F;5 máy. Tạch!</h2><p>Tôi chuẩn bị khá kỹ, setup 2 màn hình các kiểu, ghi chép lại những mánh hay ho học hỏi được từ khắp các thể loại tài liệu, bài viết, xỉa răng, xúc miệng… nói chung là kỹ càng.</p>
+<p>Đến giờ thi, trao đổi qua một chút với giám thị, tôi chẳng thạo tiếng Anh, có mấy câu cơ bản thôi, xin đi tè, xin đi ăn, xin đi ị, xin đi ngủ… thế là đủ, còn lại chả nói gì với nhau nhiều vì còn xoắn đít lên mà làm bài.</p>
+<p>Bị mất rất nhiều thời gian với bài khai thác lỗi tràn bộ đệm, bài này 25 điểm. Tôi đã bỏ qua đoạn code mà đề bài cho sẵn mà lại tự đi mò cổng dịch vụ dính lỗi, ngu xuẩn, cái giá phải trả là tôi tốn mất hơn 3 tiếng cho bài BOF đó. Cảm giác run bần bật ở đầu ngón tay đỡ hơn, đi uống ụm nước và bắt đầu đọc thông tin autorecon từ 4 máy còn lại.</p>
+<p>Một mớ bòng bong đúng nghĩa. Rất nhiều bẫy và hoàn toàn lạ lẫm, đó là cảm giác của tôi, nó khác khá xa so với những máy trong lab. Hoặc là tôi vẫn chưa đủ trình độ với bài thi này.</p>
+<p>Trong suốt thời gian còn lại, tôi làm thêm được bài 10 điểm, những máy sau thì chịu, lý do rất đơn giản, tôi không thể. Tôi đã mất nhiều thời gian nhất vào bài 25 điểm, đã gần chạm tới chiếm quyền điều khiển, nhưng vẫn có gì đó không hề rõ ràng và có thể phải mất cả ngày trời để tìm hiểu về điều đó.</p>
+<p>Vậy là tạch.<br>Sau đó là khoảng thời gian không vui vẻ gì, kiểu, suy sụp.</p>
+<h2 id="Chay-da-lan-hai"><a href="#Chay-da-lan-hai" class="headerlink" title="Chạy đà lần hai"></a>Chạy đà lần hai</h2><p>Nguyên một tuần sau khi tạch, tôi không đụng vào lab dù vẫn còn thời gian truy cập, cũng như không làm gì cả. Sau đó là chạy dự án công ty, liền cả tháng trời, vẫn thi thoảng mò vào Vulnhub hay HackTheBox, không nhiều.</p>
+<p>Cho đến một ngày tôi đọc được một bài viết trên Reddit, chủ thread này y chang tôi, cũng choáng ngợp với những máy trong OSCP Exam mặc dù anh ấy đã hầu như hoàn thành hết các máy trong OSCP Lab. Rất nhiều bình luận bên dưới tương tự, và họ đều nói rằng kỳ thi lần hai ổn hơn, và ôn luyện với Proving Grounds.</p>
+<p>Thế là tôi bắt đầu với Proving Grounds, $19 một tháng. Trải nghiệm trên PG giống hệt như thi, các máy được xếp độ khó theo thang điểm như trong OSCP Exam.</p>
+<p>Tôi làm hết những bài 10 điểm, đúng, nó dễ, chỉ cần tìm được đúng exploit là xong, nhưng nhiều bẫy. Nắm được điều này như kiểu bắt bài, tôi hoàn thành chỗ bài 10 điểm chỉ trong 3 ngày. Với những bài 20 điểm và 25 điểm, lắt léo hơn, nhưng tóm lại kỹ thuật không mới, liệt kê (enumerate) và tìm kiếm thêm thông tin (research), tìm kiếm exploit không chỉ dùng ExploitDB mà còn kết hợp với Github… Sau gần một tháng tu luyện lại, tôi rõ hơn về cách làm những bài 10 điểm, 20 điểm và 25 điểm, không còn mù mờ như lần đầu thi. Cảm giác khá là thoáng. Rảnh rảnh thì ngồi xem video của Ippsec, phải nói là gã này lắm mánh hay.</p>
+<p>Được rồi, đóng họ $150 và thi lại!</p>
+<h2 id="Thi-lan-hai-4-5-5-may-He"><a href="#Thi-lan-hai-4-5-5-may-He" class="headerlink" title="Thi lần hai. 4,5&#x2F;5 máy. Hê!"></a>Thi lần hai. 4,5&#x2F;5 máy. Hê!</h2><p>Mặc dù vẫn gặp chút ngớ ngẩn với bài BOF những tôi vẫn hoàn thành nó trong thời gian mình tự định ra, và hoàn thành tiếp bài 10 điểm ngay sau đó. Lúc này tôi còn khoảng gần 22 giờ cho 3 bài còn lại.</p>
+<p>4 tiếng sau, tôi hoàn thành bài 20 điểm, cũng khá căng đấy, hơi run, nhưng không sao, chiến tiếp bài 25 điểm để tối ngủ cho ngon.</p>
+<p>Ăn cơm tắm rửa cho người ngợm đỡ hôi. Phải mất đến 6 tiếng để tôi hoàn thành được bài 25 điểm.<br>Vậy là được 80 điểm, thế là pass rồi, cảm giác lúc đó đỉnh lắm, không thể gào thét thì giờ là 1h sáng, cũng vừa hết bóng đá giữa Việt Nam và đội quái nào chẳng nhớ, tôi ra ban công hóng gió và nhắn tin khoe các kiểu &#x3D;))</p>
+<p>Quay lại bàn, chụp ảnh POC và note lại kỹ càng, ăn chắc mặc bền với 80 điểm, tôi đi ngủ.</p>
+<p>Đến sáng, lúc này còn khoảng 5 tiếng nữa là hết giờ. Tranh thủ đớp cái bánh và ngồi xem có gặm được bài 20 điểm còn lại không. Ăn may là có. Cuỗm thêm được nửa điểm của bài đó vì chiếm được quyền điều khiển, nhưng không thể leo thang lên quyền system được, thôi bỏ, còn đôi chục phút, chào lễ phép giám thị và ngắt kết nối VPN.</p>
+<p>Đánh thêm một giấc nữa tới chiều và đi đạp xe, về viết báo cáo và nộp.<br>(Đừng đùa, khoản viết báo cáo cũng tốn thời gian đấy, đừng nghĩ 24h là đủ với tâm hồn hay delay)</p>
+<h2 id="Chung-chi-va-nhung-gi-nhan-duoc"><a href="#Chung-chi-va-nhung-gi-nhan-duoc" class="headerlink" title="Chứng chỉ, và những gì nhận được"></a>Chứng chỉ, và những gì nhận được</h2><p>Nộp report khoảng 2 ngày, tôi nhận được mail báo đạt chứng chỉ vào hôm Chủ Nhật.<br>Đấy là thông báo mà tôi đã mong chờ nửa năm nay. Yah!</p>
+<p>Những gì học được từ OSCP là một bước đệm, bước đệm thực sự quan trọng. Trước đó tôi là một con gà mờ đúng nghĩa khi chỉ biết dùng tool chạy chạy mà chẳng hiểu gì, sau này thì vẫn là gà, nhưng đỡ mờ hơn một chút, biết mình phải làm gì và sử dụng công cụ như thế nào.</p>
+<p>OSCP hướng tới sự tư duy vể nhìn nhận đa chiều, phản biện, liệt kê và tìm kiếm, đây là những bước đầu quan trọng nếu muốn bắt đầu với Pentester.</p>
+<h2 id="Chia-se-chut"><a href="#Chia-se-chut" class="headerlink" title="Chia sẻ chút"></a>Chia sẻ chút</h2><p>Mấy tip nhỏ nếu bạn đã và đang chuẩn bị thi OSCP.</p>
+<ul>
+<li>Hãy dùng Windows là máy host, chạy Kali trên máy ảo thôi. Chẳng phải ngẫu nhiên mà điều này nằm trong cả hướng dẫn của Offsec đâu, vì Linux có vấn đề khi chạy chương trình giám sát của giám thị do xung đột về quyền.</li>
+<li>Nếu bạn dùng quen 2 màn hình, ok, tuỳ, lần thi đầu tôi cũng dùng 2 màn hình, nó khiến tôi bị… mất tập trung (mặc dù khi làm việc tôi vẫn dùng 2 màn hình). 1 màn hình là đủ, và bạn cũng có lợi hơn về băng thông mạng khi đỡ phải chia sẻ thêm một màn hình phân giải Full HD.</li>
+<li>Chuẩn bị môi trường Kali thật tốt, tạo backup, snap shot, đừng để đến lúc thi nó lại lăn ra đấy thì…</li>
+<li>Hãy đảm bảo mạng mẽo ổn định, và cả nguồn điện nữa. Nếu mất điện, bạn có thể báo lại với giám thị để họ cộng bù giờ, nhưng rất ảnh hưởng tâm lý.</li>
+<li>Ăn và ngủ, đừng quá sức :D</li>
+<li>Nếu có tạch, bạn có thể thi lại, có sao đâu.</li>
+</ul>
+<p>Vài nguồn hay bạn có thể xem, vì tôi đã xem rất nhiều :v</p>
+<ul>
+<li><p>PayloadsAllTheThings <a target="_blank" rel="noopener" href="https://github.com/swisskyrepo/PayloadsAllTheThings">https://github.com/swisskyrepo/PayloadsAllTheThings</a><br>Không phải ngẫu nhiên mà nó được tận 30.4k sao đâu.</p>
+</li>
+<li><p>Reverse Shell Generator <a target="_blank" rel="noopener" href="https://www.revshells.com/">https://www.revshells.com/</a><br>Cái này để tạo reverse shell nhanh, đại khái thé.</p>
+</li>
+<li><p>Kênh Youtube Ippsec <a target="_blank" rel="noopener" href="https://www.youtube.com/channel/UCa6eh7gCkpPo5XXUDfygQQA">https://www.youtube.com/channel/UCa6eh7gCkpPo5XXUDfygQQA</a><br>Xem người giỏi họ làm gì, sẽ có rất nhiều cái hay ho đấy.</p>
+</li>
+<li><p>Theo dõi Twitter và Medium những người làm về Cyber Security<br>Thật đấy, Toptop với Tinder ít thôi.</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/talk/" rel="tag"># talk</a>
+              <a href="/tags/oscp/" rel="tag"># oscp</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/10/chronos-vulnhub/" rel="prev" title="[VulnHub] Chronos">
+                  <i class="fa fa-angle-left"></i> [VulnHub] Chronos
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/04/story-about-my-first-cve/" rel="next" title="[Talk] Câu chuyện về CVE đầu tiên.">
+                  [Talk] Câu chuyện về CVE đầu tiên. <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">minhnq22</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

